@@ -1,0 +1,111 @@
+# ######################################################################
+# # REWRITES                                                           #
+# ######################################################################
+
+# ----------------------------------------------------------------------
+# | Rewrite engine                                                     |
+# ----------------------------------------------------------------------
+
+# (1) Turn on the rewrite engine (this is necessary in order for
+#     the `RewriteRule` directives to work).
+#
+#     https://httpd.apache.org/docs/current/mod/mod_rewrite.html#RewriteEngine
+#
+# (2) Enable the `FollowSymLinks` option if it isn't already.
+#
+#     https://httpd.apache.org/docs/current/mod/core.html#options
+#
+# (3) If your web host doesn't allow the `FollowSymlinks` option,
+#     you need to comment it out or remove it, and then uncomment
+#     the `Options +SymLinksIfOwnerMatch` line (4), but be aware
+#     of the performance impact.
+#
+#     https://httpd.apache.org/docs/current/misc/perf-tuning.html#symlinks
+#
+# (4) Some cloud hosting services will require you set `RewriteBase`.
+#
+#     http://www.rackspace.com/knowledge_center/frequently-asked-question/why-is-modrewrite-not-working-on-my-site
+#     https://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewritebase
+#
+# (5) Depending on how your server is set up, you may also need to
+#     use the `RewriteOptions` directive to enable some options for
+#     the rewrite engine.
+#
+#     https://httpd.apache.org/docs/current/mod/mod_rewrite.html#rewriteoptions
+
+<IfModule mod_rewrite.c>
+
+    # (1)
+    RewriteEngine On
+
+    # (2)
+    Options +FollowSymlinks
+
+    # (3)
+    # Options +SymLinksIfOwnerMatch
+
+    # (4)
+    # RewriteBase /
+
+    # (5)
+    # RewriteOptions <options>
+
+</IfModule>
+
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# my rewrite
+
+
+RewriteEngine On
+
+RewriteRule ^([admin]+)$ index.php?admin=$1
+RewriteRule ^([admin]+)/$ index.php?admin=$1
+
+RewriteRule ^([a-zA-Z0-9_-]+)$ index.php?pageurl=$1
+RewriteRule ^([a-zA-Z0-9_-]+)/$ index.php?pageurl=$1
+
+
+RewriteEngine On
+
+RewriteRule ^([a-zA-Z0-9_-]+)/([admin]+)$ index.php?pageurl=$1&admin=$2
+RewriteRule ^([a-zA-Z0-9_-]+)/([admin]+)/$ index.php?pageurl=$1&admin=$2
+
+RewriteRule ^([a-zA-Z0-9_-]+)/([superadmin]+)$ index.php?pageurl=$1&superadmin=$2
+RewriteRule ^([a-zA-Z0-9_-]+)/([superadmin]+)/$ index.php?pageurl=$1&superadmin=$2
+
+RewriteEngine On
+
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)$ index.php?pageurl=$1&articleurl=$2
+RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/$ index.php?pageurl=$1&articleurl=$2
+
+# RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([admin]+)$ index.php?pageurl=$1&articleurl=$2&admin=$3
+# RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([admin]+)/$ index.php?pageurl=$1&articleurl=$2&admin=$3
+
+# RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([superadmin]+)$ index.php?pageurl=$1&articleurl=$2&superadmin=$3
+# RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/([superadmin]+)/$ index.php?pageurl=$1&articleurl=$2&superadmin=$3
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks
+  RewriteEngine On
+
+  # Adaptive-Images -----------------------------------------------------------------------------------
+
+  # Add any directories you wish to omit from the Adaptive-Images process on a new line, as follows:
+  # RewriteCond %{REQUEST_URI} !ignore-this-directory
+  # RewriteCond %{REQUEST_URI} !and-ignore-this-directory-too
+
+  RewriteCond %{REQUEST_URI} !assets
+
+  # don't apply the AI behaviour to images inside AI's cache folder:
+  RewriteCond %{REQUEST_URI} !ai-cache
+
+  # Send any GIF, JPG, or PNG request that IS NOT stored inside one of the above directories
+  # to adaptive-images.php so we can select appropriately sized versions
+
+  RewriteRule \.(?:jpe?g|gif|png)$ adaptive-images.php
+
+  # END Adaptive-Images -------------------------------------------------------------------------------
+</IfModule>
+

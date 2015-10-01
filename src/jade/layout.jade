@@ -1,0 +1,18 @@
+doctype html
+html.no-js
+	include ./includes/head.jade
+	block additionalscript
+	body(data-pagejson!="<?php echo $selectedpageurl.$lang; ?>")
+		block backgroundimage
+		block loginbar
+		include ./includes/nav.jade
+		section#main
+			- foreach ($pagejson as $keymodule => $module):
+				.blocks(class!="<?php echo d('classes',$module); ?>", id!="<?php echo $keymodule; ?>", )
+					block handle
+					.warper
+						.content
+							!=d('content',$module)
+						block btnadmin
+			- endforeach
+		include ./includes/footer.jade

@@ -1,0 +1,3 @@
+<?php
+$pathimgfoder = '../../../../owncloudbeton/sitesimages';
+?>

@@ -1,0 +1,14 @@
+{
+    "Home": {
+        "link":"home",
+        "title":"We are beton blabla en fr"
+    },
+    "Events": {
+        "link":"events",
+        "title":"Evenement"
+    },
+    "who": {
+        "link":"qui",
+        "title":"Qui ?"
+    }
+}

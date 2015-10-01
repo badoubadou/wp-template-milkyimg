@@ -1,0 +1,14 @@
+{
+    "module1": {
+        "classes":"news",
+        "content":"We are beton blabla en fr"
+    },
+    "module2": {
+        "classes":"news",
+        "content":"<h2>We are <\/h2>beton blabla en fr 2 "
+    },
+    "module3": {
+        "classes":"news",
+        "content":"We are beton blabla en fr 3 "
+    }
+}

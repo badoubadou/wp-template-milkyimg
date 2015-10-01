@@ -1,0 +1,14 @@
+{
+    "Home": {
+        "link":"home",
+        "title":"Home"
+    },
+    "Events": {
+        "link":"events",
+        "title":"Evenement"
+    },
+    "wo sind wir ?": {
+        "link":"qui",
+        "title":"wo sind wir ?"
+    }
+}

@@ -1,0 +1,12 @@
+head
+	meta(charset='utf-8')
+	meta(http-equiv='X-UA-Compatible' content='IE=edge')
+	meta(name='viewport' content='width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1')
+	//- link(href=d('favicon-path') rel='shortcut icon' type='image/png')
+	//- link(rel='alternate' type='application/rss+xml' title=d('feed-name') href=d('feed-href'))
+	//- link(rel='apple-touch-icon' href=d('apple-touch-icon-180x180-path'))
+	title=$title
+	block stylesheet
+	script(type='text/javascript').
+		document.cookie='resolution='+Math.max(screen.width,screen.height)+("devicePixelRatio" in window ? ","+devicePixelRatio : ",1")+'; path=/';
+	script(src='js/vendor/modernizr-2.8.3.min.js')

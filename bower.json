@@ -1,0 +1,23 @@
+{
+  "name": "gulp-starter",
+  "version": "0.0.0",
+  "authors": [
+    "maloz <newsletteruht@gmail.com>"
+  ],
+  "description": "myboiler",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/js/components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4",
+    "jquery-anystretch": "~1.2.5",
+    "flexslider": "~2.5.0"
+  }
+}
