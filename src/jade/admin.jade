@@ -5,14 +5,50 @@ block additionalscript
 	script(src='//tinymce.cachefly.net/4.2/tinymce.min.js')
 block loginbar
 	.loginbar
-		button#savepage save
+		button.green#savepage=d('save',$dico)
 block backgroundimage
 	.fullbg(style='background-image: url(/images/cover-emty.jpg)')
+block listimgserver
+	.server.hidden
+		.shield
+		.warp
+			- ListFolder($pathimgfolder)
+block btnadmintop
+	.addblocks(data-insert-top=1)
+		include ./includes/admin/addblocksbtn.jade
 block handle
 	.handle.icon-moveit
-block btnadmin
-	.editmodule
-		.btn blablblblblb
+block bin
+	.bin.icon-bin
+block btnadminbottom
+	.addblocks(data-insert-top=0)
+		include ./includes/admin/addblocksbtn.jade
 block pagescript
 	script(src='js/vendor/jquery.sortable.min.js')
 	script(src='js/admin.js')
+
+block samples
+	section#samples
+		.blocks.txt
+			block btnadmintop
+			block handle
+			block bin
+			.warper
+				.content
+					!=d('defaulttxt',$dico)
+			block btnadminbottom
+		.blocks.img
+			block btnadmintop
+			block handle
+			block bin
+			.warper
+				button.blue.addslide
+					!=d('addslide',$dico)
+				.content
+					.flexslider
+						ul.slides
+			block btnadminbottom
+		li#slide
+			img(src="http://placehold.it/350x150")
+			p.flex-caption!=d('caption',$dico)
+

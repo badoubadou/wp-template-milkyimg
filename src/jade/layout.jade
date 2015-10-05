@@ -5,14 +5,18 @@ html.no-js
 	body(data-pagejson!="<?php echo $selectedpageurl.$lang; ?>")
 		block backgroundimage
 		block loginbar
+		block listimgserver
 		include ./includes/nav.jade
 		section#main
 			- foreach ($pagejson as $keymodule => $module):
-				.blocks(class!="<?php echo d('classes',$module); ?>", id!="<?php echo $keymodule; ?>", )
+				div(class!="<?php echo d('classes',$module); ?>", id!="<?php echo $keymodule; ?>" )
+					block btnadmintop
 					block handle
 					.warper
-						.content
+						.content(id!="content<?php echo $keymodule; ?>")
 							!=d('content',$module)
-						block btnadmin
+					block bin
+					block btnadminbottom
 			- endforeach
+		block samples
 		include ./includes/footer.jade

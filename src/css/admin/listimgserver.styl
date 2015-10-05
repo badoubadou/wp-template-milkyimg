@@ -1,0 +1,84 @@
+lineheight = 40px
+
+.server
+	.shield
+		content:''
+		background:#000
+		position:fixed
+		top:0
+		left:0
+		height:100%
+		width:100%
+		z-index:10
+		overflow:scroll
+		opacity:0.5
+
+	.warp
+		background:#fff
+		position:fixed
+		top:50%
+		left:50%
+		height:80%
+		width:80%
+		transform: translateX(-50%) translatey(-50%)
+		z-index:10
+		overflow:scroll
+		box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75)
+		border-radius:5px
+
+	&.hidden
+		display:none
+
+	.folder-trigger
+		position: fixed
+		clip: rect(0, 0, 0, 0)
+
+	.icon-folder
+		line-height: lineheight
+		display:inline-block
+		position:relative
+		padding-left:lineheight+20px
+		margin-left: 20px
+		&:before
+			font-size:lineheight
+			position:absolute
+			left:0
+
+	.folder
+		&:nth-child(even)
+			background:$light-grey
+
+		.folder-trigger:checked ~ ul.sub li
+			display:block
+
+		.folder-trigger:checked ~ .icon-folder:before
+			content: "\EA05"
+
+	ul
+		list-style-type: none
+		padding:0
+
+		li
+			height:100px
+			background:#fff
+			padding:10px
+			padding-left:20px
+			padding-bottom:16px
+			&:nth-child(even)
+				background:$light-grey
+
+			img
+				height:100%
+				margin-right:10px
+				width:auto
+				border:3px #fff solid
+				box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75)
+
+	ul.sub li
+		display:none
+		padding-left:40px
+
+
+	// .racine ul li
+	// 	display:block
+

@@ -17,19 +17,21 @@ class savepage
   	console.log 'makeJson'
   	@$container.find('.blocks').each (index, element) =>
   		$el_content = $(element).find '.content'
-  		$el_class = $(element).attr 'class'
+  		$el_class = $(element).attr('class').replace(/blocks blocks/g,'blocks')
   		$html_content = $el_content.html()
-  		$el_id = $(element).attr 'id'
+  		$el_id = $(element).attr('id')
   		@$pagejson[$el_id] = {'classes': $el_class, 'content': $html_content}
   		console.log $html_content
   	@sendJson()
 
   sendJson: ->
   	console.log 'sendJson'
-  	$.ajax
+  	$.ajax(
   		type:'POST',
   		url: 'php/changedata.php',
   		data: {'fileurl': @$fileurl, 'content': JSON.stringify(@$pagejson)}
+      ).done ->
+      $('body').removeClass 'savable'
 
   bindEvents: ->
     @$btn.on 'click', (e) =>

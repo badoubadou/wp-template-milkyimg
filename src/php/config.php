@@ -1,3 +1,4 @@
 <?php
-$pathimgfoder = '../../../../owncloudbeton/sitesimages';
+$local = $_SERVER['REMOTE_ADDR']=='127.0.0.1' ? 1 : 0;
+$pathimgfolder = $local ? 'images/' : 'images/';
 ?>

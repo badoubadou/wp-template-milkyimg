@@ -1,16 +1,22 @@
 # console.log 'admin'+module.sub.txteditor
 
 
-txtedit = new module.txteditor('.news .content')
-savepage = new module.savepage($('#main'), $('#savepage'))
+init = ->
+	console.log 'doc ready'
+	savepage = new module.savepage($('#main'), $('#savepage'))
+	addblocks = new module.addblocks($('.addblocks'), $('#samples'))
+	removeblocks = new module.removeblocks($('.bin'))
 
-# $('#main').sortable()
-$('#main').sortable handle: '.handle'
+	txtedit = new module.txteditor('#main .txt .content')
+	captionedit = new module.txteditor('#main .img .content .slides .flex-caption')
 
+	showcloud = new module.showcloud($('#main .img .flexslider .slides img'))
+	closecloud = new module.closecloud($('.shield'))
 
+	$('#main').sortable(handle: '.handle').bind 'sortupdate', ->
+		$('body').addClass 'savable'
+	#Triggered when the user stopped sorting and the DOM position has changed.
+	# return
+	return
 
-# tinymce.init({
-#     selector: ".news",
-#     inline: true
-# });
-
+$(document).ready( init )

@@ -2,11 +2,13 @@ var config = require('./');
 
 module.exports = {
   // watch: [config.sourceDirectory + '/php/*',config.sourceDirectory + '/data/*',config.sourceDirectory + '/*',config.sourceDirectory + '/.*'],
-  watch: [config.sourceDirectory + '/php/*','!' + config.sourceDirectory + '/data/*',config.sourceDirectory + '/*',config.sourceDirectory + '/.*'],
-  src: [config.sourceDirectory + '/*',config.sourceDirectory + '/.*', '!' + config.sourceDirectory + '/jade', '!' + config.sourceDirectory + '/assets', '!' + config.sourceDirectory + '/sprites', '!' + config.sourceDirectory + '/stylesheets', '!' + config.sourceDirectory + '/html', '!' + config.sourceDirectory + '/icons','!' + config.sourceDirectory + '/data'],
+  watch: [config.sourceDirectory + '/php/*', '!' + config.sourceDirectory + '/data/*', config.sourceDirectory + '/*', config.sourceDirectory + '/.*', config.sourceDirectory + '/dico/*'],
+  src: [config.sourceDirectory + '/*', config.sourceDirectory + '/.*', '!' + config.sourceDirectory + '/jade', '!' + config.sourceDirectory + '/assets', '!' + config.sourceDirectory + '/sprites', '!' + config.sourceDirectory + '/stylesheets', '!' + config.sourceDirectory + '/html', '!' + config.sourceDirectory + '/icons','!' + config.sourceDirectory + '/data',config.sourceDirectory + '/dico/*'],
   dest: config.publicDirectory ,
   srcvendor: [config.sourceDirectory + '/js/vendor/*'],
   destvendor: config.publicDirectory + '/js/vendor/',
+  srcdico: [config.sourceDirectory + '/dico/*'],
+  destdico: config.publicDirectory + '/dico/',
   srcdata: [config.sourceDirectory + '/data/*'],
   destdata: config.publicDirectory + '/data/',
   srcphp: [config.sourceDirectory + '/php/*'],

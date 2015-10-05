@@ -1,0 +1,30 @@
+.addblocks
+	display:table
+	height:40px
+	width:100%
+	background: $bg-admin-color-primary
+
+	*
+		display: table-cell
+		vertical-align:middle
+
+
+	button, select
+		display:inline-block
+
+	.icon-cloud
+		padding:0 20px
+		margin:0
+		&:before
+			font-size:40px
+
+#main
+	.blocks
+		.addblocks:last-child
+			display:none
+
+	.blocks:last-child
+		.addblocks:last-child
+			display:block
+
+

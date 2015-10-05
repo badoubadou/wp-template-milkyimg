@@ -13,7 +13,7 @@ if(!function_exists('d')) {
 }
 
 function getfirst($keystring,$jsonarray){
-	$output = 'fuck'.$keystring;
+	$output = '';
 	foreach($jsonarray as $key => $val) {
 		$output = d($keystring,$val);
 		break;
@@ -31,7 +31,52 @@ function getmein($thisarray,$thisattr,$matchingstring,$thatattr){
 	return $output;
 }
 
+function ListFolder($path, $sub)
+{
+    //using the opendir function
+    $dir_handle = @opendir($path) or die("Unable to open $path");
 
+    $racine = (!$sub) ? str_replace('/','',$path) : ($sub.'/');
+    //Leave only the lastest folder name
+    $dirname = end(explode("/", $path));
+    $pathsubfolder = $dirname.'/';
+    //display the target folder.
+    if($sub){
+        echo "<div class=\"folder\">\n";
+        echo "<input type=\"checkbox\" id='$dirname' class=\"folder-trigger\" />\n";
+        echo "<label for=\"$dirname\" class='icon-folder'>$dirname</label>";
+        echo "<ul class=\"sub\">\n";
+    }
+    else{
+        echo "<ul id=$racine class=\"racine\">\n";
+    }
+
+
+    while (false !== ($file = readdir($dir_handle)))
+    {
+        if($file!="." && $file!=".." && $file!=".DS_Store")
+        {
+            if (is_dir($path."/".$file))
+            {
+                //Display a list of sub folders.
+                ListFolder($path."/".$file, $racine);
+            }
+            else
+            {
+                //Display a list of files.
+                echo "<li><img src='$racine$pathsubfolder$file'>$file</li>";
+            }
+        }
+    }
+    echo "</li>\n";
+    echo "</ul>\n";
+     if($sub){
+        echo "</div>\n";
+     }
+
+    //closing the directory
+    closedir($dir_handle);
+}
 
 foreach ($jsonIterator as $key => $val) {
      // if(is_array($val)) {

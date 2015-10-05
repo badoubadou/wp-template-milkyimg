@@ -1,5 +1,7 @@
 <?php
 
+require_once 'config.php';
+
 $dl = 'fr';///set default language
 $browserlang = substr($_SERVER['HTTP_ACCEPT_LANGUAGE'], 0, 2);///get browser language
 $defaultlang = ($browserlang ==='fr' || $browserlang ==='de') ? $browserlang : $dl;
@@ -20,4 +22,9 @@ $title = ($pageurl === '') ? getfirst('title',$navjson) : getmein($navjson,'titl
 
 $pagejsonstring = file_get_contents('data/'.$selectedpageurl.$lang.'.json');
 $pagejson = json_decode($pagejsonstring, true);
+
+$imgonserver = array_diff(scandir($pathimgfolder), array('..', '.', '.DS_Store'));
+
+$dicostring = file_get_contents('dico/dico'.$lang.'.json');
+$dico = json_decode($dicostring, true);
 
