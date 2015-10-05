@@ -1,16 +1,23 @@
 class showcloud
-  constructor: (@$btn) ->
-    @setOptions()
-    @bindEvents()
+	constructor: (@$btn) ->
+		@setOptions()
+		@bindEvents()
 
-  setOptions: ->
-    @$btn = @$btn
-    @$cloudfinder = $('.server')
+	setOptions: ->
+		@$btn = @$btn
 
-  bindEvents: ->
-    @$btn.on 'click', (event) =>
-    	replaceimg = new module.replaceimg($(event.currentTarget))
-    	@$cloudfinder.removeClass 'hidden'
-    	$('body').addClass 'popin'
+	bindEvents: ->
+		@$btn.on 'click', (event) ->
+			console.log 'click showcloud'
+			$(event.currentTarget).addClass 'target'
+			$('.server').removeClass 'hidden'
+			$('body').addClass 'popin'
+			# return
+		# @$btn.on 'click', (event) =>
+		#   console.log 'click showcloud'
+		#   $(event.currentTarget).addClass 'target'
+		# 	@$cloudfinder.removeClass 'hidden'
+		# 	$('body').addClass 'popin'
+		#   return
 
 module.showcloud = showcloud

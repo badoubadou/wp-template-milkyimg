@@ -19,6 +19,7 @@ class addslides
 		@$id = 'slide'+@returnid()
 		@$newslide.attr('id',@$id)
 		@$slides.append(@$newslide)
+		txt = new module.txteditor('#'+@$id+' .flex-caption')
 		showserver = new module.showcloud($('#'+@$id+' img'))
 		console.log @$slides.html()
 		# $('#main').sortable handle: '.handle'

@@ -12,8 +12,9 @@ html.no-js
 				div(class!="<?php echo d('classes',$module); ?>", id!="<?php echo $keymodule; ?>" )
 					block btnadmintop
 					block handle
+					block addslide
 					.warper
-						.content(id!="content<?php echo $keymodule; ?>")
+						.content
 							!=d('content',$module)
 					block bin
 					block btnadminbottom

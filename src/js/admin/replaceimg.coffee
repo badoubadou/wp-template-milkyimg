@@ -1,22 +1,21 @@
 class replaceimg
-  constructor: (@$cible) ->
-    @setOptions()
-    @bindEvents()
+	constructor: (@$btn) ->
+		@setOptions()
+		@bindEvents()
 
-  setOptions: ->
-    @$cible = @$cible
-    @$cloudfinder = $('.server')
-    @$btn = @$cloudfinder.find 'img'
+	setOptions: ->
+		@$btn = @$btn
 
-  getContext: (@$el)->
-    @$newsrc = @$el.attr('src')
+	getContext: (@$el)->
+		@$newsrc = @$el.attr('src')
 
-  bindEvents: ->
-    @$btn.on 'click', (event) =>
-    	console.log 'click'+$()
-    	@getContext($(event.currentTarget))
-    	@$cible.attr('src',@$newsrc)
-    	@$cloudfinder.addClass 'hidden'
-    	$('body').removeClass 'popin'
+	bindEvents: ->
+		@$btn.on 'click', (event) =>
+			console.log 'click replaceimg'
+			@getContext($(event.currentTarget))
+			$('.target').attr('src',@$newsrc)
+			$('.target').removeClass 'target'
+			$('.server').addClass 'hidden'
+			$('body').removeClass 'popin'
 
 module.replaceimg = replaceimg

@@ -13,6 +13,9 @@ init = ->
 	showcloud = new module.showcloud($('#main .img .flexslider .slides img'))
 	closecloud = new module.closecloud($('.shield'))
 
+	replaceimg = new module.replaceimg($('.server img'))
+
+
 	$('#main').sortable(handle: '.handle').bind 'sortupdate', ->
 		$('body').addClass 'savable'
 	#Triggered when the user stopped sorting and the DOM position has changed.
