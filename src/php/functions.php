@@ -36,7 +36,7 @@ function ListFolder($path, $sub)
     //using the opendir function
     $dir_handle = @opendir($path) or die("Unable to open $path");
 
-    $racine = (!$sub) ? str_replace('/','',$path) : ($sub.'/');
+    $racine = (!$sub) ? str_lreplace('/','',$path) : ($sub.'/');
     //Leave only the lastest folder name
     $dirname = end(explode("/", $path));
     $pathsubfolder = $dirname.'/';
@@ -77,7 +77,17 @@ function ListFolder($path, $sub)
     //closing the directory
     closedir($dir_handle);
 }
+function str_lreplace($search, $replace, $subject)
+{
+    $pos = strrpos($subject, $search);
 
+    if($pos !== false)
+    {
+        $subject = substr_replace($subject, $replace, $pos, strlen($search));
+    }
+
+    return $subject;
+}
 foreach ($jsonIterator as $key => $val) {
      // if(is_array($val)) {
      //     echo "$key:\n";

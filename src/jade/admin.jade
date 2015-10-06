@@ -21,8 +21,7 @@ block handle
 block bin
 	.bin.icon-bin
 block addslide
-	button.blue.addslide
-		!=d('addslide',$dico)
+	include ./includes/admin/addslidebtn.jade
 block btnadminbottom
 	.addblocks(data-insert-top=0)
 		include ./includes/admin/addblocksbtn.jade
@@ -49,6 +48,9 @@ block samples
 				.content
 					.flexslider
 						ul.slides
+							li
+								img(src="http://placehold.it/350x150")
+								div.flex-caption.needcleaning!=d('caption',$dico)
 			block btnadminbottom
 		li#slide
 			img(src="http://placehold.it/350x150")

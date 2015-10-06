@@ -2,7 +2,7 @@ doctype html
 html.no-js
 	include ./includes/head.jade
 	block additionalscript
-	body(data-pagejson!="<?php echo $selectedpageurl.$lang; ?>")
+	body(data-pagejson!="<?php echo $pagetoload.$lang; ?>")
 		block backgroundimage
 		block loginbar
 		block listimgserver

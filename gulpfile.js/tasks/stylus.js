@@ -9,6 +9,8 @@ var gutil = require('gulp-util');
 var minifyCSS = require('gulp-minify-css');
 
 var concatCss = require('gulp-concat-css');
+
+var autoprefixer = require('gulp-autoprefixer');
 // var autoprefixer = require('gulp-autoprefixer');
 
 // gulp.task('sass', function () {
@@ -30,7 +32,8 @@ gulp.task('stylus', function () {
 		compress: false
 	}))
 	.on('error', handleErrors)
-	.pipe(concatCss('style.css'))
+	.pipe(autoprefixer('last 2 versions', '> 1%', 'ie 9', 'Firefox ESR', 'Opera 12.1').on('error', handleErrors))
+    .pipe(concatCss('style.css'))
 	.pipe(minifyCSS())
 	.pipe(gulp.dest(config.dest));
 	gulp.src(config.srcadmin)

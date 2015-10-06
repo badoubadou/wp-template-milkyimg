@@ -1,7 +1,11 @@
 .contnav
+	a.changlang(href!="<?php echo $linklangoposit;?>")
+		!=$oppositelang
+
 	ul.nav.warper
 		- foreach ($navjson as $key => $val):
 			li(class!="<?php echo (d('link',$val) === $selectedpageurl) ? 'selected' : ''; ?>")
+				//- a(href=d('link',$val))
 				a(href!="<?php echo d('link',$val); ?>")
 					!=d('title',$val)
 		- endforeach

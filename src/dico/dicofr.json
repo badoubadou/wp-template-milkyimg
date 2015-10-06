@@ -1,6 +1,6 @@
 {
     "save":"Enregistrer",
-    "add":"ajouter",
+    "add":"ajouter un block : ",
     "typeimg":"image",
     "typetxt":"text",
     "typeprod":"article",
@@ -9,5 +9,6 @@
     "classnews":"news",
     "classbalon":"bulle",
     "classproduit":"article",
-    "caption":"legende de l'image"
+    "caption":"legende de l'image",
+    "fullscreenslider":"plein ecran"
 }

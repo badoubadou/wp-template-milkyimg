@@ -1,14 +1,20 @@
 {
     "Home": {
         "link":"home",
-        "title":"Home"
+        "linkopposite":"home",
+        "title":"Home",
+        "datajson":"p1"
     },
     "Events": {
-        "link":"events",
-        "title":"Evenement"
+        "link":"ereignis",
+        "linkopposite":"evenement",
+        "title":"Ereignis",
+        "datajson":"p2"
     },
     "wo sind wir ?": {
-        "link":"qui",
-        "title":"wo sind wir ?"
+        "link":"uber-uns",
+        "linkopposite":"qui-sommes-nous",
+        "title":"Über uns",
+        "datajson":"p3"
     }
 }

@@ -13,7 +13,7 @@ class addblocks
 
 	getContext: (@$el)->
 		@$thisblock = @$el
-		@$parent = @$el.parent()
+		@$parent = @$el.parent().parent()
 		@$grandparent = @$parent.parent()
 		@$inserttop = @$parent.data 'insert-top'
 		@$type = @$parent.find('.type option:selected').val()
@@ -35,6 +35,11 @@ class addblocks
 
 		if(@$type=='img')
 			addslide = new module.addslides($('#'+@$id))
+			txt = new module.txteditor('#'+@$id+' .flex-caption')
+			showserver = new module.showcloud($('#'+@$id+' img'))
+
+		addblocks = new module.addblocks(@$cloned.find('.addblocks'), $('#samples'))
+		removeblocks = new module.removeblocks(@$cloned.find('.bin'))
 
 		$('#main').sortable handle: '.handle'
 		$('body').addClass 'savable'

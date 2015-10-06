@@ -1,14 +1,20 @@
 {
-    "Home": {
+    "p1": {
         "link":"home",
-        "title":"We are beton blabla en fr"
+        "linkopposite":"home",
+        "title":"Beton",
+        "datajson":"p1"
     },
-    "Events": {
-        "link":"events",
-        "title":"Evenement"
+    "p2": {
+        "link":"evenement",
+        "linkopposite":"ereignis",
+        "title":"Evénement",
+        "datajson":"p2"
     },
-    "who": {
-        "link":"qui",
-        "title":"Qui ?"
+    "p3": {
+        "link":"qui-sommes-nous",
+        "linkopposite":"uber-uns",
+        "title":"Qui sommes nous",
+        "datajson":"p3"
     }
 }

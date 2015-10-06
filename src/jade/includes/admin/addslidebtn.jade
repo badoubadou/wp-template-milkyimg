@@ -1,0 +1,8 @@
+.warper.btnaddslide
+	button.blue.addslide
+		!=d('addslide',$dico)
+
+	- $id = md5(uniqid(rand(), true));
+	input(type='checkbox' id!='<?php echo $id;?>' class='fullbox')
+	label(for!='<?php echo $id;?>')
+		!=d('fullscreenslider',$dico)
