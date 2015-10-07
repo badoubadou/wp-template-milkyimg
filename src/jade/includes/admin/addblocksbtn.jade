@@ -1,12 +1,12 @@
 .warper
-	button.blue.btnadd=d('add',$dico)
-	//- button.blue.icon-cloud
-	select.type
-		option(value!='txt')=d('typetxt',$dico)
-		option(value!='img')=d('typeimg',$dico)
-		//- option(val!='prod')=d('typeprod',$dico)
+	- $idtxt = 'type'.md5(uniqid(rand(), true));
+	.warpinput
+		input(type='radio' name!='<?php echo $idtxt;?>' id!='<?php echo $idtxt;?>' value!='txt' checked='checked')
+		label.icon-pencil.round(for!='<?php echo $idtxt;?>')
 
-	//- select.classname(multiple='')
-	//- 	option(val!='news', selected='')=d('classnews',$dico)
-	//- 	option(val!='produit')=d('classproduit',$dico)
-	//- 	option(val!='balon')=d('classbalon',$dico)
+	- $idimage = 'type'.md5(uniqid(rand(), true));
+	.warpinput
+		input(type='radio' name!='<?php echo $idtxt;?>' id!='<?php echo $idimage;?>' value!='img')
+		label.icon-image.round(for!='<?php echo $idimage;?>')
+
+	button.blue.btnadd.icon-plus.round

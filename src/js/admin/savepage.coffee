@@ -22,7 +22,7 @@ class savepage
 		@cleanContent()
 		@$container.find('.blocks').each (index, element) =>
 			$el_content = $(element).find '.content'
-			$el_class = $(element).attr('class').replace(/blocks blocks/g,'blocks')
+			$el_class = $(element).attr('class').replace(/blocks blocks/g,'blocks').replace(/fullscreen/g,'')
 			$full_screen = $(element).find('.fullbox').is(':checked')
 			console.log $(element).find('.fullbox').is(':checked')+'############################################ '
 			if($full_screen)

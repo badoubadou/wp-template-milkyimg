@@ -1,8 +1,19 @@
-.warper.btnaddslide
-	button.blue.addslide
-		!=d('addslide',$dico)
+.btnaddslide
+	.warper
+		//- button.blue.addslide
+		//- 	!=d('addslide',$dico)
+		- $idmoreimage = md5(uniqid(rand(), true));
+		.warpinput
+			input(type='radio' name!='<?php echo $idmoreimage;?>slide' id!='<?php echo $idmoreimage;?>' value!='txt' checked='checked')
+			label.icon-images.round(for!='<?php echo $idmoreimage;?>slide')
 
-	- $id = md5(uniqid(rand(), true));
-	input(type='checkbox' id!='<?php echo $id;?>' class='fullbox')
-	label(for!='<?php echo $id;?>')
-		!=d('fullscreenslider',$dico)
+		button.blue.addslide.icon-plus.round
+
+- $id = md5(uniqid(rand(), true));
+- if($infullscreen):
+input(type='checkbox' id!='<?php echo $id;?>' class='fullbox' checked)
+-else:
+input(type='checkbox' id!='<?php echo $id;?>' class='fullbox')
+- endif;
+label(for!='<?php echo $id;?>')
+	!=d('fullscreenslider',$dico)

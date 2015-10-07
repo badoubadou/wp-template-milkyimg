@@ -1,6 +1,3 @@
-# console.log 'admin'+module.sub.txteditor
-
-
 init = ->
 	console.log 'doc ready'
 	savepage = new module.savepage($('#main'), $('#savepage'))
@@ -15,6 +12,16 @@ init = ->
 
 	replaceimg = new module.replaceimg($('.server img'))
 
+	addslide = new module.addslides($('#main .img'))
+
+
+	$('input[type=checkbox]').change ->
+		$('body').addClass 'savable'
+		return
+
+	$('.btn').on 'click', ->
+		$('body').addClass 'savable'
+		return
 
 	$('#main').sortable(handle: '.handle').bind 'sortupdate', ->
 		$('body').addClass 'savable'

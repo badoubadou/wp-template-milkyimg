@@ -16,8 +16,9 @@ class addblocks
 		@$parent = @$el.parent().parent()
 		@$grandparent = @$parent.parent()
 		@$inserttop = @$parent.data 'insert-top'
-		@$type = @$parent.find('.type option:selected').val()
+		@$type = @$parent.find('input[type="radio"]:checked').val()
 		@$newblock = @$samples.find '.blocks.'+@$type
+		console.log @$type
 		# @$classname = @$parent.find '.classname'
 
 	insertBlock: ->

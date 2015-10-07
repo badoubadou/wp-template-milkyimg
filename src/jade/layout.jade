@@ -12,7 +12,10 @@ html.no-js
 				div(class!="<?php echo d('classes',$module); ?>", id!="<?php echo $keymodule; ?>" )
 					block btnadmintop
 					block handle
+					- if(strpos(d('classes',$module),'img') !== false):
+					- $infullscreen = (strpos(d('classes',$module),'fullscreen') !== false);
 					block addslide
+					- endif;
 					.warper
 						.content
 							!=d('content',$module)
