@@ -1,1 +1,20 @@
-{"module1444214350464":{"classes":"blocks img fullscreen","content":"\n            <div class=\"flexslider\">\n              <ul class=\"slides\">\n                <li><img src=\"images/10959589_1712690758957272_6927517168988791273_n.jpg\" class=\"\">\n                  <div class=\"flex-caption needcleaning\"><p>legende de l'image</p></div>\n                </li>\n              <li id=\"slide1444214354976\"><img src=\"images/1658351_1704687633090918_1325368340007553934_o.jpg\" class=\"\">\n        <div class=\"flex-caption needcleaning\"><p>legende de l'image</p></div>\n      </li><li id=\"slide1444214364478\"><img src=\"images/DSC01463.JPG\" class=\"\">\n        <div class=\"flex-caption needcleaning\"><p>legende de l'image</p></div>\n      </li></ul>\n            </div>\n          "},"1444036886281":{"classes":"blocks txt","content":"<h3>qsdqsdqsdsqdqsdqdyeas &nbsp;!!q</h3><p>dqsdqsdsqsd</p>"},"1444036908134":{"classes":"blocks txt","content":"<p>qsdqsdqsdqsdqsdqsdqsdqsdqsdqsdqsdsdsdqqchange moi !</p>"}}
+{
+	"module1444239074310":
+	{
+		"classes":"blocks txt","content":"<p>sdfghjkdqsdqsdsdqsdqsd sdqsd sqdqdqsdfdschange moi !</p>"
+	},
+	"module1444239089075":
+	{
+		"classes":"blocks txt","content":"<p>qsdsd qsd qsd qsdchange moi !</p>"},
+	"module1444214350464":
+	{
+		"classes":"blocks img      ",
+	"content":"\n            <div class=\"flexslider\">\n              <ul class=\"slides\">\n                <li><img src=\"images/10959589_1712690758957272_6927517168988791273_n.jpg\" class=\"\">\n                  <div class=\"flex-caption needcleaning\"><p>legende de l'image</p></div>\n                </li>\n              <li id=\"slide1444214354976\"><img src=\"images/1658351_1704687633090918_1325368340007553934_o.jpg\" class=\"\">\n        <div class=\"flex-caption needcleaning\"><p>legende de l'image</p></div>\n      </li><li id=\"slide1444214364478\"><img src=\"images/DSC01463.JPG\" class=\"\">\n        <div class=\"flex-caption needcleaning\"><p>legende de l'image</p></div>\n      </li></ul>\n            </div>\n                                                                                "},
+	"1444036886281":
+	{
+		"classes":"blocks txt","content":"<h3>qsdqsdqsdsqdqsdqdyeas &nbsp;!!q</h3><p>dqsdqsdsqsd</p>"},
+	"1444036908134":
+	{"classes":"blocks txt","content":"<p>qsdqsdqsdqsdqsdqsdqsdqsdqsdqsdqsdsdsdqqchange moi !</p>"},
+	"module1444240158707":
+	{"classes":"blocks txt","content":"<p>qsdfghjklm fghjkl change moi !</p>"}
+}

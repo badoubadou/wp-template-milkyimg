@@ -24,11 +24,20 @@ class savepage
 			$el_content = $(element).find '.content'
 			$el_class = $(element).attr('class').replace(/blocks blocks/g,'blocks').replace(/fullscreen/g,'')
 			$full_screen = $(element).find('.fullbox').is(':checked')
-			console.log $(element).find('.fullbox').is(':checked')+'############################################ '
 			if($full_screen)
 				$el_class += ' fullscreen'
 			$html_content = $el_content.html()
-			$el_id = $(element).attr('id')
+			$el_id = $(element).attr 'id'
+			if($el_content.find('.slides li').length)
+				$sliderjson = {}
+				$el_content.find('.slides li').each (index, slide) ->
+					$imgslide = $(slide).find 'img'
+					$caption = $(slide).find '.flex-caption'
+					$sliderjson[index] = {'img' : $imgslide.attr('src'), 'caption' : $caption.html()}
+					return
+				$html_content = $sliderjson
+			# if($el_content.find('.slides li').length)
+			# 	console.log($sliderjson+'  ????? ')
 			@$pagejson[$el_id] = {'classes': $el_class, 'content': $html_content}
 			console.log $html_content
 		@sendJson()

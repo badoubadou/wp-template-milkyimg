@@ -1,0 +1,9 @@
+- $data = d('content',$module)
+.flexslider
+	ul.slides
+		- foreach ($data as $keyslide => $slide):
+			li
+				img(src!="<?php echo d('img',$slide);?>")
+				.div.flex-caption
+					!=d('caption',$slide)
+		- endforeach

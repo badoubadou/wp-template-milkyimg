@@ -2,7 +2,7 @@ Beton from : gulp-starter
 ============
 ## Features
 - Compile stylus
-  - Autoprefix (to do )
+  - Autoprefix
   - Minify
 - Compile JS with coffee
   - Uglify and optimizes for production builds (to do)

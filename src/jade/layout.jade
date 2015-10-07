@@ -12,13 +12,19 @@ html.no-js
 			- foreach ($pagejson as $keymodule => $module):
 				div(class!="<?php echo d('classes',$module); ?>", id!="<?php echo $keymodule; ?>" )
 					block handle
-					- if(strpos(d('classes',$module),'img') !== false):
+					- $itsimgtype = (strpos(d('classes',$module),'img') !== false)
+					- if($itsimgtype):
 					- $infullscreen = (strpos(d('classes',$module),'fullscreen') !== false);
 					block addslide
 					- endif;
 					.warper
 						.content
+							- if($itsimgtype):
+							//- != $itsimgtype.' ??? $itsimgtype'
+							include ../module/slider_fullscreen/index.php.jade
+							- else:
 							!=d('content',$module)
+							- endif;
 					block bin
 					block btnadminbottom
 			- endforeach
