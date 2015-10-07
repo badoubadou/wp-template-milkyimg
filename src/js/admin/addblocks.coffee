@@ -27,7 +27,7 @@ class addblocks
 		@$id = 'module'+@returnid()
 		@$cloned = @$newblock.clone().attr('id', @$id).attr('data-type', @$type).attr('class','blocks '+@$type)
 		if @$inserttop
-			@$cloned.insertBefore @$grandparent
+			@$cloned.insertAfter @$parent
 		else
 			@$cloned.insertAfter @$grandparent
 
