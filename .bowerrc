@@ -1,5 +1,5 @@
 {
-  "directory": "src/js/components/",
+  "directory": "src/core/js/components/",
   "analytics": false,
   "timeout": 120000
 }

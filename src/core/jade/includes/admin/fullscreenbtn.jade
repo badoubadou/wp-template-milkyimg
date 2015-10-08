@@ -1,0 +1,8 @@
+.warpinput
+	- $id = md5(uniqid(rand(), true));
+	- if($infullscreen):
+	input(type='checkbox' id!='<?php echo $id;?>' class='fullbox' checked)
+	-else:
+	input(type='checkbox' id!='<?php echo $id;?>' class='fullbox')
+	- endif;
+	label.icon-enlarge.round(for!='<?php echo $id;?>')

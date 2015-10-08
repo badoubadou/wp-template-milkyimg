@@ -2,16 +2,16 @@ var config = require('./');
 
 module.exports = {
   watch: [
-  config.sourceDirectory + '/jade/**/*.jade',
+  config.sourceDirectory + '/core/jade/**/*.jade',
   config.sourceDirectory + '/module/**/*.jade'
   ],
   src: [
-  config.sourceDirectory + '/jade/**/*.jade',
+  config.sourceDirectory + '/core/jade/**/*.jade',
   '!**/{layouts,shared,macros,includes}/**',
   '!/**/layout.jade'
   ],
   dest: config.publicDirectory,
-  nunjucks: [config.sourceDirectory + '/jade/'],
+  nunjucks: [config.sourceDirectory + '/core/jade/'],
   htmlmin: {
     collapseWhitespace: true
   }

@@ -8,23 +8,36 @@ block loginbar
 		button.green#savepage=d('save',$dico)
 block backgroundimage
 	.fullbg(style='background-image: url(/images/cover-emty.jpg)')
+
 block listimgserver
 	.server.hidden
 		.shield
 		.warp
 			- ListFolder($pathimgfolder)
+
 block btnadmintop
 	.addblocks(data-insert-top=1)
 		include ./includes/admin/addblocksbtn.jade
+
 block handle
 	.handle.icon-moveit
+
 block bin
 	.bin.icon-bin
+
 block addslide
 	include ./includes/admin/addslidebtn.jade
+
+
+block listbtnright
+	.listbtnright
+		include ./includes/admin/listbtnright.jade
+
+
 block btnadminbottom
 	.addblocks(data-insert-top=0)
 		include ./includes/admin/addblocksbtn.jade
+
 block pagescript
 	script(src='js/vendor/jquery.sortable.min.js')
 	script(src='js/admin.js')

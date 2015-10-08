@@ -2,17 +2,15 @@ var config = require('./');
 
 module.exports = {
 	watch: [
-	config.sourceDirectory + '/css/**/*.styl',
+	config.sourceDirectory + '/core/css/**/*.styl',
 	config.sourceDirectory + '/module/**/style.styl'],
 	src: [
-	config.sourceDirectory + '/css/**/style.styl',
-	// config.sourceDirectory + '/module/**/style.styl',
-	config.sourceDirectory + '/css/vendor/*.css'
+	config.sourceDirectory + '/core/css/**/style.styl',
+	config.sourceDirectory + '/core/css/vendor/*.css'
 	],
 	srcadmin: [
-	config.sourceDirectory + '/css/**/admin.styl',
-	// config.sourceDirectory + '/module/**/style.styl',
-	'!' + config.sourceDirectory + '/css/vendor/flexislider.css'
+	config.sourceDirectory + '/core/css/**/admin.styl',
+	'!' + config.sourceDirectory + '/core/css/vendor/flexislider.css'
 	],
 	dest: config.publicDirectory + '/css'
 };

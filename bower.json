@@ -11,7 +11,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "src/js/components/",
+    "src/core/js/components/",
     "test",
     "tests"
   ],

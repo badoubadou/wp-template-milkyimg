@@ -38,6 +38,10 @@ label
 		background:#AD077D
 		color: #ffffff
 
+	&.icon-enlarge
+		background:#987654
+		color: #ffffff
+
 
 .warpinput
 	height:40px
@@ -52,11 +56,13 @@ label
 		position:relative
 		top:10px
 
-	input[type=radio]
+	input[type=radio],
+	input[type=checkbox]
 		position: fixed
 		clip: rect(0, 0, 0, 0)
 
-	input[type=radio]:checked ~ label
+	input[type=radio]:checked ~ label,
+	input[type=checkbox]:checked ~ label
 		border:3px solid #fff
 		margin-left:-3px
 

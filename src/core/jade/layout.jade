@@ -6,7 +6,7 @@ html.no-js
 		block backgroundimage
 		block loginbar
 		block listimgserver
-		include ../module/navigation/index.php.jade
+		include ../../module/navigation/index.php.jade
 		section#main
 			block btnadmintop
 			- foreach ($pagejson as $keymodule => $module):
@@ -18,9 +18,10 @@ html.no-js
 					block addslide
 					- endif;
 					.warper
+						block listbtnright
 						.content
 							- if($itsimgtype):
-							include ../module/slider_fullscreen/index.php.jade
+							include ../../module/slider_fullscreen/index.php.jade
 							- else:
 							.editable
 								!=d('content',$module)

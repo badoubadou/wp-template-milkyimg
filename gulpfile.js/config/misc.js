@@ -2,16 +2,31 @@ var config = require('./');
 
 module.exports = {
   // watch: [config.sourceDirectory + '/php/*',config.sourceDirectory + '/data/*',config.sourceDirectory + '/*',config.sourceDirectory + '/.*'],
-  watch: [config.sourceDirectory + '/php/*', '!' + config.sourceDirectory + '/data/*', config.sourceDirectory + '/*', config.sourceDirectory + '/.*', config.sourceDirectory + '/dico/*'],
-  src: [config.sourceDirectory + '/*', config.sourceDirectory + '/.*', '!' + config.sourceDirectory + '/jade', '!' + config.sourceDirectory + '/assets', '!' + config.sourceDirectory + '/sprites', '!' + config.sourceDirectory + '/stylesheets', '!' + config.sourceDirectory + '/html', '!' + config.sourceDirectory + '/icons','!' + config.sourceDirectory + '/data',config.sourceDirectory + '/dico/*'],
+  watch: [
+    config.sourceDirectory + '/core/php/*',
+    '!' + config.sourceDirectory + '/data/*',
+    config.sourceDirectory + '/*',
+    config.sourceDirectory + '/.*',
+    config.sourceDirectory + '/core/dico/*'
+  ],
+  src: [
+  config.sourceDirectory + '/*',
+  config.sourceDirectory + '/.*',
+  '!' + config.sourceDirectory + '/core/jade',
+  '!' + config.sourceDirectory + '/assets',
+  '!' + config.sourceDirectory + '/sprites',
+  '!' + config.sourceDirectory + '/icons',
+  '!' + config.sourceDirectory + '/data',
+  config.sourceDirectory + '/core/dico/*'
+  ],
   dest: config.publicDirectory ,
-  srcvendor: [config.sourceDirectory + '/js/vendor/*'],
+  srcvendor: [config.sourceDirectory + '/core/js/vendor/*'],
   destvendor: config.publicDirectory + '/js/vendor/',
-  srcdico: [config.sourceDirectory + '/dico/*'],
+  srcdico: [config.sourceDirectory + '/core/dico/*'],
   destdico: config.publicDirectory + '/dico/',
   srcdata: [config.sourceDirectory + '/data/*'],
   destdata: config.publicDirectory + '/data/',
-  srcphp: [config.sourceDirectory + '/php/*'],
+  srcphp: [config.sourceDirectory + '/core/php/*'],
   destphp: config.publicDirectory + '/php/',
 };
 
