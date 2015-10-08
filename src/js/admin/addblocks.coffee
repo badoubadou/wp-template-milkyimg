@@ -18,8 +18,6 @@ class addblocks
 		@$inserttop = @$parent.data 'insert-top'
 		@$type = @$parent.find('input[type="radio"]:checked').val()
 		@$newblock = @$samples.find '.blocks.'+@$type
-		console.log @$type
-		# @$classname = @$parent.find '.classname'
 
 	insertBlock: ->
 		$('#main').sortable 'destroy'
@@ -32,7 +30,7 @@ class addblocks
 			@$cloned.insertAfter @$grandparent
 
 		if(@$type=='txt')
-			txtedit = new module.txteditor('#'+@$id+' .content')
+			txtedit = new module.txteditor('#'+@$id+' .editable')
 
 		if(@$type=='img')
 			addslide = new module.addslides($('#'+@$id))

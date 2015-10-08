@@ -5,6 +5,7 @@ class savepage
 
 	setOptions: ->
 		@$btn = @$btn
+		@$captionedit = @$captionedit
 		@$pagejson = {}
 		@$blocks = @$container.find '.blocks'
 		@$fileurl =  $('body').data 'pagejson'
@@ -26,9 +27,11 @@ class savepage
 			$full_screen = $(element).find('.fullbox').is(':checked')
 			if($full_screen)
 				$el_class += ' fullscreen'
-			$html_content = $el_content.html()
+			$html_content = $el_content.find('.editable').html()
 			$el_id = $(element).attr 'id'
-			if($el_content.find('.slides li').length)
+			console.log $el_content.find('.slides').length
+			console.log $el_content.html()
+			if($el_content.find('.slides').length)
 				$sliderjson = {}
 				$el_content.find('.slides li').each (index, slide) ->
 					$imgslide = $(slide).find 'img'
@@ -36,10 +39,7 @@ class savepage
 					$sliderjson[index] = {'img' : $imgslide.attr('src'), 'caption' : $caption.html()}
 					return
 				$html_content = $sliderjson
-			# if($el_content.find('.slides li').length)
-			# 	console.log($sliderjson+'  ????? ')
 			@$pagejson[$el_id] = {'classes': $el_class, 'content': $html_content}
-			console.log $html_content
 		@sendJson()
 
 	sendJson: ->
@@ -49,12 +49,11 @@ class savepage
 			url: 'php/changedata.php',
 			data: {'fileurl': @$fileurl, 'content': JSON.stringify(@$pagejson)}
 			).done ->
-			$('body').removeClass 'savable'
+			location.reload(true)
+			# $('body').removeClass 'savable'
 
 	bindEvents: ->
 		@$btn.on 'click', (e) =>
-			console.log 'click' + @$pagejson
 			@makeJson()
-
 
 module.savepage = savepage

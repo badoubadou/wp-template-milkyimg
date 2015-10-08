@@ -14,6 +14,7 @@ module.exports = {
   ],
   srcadmin: [
   config.sourceDirectory + '/js/module.coffee',
+  config.sourceDirectory + '/module/**/*.coffee',
   config.sourceDirectory + '/js/admin/*.coffee',
   config.sourceDirectory + '/js/**/admin.coffee'
   ],

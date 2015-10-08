@@ -7,3 +7,5 @@ init = ->
 
 
 $(window).load( init )
+
+navigation = new module.navigation($('.navigation'))

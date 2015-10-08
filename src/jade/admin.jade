@@ -32,15 +32,14 @@ block pagescript
 block samples
 	section#samples
 		.blocks.txt
-			//- block btnadmintop
 			block handle
 			block bin
 			.warper
 				.content
-					!=d('defaulttxt',$dico)
+					.editable
+						!=d('defaulttxt',$dico)
 			block btnadminbottom
 		.blocks.img
-			//- block btnadmintop
 			block handle
 			block bin
 			block addslide
@@ -50,9 +49,10 @@ block samples
 						ul.slides
 							li
 								img(src="http://placehold.it/350x150")
-								div.flex-caption.needcleaning!=d('caption',$dico)
+								div.flex-caption.editable!=d('caption',$dico)
 			block btnadminbottom
 		li#slide
+			block handle
 			img(src="http://placehold.it/350x150")
 			div.flex-caption.needcleaning!=d('caption',$dico)
 

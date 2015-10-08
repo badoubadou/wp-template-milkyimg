@@ -1,0 +1,21 @@
+nav.blocks.navigation
+  .warper
+    .navigation-header
+      button.toggle-burger
+        span.sr-only Toggle navigation
+        span.top
+        span.center
+        span.bottom
+      //- a.brand(href=d('home_url'))
+      //-   img(src=d('brand_logo'), alt=d('site_title'))
+    .nav-group-wrapper
+      ul.nav-group
+        - foreach ($navjson as $key => $val):
+          li(class!="<?php echo (d('link',$val) === $selectedpageurl) ? 'selected' : ''; ?>")
+            //- a(href=d('link',$val))
+            a(href!="<?php echo d('link',$val); ?>")
+              !=d('title',$val)
+        - endforeach
+
+  a.changlang(href!="<?php echo $linklangoposit;?>")
+    !=$oppositelang

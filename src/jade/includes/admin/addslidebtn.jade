@@ -1,7 +1,5 @@
 .btnaddslide
 	.warper
-		//- button.blue.addslide
-		//- 	!=d('addslide',$dico)
 		- $idmoreimage = md5(uniqid(rand(), true));
 		.warpinput
 			input(type='radio' name!='<?php echo $idmoreimage;?>slide' id!='<?php echo $idmoreimage;?>' value!='txt' checked='checked')

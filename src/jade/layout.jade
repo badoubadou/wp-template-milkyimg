@@ -2,11 +2,11 @@ doctype html
 html.no-js
 	include ./includes/head.jade
 	block additionalscript
-	body(data-pagejson!="<?php echo $pagetoload.$lang; ?>")
+	body(data-pagejson!="<?php echo $pagetoload.$lang; ?>" class!="<?php if($admin){echo 'admin';};?>")
 		block backgroundimage
 		block loginbar
 		block listimgserver
-		include ./includes/nav.jade
+		include ../module/navigation/index.php.jade
 		section#main
 			block btnadmintop
 			- foreach ($pagejson as $keymodule => $module):
@@ -20,10 +20,10 @@ html.no-js
 					.warper
 						.content
 							- if($itsimgtype):
-							//- != $itsimgtype.' ??? $itsimgtype'
 							include ../module/slider_fullscreen/index.php.jade
 							- else:
-							!=d('content',$module)
+							.editable
+								!=d('content',$module)
 							- endif;
 					block bin
 					block btnadminbottom
