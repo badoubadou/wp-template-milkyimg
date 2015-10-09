@@ -1,8 +1,29 @@
 .loginbar
 	background: $bg-admin-color-primary
-	text-align: center
+	background-linear-gradient(top, #2A1010, 0%,$dark-grey, 100%, left bottom)
+	height:$login-height
 	padding:0
 	position:fixed
-	height:$navigation-height
+	text-align: right
 	width:100%
-	z-index:100
+	z-index:1000
+
+	#unlog
+		margin: 0 10px
+
+	#savepage
+		float:left
+
+	a
+		color:#fff
+		display:none
+
+		@media $bs-screen-sm-min
+			display:inline-block
+
+	form
+		position:absolute
+		right:0
+		top:0
+		*
+			display:inline-block

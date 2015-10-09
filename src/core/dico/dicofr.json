@@ -10,5 +10,7 @@
     "classbalon":"bulle",
     "classproduit":"article",
     "caption":"legende de l'image",
-    "fullscreenslider":"plein ecran"
+    "fullscreenslider":"plein ecran",
+    "welcome":"bienvenue",
+    "unlog":"déconnexion"
 }

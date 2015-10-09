@@ -30,6 +30,16 @@ function getmein($thisarray,$thisattr,$matchingstring,$thatattr){
 	}
 	return $output;
 }
+function isin($thisarray,$thisattr,$matchingstring){
+    $output = false;
+    foreach($thisarray as $k => $val) {
+        if(d($thisattr,$val) === $matchingstring){
+            $output = true;
+            break;
+        };
+    }
+    return $output;
+}
 
 function ListFolder($path, $sub)
 {

@@ -4,8 +4,10 @@ block stylesheet
 block additionalscript
 	script(src='//tinymce.cachefly.net/4.2/tinymce.min.js')
 block loginbar
-	.loginbar
-		button.green#savepage=d('save',$dico)
+	include ./includes/admin/loginbar.jade
+	//- .loginbar
+	//- 	button.green#savepage=d('save',$dico)
+
 block backgroundimage
 	.fullbg(style='background-image: url(/images/cover-emty.jpg)')
 

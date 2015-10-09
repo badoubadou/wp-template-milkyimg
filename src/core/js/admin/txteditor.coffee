@@ -19,8 +19,8 @@ class txteditor
       selector: @$select
       inline: true
       setup: (editor) ->
-        editor.on 'keyup', (e) ->
-          # console.log 'Editor was clicked'+editor.getContent()
+        editor.on 'focus', (e) ->
+          console.log editor.id+'Editor was clicked'+editor.getContent()
           $('body').addClass 'savable'
     return
 

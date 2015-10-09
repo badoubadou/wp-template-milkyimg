@@ -33,10 +33,24 @@ $linklangoposit = 'http://'.$linkadmin.$oppositelang.$serveur.$linkoposit;
 $pagejsonstring = file_get_contents('data/'.$pagetoload.$lang.'.json');
 $pagejson = json_decode($pagejsonstring, true);
 
-
-
 $imgonserver = array_diff(scandir($pathimgfolder), array('..', '.', '.DS_Store'));
 
 $dicostring = file_get_contents('dico/dico'.$lang.'.json');
 $dico = json_decode($dicostring, true);
+
+$logged = false;
+
+$logstring = file_get_contents('data/login.json');
+$loginjson = json_decode(file_get_contents('data/login.json'), true);
+
+
+
+// $test = print_r($loginjson);
+// print_r($loginjson);
+	// $login = 'romain';
+	// $pw = 'mechoui';
+	// if(isin($loginjson,'login',$login))
+	// 	if($pw === getmein($loginjson,'password',$login, 'login'))
+	// 		$logged = true;
+
 

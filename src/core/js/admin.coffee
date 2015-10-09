@@ -44,3 +44,5 @@ $(document).ready( init )
 
 txtedit = new module.txteditor('#main .editable')
 navigation = new module.navigation($('.navigation'))
+login = new module.login($('.loginbar form'))
+unlogin = new module.unlogin($('#unlog'))

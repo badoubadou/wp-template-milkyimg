@@ -17,5 +17,6 @@ class replaceimg
 			$('.target').removeClass 'target'
 			$('.server').addClass 'hidden'
 			$('body').removeClass 'popin'
+			$('body').addClass 'savable'
 
 module.replaceimg = replaceimg

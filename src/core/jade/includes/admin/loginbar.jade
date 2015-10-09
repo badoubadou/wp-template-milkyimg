@@ -1,0 +1,13 @@
+.loginbar
+	- if($logged):
+	button.green#savepage=d('save',$dico)
+	a
+		!=d('welcome',$dico).' '.$user_name.' ! '
+	button.blue#unlog
+		!=d('unlog',$dico)
+	- else:
+	form(method='post')
+		input(type='text', name='login', value='', placeholder='Username or Email')
+		input(type='password', name='password', value='', placeholder='Password')
+		input(type='submit', name='commit',value!='<?php echo d(\'welcome\',$dico);?>')
+	- endif;
