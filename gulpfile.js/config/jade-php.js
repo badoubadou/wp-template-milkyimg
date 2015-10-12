@@ -10,7 +10,11 @@ module.exports = {
   '!**/{layouts,shared,macros,includes}/**',
   '!/**/layout.jade'
   ],
+  srcmodule: [
+  config.sourceDirectory + '/module/**/*.jade'
+  ],
   dest: config.publicDirectory,
+  destmodule: config.publicDirectory+'/module/',
   nunjucks: [config.sourceDirectory + '/core/jade/'],
   htmlmin: {
     collapseWhitespace: true

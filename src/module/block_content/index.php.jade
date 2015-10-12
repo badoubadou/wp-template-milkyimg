@@ -1,0 +1,7 @@
+- if(d('type',$data)==='repeater'):
+-parser(d('content',$data), $admin);
+-elseif(d('type',$data)==='img'):
+include ../slider_fullscreen/index.php.jade
+-elseif(d('type',$data)==='txt'):
+include ../block_txt/index.php.jade
+-endif;

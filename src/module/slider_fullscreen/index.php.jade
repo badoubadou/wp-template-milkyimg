@@ -1,11 +1,8 @@
-- $data = d('content',$module)
+- $data = d('content',$data)
 .flexslider
 	ul.slides
 		- foreach ($data as $keyslide => $slide):
 			li
-				- if($admin):
-				//- .handle.icon-moveit
-				- endif;
 				img(src!="<?php echo d('img',$slide);?>")
 				- if(!$admin):
 				.warper.caption

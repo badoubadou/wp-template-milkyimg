@@ -1,0 +1,22 @@
+.blocks(
+	class!="<?php echo d('blockclass',$data); ?>",
+	id!="<?php echo d('key',$data); ?>",
+	)
+	-if($admin):
+	.handle.icon-moveit
+	-endif;
+	.warper(
+		class!="<?php echo 'level-'.d('level',$data); ?>"
+		)
+		.content(
+		class!="<?php echo d('contentclass',$data); ?>"
+		)
+			include ../block_content/index.php.jade
+
+	-if($admin):
+	include ../../core/jade/includes/admin/listbtnright.jade
+	-if(d('level',$data)==='0'):
+	.addblocks(data-insert-top=0)
+		include ../../core/jade/includes/admin/addblocksbtn.jade
+	-endif;
+	-endif;

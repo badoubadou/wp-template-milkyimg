@@ -9,36 +9,19 @@ html.no-js
 		include ../../module/navigation/index.php.jade
 		section#main
 			block btnadmintop
-			- foreach ($pagejson as $keymodule => $module):
-				- $level = 0
-				- $itsrepeater = false
-				- $data = $module
-				- $key = $keymodule
-				- if(d('type',$module)==='repeater'):
-					.blocks.grid(
-					class!="<?php echo d('type',$data).' '.d('classes',$data).' level-'.$level; ?>",
-					id!="<?php echo $keymodule; ?>",
-					data-type-module!="<?php echo  d('type',$data); ?>",
-					data-more-class!="<?php echo  d('classes',$data); ?>",
-					data-level!="<?php echo  d('level',$data); ?>"
-					)
-						block handle
-						.warper.repeater
-							- $contentjson = d('content',$data)
-							- $nbcolon = count($contentjson)
-							- foreach ($contentjson as $keysubmodule => $submodule):
-								- $data = $submodule
-								- $key = $keysubmodule
-								- $level = 1
-								include ./includes/block.jade
-							- endforeach
-						- $level = 0
-						- $itsrepeater = true
-						block listbtnright
-						block btnadminbottom
-				- else:
-				include ./includes/block.jade
-				- endif;
-			- endforeach
+			- $data = $pagejson
+			- parser($data, $admin)
+			//- != $admin.'  $admin'
+			//- include ./includes/repeater.jade
+
+			//- - foreach ($data as $key => $content):
+			//- 	- $data = $content
+			//- 	- $data['key'] = $key
+			//- 	- if(d('type',$data)==='repeater'):
+			//- 	include ./includes/repeater.jade
+			//- 	- else:
+			//- 	include ./includes/block.jade
+			//- 	- endif;
+			//- - endforeach
 		block samples
 		include ./includes/footer.jade

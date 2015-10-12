@@ -29,11 +29,17 @@ var gutil = require('gulp-util');
 
 gulp.task('jade-php', function() {
 	gutil.log('jade-php : '+config.src);
-	return gulp.src(config.src)
+	gulp.src(config.src)
 		.pipe(jadephp({
 			pretty: true
 		}))
 		.on('error', handleErrors)
 		.pipe(gulp.dest(config.dest));
+	gulp.src(config.srcmodule)
+		.pipe(jadephp({
+			pretty: true
+		}))
+		.on('error', handleErrors)
+		.pipe(gulp.dest(config.destmodule));
 });
 
