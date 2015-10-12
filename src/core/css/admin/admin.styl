@@ -3,5 +3,21 @@ body
 		height:100%
 		overflow:hidden
 
-body.admin #main
-	padding-top:$navigation-height+$login-height
+body.admin
+
+	#main
+		padding-top:$navigation-height + $login-height
+
+		.blocks
+			.warper
+				.content
+					min-height:225px
+
+	.grid
+		[class*='col-']
+			.handle
+				display:none
+			.warper
+				padding:0 50px 0 0
+				width:100%
+				margin:0

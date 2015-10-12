@@ -14,32 +14,62 @@ class savepage
 	updatelist: ->
 		@$blocks = @$container.find '.blocks'
 
-	cleanContent: ->
-		@$caption = @$container.find '.needcleaning'
-		@$caption.removeAttr('id').removeAttr('contenteditable').removeAttr('spellcheck').removeAttr('style').removeClass('mce-content-body')
+	croalContent: ($container) ->
+		$tab = {}
+		$container.each (index, element) =>
+			$el_content = $(element).find '.content'
+			$el_warper = $(element).find '.warper:first-child'
+			$el_class = $(element).data 'more-class'
+			$el_type = $(element).data 'type-module'
+			$el_level = $(element).data 'type-level'
+			$el_id = $(element).attr 'id'
+			$full_screen = $(element).find('.fullbox').is(':checked')
+			$empty = false
+
+
+			if($full_screen)
+				$el_class += ' fullscreen'
+
+			if($el_type=='txt')
+				$content_to_save = $el_content.find('.editable').html()
+				$empty = ($el_content.find('.editable').text()=='') ? true : false
+
+			if($el_type=='img')
+				$sliderjson = {}
+				$el_content.find('.slides li').each (index, slide) ->
+					$emptyslide = false
+					$imgslide = $(slide).find 'img'
+					$emptyslide = ($imgslide.attr('src')=='http://placehold.it/350x150') ? true : false
+					console.log '$emptyslide : '+$emptyslide
+					$caption = $(slide).find '.flex-caption'
+					if(!$emptyslide)
+						$sliderjson[index] =
+						{
+							'img' : $imgslide.attr('src'),
+							'caption' : $caption.html()
+						}
+					return
+				console.log '$sliderjson : '+$sliderjson
+				$content_to_save = $sliderjson
+
+			if($el_type=='repeater')
+				$content_to_save = @croalContent($el_warper.find('.level-1'))
+				console.log JSON.stringify($content_to_save)
+
+			if(!$empty)
+				$tab[$el_id] =
+				{
+					'type': $el_type,
+					'classes': $el_class,
+					'content': $content_to_save
+				}
+			console.log $content_to_save+'  content_to_save '
+
+		return $tab
 
 	makeJson: ->
 		console.log 'makeJson'
-		@cleanContent()
-		@$container.find('.blocks').each (index, element) =>
-			$el_content = $(element).find '.content'
-			$el_class = $(element).attr('class').replace(/blocks blocks/g,'blocks').replace(/fullscreen/g,'')
-			$full_screen = $(element).find('.fullbox').is(':checked')
-			if($full_screen)
-				$el_class += ' fullscreen'
-			$html_content = $el_content.find('.editable').html()
-			$el_id = $(element).attr 'id'
-			console.log $el_content.find('.slides').length
-			console.log $el_content.html()
-			if($el_content.find('.slides').length)
-				$sliderjson = {}
-				$el_content.find('.slides li').each (index, slide) ->
-					$imgslide = $(slide).find 'img'
-					$caption = $(slide).find '.flex-caption'
-					$sliderjson[index] = {'img' : $imgslide.attr('src'), 'caption' : $caption.html()}
-					return
-				$html_content = $sliderjson
-			@$pagejson[$el_id] = {'classes': $el_class, 'content': $html_content}
+		@$pagejson = @croalContent(@$container.find('.level-0'))
 		@sendJson()
 
 	sendJson: ->
@@ -50,7 +80,6 @@ class savepage
 			data: {'fileurl': @$fileurl, 'content': JSON.stringify(@$pagejson)}
 			).done ->
 			location.reload(true)
-			# $('body').removeClass 'savable'
 
 	bindEvents: ->
 		@$btn.on 'click', (e) =>

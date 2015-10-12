@@ -10,24 +10,35 @@ html.no-js
 		section#main
 			block btnadmintop
 			- foreach ($pagejson as $keymodule => $module):
-				div(class!="<?php echo d('classes',$module); ?>", id!="<?php echo $keymodule; ?>" )
-					block handle
-					- $itsimgtype = (strpos(d('classes',$module),'img') !== false)
-					- if($itsimgtype):
-					- $infullscreen = (strpos(d('classes',$module),'fullscreen') !== false);
-					block addslide
-					- endif;
-					.warper
+				- $level = 0
+				- $itsrepeater = false
+				- $data = $module
+				- $key = $keymodule
+				- if(d('type',$module)==='repeater'):
+					.blocks.grid(
+					class!="<?php echo d('type',$data).' '.d('classes',$data).' level-'.$level; ?>",
+					id!="<?php echo $keymodule; ?>",
+					data-type-module!="<?php echo  d('type',$data); ?>",
+					data-more-class!="<?php echo  d('classes',$data); ?>",
+					data-level!="<?php echo  d('level',$data); ?>"
+					)
+						block handle
+						.warper.repeater
+							- $contentjson = d('content',$data)
+							- $nbcolon = count($contentjson)
+							- foreach ($contentjson as $keysubmodule => $submodule):
+								- $data = $submodule
+								- $key = $keysubmodule
+								- $level = 1
+								include ./includes/block.jade
+							- endforeach
+						- $level = 0
+						- $itsrepeater = true
 						block listbtnright
-						.content
-							- if($itsimgtype):
-							include ../../module/slider_fullscreen/index.php.jade
-							- else:
-							.editable
-								!=d('content',$module)
-							- endif;
-					block bin
-					block btnadminbottom
+						block btnadminbottom
+				- else:
+				include ./includes/block.jade
+				- endif;
 			- endforeach
 		block samples
 		include ./includes/footer.jade

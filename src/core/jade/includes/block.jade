@@ -1,6 +1,26 @@
-block btnadmintop
-block handle
-.warper
-	.content
-		!=d('defaulttxt',$dico)
-block btnadminbottom
+- $sizecolon = $nbcolon ? (12/$nbcolon) : 12
+.blocks(
+	class!="<?php echo d('type',$data).' '.d('classes',$data).' col-'.$sizecolon.' level-'.$level; ?>",
+	id!="<?php echo $key; ?>",
+	data-type-module!="<?php echo  d('type',$data); ?>",
+	data-more-class!="<?php echo  d('classes',$data); ?>",
+	data-level!="<?php echo  d('level',$data); ?>"
+	)
+	block handle
+	- $itsimgtype =  d('type',$data)==='img';
+	- $infullscreen = (strpos(d('classes',$data),'fullscreen') !== false);
+	- if($itsimgtype):
+	block addslide
+	- endif;
+	.warper
+		.content
+			- if($itsimgtype):
+			include ../../../module/slider_fullscreen/index.php.jade
+			- else:
+			.editable
+				!=d('content',$data)
+			- endif;
+	block listbtnright
+	- if(!$level):
+	block btnadminbottom
+	- endif;

@@ -3,7 +3,7 @@ class removeblocks
 		@bindEvents()
 
 	getContext: (@$el)->
-		@$thisblock = @$el.parent()
+		@$thisblock = @$el.parent().parent()
 
 	removeBlock: ->
 		$('#main').sortable 'destroy'

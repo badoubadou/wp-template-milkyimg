@@ -3,7 +3,7 @@ var config = require('./');
 module.exports = {
 	watch: [
 	config.sourceDirectory + '/core/css/**/*.styl',
-	config.sourceDirectory + '/module/**/style.styl'],
+	config.sourceDirectory + '/module/**/*.styl'],
 	src: [
 	config.sourceDirectory + '/core/css/**/style.styl',
 	config.sourceDirectory + '/core/css/vendor/*.css'

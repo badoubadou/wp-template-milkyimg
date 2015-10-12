@@ -12,5 +12,8 @@
     "caption":"legende de l'image",
     "fullscreenslider":"plein ecran",
     "welcome":"bienvenue",
-    "unlog":"déconnexion"
+    "log":"login",
+    "unlog":"déconnexion",
+    "name":"nom",
+    "password":"mot de passe"
 }

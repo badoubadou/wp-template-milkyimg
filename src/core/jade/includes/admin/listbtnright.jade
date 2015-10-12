@@ -1,3 +1,7 @@
-- if($itsimgtype):
-	include fullscreenbtn.jade
+block bin
+-if(!$level):
+include fullscreenbtn.jade
+-endif;
+- if(!$itsimgtype && !$itsrepeater):
+	include addbtn.jade
 - endif;
