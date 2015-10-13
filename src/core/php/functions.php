@@ -83,7 +83,6 @@ function ListFolder($path, $sub)
      if($sub){
         echo "</div>\n";
      }
-
     //closing the directory
     closedir($dir_handle);
 }
@@ -95,9 +94,26 @@ function str_lreplace($search, $replace, $subject)
     {
         $subject = substr_replace($subject, $replace, $pos, strlen($search));
     }
-
     return $subject;
 }
+
+function parser($tab, $admin){
+    foreach($tab as $index => $module) {
+        $data = $module;
+        $data['key'] = $index;
+        $data['level'] = d('level',$data);
+        $data['blockclass'] = 'level-'.d('level',$data).' '.d('type',$data).' '.d('classes',$data).' ';
+        if(d('type',$data) === 'repeater'){
+            $data['contentclass'] .= ' grid';
+        }else{
+            $nbcol = count($tab);
+            $data['blockclass'] .= 'col-'.round((12/$nbcol)*10)/10;
+        };
+        include 'module/blocks/index.php.php';
+    }
+}
+
+
 foreach ($jsonIterator as $key => $val) {
      // if(is_array($val)) {
      //     echo "$key:\n";
