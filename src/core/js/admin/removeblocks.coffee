@@ -3,12 +3,16 @@ class removeblocks
 		@bindEvents()
 
 	getContext: (@$el)->
-		@$thisblock = @$el.parent().parent()
+		@$thisblockid = @$el.data 'id-to-remove'
+		@$data_level = @$el.data 'level'
+		@$need_update_col_size = @$el.data 'need-update-col-size'
+		@$grid = $('#'+@$thisblockid).parent()
 
 	removeBlock: ->
 		$('#main').sortable 'destroy'
-		console.log @$thisblock.html()
-		@$thisblock.remove()
+		$('#'+@$thisblockid).remove()
+		if(@$need_update_col_size)
+			new module.updatecolsize(@$grid, @$data_level)
 		$('#main').sortable handle: '.handle'
 		$('body').addClass 'savable'
 

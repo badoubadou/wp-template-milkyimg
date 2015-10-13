@@ -8,20 +8,12 @@ html.no-js
 		block listimgserver
 		include ../../module/navigation/index.php.jade
 		section#main
-			block btnadmintop
+			- $data['level'] = '0'
+			- $data['key'] = 'firstline'
+			- $data['type'] = 'repeater'
+			div#firstline
+				block btnadmintop
 			- $data = $pagejson
-			- parser($data, $admin)
-			//- != $admin.'  $admin'
-			//- include ./includes/repeater.jade
-
-			//- - foreach ($data as $key => $content):
-			//- 	- $data = $content
-			//- 	- $data['key'] = $key
-			//- 	- if(d('type',$data)==='repeater'):
-			//- 	include ./includes/repeater.jade
-			//- 	- else:
-			//- 	include ./includes/block.jade
-			//- 	- endif;
-			//- - endforeach
+			- parser($data, $admin, $dico)
 		block samples
 		include ./includes/footer.jade

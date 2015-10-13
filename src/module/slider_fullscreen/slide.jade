@@ -1,0 +1,5 @@
+- $src = $data['sample'] ? $data['img'] : d('img',$slide)
+li
+	img(src!="<?php echo $src;?>")
+	div.flex-caption.editable(data-ph!="<?php echo d('caption',$dico);?>")
+		!= d('caption',$slide)

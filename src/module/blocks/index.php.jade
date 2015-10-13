@@ -1,6 +1,7 @@
 .blocks(
 	class!="<?php echo d('blockclass',$data); ?>",
 	id!="<?php echo d('key',$data); ?>",
+	data-type-module!="<?php echo d('type',$data); ?>",
 	)
 	-if($admin):
 	.handle.icon-moveit
@@ -15,7 +16,7 @@
 
 	-if($admin):
 	include ../../core/jade/includes/admin/listbtnright.jade
-	-if(d('level',$data)==='0'):
+	-if(d('level',$data)==='0' || d('type',$data)==='repeater'):
 	include ../../core/jade/includes/admin/addblocksbtn.jade
 	-endif;
 	-endif;

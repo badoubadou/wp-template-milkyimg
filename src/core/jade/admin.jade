@@ -20,28 +20,28 @@ block listimgserver
 block btnadmintop
 	include ./includes/admin/addblocksbtn.jade
 
-block handle
-	.handle.icon-moveit
+//- block handle
+//- 	.handle.icon-moveit
 
 block bin
 	button.bin.icon-bin.round.red
 
-block addslide
-	include ./includes/admin/addslidebtn.jade
+//- block addslide
+//- 	include ./includes/admin/addslidebtn.jade
 
 
-block listbtnright
-	.listbtnright.addblocks(
-		data-insert-column='true',
-		data-nb-column!='<?php echo $nbcolon;?>'
-		data-lign-id!='<?php echo $keymodule;?>'
-		)
-		include ./includes/admin/listbtnright.jade
+//- block listbtnright
+//- 	.listbtnright.addblocks(
+//- 		data-insert-column='true',
+//- 		data-nb-column!='<?php echo $nbcolon;?>'
+//- 		data-lign-id!='<?php echo $keymodule;?>'
+//- 		)
+//- 		include ./includes/admin/listbtnright.jade
 
 
-block btnadminbottom
-	.addblocks(data-insert-top=0)
-		include ./includes/admin/addblocksbtn.jade
+//- block btnadminbottom
+//- 	.addblocks(data-insert-top=0)
+//- 		include ./includes/admin/addblocksbtn.jade
 
 block pagescript
 	script(src='js/vendor/jquery.sortable.min.js')
@@ -50,11 +50,21 @@ block pagescript
 block samples
 	section#samples
 		- $data['sample'] = true;
-		- $data['blockclass'] .= 'txt';
+		- $data['type'] = 'txt';
+		- $data['blockclass'] = 'txt';
 		include ../../module/blocks/index.php.jade
-		- $data['blockclass'] .= 'img';
+		- $data['img'] = 'http://placehold.it/350x150'
+		- $data['type'] = 'img';
+		- $data['blockclass'] = 'img';
 		include ../../module/blocks/index.php.jade
-		include ./includes/admin/slide.jade
+		- $data['level'] = '0';
+		- $data['type'] = 'repeater';
+		- $data['blockclass'] = 'repeater';
+		- $data['contentclass'] .= 'grid';
+		include ../../module/blocks/index.php.jade
+
+		div#slide
+			include ../../module/slider_fullscreen/slide.jade
 
 		//- .blocks.txt(data-type-module='txt')
 		//- 	block handle

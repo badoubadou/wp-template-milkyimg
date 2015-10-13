@@ -14,18 +14,17 @@ class savepage
 	updatelist: ->
 		@$blocks = @$container.find '.blocks'
 
-	croalContent: ($container) ->
+	croalContent: ($container, $level) ->
 		$tab = {}
-		$container.each (index, element) =>
-			$el_content = $(element).find '.content'
-			$el_warper = $(element).find '.warper:first-child'
+		console.log '$level : '+$level+'  lenght'+$container.find('.level-'+$level).length
+		$container.find('.blocks.level-'+$level).each (index, element) =>
+			$el_content = $(element).find '.content:first-child'
 			$el_class = $(element).data 'more-class'
 			$el_type = $(element).data 'type-module'
 			$el_level = $(element).data 'type-level'
 			$el_id = $(element).attr 'id'
 			$full_screen = $(element).find('.fullbox').is(':checked')
 			$empty = false
-
 
 			if($full_screen)
 				$el_class += ' fullscreen'
@@ -40,7 +39,6 @@ class savepage
 					$emptyslide = false
 					$imgslide = $(slide).find 'img'
 					$emptyslide = ($imgslide.attr('src')=='http://placehold.it/350x150') ? true : false
-					console.log '$emptyslide : '+$emptyslide
 					$caption = $(slide).find '.flex-caption'
 					if(!$emptyslide)
 						$sliderjson[index] =
@@ -53,7 +51,7 @@ class savepage
 				$content_to_save = $sliderjson
 
 			if($el_type=='repeater')
-				$content_to_save = @croalContent($el_warper.find('.level-1'))
+				$content_to_save = @croalContent($el_content,($level+1))
 				console.log JSON.stringify($content_to_save)
 
 			if(!$empty)
@@ -61,6 +59,7 @@ class savepage
 				{
 					'type': $el_type,
 					'classes': $el_class,
+					'level': $level
 					'content': $content_to_save
 				}
 			console.log $content_to_save+'  content_to_save '
@@ -68,8 +67,7 @@ class savepage
 		return $tab
 
 	makeJson: ->
-		console.log 'makeJson'
-		@$pagejson = @croalContent(@$container.find('.level-0'))
+		@$pagejson = @croalContent(@$container, 0)
 		@sendJson()
 
 	sendJson: ->
@@ -77,8 +75,10 @@ class savepage
 		$.ajax(
 			type:'POST',
 			url: 'php/changedata.php',
-			data: {'fileurl': @$fileurl, 'content': JSON.stringify(@$pagejson)}
-			).done ->
+			data: {
+				'fileurl': @$fileurl,
+				'content': JSON.stringify(@$pagejson)
+				}).done ->
 			location.reload(true)
 
 	bindEvents: ->

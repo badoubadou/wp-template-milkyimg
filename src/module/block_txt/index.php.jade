@@ -1,1 +1,6 @@
-!=d('content',$data)
+-if($admin):
+.editable(data-ph!="<?php echo d('defaulttxt',$dico);?>")
+	!=d('content',$data)
+-else:
+	!=d('content',$data)
+-endif;

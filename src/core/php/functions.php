@@ -97,7 +97,7 @@ function str_lreplace($search, $replace, $subject)
     return $subject;
 }
 
-function parser($tab, $admin){
+function parser($tab, $admin, $dico){
     foreach($tab as $index => $module) {
         $data = $module;
         $data['key'] = $index;
