@@ -20,15 +20,6 @@ class addblocks
 		@$repeater_on_top = $('#'+@$blockid).parent()
 		@$type = @$addblocksdiv.find('input[type="radio"]:checked').val()
 
-	# updateColClass:($el) ->
-	# 	nbel = $el.find('.blocks.level-'+@$level).length
-	# 	console.log nbel+' nbel'
-	# 	newnum = Math.round((12/nbel)*10)/10
-	# 	newclasscol = ('col-'+(newnum)).replace('.','-')
-	# 	$el.find('.level-'+@$level).each (index) ->
-	# 		$(this).removeClass('col-12 col-8 col-6 col-4 col-3 col-2-4 col-2 col-1-7 col-1-5').addClass(newclasscol)
-	# 		return
-
 	updateIdChecker:($el, $levelblock) ->
 		$el.find('.bin').data('data-lign-id',@$id).attr('data-lign-id', @$id)
 		$el.find('.btnadd').data('level',$levelblock).attr('data-level',$levelblock).data('insert-after',@$id).attr('data-insert-after', @$id)
@@ -74,7 +65,6 @@ class addblocks
 
 		if(!@$need_repeater)
 			new module.updatecolsize(@$repeater_on_top, @$level)
-			# @updateColClass(@$repeater_on_top)
 
 		if(@$type=='txt')
 			txtedit = new module.txteditor('#'+@$id+' .editable')

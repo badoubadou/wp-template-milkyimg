@@ -5,8 +5,6 @@ block additionalscript
 	script(src='//tinymce.cachefly.net/4.2/tinymce.min.js')
 block loginbar
 	include ./includes/admin/loginbar.jade
-	//- .loginbar
-	//- 	button.green#savepage=d('save',$dico)
 
 block backgroundimage
 	.fullbg(style='background-image: url(/images/cover-emty.jpg)')
@@ -19,29 +17,6 @@ block listimgserver
 
 block btnadmintop
 	include ./includes/admin/addblocksbtn.jade
-
-//- block handle
-//- 	.handle.icon-moveit
-
-block bin
-	button.bin.icon-bin.round.red
-
-//- block addslide
-//- 	include ./includes/admin/addslidebtn.jade
-
-
-//- block listbtnright
-//- 	.listbtnright.addblocks(
-//- 		data-insert-column='true',
-//- 		data-nb-column!='<?php echo $nbcolon;?>'
-//- 		data-lign-id!='<?php echo $keymodule;?>'
-//- 		)
-//- 		include ./includes/admin/listbtnright.jade
-
-
-//- block btnadminbottom
-//- 	.addblocks(data-insert-top=0)
-//- 		include ./includes/admin/addblocksbtn.jade
 
 block pagescript
 	script(src='js/vendor/jquery.sortable.min.js')
@@ -66,31 +41,4 @@ block samples
 		div#slide
 			include ../../module/slider_fullscreen/slide.jade
 
-		//- .blocks.txt(data-type-module='txt')
-		//- 	block handle
-		//- 	.warper
-		//- 		.content
-		//- 			.editable(data-ph!="<?php echo d('defaulttxt',$dico);?>")
-		//- 				//- !=d('defaulttxt',$dico)
-		//- 	block listbtnright
-		//- 	block btnadminbottom
-		//- .blocks.img(data-type-module='img')
-		//- 	block handle
-		//- 	//- block bin
-		//- 	block addslide
-		//- 	.warper
-		//- 		.content
-		//- 			.flexslider
-		//- 				ul.slides
-		//- 					li
-		//- 						img(src="http://placehold.it/350x150")
-		//- 						div.flex-caption.editable(data-ph!="<?php echo d('defaulttxt',$dico);?>")
-		//- 						//- div.flex-caption.editable!=d('caption',$dico)
-		//- 	block listbtnright
-		//- 	block btnadminbottom
-		//- li#slide
-		//- 	block handle
-		//- 	img(src="http://placehold.it/350x150")
-		//- 	div.flex-caption.editable(data-ph!="<?php echo d('caption',$dico);?>")
-		//- 	//- div.flex-caption.needcleaning!=d('caption',$dico)
 
