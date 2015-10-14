@@ -3,10 +3,11 @@
 		data-nb-column!='<?php echo $nbcolon;?>'
 		data-lign-id!='<?php echo $keymodule;?>'
 		)
+	include cog.jade
 	include bin.jade
-	-if(d('level',$data)==='0'):
-	include fullscreenbtn.jade
-	-endif;
+	//- -if(d('level',$data)=='0'):
+	//- include fullscreenbtn.jade
+	//- -endif;
 	-if(d('type',$data)!=='repeater'):
 	include addbtn.jade
 	-endif;

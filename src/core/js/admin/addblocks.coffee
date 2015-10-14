@@ -18,15 +18,21 @@ class addblocks
 		@$addblocksdiv = @$el.parent()
 		@$need_repeater = @$el.data 'add-repeater'
 		@$repeater_on_top = $('#'+@$blockid).parent()
-		@$type = @$addblocksdiv.find('input[type="radio"]:checked').val()
+		@$type = @$addblocksdiv.find('.warpinput.typemodule input[type="radio"]:checked').val()
 
-	updateIdChecker:($el, $levelblock) ->
-		$el.find('.bin').data('data-lign-id',@$id).attr('data-lign-id', @$id)
-		$el.find('.btnadd').data('level',$levelblock).attr('data-level',$levelblock).data('insert-after',@$id).attr('data-insert-after', @$id)
-		labelname = 'type'+(((1+Math.random())*0x10000)|0).toString(16).substring(1)
-		$el.find('.warpinput').each (index) ->
+	updateIdChecker:($el, $levelblock, $id) ->
+		$el.find('.bin').data('id-to-remove',$id).attr('data-id-to-remove', $id)
+		$el.find('.btnadd').data('level',$levelblock).attr('data-level',$levelblock).data('insert-after',$id).attr('data-insert-after', $id)
+		labelnametype = 'type'+(((1+Math.random())*0x10000)|0).toString(16).substring(1)
+		labelnamecolor = 'type'+(((1+Math.random())*0x10000)|0).toString(16).substring(1)
+		$el.find('.warpinput.color').each (index) ->
+			labelid = 'color'+(((1+Math.random())*0x10000)|0).toString(16).substring(1)
+			$(this).find('input').attr('name',labelnamecolor).attr('id',labelid)
+			$(this).find('label').attr('for',labelid)
+			return
+		$el.find('.warpinput.typemodule').each (index) ->
 			labelid = 'type'+(((1+Math.random())*0x10000)|0).toString(16).substring(1)
-			$(this).find('input').attr('name',labelname).attr('id',labelid)
+			$(this).find('input').attr('name',labelnametype).attr('id',labelid)
 			$(this).find('label').attr('for',labelid)
 			return
 
@@ -40,8 +46,7 @@ class addblocks
 
 		$block = @$newblock.clone().attr('id', @$id).attr('data-type', @$type).attr('class','blocks '+@$type+' level-'+$levelblock)
 		$block.find('.warper.level-').removeClass('level-').addClass('level-'+$levelblock)
-		@updateIdChecker($block.find('.listbtnright'), $levelblock)
-		console.log $block.html()+'  $block '
+		@updateIdChecker($block.find('.listbtnright'), $levelblock, @$id)
 		$ret = $block
 
 		if(@$need_repeater)
@@ -50,6 +55,7 @@ class addblocks
 			$repeater = $new_repeater.clone().attr('id', $id).attr('data-type', 'repeater').attr('class','blocks repeater level-'+@$level)
 			$repeater.find('.warper.level-').removeClass('level-').addClass('level-'+@$level)
 			$block.addClass('col-12')
+			@updateIdChecker($repeater.find('.listbtnright'), @$level, $id)
 			$repeater.find('.content').append($block)
 			$ret = $repeater
 
@@ -61,7 +67,7 @@ class addblocks
 		@$cloned = @creatBlock()
 
 		@$cloned.insertAfter('#'+@$blockid)
-		console.log @$cloned.html()+" ----- insertAfter('#"+@$blockid+")"
+		# console.log @$cloned.html()+" ----- insertAfter('#"+@$blockid+")"
 
 		if(!@$need_repeater)
 			new module.updatecolsize(@$repeater_on_top, @$level)

@@ -3,9 +3,7 @@ class updatecolsize
 		@update(@$container, @$level)
 
 	update:(@$container, @$level) ->
-		console.log @$container.html()
 		nbel = @$container.find('.blocks.level-'+@$level).length
-		console.log nbel+' nbel'
 		newnum = Math.round((12/nbel)*10)/10
 		newclasscol = ('col-'+(newnum)).replace('.','-')
 		@$container.find('.level-'+@$level).each (index) ->

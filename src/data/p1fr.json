@@ -1,13 +1,13 @@
 {
 	"module1444239089075":
 	{
-		"classes":"balon",
+		"classes":["fullscreen", "ballon","boomboom"],
 		"type":"repeater",
 		"level":"0",
 		"content":{
 			"1444036886281":
 			{
-				"classes":"",
+				"classes":["fullscreen", "ballon","boomboom"],
 				"type":"txt",
 				"level":"1",
 				"content":"<h3>premeir txt ds repeater </h3><p>dqsdqsdsqsd</p>"
@@ -38,7 +38,10 @@
 		"content":{
 			"module1444214350464":
 			{
-				"classes":"fullscreen",
+				"classes":
+				{
+					"0":"fullscreen"
+				},
 				"type":"img",
 				"level":"1",
 				"content":

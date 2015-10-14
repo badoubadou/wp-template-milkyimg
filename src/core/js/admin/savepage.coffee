@@ -19,7 +19,7 @@ class savepage
 		console.log '$level : '+$level+'  lenght'+$container.find('.level-'+$level).length
 		$container.find('.blocks.level-'+$level).each (index, element) =>
 			$el_content = $(element).find '.content:first-child'
-			$el_class = $(element).data 'more-class'
+			$el_class = $(element).data('more-class').split(' ')
 			$el_type = $(element).data 'type-module'
 			$el_level = $(element).data 'type-level'
 			$el_id = $(element).attr 'id'
@@ -40,14 +40,17 @@ class savepage
 					$imgslide = $(slide).find 'img'
 					$emptyslide = ($imgslide.attr('src')=='http://placehold.it/350x150') ? true : false
 					$caption = $(slide).find '.flex-caption'
+					$emptycap = ($caption.text()=='' || $caption.text()==' ' || $caption.text()=='  ' || $caption.html()=='&nbsp;' || $caption.html()=='<p>&nbsp;<br></p>' || $caption.html()=='<p>&nbsp;</p>'|| $caption.html()=='<p></p>'|| $caption.html()=='<p><br></p>')
+					$caption_content = $caption.html()
+					if($emptycap)
+						$caption_content = ''
 					if(!$emptyslide)
 						$sliderjson[index] =
 						{
 							'img' : $imgslide.attr('src'),
-							'caption' : $caption.html()
+							'caption' : $caption_content
 						}
 					return
-				console.log '$sliderjson : '+$sliderjson
 				$content_to_save = $sliderjson
 
 			if($el_type=='repeater')

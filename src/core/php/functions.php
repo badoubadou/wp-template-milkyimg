@@ -40,6 +40,13 @@ function isin($thisarray,$thisattr,$matchingstring){
     }
     return $output;
 }
+function getclass($jsonarray){
+    $output = '';
+    foreach($jsonarray as $key => $val) {
+        $output .=  $val.' ';
+    }
+    return $output;
+}
 
 function ListFolder($path, $sub)
 {
@@ -102,7 +109,9 @@ function parser($tab, $admin, $dico){
         $data = $module;
         $data['key'] = $index;
         $data['level'] = d('level',$data);
-        $data['blockclass'] = 'level-'.d('level',$data).' '.d('type',$data).' '.d('classes',$data).' ';
+        $class = implode(' ', d('classes',$data));
+        $data['moreclass'] = $class;
+        $data['blockclass'] = 'level-'.d('level',$data).' '.d('type',$data).' '.$class.' ';
         if(d('type',$data) === 'repeater'){
             $data['contentclass'] .= ' grid';
         }else{
