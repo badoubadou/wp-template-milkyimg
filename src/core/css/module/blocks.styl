@@ -10,16 +10,19 @@
 		color:#ffffff
 
 	&.fullscreen
-		.warper.level-0
+		.warper.level-0:not(.caption)
 			max-width:none
-
+			.content
+				padding:0px
 			.col-12
-				.warper
+				.warper:not(.caption)
 					max-width:none
 					width:100%
+					.content
+						padding:0px
 
 	position:relative
 	.content
-		padding:0px
+		padding:10px
 		*:first-child
 			margin-top:0

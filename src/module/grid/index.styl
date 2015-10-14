@@ -1,8 +1,9 @@
 $pad = 20px
 
 .grid
-	background: white
 	margin: 0
+	display: flex
+	flex-wrap: wrap
 
 	&:after
 		/* Or @extend clearfix */
@@ -12,11 +13,6 @@ $pad = 20px
 
 	*
 		@include box-sizing(border-box)
-
-	.repeater
-		display: flex
-		flex-wrap: wrap
-
 
 	[class*='col-']
 		float: left
