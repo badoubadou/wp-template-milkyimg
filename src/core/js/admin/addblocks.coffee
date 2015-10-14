@@ -47,6 +47,7 @@ class addblocks
 		$block = @$newblock.clone().attr('id', @$id).attr('data-type', @$type).attr('class','blocks '+@$type+' level-'+$levelblock)
 		$block.find('.warper.level-').removeClass('level-').addClass('level-'+$levelblock)
 		@updateIdChecker($block.find('.listbtnright'), $levelblock, @$id)
+		new module.updateclassoption($block.find('.listbtnright'))
 		$ret = $block
 
 		if(@$need_repeater)
@@ -56,6 +57,7 @@ class addblocks
 			$repeater.find('.warper.level-').removeClass('level-').addClass('level-'+@$level)
 			$block.addClass('col-12')
 			@updateIdChecker($repeater.find('.listbtnright'), @$level, $id)
+			new module.updateclassoption($repeater.find('.listbtnright'))
 			$repeater.find('.content').append($block)
 			$ret = $repeater
 

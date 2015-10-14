@@ -1,9 +1,10 @@
 .listbtnright.addblocks(
 		data-insert-column='true',
-		data-nb-column!='<?php echo $nbcolon;?>'
-		data-lign-id!='<?php echo $keymodule;?>'
+		data-module-id!="<?php echo d('key',$data); ?>",
 		)
+	-if(d('nbcol',$data)!==1):
 	include cog.jade
+	-endif;
 	include bin.jade
 	//- -if(d('level',$data)=='0'):
 	//- include fullscreenbtn.jade

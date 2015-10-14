@@ -112,21 +112,21 @@ function parser($tab, $admin, $dico){
         $class = implode(' ', d('classes',$data));
         $data['moreclass'] = $class;
         $data['blockclass'] = 'level-'.d('level',$data).' '.d('type',$data).' '.$class.' ';
+        $data['isfullscreen'] = in_array('fullscreen', d('classes',$data));
+        $data['color'] = 'white';
+        if(in_array('red', d('classes',$data))){
+            $data['color'] = 'red';
+        }
+        if(in_array('black', d('classes',$data))){
+            $data['color'] = 'black';
+        }
         if(d('type',$data) === 'repeater'){
             $data['contentclass'] .= ' grid';
         }else{
             $nbcol = count($tab);
             $data['blockclass'] .= 'col-'.round((12/$nbcol)*10)/10;
+            $data['nbcol'] = $nbcol;
         };
         include 'module/blocks/index.php.php';
     }
 }
-
-
-foreach ($jsonIterator as $key => $val) {
-     // if(is_array($val)) {
-     //     echo "$key:\n";
-     // } else {
-     //     echo "$key => $val\n";
-     // }
- }

@@ -19,15 +19,13 @@ class savepage
 		console.log '$level : '+$level+'  lenght'+$container.find('.level-'+$level).length
 		$container.find('.blocks.level-'+$level).each (index, element) =>
 			$el_content = $(element).find '.content:first-child'
-			$el_class = $(element).data('more-class').split(' ')
+			$el_class = $(element).attr('data-more-class').split(' ')
 			$el_type = $(element).data 'type-module'
 			$el_level = $(element).data 'type-level'
 			$el_id = $(element).attr 'id'
-			$full_screen = $(element).find('.fullbox').is(':checked')
 			$empty = false
+			console.log '$el_class : '+$el_class+ '//// '+$(element).attr('data-more-class')
 
-			if($full_screen)
-				$el_class += ' fullscreen'
 
 			if($el_type=='txt')
 				$content_to_save = $el_content.find('.editable').html()
