@@ -14,7 +14,7 @@ $lang = (count($sub)>1) ? $sub[$levelsublang] : $defaultlang;
 $oppositelang =($lang=='fr') ? 'de' : 'fr';
 
 
-$navjson = json_decode(file_get_contents('data/nav'.$lang.'.json'), true);
+$navjson = json_decode(file_get_contents($pathdatafolder.'nav'.$lang.'.json'), true);
 
 
 $pageurl = strtolower(htmlspecialchars($_GET['pageurl']));//////// récupère
@@ -22,8 +22,8 @@ $selectedpageurl = ($pageurl === '') ? getfirst('link',$navjson) : $pageurl;
 $title = ($pageurl === '') ? getfirst('title',$navjson) : getmein($navjson,'title',$pageurl, 'link');
 $linkoposit = ($pageurl === '') ? getfirst('linkopposite',$navjson) : getmein($navjson,'linkopposite',$pageurl, 'link');
 $linkjson = ($pageurl === '') ? getfirst('datajson',$navjson) : getmein($navjson,'datajson',$pageurl, 'link');
+$speciallayout = ($pageurl === '') ? getfirst('speciallayout',$navjson) : getmein($navjson,'speciallayout',$pageurl, 'link');
 $pagetoload = strlen($title) ? $linkjson : '404';
-
 
 
 $serveur = $local ? '.beton:8888/' : '.beton.ink/';
@@ -31,7 +31,7 @@ $linkadmin = $admin ? 'admin.' : '';
 $linklangoposit = 'http://'.$linkadmin.$oppositelang.$serveur.$linkoposit;
 
 
-$pagejsonstring = file_get_contents('data/'.$pagetoload.$lang.'.json');
+$pagejsonstring = file_get_contents($pathdatafolder.$pagetoload.$lang.'.json');
 $pagejson = json_decode($pagejsonstring, true);
 
 $imgonserver = array_diff(scandir($pathimgfolder), array('..', '.', '.DS_Store'));
@@ -41,8 +41,8 @@ $dico = json_decode($dicostring, true);
 
 $logged = false;
 
-$logstring = file_get_contents('data/login.json');
-$loginjson = json_decode(file_get_contents('data/login.json'), true);
+$logstring = file_get_contents($pathdatafolder.'login.json');
+$loginjson = json_decode(file_get_contents($pathdatafolder.'login.json'), true);
 
 
 

@@ -19,22 +19,23 @@ class txteditor
       selector: @$select
       inline: true
       menubar: "edit insert"
-      toolbar: "undo redo | styleselect | bold italic | link"
+      plugins: ["link"]
+      toolbar: "undo redo | styleselect | formatselect | bold italic | link"
       style_formats: [
         {
           title: 'Bold text'
           inline: 'b'
         }
-        {
-          title: 'Red text'
-          inline: 'span'
-          styles: color: '#ff0000'
-        }
-        {
-          title: 'Red header'
-          block: 'h1'
-          styles: color: '#ff0000'
-        }
+        # {
+        #   title: 'Red text'
+        #   inline: 'span'
+        #   styles: color: '#ff0000'
+        # }
+        # {
+        #   title: 'Red header'
+        #   block: 'h1'
+        #   styles: color: '#ff0000'
+        # }
         {
           title: 'romhand'
           inline: 'span'

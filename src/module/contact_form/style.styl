@@ -1,0 +1,112 @@
+.blocks.contact-form
+	.warper
+		overflow: auto
+
+	#contact-form
+		margin 20px
+		position relative
+		h1
+			font-size 42px
+		h2
+			margin-bottom 15px
+			font-style italic
+			font-weight normal
+		textarea
+			height 150px
+			resize none
+		label
+			display block
+		.required
+			font-weight bold
+			color #F00
+
+	  #submit-button
+		width 100%
+		background-color #333
+		color #FFF
+		border none
+		display block
+		float right
+		margin-bottom 0px
+		background-color #8FB5C1
+		&:hover
+			background-color #A6CFDD
+		&:active
+			position relative
+			top 1px
+	  #loading
+		width 32px
+		height 32px
+		background-image url('../images/loading.gif')
+		display block
+		position absolute
+		right 130px
+		bottom 16px
+		display none
+
+	#contact-form input,
+	#contact-form select,
+	#contact-form textarea,
+	#contact-form label
+		font-size 15px
+		margin-bottom 2px
+
+	#contact-form input,
+	#contact-form select,
+	#contact-form textarea
+		width 100%
+		border 1px solid #CEE1E8
+		margin-bottom 20px
+
+	#contact-form input:focus,
+	#contact-form select:focus,
+	#contact-form textarea:focus
+		border 1px solid #AFCDD8
+		background-color #EBF2F4
+
+	#errors
+		padding 10px
+		margin 25px 0px
+		display block
+		background #FFE6E6 url('../images/cancel_48.png') no-repeat 405px center
+		display none
+
+		li
+			padding 2px
+			list-style none
+			&:before
+				content ' - '
+			#info
+				font-weight bold
+			&:before
+				content ''
+
+	#success
+		padding 25px 10px
+		margin 25px 0px
+		display block
+		background #D3EDD3 url('../images/accepted_48.png') no-repeat 405px center
+		font-weight bold
+		display none
+
+	#errors.visible, #success.visible
+		display block
+
+	#req-field-desc
+		font-style italic
+
+	input:required, textarea:required
+		box-shadow none
+
+	::-webkit-input-placeholder
+		color #CCC
+		font-style italic
+
+	input:-moz-placeholder, textarea:-moz-placeholder
+		color #CCC
+		font-style italic
+
+	input.placeholder-text, textarea.placeholder-text
+		color #CCC
+		font-style italic
+

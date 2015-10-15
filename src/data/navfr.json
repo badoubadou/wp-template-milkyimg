@@ -3,49 +3,64 @@
         "position":"header",
         "link":"home",
         "linkopposite":"home",
-        "title":"Beton",
-        "datajson":"p1"
+        "title":"Béton",
+        "datajson":"p1",
+        "speciallayout":""
     },
     "p2": {
         "position":"header",
-        "link":"evenement",
-        "linkopposite":"ereignis",
-        "title":"Evénement",
-        "datajson":"p2"
+        "link":"Qui-que-quoi",
+        "linkopposite":"wie-wer-was",
+        "title":"Qui que quoi",
+        "datajson":"p2",
+        "speciallayout":""
     },
     "p3": {
         "position":"header",
-        "link":"qui-sommes-nous",
-        "linkopposite":"uber-uns",
-        "title":"Qui sommes nous",
-        "datajson":"p3"
+        "link":"participer",
+        "linkopposite":"mit-machen",
+        "title":"Participer ?",
+        "datajson":"p3",
+        "speciallayout":""
     },
     "p4": {
+        "position":"header",
+        "link":"on-parle-de-nous",
+        "linkopposite":"rezensionen",
+        "title":"On parle de nous",
+        "datajson":"p3",
+        "speciallayout":""
+    },
+    "p5": {
         "position":"footer",
         "link":"contact",
         "linkopposite":"Kontact",
         "title":"Contact",
-        "datajson":"contact"
+        "datajson":"contact",
+        "speciallayout":"contact"
     },
-    "p5": {
+    "p6": {
         "position":"footer",
         "link":"https://www.facebook.com/beton.dt.fr.comiczine?fref=ts",
         "linkopposite":"https://www.facebook.com/beton.dt.fr.comiczine?fref=ts",
         "title":"facebook",
-        "datajson":""
+        "datajson":"",
+        "speciallayout":""
     },
-    "p6": {
+    "p7": {
         "position":"footer",
         "link":"http://betoncomiczine.tumblr.com/",
         "linkopposite":"http://betoncomiczine.tumblr.com/",
         "title":"tumblr",
-        "datajson":""
+        "datajson":"",
+        "speciallayout":""
     },
-    "p7": {
+    "p8": {
         "position":"footer",
         "link":"https://www.google.fr/maps",
         "linkopposite":"https://www.google.fr/maps",
         "title":"Où trouver Béton",
-        "datajson":""
+        "datajson":"",
+        "speciallayout":""
     }
 }
