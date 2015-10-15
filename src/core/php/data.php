@@ -13,16 +13,17 @@ $levelsublang = $admin ? 1 : 0;
 $lang = (count($sub)>1) ? $sub[$levelsublang] : $defaultlang;
 $oppositelang =($lang=='fr') ? 'de' : 'fr';
 
-$navjsonstring = file_get_contents('data/nav'.$lang.'.json');
-$navjson = json_decode($navjsonstring, true);
-// $navjsonIterator = new RecursiveIteratorIterator( new RecursiveArrayIterator(json_decode($navjsonstring, TRUE)), RecursiveIteratorIterator::SELF_FIRST);
 
-$pageurl = strtolower(htmlspecialchars($_GET['pageurl']));
+$navjson = json_decode(file_get_contents('data/nav'.$lang.'.json'), true);
+
+
+$pageurl = strtolower(htmlspecialchars($_GET['pageurl']));//////// récupère
 $selectedpageurl = ($pageurl === '') ? getfirst('link',$navjson) : $pageurl;
 $title = ($pageurl === '') ? getfirst('title',$navjson) : getmein($navjson,'title',$pageurl, 'link');
 $linkoposit = ($pageurl === '') ? getfirst('linkopposite',$navjson) : getmein($navjson,'linkopposite',$pageurl, 'link');
 $linkjson = ($pageurl === '') ? getfirst('datajson',$navjson) : getmein($navjson,'datajson',$pageurl, 'link');
 $pagetoload = strlen($title) ? $linkjson : '404';
+
 
 
 $serveur = $local ? '.beton:8888/' : '.beton.ink/';

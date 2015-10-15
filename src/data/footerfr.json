@@ -1,48 +1,29 @@
 {
     "p1": {
-        "position":"header",
-        "link":"home",
-        "linkopposite":"home",
-        "title":"Beton",
-        "datajson":"p1"
-    },
-    "p2": {
-        "position":"header",
-        "link":"evenement",
-        "linkopposite":"ereignis",
-        "title":"Evénement",
-        "datajson":"p2"
-    },
-    "p3": {
-        "position":"header",
-        "link":"qui-sommes-nous",
-        "linkopposite":"uber-uns",
-        "title":"Qui sommes nous",
-        "datajson":"p3"
-    },
-    "p4": {
-        "position":"footer",
         "link":"contact",
         "linkopposite":"Kontact",
         "title":"Contact",
         "datajson":"contact"
     },
-    "p5": {
-        "position":"footer",
+    "p2": {
         "link":"https://www.facebook.com/beton.dt.fr.comiczine?fref=ts",
         "linkopposite":"https://www.facebook.com/beton.dt.fr.comiczine?fref=ts",
         "title":"facebook",
         "datajson":""
     },
-    "p6": {
-        "position":"footer",
+    "p3": {
         "link":"http://betoncomiczine.tumblr.com/",
         "linkopposite":"http://betoncomiczine.tumblr.com/",
         "title":"tumblr",
         "datajson":""
     },
-    "p7": {
-        "position":"footer",
+    "p3": {
+        "link":"http://betoncomiczine.tumblr.com/",
+        "linkopposite":"http://betoncomiczine.tumblr.com/",
+        "title":"tumblr",
+        "datajson":""
+    },
+    "p4": {
         "link":"https://www.google.fr/maps",
         "linkopposite":"https://www.google.fr/maps",
         "title":"Où trouver Béton",

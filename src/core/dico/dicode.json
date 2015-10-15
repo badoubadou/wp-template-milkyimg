@@ -1,0 +1,19 @@
+{
+    "save":"Enregistrer",
+    "add":"ajouter un block : ",
+    "typeimg":"image",
+    "typetxt":"text",
+    "typeprod":"article",
+    "defaulttxt":"change moi !",
+    "addslide":"ajouter une slide",
+    "classnews":"news",
+    "classbalon":"bulle",
+    "classproduit":"article",
+    "caption":"legende de l'image",
+    "fullscreenslider":"plein ecran",
+    "welcome":"bienvenue",
+    "log":"login",
+    "unlog":"déconnexion",
+    "name":"nom",
+    "password":"mot de passe"
+}

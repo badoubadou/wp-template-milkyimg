@@ -1,30 +1,31 @@
+footer
+  width:100%
 // --------------------------//
 // blocks/navigation
 // --------------------------//
 
 .main-header
-  height: $navigation-height
+  height: $navigation-footer-height
 
-.blocks.navigation
+.blocks.navigation_footer
   background: $bg-color-tertiary
   height: $navigation-height
-  position: fixed
   width: 100%
   z-index: 999
 
-  .admin &
-    top:$login-height
+  // .admin &
+  //   top:$login-height
 
   .navigation-header
     background: $bg-color-tertiary
-    float: left
+    float: right
     height: $navigation-height
     position: relative
     text-align: center
     z-index: 1
 
   .nav-group-wrapper
-    float: left
+    float: right
 
   .nav-group
     min-height: $navigation-height
@@ -43,8 +44,8 @@
   a
     color: $ft-color-tertiary
     display: block
-    font-family: hirlemann
-    font-size:50px
+    font-family: maloz
+    font-size:20px
     line-height: $navigation-height
     padding: 0 15px
     text-decoration: none
@@ -132,80 +133,95 @@
       bottom: 0
       top: auto
 
+/*--stiky footer--*/
+html
+  min-height:100%
+  position: relative
+
+body
+  margin: 0 0 $navigation-height 0
+
+.footer
+  position:absolute
+  bottom:0
+  height:$navigation-height
 
 @media $bs-screen-xs-max
-  html.navigation-active
-    overflow: hidden
+  body
+    margin: 0 0 ($navigation-height+$navigation-footer-height) 0
+// @media $bs-screen-xs-max
+//   html.navigation-active
+//     overflow: hidden
 
-  .blocks.navigation
-    .warper
-      float:left
+//   .blocks.navigation
+//     .warper
+//       float:left
 
-    .navigation-header
-      float: none
+//     .navigation-header
+//       float: none
 
-    .toggle-burger
-      display: block
+//     .toggle-burger
+//       display: block
 
-    .brand
-      float: none
+//     .brand
+//       float: none
 
-    .container
-      padding: 0
+//     .container
+//       padding: 0
 
-    .nav-group-wrapper
-      background: $bg-color-tertiary
-      bottom: 0
-      float: none
-      opacity: 0
-      overflow: hidden
-      position: fixed
-      transform: translateY(-100%)
-      top: $navigation-height
-      visibility: hidden
-      width: 100%
+//     .nav-group-wrapper
+//       background: $bg-color-tertiary
+//       bottom: 0
+//       float: none
+//       opacity: 0
+//       overflow: hidden
+//       position: fixed
+//       transform: translateY(-100%)
+//       top: $navigation-height
+//       visibility: hidden
+//       width: 100%
 
-    .nav-group
-      display: block
-      width: 100%
+//     .nav-group
+//       display: block
+//       width: 100%
 
-      li
-        float: none
-        border: none
-        &:first-child
-          border:none
+//       li
+//         float: none
+//         border: none
+//         &:first-child
+//           border:none
 
 
-      .nav-group
-        background: none
-        display: block
-        position: relative
-        width: 100%
+//       .nav-group
+//         background: none
+//         display: block
+//         position: relative
+//         width: 100%
 
-        a
-          padding: 0 30px
+//         a
+//           padding: 0 30px
 
-    &.open
-      .nav-group-wrapper
-        opacity: 1
-        overflow: auto
-        transform: translateY(0%)
-        visibility: visible
-        -webkit-overflow-scrolling: touch
+//     &.open
+//       .nav-group-wrapper
+//         opacity: 1
+//         overflow: auto
+//         transform: translateY(0%)
+//         visibility: visible
+//         -webkit-overflow-scrolling: touch
 
-      .toggle-burger
-        .top
-          transform: rotate(45deg)
+//       .toggle-burger
+//         .top
+//           transform: rotate(45deg)
 
-        .center
-          transform: scale(0)
+//         .center
+//           transform: scale(0)
 
-        .bottom
-          transform: rotate(-45deg)
+//         .bottom
+//           transform: rotate(-45deg)
 
-    &.animate .nav-group-wrapper
-      transition: transform .5s, opacity 0.3s
+//     &.animate .nav-group-wrapper
+//       transition: transform .5s, opacity 0.3s
 
-  // prevent fallback for clients not support translate2d
-  .csstransforms .blocks.navigation .nav-group-wrapper
-    visibility: visible
+//   // prevent fallback for clients not support translate2d
+//   .csstransforms .blocks.navigation .nav-group-wrapper
+//     visibility: visible
