@@ -1,7 +1,14 @@
-block bin
--if(!$level):
-include fullscreenbtn.jade
--endif;
-- if(!$itsimgtype && !$itsrepeater):
+.listbtnright.addblocks(
+		data-insert-column='true',
+		data-module-id!="<?php echo d('key',$data); ?>",
+		)
+	-if(d('nbcol',$data)!==1):
+	include cog.jade
+	-endif;
+	include bin.jade
+	//- -if(d('level',$data)=='0'):
+	//- include fullscreenbtn.jade
+	//- -endif;
+	-if(d('type',$data)!=='repeater'):
 	include addbtn.jade
-- endif;
+	-endif;

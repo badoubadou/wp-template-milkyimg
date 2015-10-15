@@ -2,11 +2,12 @@
 
 session_start();
 require_once 'functions.php';
+require_once 'config.php';
 
 $logged = false;
 $login = $_POST["login"];
 $pw = $_POST["password"];
-$filename = '../data/login.json';
+$filename = '../'.$pathdatafolder.'login.json';
 $logstring = file_get_contents($filename);
 $loginjson = json_decode($logstring, true);
 

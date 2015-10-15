@@ -16,6 +16,11 @@ init = ->
 
 	addslide = new module.addslides($('#main .img'))
 
+	$('#main .blocks .listbtnright').each ->
+		updateclassoption = new module.updateclassoption($(this))
+		return
+
+
 	$('input[type=checkbox]').change ->
 		$('body').addClass 'savable'
 		return

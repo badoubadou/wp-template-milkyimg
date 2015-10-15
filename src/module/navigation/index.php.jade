@@ -11,10 +11,11 @@ nav.blocks.navigation
     .nav-group-wrapper
       ul.nav-group
         - foreach ($navjson as $key => $val):
+          -if(d('position',$val)==='header'):
           li(class!="<?php echo (d('link',$val) === $selectedpageurl) ? 'selected' : ''; ?>")
-            //- a(href=d('link',$val))
-            a(href!="<?php echo d('link',$val); ?>")
+            a(href!="<?php echo d('link',$val); ?>" target!="<?php echo (strpos(d('link',$val),'http') !== false) ? '_blank' : '_self';?>")
               !=d('title',$val)
+          -endif;
         - endforeach
 
   a.changlang(href!="<?php echo $linklangoposit;?>")

@@ -1,0 +1,39 @@
+- $idcog = 'cog'.md5(uniqid(rand(), true));
+- $idcolor = 'color'.md5(uniqid(rand(), true));
+.warpinput.cog(
+	class!="<?php echo 'level-'.d('level',$data);?>"
+	)
+	input(type='checkbox' id!='<?php echo $idcog;?>' class='fullbox')
+	label.icon-cog.round(for!='<?php echo $idcog;?>')
+	.listoptions
+		- $idwhite = 'colorname'.md5(uniqid(rand(), true));
+		- $idcolor = 'color'.md5(uniqid(rand(), true));
+		.warpinput.color
+			- if(d("color",$data)==='white'):
+			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idwhite;?>' value!='white' checked)
+			-else:
+			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idwhite;?>' value!='white')
+			- endif;
+			label.white.round(for!='<?php echo $idwhite;?>')
+
+		- $idred = 'colorname'.md5(uniqid(rand(), true));
+		.warpinput.color
+			- if(d("color",$data)==="red"):
+			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idred;?>' value!='red' checked)
+			-else:
+			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idred;?>' value!='red')
+			- endif;
+			label.red.round(for!='<?php echo $idred;?>')
+
+		- $idblack = 'colorname'.md5(uniqid(rand(), true));
+		.warpinput.color
+			- if(d("color",$data)==="black"):
+			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idblack;?>' value!='black' checked)
+			-else:
+			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idblack;?>' value!='black')
+			- endif;
+			label.black.round(for!='<?php echo $idblack;?>')
+
+		-if(d('level',$data)=='0'):
+		include fullscreenbtn.jade
+		-endif;

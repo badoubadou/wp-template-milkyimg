@@ -40,6 +40,13 @@ function isin($thisarray,$thisattr,$matchingstring){
     }
     return $output;
 }
+function getclass($jsonarray){
+    $output = '';
+    foreach($jsonarray as $key => $val) {
+        $output .=  $val.' ';
+    }
+    return $output;
+}
 
 function ListFolder($path, $sub)
 {
@@ -83,7 +90,6 @@ function ListFolder($path, $sub)
      if($sub){
         echo "</div>\n";
      }
-
     //closing the directory
     closedir($dir_handle);
 }
@@ -95,13 +101,32 @@ function str_lreplace($search, $replace, $subject)
     {
         $subject = substr_replace($subject, $replace, $pos, strlen($search));
     }
-
     return $subject;
 }
-foreach ($jsonIterator as $key => $val) {
-     // if(is_array($val)) {
-     //     echo "$key:\n";
-     // } else {
-     //     echo "$key => $val\n";
-     // }
- }
+
+function parser($tab, $admin, $dico){
+    foreach($tab as $index => $module) {
+        $data = $module;
+        $data['key'] = $index;
+        $data['level'] = d('level',$data);
+        $class = implode(' ', d('classes',$data));
+        $data['moreclass'] = $class;
+        $data['blockclass'] = 'level-'.d('level',$data).' '.d('type',$data).' '.$class.' ';
+        $data['isfullscreen'] = in_array('fullscreen', d('classes',$data));
+        $data['color'] = 'white';
+        if(in_array('red', d('classes',$data))){
+            $data['color'] = 'red';
+        }
+        if(in_array('black', d('classes',$data))){
+            $data['color'] = 'black';
+        }
+        if(d('type',$data) === 'repeater'){
+            $data['contentclass'] .= ' grid';
+        }else{
+            $nbcol = count($tab);
+            $data['blockclass'] .= 'col-'.round((12/$nbcol)*10)/10;
+            $data['nbcol'] = $nbcol;
+        };
+        include 'module/blocks/index.php.php';
+    }
+}

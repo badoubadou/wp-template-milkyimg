@@ -15,5 +15,16 @@
     "log":"login",
     "unlog":"déconnexion",
     "name":"nom",
-    "password":"mot de passe"
+    "password":"mot de passe",
+    "getintouch":"Contactez nous",
+    "thankscontact":"Merci pour votre message! Nous reviendrons vers vous dès que possible!",
+    "errorcontact":"Il y avait quelques problèmes avec votre formulaire de demande:",
+    "name":"Nom",
+    "email":"Adresse e-mail:",
+    "message":"Message",
+    "lessthan20":"Votre message doit être supérieure à 20 caractères",
+    "indicatesrequired":"indique un champ obligatoire",
+    "send":"envoyer",
+    "do":"Michel Dupond",
+    "domail":"micheldupond@mail.com"
 }

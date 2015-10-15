@@ -1,18 +1,9 @@
-- $data = d('content',$module)
 .flexslider
 	ul.slides
-		- foreach ($data as $keyslide => $slide):
-			li
-				- if($admin):
-				//- .handle.icon-moveit
-				- endif;
-				img(src!="<?php echo d('img',$slide);?>")
-				- if(!$admin):
-				.warper.caption
-					.flex-caption
-						!=d('caption',$slide)
-				- else:
-					.flex-caption.editable
-						!=d('caption',$slide)
-				- endif;
+		- if(d('sample',$data)):
+			include slide.jade
+		- endif;
+		- foreach ($dataslider as $keyslide => $slide):
+			- $slide['itsadmin'] = $admin
+			include slide.jade
 		- endforeach

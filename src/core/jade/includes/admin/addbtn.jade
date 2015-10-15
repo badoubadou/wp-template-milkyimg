@@ -1,11 +1,15 @@
 - $idtxt = 'type'.md5(uniqid(rand(), true));
-.warpinput
+.warpinput.typemodule
 	input(type='radio' name!='<?php echo $idtxt;?>' id!='<?php echo $idtxt;?>' value!='txt' checked='checked')
 	label.icon-pencil.round(for!='<?php echo $idtxt;?>')
 
 - $idimage = 'type'.md5(uniqid(rand(), true));
-.warpinput
+.warpinput.typemodule
 	input(type='radio' name!='<?php echo $idtxt;?>' id!='<?php echo $idimage;?>' value!='img')
 	label.icon-image.round(for!='<?php echo $idimage;?>')
 
-button.blue.btnadd.icon-plus.round(data-level!="<?php echo (isset($level)) ? $level : '0'; ?>")
+button.blue.btnadd.icon-plus.round(
+	data-level!="<?php echo d('level', $data); ?>",
+	data-add-repeater!="<?php echo (d('type', $data)==='repeater') ? 'true' : 'false'; ?>",
+	data-insert-after!="<?php echo d('key',$data); ?>",
+	)

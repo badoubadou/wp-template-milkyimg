@@ -1,0 +1,13 @@
+- $src = $data['sample'] ? $data['img'] : d('img',$slide)
+li
+	img(src!="<?php echo $src;?>")
+	- if((d('caption',$slide)!=='') || $admin):////si c'est pas vide
+	- if($admin):
+	.flex-caption.editable(data-ph!="<?php echo d('caption',$dico);?>")
+		!= d('caption',$slide)
+	- else:
+	.warper.caption
+		.flex-caption
+			!= d('caption',$slide)
+	-endif;
+	-endif;

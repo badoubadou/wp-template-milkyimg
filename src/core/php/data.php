@@ -13,15 +13,16 @@ $levelsublang = $admin ? 1 : 0;
 $lang = (count($sub)>1) ? $sub[$levelsublang] : $defaultlang;
 $oppositelang =($lang=='fr') ? 'de' : 'fr';
 
-$navjsonstring = file_get_contents('data/nav'.$lang.'.json');
-$navjson = json_decode($navjsonstring, true);
-// $navjsonIterator = new RecursiveIteratorIterator( new RecursiveArrayIterator(json_decode($navjsonstring, TRUE)), RecursiveIteratorIterator::SELF_FIRST);
 
-$pageurl = strtolower(htmlspecialchars($_GET['pageurl']));
+$navjson = json_decode(file_get_contents($pathdatafolder.'nav'.$lang.'.json'), true);
+
+
+$pageurl = strtolower(htmlspecialchars($_GET['pageurl']));//////// récupère
 $selectedpageurl = ($pageurl === '') ? getfirst('link',$navjson) : $pageurl;
 $title = ($pageurl === '') ? getfirst('title',$navjson) : getmein($navjson,'title',$pageurl, 'link');
 $linkoposit = ($pageurl === '') ? getfirst('linkopposite',$navjson) : getmein($navjson,'linkopposite',$pageurl, 'link');
 $linkjson = ($pageurl === '') ? getfirst('datajson',$navjson) : getmein($navjson,'datajson',$pageurl, 'link');
+$speciallayout = ($pageurl === '') ? getfirst('speciallayout',$navjson) : getmein($navjson,'speciallayout',$pageurl, 'link');
 $pagetoload = strlen($title) ? $linkjson : '404';
 
 
@@ -30,7 +31,7 @@ $linkadmin = $admin ? 'admin.' : '';
 $linklangoposit = 'http://'.$linkadmin.$oppositelang.$serveur.$linkoposit;
 
 
-$pagejsonstring = file_get_contents('data/'.$pagetoload.$lang.'.json');
+$pagejsonstring = file_get_contents($pathdatafolder.$pagetoload.$lang.'.json');
 $pagejson = json_decode($pagejsonstring, true);
 
 $imgonserver = array_diff(scandir($pathimgfolder), array('..', '.', '.DS_Store'));
@@ -40,8 +41,8 @@ $dico = json_decode($dicostring, true);
 
 $logged = false;
 
-$logstring = file_get_contents('data/login.json');
-$loginjson = json_decode(file_get_contents('data/login.json'), true);
+$logstring = file_get_contents($pathdatafolder.'login.json');
+$loginjson = json_decode(file_get_contents($pathdatafolder.'login.json'), true);
 
 
 
