@@ -113,7 +113,10 @@ function parser($tab, $admin, $dico){
         $data['moreclass'] = $class;
         $data['blockclass'] = 'level-'.d('level',$data).' '.d('type',$data).' '.$class.' ';
         $data['isfullscreen'] = in_array('fullscreen', d('classes',$data));
-        $data['color'] = 'white';
+        $data['color'] = '';
+        if(in_array('white', d('classes',$data))){
+            $data['color'] = 'white';
+        }
         if(in_array('red', d('classes',$data))){
             $data['color'] = 'red';
         }
