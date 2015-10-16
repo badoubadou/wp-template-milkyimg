@@ -30,6 +30,9 @@ init = ->
 		return
 
 	$('#main').sortable(handle: '.handle')
+
+	# $('.blocks.img .flexslider').flexslider({smoothHeight:false, slideshow: false})
+
 	# $('#main .img .flexslider .slides').sortable(handle: '.handle')
 
 

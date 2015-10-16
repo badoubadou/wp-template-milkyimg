@@ -2,11 +2,18 @@ class txteditor
   constructor: (@$container) ->
     @setOptions()
     @init()
+    @hackPlaceHolder()
     # @getCont('cap0')
+
+
+  hackPlaceHolder: ->
+    txtplaceholder = $(@$container).data 'ph'
+    # console.log $(@$container).find('br[data-mce-bogus="1"]').length + '??'
+    if($(@$container).find('br[data-mce-bogus="1"]').length)
+      $(@$container).find('p:first-child').addClass('placeholder').attr('data-ph', txtplaceholder)
 
   setOptions: ->
     @$select = @$container
-    @$tinymce
     console.log 'yo'+@$container
 
   getCont: (@$id)->
@@ -48,7 +55,11 @@ class txteditor
         }
       ]
       setup: (editor) ->
+        editor.on 'blur', (e) ->
+          if($('#'+editor.id).find('br[data-mce-bogus="1"]').length)
+            $('#'+editor.id).find('p:first-child').addClass('placeholder')
         editor.on 'focus', (e) ->
+          $('#'+editor.id).find('.placeholder').removeClass('placeholder')
           console.log editor.id+'Editor was clicked'+editor.getContent()
           $('body').addClass 'savable'
     return

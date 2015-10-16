@@ -1,3 +1,6 @@
-.editable[contentEditable=true]:not(:focus):before
-// .editable[contentEditable=true]:empty:not(:focus):before
+// .editable[contentEditable=true]:not(:focus):before
+.editable[contentEditable=true]:empty:not(:focus):before
+    content:attr(data-ph)
+
+.editable p.placeholder:before
     content:attr(data-ph)
