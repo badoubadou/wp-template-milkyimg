@@ -13,6 +13,9 @@ class txteditor
     @$select = @$container
 
   getCont: (@$id)->
+    console.log @$id
+    $('#'+@$id).find('.placeholder').removeClass('placeholder')
+    $('#'+@$id).find('[data-ph]').removeAttr('data-ph')
     return tinyMCE.get(@$id).getContent()
 
   init: =>

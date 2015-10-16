@@ -1,5 +1,5 @@
 class savepage
-	constructor: (@$container, @$btn) ->
+	constructor: (@$container, @$btn, @$txtedit) ->
 		@setOptions()
 		@bindEvents()
 
@@ -16,8 +16,11 @@ class savepage
 
 	croalContent: ($container, $level) ->
 		$tab = {}
-		console.log '$level : '+$level+'  lenght'+$container.find('.level-'+$level).length
+		# $te = @$txtedit
+		console.log '$txtedit  lenght'+$container.find('.level-'+$level).length
 		$container.find('.blocks.level-'+$level).each (index, element) =>
+			$te = @$txtedit
+
 			$el_content = $(element).find '.content:first-child'
 			$el_class = $(element).attr('data-more-class').split(' ')
 			$el_type = $(element).data 'type-module'
@@ -26,9 +29,8 @@ class savepage
 			$empty = false
 			console.log '$el_class : '+$el_class+ '//// '+$(element).attr('data-more-class')
 
-
 			if($el_type=='txt')
-				$content_to_save = $el_content.find('.editable').html()
+				$content_to_save = $te.getCont($el_content.find('.editable').attr('id'))
 				$empty = ($el_content.find('.editable').text()=='') ? true : false
 
 			if($el_type=='img')
@@ -39,7 +41,8 @@ class savepage
 					$emptyslide = ($imgslide.attr('src')=='http://placehold.it/350x150') ? true : false
 					$caption = $(slide).find '.flex-caption'
 					$emptycap = ($caption.text()=='' || $caption.text()==' ' || $caption.text()=='  ' || $caption.html()=='&nbsp;' || $caption.html()=='<p>&nbsp;<br></p>' || $caption.html()=='<p>&nbsp;</p>'|| $caption.html()=='<p></p>'|| $caption.html()=='<p><br></p>')
-					$caption_content = $caption.html()
+					# $caption_content = $caption.html()
+					$caption_content = $te.getCont($caption.attr('id'))
 					if($emptycap)
 						$caption_content = ''
 					if(!$emptyslide)
