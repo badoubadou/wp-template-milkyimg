@@ -40,7 +40,6 @@ class sliderfullscreen
     @elementHeight = 0
     @elementOffsetOrigin = @$container.offset().top
     @$flexslider = @$container.find('.flexslider')
-    console.log '??? '+@$flexslider.html()
 
     @$flexslide = @$flexslider.find('li')
     @$containermedia = @$flexslider.find('.container-media')
@@ -55,12 +54,12 @@ class sliderfullscreen
 
   insertspan: ->
     @$caption = @$flexslider.find '.flex-caption'
-    @$caption.each ->
-      $(this).html($(this).html().replace(/<p>/g,'<p><span>').replace(/<\/p>/g,'</span></p>'))
-      $(this).html($(this).html().replace(/<h3>/g,'<h3><span>').replace(/<\/h3>/g,'</span></h3>'))
+    @$caption.find('h3').each ->
+      $(this).html('<span>'+$(this).html()+'</span>')
       return
-
-
+    @$caption.find('p').each ->
+      $(this).html('<span>'+$(this).html()+'</span>')
+      return
 
   sliderReady: ->
     @setSliderOptions()
@@ -98,7 +97,6 @@ class sliderfullscreen
 
     moveContainerTop @$background_holder, posChangeBackground
     moveContainerTop @$foreground_holder, posChangeContent
-
 
   resizeWindow: ->
     console.log 'resize'

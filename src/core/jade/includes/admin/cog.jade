@@ -5,7 +5,9 @@
 	)
 	input(type='checkbox' id!='<?php echo $idcog;?>' class='fullbox')
 	label.icon-cog.round(for!='<?php echo $idcog;?>')
-	.listoptions
+	.listoptions(
+		data-actual-color!="<?php echo d('color',$data);?>"
+		)
 		- $idwhite = 'colorname'.md5(uniqid(rand(), true));
 		- $idcolor = 'color'.md5(uniqid(rand(), true));
 		.warpinput.color

@@ -2,6 +2,7 @@ $pad = 20px
 
 .grid
 	margin: 0
+	box-sizing: border-box
 	display: flex
 	flex-wrap: wrap
 
@@ -11,12 +12,13 @@ $pad = 20px
 		display: table
 		clear: both
 
-	*
-		@include box-sizing(border-box)
-
 	[class*='col-']
+		box-sizing: border-box
 		float: left
 		display: flex
+		padding-right: $pad
+		&:last-child
+			 padding-right: 0
 		.content
 			// padding:0
 
