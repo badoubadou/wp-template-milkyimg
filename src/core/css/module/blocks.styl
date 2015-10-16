@@ -4,13 +4,26 @@
 	&.white
 		.warper
 			background:#fff
+
 	&.red
 		.warper
 			background:#CA0209
+
 	&.black
 		.warper
 			background:#000000
 			color:#ffffff
+
+	&.black,
+	&.red,
+	&.white
+		.warper
+			width:100%
+
+		.addblocks .warper
+		// .btnaddslide .warper,
+			background:$bg-admin-color-primary
+
 
 	&.fullscreen
 		.warper.level-0:not(.caption)
