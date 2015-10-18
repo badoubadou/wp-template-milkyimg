@@ -5,7 +5,6 @@ html.no-js
 	body(data-pagejson!="<?php echo $pagetoload.$lang; ?>" class!="<?php if($admin){echo 'admin';};?>")
 		block backgroundimage
 		block loginbar
-		block listimgserver
 		include ../../module/navigation/index.php.jade
 		section#main
 			- $data['level'] = '0'
@@ -19,3 +18,4 @@ html.no-js
 		block samples
 		include ../../module/navigation_footer/index.php.jade
 		include ./includes/footer.jade
+		block listimgserver

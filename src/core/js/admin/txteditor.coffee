@@ -31,6 +31,11 @@ class txteditor
           inline: 'b'
         }
         {
+          title: 'Date'
+          inline: 'span'
+          classes: 'date'
+        }
+        {
           title: 'romhand'
           inline: 'span'
           classes: 'romhand'
