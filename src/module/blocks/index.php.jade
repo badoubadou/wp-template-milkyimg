@@ -9,6 +9,9 @@
 	-if(d('type',$data)==='img'):
 	include ../../core/jade/includes/admin/addslidebtn.jade
 	-endif;
+	-if(d('type',$data)==='perso'):
+	include ../../core/jade/includes/admin/addpersobtn.jade
+	-endif;
 	-endif;
 	.warper(
 		class!="<?php echo 'level-'.d('level',$data); ?>"

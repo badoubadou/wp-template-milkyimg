@@ -32,6 +32,10 @@ block samples
 		- $data['type'] = 'img';
 		- $data['blockclass'] = 'img';
 		include ../../module/blocks/index.php.jade
+		- $data['img'] = 'http://placehold.it/150x150'
+		- $data['type'] = 'perso';
+		- $data['blockclass'] = 'perso';
+		include ../../module/blocks/index.php.jade
 		- $data['level'] = '0';
 		- $data['type'] = 'repeater';
 		- $data['blockclass'] = 'repeater';
@@ -39,6 +43,10 @@ block samples
 		include ../../module/blocks/index.php.jade
 
 		div#slide
+			- $data['img'] = 'http://placehold.it/350x150'
 			include ../../module/slider_fullscreen/slide.jade
+		div#person
+			- $data['img'] = 'http://placehold.it/150x150'
+			include ../../module/person_list/person.jade
 
 

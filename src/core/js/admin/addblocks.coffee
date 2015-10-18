@@ -77,6 +77,12 @@ class addblocks
 		if(@$type=='txt')
 			txtedit = new module.txteditor('#'+@$id+' .editable')
 
+		if(@$type=='perso')
+			addslide = new module.addpersons($('#'+@$id))
+			info = new module.txteditor('#'+@$id+' .infos')
+			name = new module.txteditor('#'+@$id+' .name')
+			showserver = new module.showcloud($('#'+@$id+' img'))
+
 		if(@$type=='img')
 			addslide = new module.addslides($('#'+@$id))
 			txt = new module.txteditor('#'+@$id+' .flex-caption')
