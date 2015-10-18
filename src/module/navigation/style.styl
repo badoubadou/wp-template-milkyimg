@@ -1,7 +1,7 @@
 // --------------------------//
 // blocks/navigation
 // --------------------------//
-
+$pad = 20px
 .main-header
   height: $navigation-height
 
@@ -11,6 +11,26 @@
   position: fixed
   width: 100%
   z-index: 999
+
+  .avatar
+    border-radius:50%
+    position:absolute
+    display:block
+    z-index:1000
+    overflow:hidden
+    height:(($navigation-height*2) - $pad)
+    width:(($navigation-height*2) - $pad)
+    left:(($navigation-height*2) / 2 )
+    top:10px
+
+    @media $bs-screen-md-max
+      display : none
+
+    a.avatarlink
+      padding: 0
+
+      img
+        height:(($navigation-height*2) - $pad)
 
   .admin &
     top:$login-height

@@ -3,7 +3,6 @@
 		overflow: auto
 
 	#contact-form
-		margin 20px
 		position relative
 		h1
 			font-size 42px
@@ -28,10 +27,13 @@
 		display block
 		float right
 		margin-bottom 0px
-		background-color #8FB5C1
+		background-color #FC3768
+		padding:20px
+		text-transform:uppercase
 		&:hover
-			background-color #A6CFDD
+			background-color #EC2355
 		&:active
+			background-color #EC2355
 			position relative
 			top 1px
 	  #loading
@@ -55,7 +57,6 @@
 	#contact-form select,
 	#contact-form textarea
 		width 100%
-		border 1px solid #CEE1E8
 		margin-bottom 20px
 
 	#contact-form input:focus,
@@ -109,4 +110,9 @@
 	input.placeholder-text, textarea.placeholder-text
 		color #CCC
 		font-style italic
+
+
+@media $bs-screen-sm-max
+	.blocks.contact-form #contact-form
+		margin:20px
 
