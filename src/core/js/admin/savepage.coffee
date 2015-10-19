@@ -20,13 +20,20 @@ class savepage
 		$container.find('li').each (index, slide) ->
 			$imgslide = $(slide).find 'img'
 			$imgsrc = ($imgslide.attr('src')!=$defaultpics) ? false : $imgslide.attr('src')
-			$caption_content = $te.getCont($caption.attr('id'))
 			if($imgsrc)
 				$tab[index] = {}
 				$tab[index]['img'] = $imgslide.attr('src')
-
-				$caption = $(slide).find $txt
-				$tab[index]['caption'] = $caption_content
+				tot = $txt.length
+				i = 0
+				while i < tot
+					txtname = $txt[i]
+					console.log ' $txt[i] : '+ $txt[i]
+					classname = '.'+txtname
+					console.log 'classname : '+classname
+					newtxt = $(slide).find classname
+					txt_content =  $te.getCont(newtxt.attr('id'))
+					$tab[index][txtname] = txt_content
+					i++
 
 		return $tab
 
@@ -51,28 +58,11 @@ class savepage
 				$empty = ($el_content.find('.editable').text()=='') ? true : false
 
 			if($el_type=='img')
-				$content_to_save = @getContentlist($el_content, '.flex-caption', 'http://placehold.it/350x150')
+				$content_to_save = @getContentlist($el_content, ['flex-caption'], 'http://placehold.it/350x150')
 
 			if($el_type=='perso')
-				$content_to_save = @getContentlist($el_content, '.flex-caption', 'http://placehold.it/350x150')
-				# $sliderjson = {}
-				# $el_content.find('.slides li').each (index, slide) ->
-				# 	$emptyslide = false
-				# 	$imgslide = $(slide).find 'img'
-				# 	$emptyslide = ($imgslide.attr('src')=='http://placehold.it/350x150') ? true : false
-				# 	$caption = $(slide).find '.flex-caption'
-				# 	$emptycap = ($caption.text()=='' || $caption.text()==' ' || $caption.text()=='  ' || $caption.html()=='&nbsp;' || $caption.html()=='<p>&nbsp;<br></p>' || $caption.html()=='<p>&nbsp;</p>'|| $caption.html()=='<p></p>'|| $caption.html()=='<p><br></p>')
-				# 	# $caption_content = $caption.html()
-				# 	$caption_content = $te.getCont($caption.attr('id'))
-				# 	if($emptycap)
-				# 		$caption_content = ''
-				# 	if(!$emptyslide)
-				# 		$sliderjson[index] =
-				# 		{
-				# 			'img' : $imgslide.attr('src'),
-				# 			'caption' : $caption_content
-				# 		}
-				# 	return
+				$content_to_save = @getContentlist($el_content, ['name', 'infos'], 'http://placehold.it/150x150')
+
 
 			if($el_type=='repeater')
 				$content_to_save = @croalContent($el_content,($level+1))

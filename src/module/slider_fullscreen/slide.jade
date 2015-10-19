@@ -4,10 +4,10 @@ li
 	- if((d('caption',$slide)!=='') || $admin):////si c'est pas vide
 	- if($admin):
 	.flex-caption.editable(data-ph!="<?php echo d('caption',$dico);?>")
-		!= d('caption',$slide)
+		!= d('flex-caption',$slide)
 	- else:
 	.warper.caption
 		.flex-caption
-			!= d('caption',$slide)
+			!= d('flex-caption',$slide)
 	-endif;
 	-endif;

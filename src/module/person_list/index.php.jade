@@ -3,7 +3,7 @@
 		- if(d('sample',$data)):
 			include person.jade
 		- endif;
-		- foreach ($dataslider as $keyslide => $slide):
+		- foreach ($dataperson as $keyperson => $slide):
 			- $slide['itsadmin'] = $admin
 			include person.jade
 		- endforeach
