@@ -4,6 +4,6 @@
 	ul.nav.warper
 		- foreach ($navjson as $key => $val):
 			li(class!="<?php echo (d('link',$val) === $selectedpageurl) ? 'selected' : ''; ?>")
-				a(href!="<?php echo d('link',$val); ?>")
+				a(href!="<?php echo d('link',$val); ?>" tabindex='-1')
 					!=d('title',$val)
 		- endforeach

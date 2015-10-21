@@ -1,21 +1,22 @@
 - $src = $data['sample'] ? $data['img'] : d('img',$slide)
-li
-	- if((d('name',$slide)!=='') || $admin):////si c'est pas vide
-	- if($admin):
-	.name.editable(data-ph!="<?php echo d('name',$dico);?>")
-		!= d('name',$slide)
-	- else:
-	.name
-		!= d('name',$slide)
-	-endif;
-	-endif;
-	img(src!="<?php echo $src;?>")
-	- if((d('infos',$slide)!=='') || $admin):////si c'est pas vide
-	- if($admin):
-	.infos.editable(data-ph!="<?php echo d('infos',$dico);?>")
-		!= d('infos',$slide)
-	- else:
-	.infos
-		!= d('infos',$slide)
-	-endif;
-	-endif;
+li.list-item
+	.list-content
+		- if((d('name',$slide)!=='') || $admin):////si c'est pas vide
+		- if($admin):
+		.name.editable(data-ph!="<?php echo d('name',$dico);?>")
+			!= d('name',$slide)
+		- else:
+		.name
+			!= d('name',$slide)
+		-endif;
+		-endif;
+		img(src!="<?php echo $src;?>")
+		- if((d('infos',$slide)!=='') || $admin):////si c'est pas vide
+		- if($admin):
+		.infos.editable(data-ph!="<?php echo d('infos',$dico);?>")
+			!= d('infos',$slide)
+		- else:
+		.infos
+			!= d('infos',$slide)
+		-endif;
+		-endif;

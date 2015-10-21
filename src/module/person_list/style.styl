@@ -1,10 +1,68 @@
 .personlist
-	ul
-		list-style-type: none
-		margin:0
-		padding:0
+	*
+		box-sizing: border-box
 
-		li
-			width: 150px
-			float:left
-			padding: 0 5px
+	ul, li
+		margin: 0
+		padding: 0
+		list-style: none
+
+	.list
+		display: flex
+		flex-wrap: wrap
+
+	.list-item
+		display: flex
+		padding: 0.5em
+		width: 100%
+		position:relative
+
+		img
+			width: 100%
+
+		.name
+			margin-top: 0
+			margin-bottom: 0.4em
+			font-family:maloz
+			text-transform:uppercase
+			font-size:200%
+			p
+			margin-bottom:0
+
+		.list-content
+			display: flex
+			flex-direction: column
+			width: 70%
+			position:relative
+			left:30%
+
+		@media $bs-screen-sm-min
+			width: 50%
+
+			.list-content
+				box-shadow: 0px 0px 5px $grey
+				background-color: #fff
+				width: 100%
+				left:0
+				padding: 1em
+
+		@media $bs-screen-md-min
+			width: 33.33%
+
+		@media $bs-screen-sm-max
+			border-bottom:1px solid $light-grey
+
+			img
+				width: 30%
+				border-radius:50%
+				position:absolute
+				top:10px
+				left:-40%
+				border:5px solid #fff
+				box-shadow: 0px 0px 5px $grey
+
+	.list-content
+		.name,
+		.infos
+			flex: 1 0 auto
+

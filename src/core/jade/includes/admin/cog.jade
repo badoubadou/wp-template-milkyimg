@@ -3,7 +3,7 @@
 .warpinput.cog(
 	class!="<?php echo 'level-'.d('level',$data);?>"
 	)
-	input(type='checkbox' id!='<?php echo $idcog;?>' class='fullbox')
+	input(type='checkbox' id!='<?php echo $idcog;?>' class='fullbox' tabindex='-1')
 	label.icon-cog.round(for!='<?php echo $idcog;?>')
 	.listoptions(
 		data-actual-color!="<?php echo d('color',$data);?>"
@@ -12,27 +12,27 @@
 		- $idcolor = 'color'.md5(uniqid(rand(), true));
 		.warpinput.color
 			- if(d("color",$data)==='white'):
-			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idwhite;?>' value!='white' checked)
+			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idwhite;?>' value!='white' checked tabindex='-1')
 			-else:
-			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idwhite;?>' value!='white')
+			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idwhite;?>' value!='white' tabindex='-1' )
 			- endif;
 			label.white.round(for!='<?php echo $idwhite;?>')
 
 		- $idred = 'colorname'.md5(uniqid(rand(), true));
 		.warpinput.color
 			- if(d("color",$data)==="red"):
-			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idred;?>' value!='red' checked)
+			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idred;?>' value!='red' checked tabindex='-1')
 			-else:
-			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idred;?>' value!='red')
+			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idred;?>' value!='red' tabindex='-1')
 			- endif;
 			label.red.round(for!='<?php echo $idred;?>')
 
 		- $idblack = 'colorname'.md5(uniqid(rand(), true));
 		.warpinput.color
 			- if(d("color",$data)==="black"):
-			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idblack;?>' value!='black' checked)
+			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idblack;?>' value!='black' checked tabindex='-1')
 			-else:
-			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idblack;?>' value!='black')
+			input(type='radio' name!='<?php echo $idcolor;?>' id!='<?php echo $idblack;?>' value!='black' tabindex='-1')
 			- endif;
 			label.black.round(for!='<?php echo $idblack;?>')
 

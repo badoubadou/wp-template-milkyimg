@@ -9,14 +9,18 @@ nav.blocks.navigation
       //- a.brand(href=d('home_url'))
       //-   img(src=d('brand_logo'), alt=d('site_title'))
     .avatar
-      a.avatarlink(href="/" target="_self")
+      a.avatarlink(href="/" target="_self" tabindex!="<?php echo $admin ? '-1' : '';?>")
         img(src='images/avatar_b86e06539868_128.png')
     .nav-group-wrapper
       ul.nav-group
         - foreach ($navjson as $key => $val):
           -if(d('position',$val)==='header'):
           li(class!="<?php echo (d('link',$val) === $selectedpageurl) ? 'selected' : ''; ?>")
-            a(href!="<?php echo d('link',$val); ?>" target!="<?php echo (strpos(d('link',$val),'http') !== false) ? '_blank' : '_self';?>")
+            a(
+              href!="<?php echo d('link',$val); ?>"
+              target!="<?php echo (strpos(d('link',$val),'http') !== false) ? '_blank' : '_self';?>"
+              tabindex!="<?php echo $admin ? '-1' : '';?>"
+              )
               !=d('title',$val)
           -endif;
         - endforeach

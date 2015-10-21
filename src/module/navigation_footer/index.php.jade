@@ -18,6 +18,7 @@ footer.footer
                 href!="<?php echo d('link',$val); ?>"
                 target!="<?php echo (strpos(d('link',$val),'http') !== false) ? '_blank' : '_self';?>"
                 class!="<?php echo 'icon-'.d('title',$val);?>"
+                tabindex!="<?php echo $admin ? '-1' : '';?>"
                 )
                 - if(d('title',$val)!=='facebook' && d('title',$val)!=='tumblr'):
                 !=d('title',$val)
