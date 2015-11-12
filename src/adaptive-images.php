@@ -28,7 +28,10 @@ $browser_cache = 60*60*24*7; // How long the BROWSER cache should last (seconds,
 $document_root  = $_SERVER['DOCUMENT_ROOT'];
 $requested_uri  = parse_url(urldecode($_SERVER['REQUEST_URI']), PHP_URL_PATH);
 
-$requested_uri   = str_replace("mini-me-", "", $requested_uri); // the resolution break-points to use (screen widths, in pixels)
+if (strpos($requested_uri, 'mini-me-') !== FALSE){
+  $requested_uri   = str_replace("mini-me-", "", $requested_uri); // the resolution break-points to use (screen widths, in pixels)
+  $resolutions   =  $resolutionsmini; // the resolution break-points to use (screen widths, in pixels)
+}
 
 $requested_file = basename($requested_uri);
 $source_file    = $document_root.$requested_uri;
