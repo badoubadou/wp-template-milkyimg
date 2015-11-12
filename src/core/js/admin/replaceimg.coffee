@@ -7,7 +7,7 @@ class replaceimg
 		@$btn = @$btn
 
 	getContext: (@$el)->
-		@$newsrc = @$el.attr('src')
+		@$newsrc = @$el.attr('src').replace('mini-me-', '');
 
 	bindEvents: ->
 		@$btn.on 'click', (event) =>

@@ -13,6 +13,7 @@
 /* CONFIG ----------------------------------------------------------------------------------------------------------- */
 
 $resolutions   = array(1382, 992, 768, 480); // the resolution break-points to use (screen widths, in pixels)
+$resolutionsmini   = array(480); // the resolution break-points to use (screen widths, in pixels)
 $cache_path    = "ai-cache"; // where to store the generated re-sized images. Specify from your document root!
 $jpg_quality   = 75; // the quality of any generated JPGs on a scale of 0 to 100
 $sharpen       = TRUE; // Shrinking images can blur details, perform a sharpen on re-scaled images?
@@ -26,11 +27,14 @@ $browser_cache = 60*60*24*7; // How long the BROWSER cache should last (seconds,
 /* get all of the required data from the HTTP request */
 $document_root  = $_SERVER['DOCUMENT_ROOT'];
 $requested_uri  = parse_url(urldecode($_SERVER['REQUEST_URI']), PHP_URL_PATH);
+
+$requested_uri   = str_replace("mini-me-", "", $requested_uri); // the resolution break-points to use (screen widths, in pixels)
+
 $requested_file = basename($requested_uri);
 $source_file    = $document_root.$requested_uri;
 $resolution     = FALSE;
 
-/* Mobile detection 
+/* Mobile detection
    NOTE: only used in the event a cookie isn't available. */
 function is_mobile() {
   $userAgent = strtolower($_SERVER['HTTP_USER_AGENT']);
@@ -170,7 +174,7 @@ function generateImage($source_file, $cache_file, $resolution) {
     $transparent = imagecolorallocatealpha($dst, 255, 255, 255, 127);
     imagefilledrectangle($dst, 0, 0, $new_width, $new_height, $transparent);
   }
-  
+
   ImageCopyResampled($dst, $src, 0, 0, 0, 0, $new_width, $new_height, $width, $height); // do the resize in memory
   ImageDestroy($src);
 
@@ -189,7 +193,7 @@ function generateImage($source_file, $cache_file, $resolution) {
   $cache_dir = dirname($cache_file);
 
   // does the directory exist already?
-  if (!is_dir($cache_dir)) { 
+  if (!is_dir($cache_dir)) {
     if (!mkdir($cache_dir, 0755, true)) {
       // check again if it really doesn't exist to protect against race conditions
       if (!is_dir($cache_dir)) {

@@ -12,6 +12,7 @@ class showcloud
 			$(event.currentTarget).addClass 'target'
 			$('.server').removeClass 'hidden'
 			$('body').addClass 'popin'
+			$('.server img').attr( 'src',$('.server img').data( 'src'))
 			# return
 		# @$btn.on 'click', (event) =>
 		#   console.log 'click showcloud'

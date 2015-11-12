@@ -81,7 +81,8 @@ function ListFolder($path, $sub)
             else
             {
                 //Display a list of files.
-                echo "<li><img src='$racine$pathsubfolder$file'>$file</li>";
+                $mini =  "mini-me-";
+                echo "<li><img data-src='$racine$pathsubfolder$mini$file'>$file</li>";
             }
         }
     }
