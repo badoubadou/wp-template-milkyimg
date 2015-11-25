@@ -9,7 +9,7 @@
     },
     "p2": {
         "position":"header",
-        "link":"Qui-que-quoi",
+        "link":"qui-que-quoi",
         "linkopposite":"wie-wer-was",
         "title":"Qui que quoi",
         "datajson":"p2",
@@ -28,14 +28,22 @@
         "link":"on-parle-de-nous",
         "linkopposite":"rezensionen",
         "title":"On parle de nous",
-        "datajson":"p3",
+        "datajson":"p4",
+        "speciallayout":""
+    },
+    "p9": {
+        "position":"header",
+        "link":"galerie",
+        "linkopposite":"galerie",
+        "title":"galerie",
+        "datajson":"p9",
         "speciallayout":""
     },
     "p5": {
         "position":"footer",
-        "link":"contact",
+        "link":"contactez-nous",
         "linkopposite":"Kontact",
-        "title":"Contact",
+        "title":"Contactez nous",
         "datajson":"contact",
         "speciallayout":"contact"
     },

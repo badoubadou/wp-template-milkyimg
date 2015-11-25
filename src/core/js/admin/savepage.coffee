@@ -48,6 +48,7 @@ class savepage
 			$el_content = $(element).find '.content:first-child'
 			$el_class = $(element).attr('data-more-class').split(' ')
 			$el_type = $(element).data 'type-module'
+			$el_col = $(element).data 'column'
 			$el_level = $(element).data 'type-level'
 			$el_id = $(element).attr 'id'
 			$empty = false
@@ -73,7 +74,8 @@ class savepage
 				{
 					'type': $el_type,
 					'classes': $el_class,
-					'level': $level
+					'level': $level,
+					'column': $el_col,
 					'content': $content_to_save
 				}
 			console.log $content_to_save+'  content_to_save '
@@ -82,10 +84,12 @@ class savepage
 
 	makeJson: ->
 		@$pagejson = @croalContent(@$container, 0)
+		console.log JSON.stringify(@$pagejson)
 		@sendJson()
 
 	sendJson: ->
 		console.log 'sendJson'
+		$('body').removeClass('savable')
 		$.ajax(
 			type:'POST',
 			url: 'php/changedata.php',

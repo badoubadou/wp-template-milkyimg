@@ -31,13 +31,13 @@ gulp.task('jade-php', function() {
 	gutil.log('jade-php : '+config.src);
 	gulp.src(config.src)
 		.pipe(jadephp({
-			pretty: true
+			pretty: false
 		}))
 		.on('error', handleErrors)
 		.pipe(gulp.dest(config.dest));
 	gulp.src(config.srcmodule)
 		.pipe(jadephp({
-			pretty: true
+			pretty: false
 		}))
 		.on('error', handleErrors)
 		.pipe(gulp.dest(config.destmodule));

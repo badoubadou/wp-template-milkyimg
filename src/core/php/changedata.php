@@ -1,6 +1,30 @@
 <?php
 require_once 'config.php';
 
+////////////// save
+function recurse_copy($src,$dst) {
+    $dir = opendir($src);
+    @mkdir($dst);
+    while(false !== ( $file = readdir($dir)) ) {
+        if (( $file != '.' ) && ( $file != '..' )) {
+            if ( is_dir($src . '/' . $file) ) {
+                recurse_copy($src . '/' . $file,$dst . '/' . $file);
+            }
+            else {
+                copy($src . '/' . $file,$dst . '/' . $file);
+            }
+        }
+    }
+    closedir($dir);
+}
+
+$dst = "../cloud/srv/data_".time();
+mkdir($dst, 0700);
+
+recurse_copy("../".$pathdatafolder,$dst);
+
+/////////////////// change
+
 $content = $_POST["content"];
 $fileurl = $_POST["fileurl"];
 

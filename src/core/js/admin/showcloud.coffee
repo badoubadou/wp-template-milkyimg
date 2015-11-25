@@ -12,13 +12,9 @@ class showcloud
 			$(event.currentTarget).addClass 'target'
 			$('.server').removeClass 'hidden'
 			$('body').addClass 'popin'
-			$('.server img').attr( 'src',$('.server img').data( 'src'))
-			# return
-		# @$btn.on 'click', (event) =>
-		#   console.log 'click showcloud'
-		#   $(event.currentTarget).addClass 'target'
-		# 	@$cloudfinder.removeClass 'hidden'
-		# 	$('body').addClass 'popin'
-		#   return
+			console.log 'yodfsdfsdf '
+
+			$('.server img').each ->
+				$(this).attr('src',$(this).data('src'))
 
 module.showcloud = showcloud

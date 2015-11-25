@@ -1,6 +1,6 @@
 extends layout
 block stylesheet
-	link(rel='stylesheet', href='css/admin.css')
+	link(rel='stylesheet', href!='css/admin.css?<?php echo time(); ?>')
 block additionalscript
 	script(src='//tinymce.cachefly.net/4.2/tinymce.min.js')
 block loginbar
@@ -20,7 +20,7 @@ block btnadmintop
 
 block pagescript
 	script(src='js/vendor/jquery.sortable.min.js')
-	script(src='js/admin.js')
+	script(src!='js/admin.js?<?php echo time(); ?>')
 
 block samples
 	section#samples

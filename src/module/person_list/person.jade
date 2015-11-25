@@ -1,5 +1,13 @@
 - $src = $data['sample'] ? $data['img'] : d('img',$slide)
 li.list-item
+
+	-if($admin):
+	button.icon-bin.deleatperso(
+		tabindex='-1'
+		)
+	.moveperso.icon-moveit
+	-endif;
+
 	.list-content
 		- if((d('name',$slide)!=='') || $admin):////si c'est pas vide
 		- if($admin):

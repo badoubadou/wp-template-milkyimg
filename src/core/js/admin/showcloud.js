@@ -18,7 +18,10 @@ showcloud = (function() {
       $(event.currentTarget).addClass('target');
       $('.server').removeClass('hidden');
       $('body').addClass('popin');
-      return $('.server img').attr('src', $('.server img').data('src'));
+      console.log('yodfsdfsdf ');
+      return $('.server img').each(function() {
+        return $(this).attr('src', $(this).data('src'));
+      });
     });
   };
 

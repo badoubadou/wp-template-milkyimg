@@ -117,7 +117,7 @@ ExpiresByType image/gif "access plus 1 year"
 ExpiresByType image/png "access plus 1 year"
 ExpiresByType text/css "access plus 1 month"
 ExpiresByType application/pdf "access plus 1 month"
-ExpiresByType text/x-javascript "access plus 1 year"
+# ExpiresByType text/x-javascript "access plus 1 year"
 ExpiresByType image/x-icon "access plus 1 year"
 ExpiresDefault "access plus 2 days"
 </IfModule>
@@ -345,7 +345,7 @@ FileETag None
     ExpiresDefault                                      "access plus 1 month"
 
   # CSS
-    ExpiresByType text/css                              "access plus 1 week"
+    ExpiresByType text/css                              "access plus 0 seconds"
 
   # Data interchange
     ExpiresByType application/json                      "access plus 0 seconds"
@@ -370,12 +370,12 @@ FileETag None
 
   # Media
     ExpiresByType audio/ogg                             "access plus 1 month"
-    ExpiresByType image/gif                             "access plus 1 month"
-    ExpiresByType image/jpeg                            "access plus 1 month"
-    ExpiresByType image/png                             "access plus 1 month"
-    ExpiresByType video/mp4                             "access plus 1 month"
-    ExpiresByType video/ogg                             "access plus 1 month"
-    ExpiresByType video/webm                            "access plus 1 month"
+    ExpiresByType image/gif                             "access plus 0 seconds"
+    ExpiresByType image/jpeg                            "access plus 0 seconds"
+    ExpiresByType image/png                             "access plus 0 seconds"
+    ExpiresByType video/mp4                             "access plus 0 seconds"
+    ExpiresByType video/ogg                             "access plus 0 seconds"
+    ExpiresByType video/webm                            "access plus 0 seconds"
 
   # Web feeds
     ExpiresByType application/atom+xml                  "access plus 1 hour"

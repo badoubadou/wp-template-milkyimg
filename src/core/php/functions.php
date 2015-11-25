@@ -82,15 +82,16 @@ function ListFolder($path, $sub)
             {
                 //Display a list of files.
                 $mini =  "mini-me-";
-                echo "<li><img data-src='$racine$pathsubfolder$mini$file'>$file</li>";
+                // echo "<li><img data-src='$racine$pathsubfolder$mini$file'>$file</li>";
+                echo "<li><img data-src='$racine$pathsubfolder$file'>$file</li>";
             }
         }
     }
     echo "</li>\n";
     echo "</ul>\n";
-     if($sub){
+    if($sub){
         echo "</div>\n";
-     }
+    }
     //closing the directory
     closedir($dir_handle);
 }
@@ -110,6 +111,7 @@ function parser($tab, $admin, $dico){
         $data = $module;
         $data['key'] = $index;
         $data['level'] = d('level',$data);
+        $data['column'] = d('column',$data);
         $class = implode(' ', d('classes',$data));
         $data['moreclass'] = $class;
         $data['blockclass'] = 'level-'.d('level',$data).' '.d('type',$data).' '.$class.' ';
@@ -128,7 +130,11 @@ function parser($tab, $admin, $dico){
             $data['contentclass'] .= ' grid';
         }else{
             $nbcol = count($tab);
-            $data['blockclass'] .= 'col-'.round((12/$nbcol)*10)/10;
+            if($data['column'])
+                $data['blockclass'] .= $data['column'];
+            else
+                $data['blockclass'] .= 'col-'.round((12/$nbcol)*10)/10;
+
             $data['nbcol'] = $nbcol;
         };
         include 'module/blocks/index.php.php';

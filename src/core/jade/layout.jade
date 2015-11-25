@@ -2,7 +2,7 @@ doctype html
 html.no-js
 	include ./includes/head.jade
 	block additionalscript
-	body(data-pagejson!="<?php echo $pagetoload.$lang; ?>" class!="<?php if($admin){echo 'admin';};  if($speciallayout){echo $speciallayout;};?>")
+	body(data-pagejson!="<?php echo $pagetoload.$lang; ?>" class!="<?php if($admin){echo 'admin';};  if($speciallayout){echo ' '.$speciallayout;};?>")
 		block backgroundimage
 		block loginbar
 		include ../../module/navigation/index.php.jade
