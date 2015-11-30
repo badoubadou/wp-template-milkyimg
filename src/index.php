@@ -22,8 +22,10 @@ if(isset($_SESSION['cf_returndata'])){
 }
 
 
-if($speciallayout && !$admin){
-	include($speciallayout.'.php');
+if($speciallayout){
+	// if (!(($speciallayout == 'contact') && $admin)){
+		include($speciallayout.'.php');
+	// }
 }else{
 	$admin ? include('admin.php') : include('page.php');
 }

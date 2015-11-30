@@ -1,6 +1,21 @@
 <?php
 require_once 'config.php';
 
+/////////////////// change
+
+$content = $_POST["content"];
+$fileurl = $_POST["fileurl"];
+
+
+function writer($fileurl, $content){
+$myfile = fopen($fileurl, "w") or die("Unable to open file!");
+fwrite($myfile, $content);
+fclose($myfile);
+}
+
+writer('../'.$pathdatafolder.$fileurl.'.json', $content);
+
+
 ////////////// save
 function recurse_copy($src,$dst) {
     $dir = opendir($src);
@@ -22,20 +37,5 @@ $dst = "../cloud/srv/data_".time();
 mkdir($dst, 0700);
 
 recurse_copy("../".$pathdatafolder,$dst);
-
-/////////////////// change
-
-$content = $_POST["content"];
-$fileurl = $_POST["fileurl"];
-
-
-function writer($fileurl, $content){
-$myfile = fopen($fileurl, "w") or die("Unable to open file!");
-fwrite($myfile, $content);
-fclose($myfile);
-}
-
-writer('../'.$pathdatafolder.$fileurl.'.json', $content);
-
 
 ?>

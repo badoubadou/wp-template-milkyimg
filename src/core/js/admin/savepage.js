@@ -23,7 +23,7 @@ savepage = (function() {
     return this.$blocks = this.$container.find('.blocks');
   };
 
-  savepage.prototype.getContentlist = function($container, $txt, $defaultpics) {
+  savepage.prototype.getContentlist = function($container, $txt, $defaultpics, $autre) {
     var $tab, $te;
     $tab = {};
     $te = this.$txtedit;
@@ -61,7 +61,7 @@ savepage = (function() {
     console.log('$txtedit  lenght' + $container.find('.level-' + $level).length);
     $container.find('.blocks.level-' + $level).each((function(_this) {
       return function(index, element) {
-        var $content_to_save, $el_class, $el_col, $el_content, $el_id, $el_level, $el_type, $empty, $te, ref;
+        var $content_to_save, $el_class, $el_col, $el_content, $el_id, $el_level, $el_type, $empty, $intro, $te, ref;
         $te = _this.$txtedit;
         $el_content = $(element).find('.content:first-child');
         $el_class = $(element).attr('data-more-class').split(' ');
@@ -70,6 +70,7 @@ savepage = (function() {
         $el_level = $(element).data('type-level');
         $el_id = $(element).attr('id');
         $empty = false;
+        $intro = '';
         console.log('$el_class : ' + $el_class + '//// ' + $(element).attr('data-more-class'));
         if ($el_type === 'txt') {
           $content_to_save = $te.getCont($el_content.find('.editable').attr('id'));
@@ -79,6 +80,7 @@ savepage = (function() {
         }
         if ($el_type === 'img') {
           $content_to_save = _this.getContentlist($el_content, ['flex-caption'], 'http://placehold.it/350x150');
+          $intro = $te.getCont($el_content.find('.intro').attr('id'));
         }
         if ($el_type === 'perso') {
           $content_to_save = _this.getContentlist($el_content, ['name', 'infos'], 'http://placehold.it/150x150');
@@ -93,6 +95,7 @@ savepage = (function() {
             'classes': $el_class,
             'level': $level,
             'column': $el_col,
+            'intro': $intro,
             'content': $content_to_save
           };
         }

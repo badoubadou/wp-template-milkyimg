@@ -2,14 +2,18 @@
 var addperson, addslide, init, login, navigation, savepage, txtedit, unlogin;
 
 init = function() {
-  var addblocks, closecloud, deleatperso, removeblocks, replaceimg, showcloud;
+  var addblocks, addfolder, closecloud, cloud, deleatperso, deleatslide, removeblocks, removefile, replaceimg, showcloud, sorting;
   console.log('doc ready');
   addblocks = new module.addblocks($('.addblocks'), $('#samples'));
   removeblocks = new module.removeblocks($('.bin'));
   deleatperso = new module.removeperso($('.deleatperso'));
+  deleatslide = new module.removeperso($('.deleatslide'));
   showcloud = new module.showcloud($('#main .img .flexslider .slides img, #main .perso img'));
   closecloud = new module.closecloud($('.shield'));
-  replaceimg = new module.replaceimg($('.server img'));
+  replaceimg = new module.replaceimg($('.replaceimg ul li'));
+  cloud = new module.cloud($('#cloud'));
+  addfolder = new module.addfolder($('.btnaddfolder'));
+  removefile = new module.removefile($('.btndelatefolder'));
   $('#main .blocks .listbtnright').each(function() {
     var updateclassoption;
     updateclassoption = new module.updateclassoption($(this));
@@ -20,19 +24,7 @@ init = function() {
   $('.btn').on('click', function() {
     $('body').addClass('savable');
   });
-  if ($('.persons').length > 1) {
-    return $('.persons').sortable({
-      handle: '.moveperso'
-    }).bind('sortupdate', function() {
-      $('body').addClass('savable');
-    });
-  } else {
-    return $('#main').sortable({
-      handle: '.handle'
-    }).bind('sortupdate', function() {
-      $('body').addClass('savable');
-    });
-  }
+  return sorting = new module.sorting($('.handlesort'));
 };
 
 $(document).ready(init);
@@ -51,9 +43,11 @@ addslide = new module.addslides($('#main .img'));
 
 addperson = new module.addpersons($('#main .perso'));
 
-window.onbeforeunload = function() {
-  if (!$('body').hasClass('savable')) {
-    return void 0;
-  }
-  return "t'a oublié d'enregistrer, c'est normal ? ";
-};
+if (!$('body').hasClass('managefile')) {
+  window.onbeforeunload = function() {
+    if (!$('body').hasClass('savable')) {
+      return void 0;
+    }
+    return "t'a oublié d'enregistrer, c'est normal ? ";
+  };
+}

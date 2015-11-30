@@ -104,7 +104,8 @@ RewriteRule ^([a-zA-Z0-9_-]+)/([a-zA-Z0-9_-]+)/$ index.php?pageurl=$1&articleurl
   # Send any GIF, JPG, or PNG request that IS NOT stored inside one of the above directories
   # to adaptive-images.php so we can select appropriately sized versions
 
-  RewriteRule \.(?:jpe?g|gif|png)$ adaptive-images.php
+  RewriteRule \.(?:jpe?g|JPG|JPEG|gif|png)$ adaptive-images.php
+
 
   # END Adaptive-Images -------------------------------------------------------------------------------
 </IfModule>

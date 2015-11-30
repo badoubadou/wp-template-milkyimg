@@ -3,12 +3,18 @@ init = ->
 	addblocks = new module.addblocks($('.addblocks'), $('#samples'))
 	removeblocks = new module.removeblocks($('.bin'))
 	deleatperso = new module.removeperso($('.deleatperso'))
+	deleatslide = new module.removeperso($('.deleatslide'))
 
 	showcloud = new module.showcloud($('#main .img .flexslider .slides img, #main .perso img'))
 	closecloud = new module.closecloud($('.shield'))
 
-	replaceimg = new module.replaceimg($('.server img'))
+	replaceimg = new module.replaceimg($('.replaceimg ul li'))
 
+	cloud = new module.cloud($('#cloud'))
+	addfolder = new module.addfolder($('.btnaddfolder'))
+	removefile = new module.removefile($('.btndelatefolder'))
+
+	# upload = new module.upload($('#upload_form'))
 
 	$('#main .blocks .listbtnright').each ->
 		updateclassoption = new module.updateclassoption($(this))
@@ -23,20 +29,23 @@ init = ->
 		$('body').addClass 'savable'
 		return
 
-	# $('#main').sortable(handle: '.handle')
-	# $('.persons').sortable(handle: '.moveperso')
-	# $('#main').sortable handle: '.handle'
 
-	if $('.persons').length > 1
-		$('.persons').sortable(handle: '.moveperso').bind 'sortupdate', ->
-			$('body').addClass('savable')
-			#Triggered when the user stopped sorting and the DOM position has changed.
-			return
-	else
-		$('#main').sortable(handle: '.handle').bind 'sortupdate', ->
-			$('body').addClass('savable')
-			#Triggered when the user stopped sorting and the DOM position has changed.
-			return
+	sorting = new module.sorting($('.handlesort'))
+	# sort = null
+	# $('.handlesort').on 'click', ->
+	# 	if(sort==$(this).parent().parent())
+	# 		return
+	# 	if(sort)
+	# 		sort.sortable('destroy')
+	# 	sort = $(this).parent().parent()
+	# 	$('.active_sortable').removeClass('active_sortable')
+	# 	sort.addClass('active_sortable')
+	# 	sort.sortable(handle: '.handlesort').bind 'sortupdate', ->
+	# 		$('body').addClass('savable')
+	# 		return
+	# 	return
+
+
 
 
 
@@ -53,7 +62,8 @@ addslide = new module.addslides($('#main .img'))
 addperson = new module.addpersons($('#main .perso'))
 
 
-window.onbeforeunload = ->
-	if (!$('body').hasClass('savable'))
-		return undefined
-	"t'a oublié d'enregistrer, c'est normal ? "
+if(!$('body').hasClass('managefile'))
+	window.onbeforeunload = ->
+		if (!$('body').hasClass('savable'))
+			return undefined
+		"t'a oublié d'enregistrer, c'est normal ? "

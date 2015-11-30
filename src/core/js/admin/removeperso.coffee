@@ -6,16 +6,13 @@ class removeperso
 		@$thisblock = @$el.parent()
 
 	removeBlock: ->
-		$('.persons').sortable 'destroy'
+		new module.sorting().suspend()
 		@$thisblock.remove()
-		if(@$need_update_col_size)
-			new module.updatecolsize(@$grid, @$data_level)
-		$('.persons').sortable handle: '.moveperso'
 		$('body').addClass 'savable'
+		new module.sorting().reactive()
 
 	bindEvents: ->
 		@$btn.on 'click', (event) =>
-			console.log 'click'
 			@getContext($(event.currentTarget))
 			@removeBlock()
 

@@ -14,7 +14,7 @@ class savepage
 	updatelist: ->
 		@$blocks = @$container.find '.blocks'
 
-	getContentlist: ($container, $txt, $defaultpics) ->
+	getContentlist: ($container, $txt, $defaultpics, $autre) ->
 		$tab = {}
 		$te = @$txtedit
 		$container.find('li').each (index, slide) ->
@@ -52,6 +52,7 @@ class savepage
 			$el_level = $(element).data 'type-level'
 			$el_id = $(element).attr 'id'
 			$empty = false
+			$intro = ''
 			console.log '$el_class : '+$el_class+ '//// '+$(element).attr('data-more-class')
 
 			if($el_type=='txt')
@@ -60,6 +61,7 @@ class savepage
 
 			if($el_type=='img')
 				$content_to_save = @getContentlist($el_content, ['flex-caption'], 'http://placehold.it/350x150')
+				$intro = $te.getCont($el_content.find('.intro').attr('id'))
 
 			if($el_type=='perso')
 				$content_to_save = @getContentlist($el_content, ['name', 'infos'], 'http://placehold.it/150x150')
@@ -76,6 +78,7 @@ class savepage
 					'classes': $el_class,
 					'level': $level,
 					'column': $el_col,
+					'intro': $intro,
 					'content': $content_to_save
 				}
 			console.log $content_to_save+'  content_to_save '

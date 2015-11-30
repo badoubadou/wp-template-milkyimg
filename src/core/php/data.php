@@ -8,14 +8,21 @@ $defaultlang = ($browserlang ==='fr' || $browserlang ==='de') ? $browserlang : $
 
 $sub = (explode('.',$_SERVER['HTTP_HOST']));
 
-$admin = ($sub[0]=='admin') ? true : false;
-$levelsublang = $admin ? 1 : 0;
+$level_0 = ($sub[0]=='www') ? 1 : 0;
+$level_1 = ($sub[0]=='www') ? 2 : 1;
+
+$admin = ($sub[$level_0]=='admin') ? true : false;
+$levelsublang = $admin ? $level_1 : $level_0;
 $lang = (count($sub)>1) ? $sub[$levelsublang] : $defaultlang;
 $oppositelang =($lang=='fr') ? 'de' : 'fr';
 
 
 $navjson = json_decode(file_get_contents($pathdatafolder.'nav'.$lang.'.json'), true);
+// echo $sub[0];
 
+
+// echo file_exists($pathdatafolder.'nav'.$lang.'.json').'   ???????? ';
+// echo $pathdatafolder.'nav'.$lang.'.json';
 
 $pageurl = strtolower(htmlspecialchars($_GET['pageurl']));//////// récupère
 $selectedpageurl = ($pageurl === '') ? getfirst('link',$navjson) : $pageurl;
@@ -23,7 +30,11 @@ $title = ($pageurl === '') ? getfirst('title',$navjson) : getmein($navjson,'titl
 $linkoposit = ($pageurl === '') ? getfirst('linkopposite',$navjson) : getmein($navjson,'linkopposite',$pageurl, 'link');
 $linkjson = ($pageurl === '') ? getfirst('datajson',$navjson) : getmein($navjson,'datajson',$pageurl, 'link');
 $speciallayout = ($pageurl === '') ? getfirst('speciallayout',$navjson) : getmein($navjson,'speciallayout',$pageurl, 'link');
+
 $pagetoload = strlen($title) ? $linkjson : '404';
+
+$speciallayout = ($pageurl === 'serveur') ? 'managefile' : $speciallayout;
+$pagetoload = ($pageurl === 'serveur') ? '' : $pagetoload;
 
 
 $serveur = $local ? '.beton:8888/' : '.beton.ink/';

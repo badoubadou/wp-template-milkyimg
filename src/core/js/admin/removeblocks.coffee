@@ -9,11 +9,13 @@ class removeblocks
 		@$grid = $('#'+@$thisblockid).parent()
 
 	removeBlock: ->
-		$('#main').sortable 'destroy'
+		# $('#main').sortable 'destroy'
+		new module.sorting().suspend()
 		$('#'+@$thisblockid).remove()
 		if(@$need_update_col_size)
 			new module.updatecolsize(@$grid, @$data_level)
-		$('#main').sortable handle: '.handle'
+		# $('#main').sortable handle: '.handle'
+		new module.sorting().reactive()
 		$('body').addClass 'savable'
 
 	bindEvents: ->

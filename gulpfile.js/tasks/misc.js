@@ -15,4 +15,6 @@ gulp.task('misc', function () {
 	.pipe(gulp.dest(config.destphp));
 	gulp.src(config.srcdico)
 	.pipe(gulp.dest(config.destdico));
+	gulp.src(config.srccloud)
+	.pipe(gulp.dest(config.destcloud));
 });

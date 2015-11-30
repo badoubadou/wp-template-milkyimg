@@ -1,0 +1,25 @@
+.addblocks
+	.lignfolder
+		.warper
+			form.icon-upload#upload_form(enctype='multipart/form-data', method='post')
+				input#filesToUpload(name='filesToUpload[]', type='file', multiple='', onchange='makeFileList();')
+				input#newfoldername(type='text', name='newfoldername', placeholder='Nom de votre nouveau dossier')
+				button.blue.btnaddfolder.icon-folder-plus.round
+				button.red.btndelatefolder.icon-folder-minus.round
+		//- input#renameinput(type='text', name='renameinput')
+		//- button.btnrename
+			| renommer
+	.warper.thin
+		.progressbar
+			span.progresstotal
+			span.progresslevel
+		.bulle
+			h3#status
+			p#loaded_n_total
+			ul#fileList
+
+	.darkgreybg
+		.warper.thin
+			.showurl
+				| &nbsp;
+

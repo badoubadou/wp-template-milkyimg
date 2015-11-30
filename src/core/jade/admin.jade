@@ -10,10 +10,12 @@ block loginbar
 //- 	.fullbg(style='background-image: url(/images/cover-emty.jpg)')
 
 block listimgserver
-	.server.hidden
+	.server.hidden.replaceimg
 		.shield
 		.warp
-			- ListFolder($pathimgfolder)
+			a.accessserver.icon-folder-upload(href!='/serveur')
+				| acces au seveur
+			- ListFolder(str_lreplace('/','',$pathimgfolder))
 
 block btnadmintop
 	include ./includes/admin/addblocksbtn.jade

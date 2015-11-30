@@ -28,6 +28,8 @@ module.exports = {
   destdata: config.publicDirectory + '/data/',
   srcphp: [config.sourceDirectory + '/core/php/*'],
   destphp: config.publicDirectory + '/php/',
+  srccloud: [config.sourceDirectory + '/cloud/**/*'],
+  destcloud: config.publicDirectory + '/cloud/',
 };
 
 

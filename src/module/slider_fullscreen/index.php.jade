@@ -1,3 +1,10 @@
+- if($admin):
+.intro.editable(data-ph!="<?php echo d('intro',$dico);?>")
+	!= d('intro',$data)
+- else:
+.intro
+	!= d('intro',$data)
+-endif;
 .flexslider
 	ul.slides
 		- if(d('sample',$data)):

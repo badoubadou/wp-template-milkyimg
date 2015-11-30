@@ -2,7 +2,7 @@ doctype html
 html.no-js
 	include ./includes/head.jade
 	block additionalscript
-	body(data-pagejson!="<?php echo $pagetoload.$lang; ?>" class!="<?php if($admin){echo 'admin';};  if($speciallayout){echo ' '.$speciallayout;};?>")
+	body(data-pagejson!="<?php echo $pagetoload.$lang; ?>" class!="<?php echo $pageurl.' '; if($admin){echo 'admin';};  if($speciallayout){echo ' '.$speciallayout;};?>")
 		block backgroundimage
 		block loginbar
 		include ../../module/navigation/index.php.jade
@@ -15,6 +15,7 @@ html.no-js
 			- $data = $pagejson
 			- parser($data, $admin, $dico)
 		block contactform
+		block managefile
 		block samples
 		include ../../module/navigation_footer/index.php.jade
 		include ./includes/footer.jade

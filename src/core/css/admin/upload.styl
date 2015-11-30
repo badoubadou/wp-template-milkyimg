@@ -1,0 +1,66 @@
+.bulle
+	position: absolute
+	background:$light-grey
+	z-index: 1
+	box-shadow: 0px 0px 5px $dark-grey
+	opacity: 0.9
+	min-width: 320px
+	top: 28px
+	padding: 10px
+	display: none
+
+	h3
+		margin: 0
+
+	&:before
+		content: ''
+		position: absolute
+		top: -19px
+		left: 5px
+		z-index: 2
+		height: 0
+		width: 0
+		border: 10px solid transparent
+		border-bottom-color: $light-grey
+
+	&.visible
+		display: block
+
+
+#fileList
+	list-style: none
+	padding: 0
+
+	&.error
+		background: #be0714
+		color: #fff
+
+.bar
+	background:$light-grey
+	height:16px
+	width:100%
+	border-radius: 8px
+	margin: 2px 0
+	box-shadow: inset 0px 2px 8px rgba(0,0,0,0.5)
+
+.progressbar
+	@extend .bar
+	position: relative
+	.progresslevel,
+	.progresstotal
+		transition: width 0.4s
+		display:block
+		position: absolute
+		top:0
+		left:0
+		height:14px
+		@extend .bar
+
+	.progresslevel
+		background:$grey
+		width:0%
+		opacity: 0.6
+
+	.progresstotal
+		background:$dark-grey
+		width:0%

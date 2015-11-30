@@ -13,21 +13,15 @@ removeperso = (function() {
   };
 
   removeperso.prototype.removeBlock = function() {
-    $('.persons').sortable('destroy');
+    new module.sorting().suspend();
     this.$thisblock.remove();
-    if (this.$need_update_col_size) {
-      new module.updatecolsize(this.$grid, this.$data_level);
-    }
-    $('.persons').sortable({
-      handle: '.moveperso'
-    });
-    return $('body').addClass('savable');
+    $('body').addClass('savable');
+    return new module.sorting().reactive();
   };
 
   removeperso.prototype.bindEvents = function() {
     return this.$btn.on('click', (function(_this) {
       return function(event) {
-        console.log('click');
         _this.getContext($(event.currentTarget));
         return _this.removeBlock();
       };

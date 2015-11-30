@@ -1,5 +1,11 @@
 - $src = $data['sample'] ? $data['img'] : d('img',$slide)
 li
+	-if($admin):
+	button.icon-bin.deleatslide(
+		tabindex='-1'
+	)
+	.handlesort.icon-moveit
+	-endif;
 	img(src!="<?php echo $src;?>")
 	- if((d('flex-caption',$slide)!=='') || $admin):////si c'est pas vide
 	- if($admin):
