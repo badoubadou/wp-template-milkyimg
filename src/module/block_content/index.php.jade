@@ -6,6 +6,10 @@ include ../slider_fullscreen/index.php.jade
 -elseif(d('type',$data)==='perso'):
 - $dataperson = d('content',$data)
 include ../person_list/index.php.jade
+-elseif(d('type',$data)==='music'):
+include ../block_music/index.php.jade
+-elseif(d('type',$data)==='video'):
+//- include ../block_video/index.php.jade
 -elseif(d('type',$data)==='txt'):
 include ../block_txt/index.php.jade
 -endif;

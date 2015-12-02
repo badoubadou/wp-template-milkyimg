@@ -13,123 +13,15 @@ block listimgserver
 	.cover
 	.server
 		.previewfile
+		- if($logged):
 		- ListFolder(str_lreplace('/','',$pathcloud))
-
+		- endif;
 
 block btnadmintop
+	- if($logged):
 	include ./includes/admin/uploadbtn.jade
+	- endif;
 
 block pagescript
 	script(src='js/vendor/jquery.sortable.min.js')
 	script(src!='js/admin.js?<?php echo time(); ?>')
-	script(type='text/javascript').
-		var path;
-		var foldercont;
-		var input = document.getElementById("filesToUpload");
-		var totalbites = 0;
-		var totalbitesalt = 0;
-		var uploadedbites = 0;
-		var targetfolder;
-
-		function makeFileList() {
-			totalbites = 0;
-			uploadedbites = 0;
-			var ul = document.getElementById("fileList");
-			while (ul.hasChildNodes()) {
-				ul.removeChild(ul.firstChild);
-			}
-			for (var i = 0; i < input.files.length; i++) {
-				var li = document.createElement("li");
-				li.innerHTML = input.files[i].name;
-				ul.appendChild(li);
-			}
-			if(!ul.hasChildNodes()) {
-				var li = document.createElement("li");
-				li.innerHTML = 'No Files Selected';
-				ul.appendChild(li);
-			}
-			else{
-				$('.bulle').addClass("visible");
-				uploadMultiFile();
-			}
-		}
-
-		function uploadMultiFile(){
-			var nbfile = document.getElementById("filesToUpload").files.length;
-			targetfolder = $(".selected_folder ul");
-
-			for (var t = 0; t < nbfile; t++) {
-				totalbites += (document.getElementById("filesToUpload").files[t]["size"]);
-				console.log("totalbites  +="+totalbites);
-			}
-			for (var i = 0; i < nbfile; i++) {
-				uploadFile(document.getElementById("filesToUpload").files[i]);
-			}
-			console.log("totalbites  ="+totalbites);
-		}
-
-		function uploadFile(file){
-		  if(!file){
-			var file = document.getElementById("file1").files[0];
-		  }
-		  if(!file){
-			return false;
-		  }
-		  var formdata = new FormData();
-		  formdata.append("file1", file);
-		  var ajax = new XMLHttpRequest();
-		  ajax.upload.addEventListener("progress", progressHandler, false);
-		  ajax.addEventListener("load", completeHandler, false);
-		  ajax.addEventListener("error", errorHandler, false);
-		  ajax.addEventListener("abort", abortHandler, false);
-
-		  path = $('.selected_folder').data('path');
-		  foldercont = $('.selected_folder');
-
-		  ajax.open("POST", "php/file_upload_parser.php?path="+path);
-		  ajax.send(formdata);
-		}
-		function progressHandler(event){
-			uploadedbites += event.loaded;
-			$("#loaded_n_total").html("Uploaded "+uploadedbites+" bytes of "+totalbites);
-
-			var percent = (event.loaded / event.total) * 100;
-			var percenttotal = (uploadedbites / totalbites) * 100;
-			if(percenttotal > 100){
-				percenttotal = 100;
-			}
-			console.log(uploadedbites+ "uploadedbites /// totalbites  ="+totalbites);
-
-			$(".progresslevel").css("width",Math.round(percent)+"%");
-			$(".progresstotal").css("width",Math.round(percenttotal)+"%");
-			$("#status").html(Math.round(percenttotal)+"% uploaded... please wait");
-		}
-		function completeHandler(event){
-
-			totalbitesalt += event.total;
-			console.log(uploadedbites+ "uploadedbites /// totalbitesalt  ="+totalbitesalt);
-			console.log(event.target.responseText);
-			var infophp = JSON.parse(event.target.responseText);
-			$("#status").html('');
-			$("#loaded_n_total").html('');
-			$("#progressBar").val(0);
-			var list = foldercont.data('list');
-			var check = foldercont.data('check');
-			console.log(check+ 'check'+list );
-
-			var ul = document.getElementById("fileList");
-			ul.removeChild(ul.childNodes[0]);
-			if($('#fileList li').length == 0){
-				$('.bulle').removeClass("visible");
-			}
-
-			$('#'+check).prop('checked', true);
-			$(".selected_folder").removeClass("selected_folder");
-			targetfolder.append('<li data-path="'+infophp[0].replace('../', '')+'" data-path-file="'+infophp[0].replace('../', '')+infophp[1]+'"  data-name="'+infophp[1]+'" class="selected_folder"><div class="contimg"><img src="'+infophp[0]+infophp[1]+'"></div><div class="name">'+infophp[1]+'</div></li>');
-		}
-		function errorHandler(event){
-			$("#status").html("Upload Failed");
-		}
-		function abortHandler(event){
-			$("#status").html("Upload Aborted");
-		}

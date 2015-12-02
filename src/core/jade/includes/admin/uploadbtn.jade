@@ -1,11 +1,15 @@
-.addblocks
+.addblocks.uploadmodule
 	.lignfolder
 		.warper
+			input(type='hidden', id='totalbites', value='0')
+			input(type='hidden', id='uploadedbites', value='0')
 			form.icon-upload#upload_form(enctype='multipart/form-data', method='post')
-				input#filesToUpload(name='filesToUpload[]', type='file', multiple='', onchange='makeFileList();')
+				//- input#filesToUpload(name='filesToUpload[]', type='file', multiple='', onchange='makeFileList();')
+				input#filesToUpload(name='filesToUpload[]', type='file', multiple='' accept='')
 				input#newfoldername(type='text', name='newfoldername', placeholder='Nom de votre nouveau dossier')
 				button.blue.btnaddfolder.icon-folder-plus.round
-				button.red.btndelatefolder.icon-folder-minus.round
+				button.red.btndelatefolder
+					| supprimer du serveur
 		//- input#renameinput(type='text', name='renameinput')
 		//- button.btnrename
 			| renommer

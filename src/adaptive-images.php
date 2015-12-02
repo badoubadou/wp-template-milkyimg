@@ -13,6 +13,7 @@
 /* CONFIG ----------------------------------------------------------------------------------------------------------- */
 
 $resolutions   = array(1382, 992, 768, 480); // the resolution break-points to use (screen widths, in pixels)
+$resolutionslow   = array(992, 768,480); // the resolution break-points to use (screen widths, in pixels)
 $resolutionsmini   = array(480); // the resolution break-points to use (screen widths, in pixels)
 $cache_path    = "ai-cache"; // where to store the generated re-sized images. Specify from your document root!
 $jpg_quality   = 75; // the quality of any generated JPGs on a scale of 0 to 100
@@ -31,7 +32,15 @@ $requested_uri  = parse_url(urldecode($_SERVER['REQUEST_URI']), PHP_URL_PATH);
 if (strpos($requested_uri, 'mini-me-') !== FALSE){
   $requested_uri   = str_replace("mini-me-", "", $requested_uri); // the resolution break-points to use (screen widths, in pixels)
   $resolutions   =  $resolutionsmini; // the resolution break-points to use (screen widths, in pixels)
+  $jpg_quality   = 20;
 }
+
+if (strpos($requested_uri, 'low-res-') !== FALSE){
+  $requested_uri   = str_replace("low-res-", "", $requested_uri); // the resolution break-points to use (screen widths, in pixels)
+  $resolutions   =  $resolutionslow; // the resolution break-points to use (screen widths, in pixels)
+  $jpg_quality   = 10;
+}
+
 
 $requested_file = basename($requested_uri);
 $source_file    = $document_root.$requested_uri;

@@ -4,4 +4,4 @@ block stylesheet
 //- block backgroundimage
 //- 	div.fullbg(style='background-image: url(/images/cover-emty.jpg)')
 block pagescript
-	script(src='js/base.js')
+	script(src!='js/base.js?<?php echo time(); ?>')

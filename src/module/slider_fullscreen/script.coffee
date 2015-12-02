@@ -18,7 +18,7 @@ class sliderfullscreen
   constructor: (@$container) ->
     @setOptions()
     @bindEvents()
-    @insertspan()
+    # @insertspan()
 
   init: =>
     @resizeWindow()
@@ -110,3 +110,37 @@ class sliderfullscreen
     @$media.height newHeight
 
 module.sliderfullscreen = sliderfullscreen
+
+
+
+class slidernormal
+  constructor: (@$container) ->
+    @setOptions()
+    @init()
+
+  init: =>
+    @$flexslider.flexslider
+      animation: 'slide'
+      animationSpeed: 400
+      smoothHeight: true
+      slideshow: false
+      after: =>
+        @replacelowres()
+
+  setOptions: ->
+    @$flexslider = @$container.find('.flexslider')
+    @$flexslide = @$flexslider.find('li')
+
+  replacelowres: ->
+    @$activeSlider = @$flexslider.find '.flex-active-slide'
+    @$flexslideimg = @$activeSlider.find('img')
+    filereplaced =  @$flexslideimg.data 'file-replaced'
+    console.log 'filereplaced : '+filereplaced
+    if(filereplaced!='done')
+      newsrc = @$flexslideimg.data 'file-path'
+      @$flexslideimg.attr('src',newsrc)
+      @$flexslideimg.data('file-replaced', 'done')
+      console.log 'changed to hd'
+
+module.slidernormal = slidernormal
+

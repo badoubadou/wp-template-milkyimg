@@ -61,7 +61,7 @@ savepage = (function() {
     console.log('$txtedit  lenght' + $container.find('.level-' + $level).length);
     $container.find('.blocks.level-' + $level).each((function(_this) {
       return function(index, element) {
-        var $content_to_save, $el_class, $el_col, $el_content, $el_id, $el_level, $el_type, $empty, $intro, $te, ref;
+        var $content_to_save, $el_class, $el_col, $el_content, $el_id, $el_level, $el_type, $empty, $intro, $sourcemedia, $te, ref;
         $te = _this.$txtedit;
         $el_content = $(element).find('.content:first-child');
         $el_class = $(element).attr('data-more-class').split(' ');
@@ -71,6 +71,7 @@ savepage = (function() {
         $el_id = $(element).attr('id');
         $empty = false;
         $intro = '';
+        $sourcemedia = '';
         console.log('$el_class : ' + $el_class + '//// ' + $(element).attr('data-more-class'));
         if ($el_type === 'txt') {
           $content_to_save = $te.getCont($el_content.find('.editable').attr('id'));
@@ -81,6 +82,10 @@ savepage = (function() {
         if ($el_type === 'img') {
           $content_to_save = _this.getContentlist($el_content, ['flex-caption'], 'http://placehold.it/350x150');
           $intro = $te.getCont($el_content.find('.intro').attr('id'));
+        }
+        if ($el_type === 'music') {
+          $content_to_save = $te.getCont($el_content.find('.intro').attr('id'));
+          $sourcemedia = $el_content.find('.audioplayer').attr('src');
         }
         if ($el_type === 'perso') {
           $content_to_save = _this.getContentlist($el_content, ['name', 'infos'], 'http://placehold.it/150x150');
@@ -96,7 +101,8 @@ savepage = (function() {
             'level': $level,
             'column': $el_col,
             'intro': $intro,
-            'content': $content_to_save
+            'content': $content_to_save,
+            'sourcemedia': $sourcemedia
           };
         }
         return console.log($content_to_save + '  content_to_save ');

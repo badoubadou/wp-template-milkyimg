@@ -32,7 +32,11 @@ function image_fix_orientation($filename) {
     }
 }
 
+
+include("Image.php");
+
 $path = '../'.$_GET["path"];
+$type = '../'.$_GET["type"];
 $fileName = $_FILES["file1"]["name"]; // The file name
 $fileTmpLoc = $_FILES["file1"]["tmp_name"]; // File in the PHP tmp folder
 $fileType = $_FILES["file1"]["type"]; // The type of file it is
@@ -46,8 +50,20 @@ if (!$fileTmpLoc) { // if file not chosen
     exit();
 }
 if(move_uploaded_file($fileTmpLoc, "$path$newName")){
-    image_fix_orientation($path.$newName);
-    echo json_encode(array($path, $newName));
+
+    $arr = array('path' => $path, 'name' => $newName, 'type' => $type);
+    echo json_encode($arr);
+
+    if($type==='img'){
+        image_fix_orientation($path.$newName);
+        $imgsize = getimagesize($path.$newName);
+        if($imgsize[0]>1280){
+            $imgresized = new Image($path.$newName);
+            $imgresized->width(1280);
+        }
+        $imgresized->save();
+    }
+
 } else {
     echo "move_uploaded_file function failed";
 }

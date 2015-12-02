@@ -48,6 +48,7 @@ function getclass($jsonarray){
     return $output;
 }
 
+
 function ListFolder($path, $sub, $level)
 {
     $lev = $level ? $level : 0;
@@ -55,10 +56,12 @@ function ListFolder($path, $sub, $level)
     $dir_handle = @opendir($path) or die("Unable to open $path");
 
     $pathtoimg .= $path.'/';
+
     $racine = (!$sub) ? str_lreplace('/','',$path) : ($sub.'/');
     //Leave only the lastest folder name
     $dirname = end(explode("/", $path));
     $type = 'img';
+    $deleatimpossible = false;
     if($dirname==='srv'){
         return false;
     }
@@ -66,29 +69,40 @@ function ListFolder($path, $sub, $level)
     if($dirname==='pdf'){
         $ispdf = true;
         $type = 'pdf';
+        $deleatimpossible = true;
     }
     $ismp3 = false;
     if($dirname==='mp3'){
         $ismp3 = true;
         $type = 'mp3';
+        $deleatimpossible = true;
     }
     $isvideo = false;
     if($dirname==='video'){
         $isvideo = true;
         $type = 'video';
+        $deleatimpossible = true;
     }
+
+    if($dirname==='image'){
+        $deleatimpossible = true;
+    }
+
+
     $pathsubfolder = $dirname.'/';
+
+
 
     $idlist = 'idlist_'.uniqid();
     //display the target folder.
     if($sub){
-        echo "<div class=\"notsortable folder\" data-path=\"$pathtoimg\"  data-name=\"$dirname\"  data-list=\"sub_".$lev."\" data-check=\"$dirname$lev\" >\n";
-        echo "<input type=\"checkbox\" id=\"$dirname$lev\" class=\"notsortable folder_".$lev."  folder-trigger\" />\n";
-        echo "<label for=\"$dirname$lev\" class='icon-folder notsortable'>$dirname</label>";
-        echo "<ul class=\"listimg sub_".$lev."\"  id='$idlist' data-path=\"$pathtoimg\">\n";
+        echo trim( "<div data-deleatimpossible='$deleatimpossible' data-type='$type' class=\"notsortable folder\" data-path=\"$pathtoimg\"  data-name=\"$dirname\"  data-list=\"sub_".$lev."\" data-check=\"$dirname$lev\" >");
+        echo trim( "<input data-type='$type' type=\"checkbox\" id=\"$dirname$lev\" class=\"notsortable folder_".$lev."  folder-trigger\" />");
+        echo trim( "<label data-type='$type' for=\"$dirname$lev\" class='icon-folder notsortable'>$dirname</label>");
+        echo trim("<ul data-type='$type' class=\"listimg sub_".$lev."\"  id='$idlist' data-path=\"$pathtoimg\">");
     }
     else{
-        echo "<ul id=$racine class=\"notsortable racine\" data-path=\"$pathtoimg\">\n";
+        echo trim("<ul id=$racine class=\"notsortable racine\" data-path=\"$pathtoimg\">");
     }
 
 
@@ -106,21 +120,21 @@ function ListFolder($path, $sub, $level)
                 //Display a list of files.
                 $mini =  "mini-me-";
                 if(!$ispdf && !$ismp3){
-                    echo "<li class='$idlist' data-type='$type' data-from-where='$idlist' data-list=\"sub_".$lev."\" data-check=\"$dirname$lev\" data-path='$pathtoimg' data-path-file='$pathtoimg$file'  data-name='$file'><div class='contimg'><img src='$pathtoimg$mini$file'></div><div class='name'>$file</div></li>";
+                    echo trim( "<li class='$idlist' data-type='$type' data-from-where='$idlist' data-list=\"sub_".$lev."\" data-check=\"$dirname$lev\" data-path='$pathtoimg' data-path-file='$pathtoimg$file'  data-name='$file'><div class='contimg'><img src='$pathtoimg$mini$file'></div><div class='name'>$file</div></li>");
                 }
                 if($ispdf){
-                    echo "<li class='$idlist' data-type='$type' data-from-where='$idlist' data-list=\"sub_".$lev."\" data-check=\"$dirname$lev\" data-path='$pathtoimg' data-path-file='$pathtoimg$file'  data-name='$file'><div class='name'>$file</div></li>";
+                    echo trim( "<li class='$idlist' data-type='$type' data-from-where='$idlist' data-list=\"sub_".$lev."\" data-check=\"$dirname$lev\" data-path='$pathtoimg' data-path-file='$pathtoimg$file'  data-name='$file'><div class='name'>$file</div></li>");
                 }
                 if($ismp3){
-                    echo "<li class='$idlist' data-type='$type' data-from-where='$idlist' data-list=\"sub_".$lev."\" data-check=\"$dirname$lev\" data-path='$pathtoimg' data-path-file='$pathtoimg$file'  data-name='$file'><div class='name'>$file</div></li>";
+                    echo trim( "<li class='$idlist' data-type='$type' data-from-where='$idlist' data-list=\"sub_".$lev."\" data-check=\"$dirname$lev\" data-path='$pathtoimg' data-path-file='$pathtoimg$file'  data-name='$file'><div class='name'>$file</div></li>");
                 }
             }
         }
     }
-    echo "</li>\n";
-    echo "</ul>\n";
+    echo trim( "</li>");
+    echo trim("</ul>");
     if($sub){
-        echo "</div>\n";
+        echo trim( "</div>");
     }
     //closing the directory
     closedir($dir_handle);

@@ -4,6 +4,9 @@ class removefile
 		console.log 'removefile'
 
 	sendpath: ->
+		impossible = $('.selected_folder').data 'deleatimpossible'
+		if impossible
+			return false
 		type = if $('.selected_folder').hasClass('folder') then 'folder' else 'file'
 		name = $('.selected_folder').data 'name'
 		path = $('.selected_folder').data('path')+name

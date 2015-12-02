@@ -1,0 +1,10 @@
+//- h3.titre.editable(data-ph!="<?php echo d('defaulttxt',$dico);?>")
+//- 	!= d('titre',$data)
+.intro.editable(data-ph!="<?php echo d('defaulttxt',$dico);?>")
+	!=d('content',$data)
+-if($admin):
+button.btn.icon-music.showcloud.btnwithtxt
+	!=d('choosefile',$dico)
+-endif;
+audio.audioplayer(controls='', src!="<?php echo d('sourcemedia',$data);?>", type='audio/mpeg')
+	| Your browser does not support the audio element.

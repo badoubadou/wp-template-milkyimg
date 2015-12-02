@@ -67,15 +67,21 @@ class addblocks
 		$('#main').sortable 'destroy'
 
 		@$cloned = @creatBlock()
-
 		@$cloned.insertAfter('#'+@$blockid)
-		# console.log @$cloned.html()+" ----- insertAfter('#"+@$blockid+")"
 
 		if(!@$need_repeater)
 			new module.updatecolsize(@$repeater_on_top, @$level)
 
 		if(@$type=='txt')
 			txtedit = new module.txteditor('#'+@$id+' .editable')
+
+		if(@$type=='music')
+			titremusic = new module.txteditor('#'+@$id+' .titre')
+			intromusic = new module.txteditor('#'+@$id+' .intro')
+			showserver = new module.showcloud($('#'+@$id+' .showcloud'))
+
+		# if(@$type=='video')
+		# 	addvideo = new module.txteditor('#'+@$id+' .editable')
 
 		if(@$type=='perso')
 			addslide = new module.addpersons($('#'+@$id))

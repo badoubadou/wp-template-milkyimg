@@ -14,11 +14,18 @@ lineheight = 20px
 	&.visible
 		display:block
 
+.emptylistimg
+	display:block
+	min-height:30px
+	width:100%
+	background: $light-grey
+
 .server
 	font-size:0.9em
 
-	#cloud.withpreview
+	.withpreview
 		width: calc(100% - 320px)
+		border-right: $light-grey solid 1px
 
 	.shield
 		content:''
@@ -34,24 +41,31 @@ lineheight = 20px
 
 	.warp
 		background:#fff
-		position:fixed
+		position:absolute
 		top:50%
 		left:50%
 		height:80%
 		width:80%
 		transform: translateX(-50%) translatey(-50%)
 		z-index:11000
-		overflow:scroll
+		overflow:hidden
 		box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75)
 		border-radius:5px
+
+	.scrolllistimg
+		position:absolute
+		height:calc(100% - 60px)
+		width:100%
+		overflow:scroll
+		top:30px
 
 	&.hidden
 		display:none
 
-
 	.folder,
 	li
 		line-height: lineheight
+		cursor: pointer
 		&:nth-child(even)
 			background:$very-light-blue
 		&:nth-child(odd)
@@ -93,32 +107,33 @@ lineheight = 20px
 		label
 			margin-left:20px
 		li
-			padding-left:40px
+			padding-left:10px
+
 	.folder_1:checked ~ ul.sub_1
 		display:block
 		label
 			margin-left:40px
 		li
-			padding-left:60px
+			padding-left:30px
 	.folder_2:checked ~ ul.sub_2
 		display:block
 		label
 			margin-left:60px
 		li
-			padding-left:80px
+			padding-left:50px
 	.folder_3:checked ~ ul.sub_3
 		display:block
 		label
 			margin-left:80px
 		li
-			padding-left:100px
+			padding-left:70px
 		display:block
 	.folder_4:checked ~ ul.sub_4
 		display:block
 		label
 			margin-left:100px
 		li
-			padding-left:120px
+			padding-left:90px
 		display:block
 	.folder_5:checked ~ ul.sub_5
 		display:block
@@ -154,7 +169,8 @@ lineheight = 20px
 			position:relative
 			z-index:1
 
-.accessserver
+.accessserver,
+#insertimg
 	width:100%
 	text-align: center
 	text-decoration: none
@@ -162,6 +178,11 @@ lineheight = 20px
 	display: block
 	line-height: 30px
 	color:#fff
+	&#insertimg
+		background:$blue
+		position: absolute
+		bottom: 0
+		z-index:1000
 
 	&:before
 		padding-right:10px

@@ -12,5 +12,6 @@
 		- endif;
 		- foreach ($dataslider as $keyslide => $slide):
 			- $slide['itsadmin'] = $admin
+			- $slide['index'] = $keyslide
 			include slide.jade
 		- endforeach

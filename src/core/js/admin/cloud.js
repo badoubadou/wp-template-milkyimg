@@ -4,8 +4,11 @@ var cloud;
 cloud = (function() {
   function cloud($cloud) {
     this.$cloud = $cloud;
+    console.log('clouad ' + this.$cloud.html());
     this.setOptions();
-    this.bindEvents();
+    if (this.$cloud) {
+      this.bindEvents();
+    }
   }
 
   cloud.prototype.setOptions = function() {
@@ -13,7 +16,8 @@ cloud = (function() {
     this.$folder = this.$cloud.find('.folder-trigger');
     this.$imgli = this.$cloud.find('li');
     this.$listimg = this.$cloud.find('.listimg');
-    return this.$timer = void 0;
+    this.$timer = void 0;
+    return this.$needsorting = this.$cloud.attr('id') === 'cloud';
   };
 
   cloud.prototype.checkmovment = function() {
@@ -62,25 +66,36 @@ cloud = (function() {
     }), 1000);
   };
 
-  cloud.prototype.bindEvents = function() {
+  cloud.prototype.updateSelect = function($el) {
+    var allowed, path;
+    $('.previewfile').empty();
+    $('#cloud').removeClass('withpreview');
+    $('.selected_folder').removeClass('selected_folder');
+    $el.addClass('selected_folder');
+    path = $el.is('li') ? 'path-file' : 'path';
+    $('.showurl').text(window.location.origin + '/' + $('.selected_folder').data(path));
+    allowed = 'image/*';
+    if ($el.data('type') === 'img') {
+      allowed = 'image/*';
+    }
+    if ($el.data('type') === 'pdf') {
+      allowed = 'application/pdf';
+    }
+    if ($el.data('type') === 'mp3') {
+      allowed = 'audio/*';
+    }
+    if ($el.data('type') === 'video') {
+      allowed = 'video/*';
+    }
+    $('#filesToUpload').attr('accept', allowed);
+    $('#filesToUpload').attr('data-type', $el.data('type'));
+  };
+
+  cloud.prototype.updatebind = function($el) {
     var _that;
     _that = this;
-    this.$listimg.sortable({
-      items: ':not(.notsortable)',
-      connectWith: '.listimg'
-    }).bind('sortupdate', function(e) {
-      console.log('sortupdate');
-      return _that.checkmovmentdebounce();
-    });
-    $('.folder:first-child').addClass('selected_folder');
-    _that = this;
-    this.$imgli.on('click', function(event) {
-      $('.selected_folder').removeClass('selected_folder');
-      $(this).addClass('selected_folder');
-      $('.showurl').text(window.location.origin + '/' + $('.selected_folder').data('path-file'));
-      $('.previewfile').empty();
-      $('#cloud').removeClass('withpreview');
-      console.log($(this).data('type'));
+    return $el.on('click', function(event) {
+      _that.updateSelect($(this));
       if ($(this).data('type') === 'img') {
         $('.previewfile').append('<img src="' + $(this).data('path-file') + '" />');
         $('#cloud').addClass('withpreview');
@@ -94,11 +109,39 @@ cloud = (function() {
         return $('#cloud').addClass('withpreview');
       }
     });
+  };
+
+  cloud.prototype.bindEvents = function() {
+    var _that;
+    console.log('bindEvents clouad' + this.$imgli.length);
+    _that = this;
+    this.updateSelect($('.folder:first-child'));
+    if (this.$needsorting) {
+      this.$listimg.sortable({
+        items: ':not(.notsortable)',
+        connectWith: '.listimg'
+      }).bind('sortupdate', function(e) {
+        return _that.checkmovmentdebounce();
+      });
+    }
+    this.$imgli.on('click', function(event) {
+      _that.updateSelect($(this));
+      _that.$cloud.removeClass('withpreview');
+      if ($(this).data('type') === 'img') {
+        $('.previewfile').append('<img src="' + $(this).data('path-file') + '" />');
+        _that.$cloud.addClass('withpreview');
+      }
+      if ($(this).data('type') === 'mp3') {
+        $('.previewfile').append('<audio controls><source src="' + $(this).data('path-file') + '" type="audio/mpeg"></audio>');
+        _that.$cloud.addClass('withpreview');
+      }
+      if ($(this).data('type') === 'video') {
+        $('.previewfile').append('<video width="300" controls><source src="' + $(this).data('path-file') + '" type="video/mp4"></video>');
+        return _that.$cloud.addClass('withpreview');
+      }
+    });
     return this.$folder.on('change', function(event) {
-      console.log('licic');
-      $('.selected_folder').removeClass('selected_folder');
-      $(this).parent().addClass('selected_folder');
-      return $('.showurl').text(window.location.origin + '/' + $('.selected_folder').data('path'));
+      return _that.updateSelect($(this).parent());
     });
   };
 

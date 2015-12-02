@@ -1,5 +1,5 @@
 class showcloud
-	constructor: (@$btn) ->
+	constructor: (@$btn, @othertarget) ->
 		@setOptions()
 		@bindEvents()
 
@@ -9,10 +9,15 @@ class showcloud
 	bindEvents: ->
 		@$btn.on 'click', (event) ->
 			console.log 'click showcloud'
-			$(event.currentTarget).addClass 'target'
+
+			if $(this).is 'img'
+				$(this).addClass 'target'
+			else
+				console.log($(this).parent().html()+'music')
+				$(this).parent().find('.audioplayer').addClass 'target'
+
 			$('.server').removeClass 'hidden'
 			$('body').addClass 'popin'
-			console.log 'yodfsdfsdf '
 
 			$('.server img').each ->
 				$(this).attr('src',$(this).data('src'))

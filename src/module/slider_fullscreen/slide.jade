@@ -1,4 +1,6 @@
-- $src = $data['sample'] ? $data['img'] : d('img',$slide)
+- $HDsrc = $data['sample'] ? $data['img'] : d('img',$slide)
+- $lowres = d('index',$slide) ? str_lreplace('/','/low-res-',d('img',$slide)) : $HDsrc
+- $src = $data['sample'] ? $data['img'] : $lowres
 li
 	-if($admin):
 	button.icon-bin.deleatslide(
@@ -6,7 +8,7 @@ li
 	)
 	.handlesort.icon-moveit
 	-endif;
-	img(src!="<?php echo $src;?>")
+	img(src!="<?php echo $src;?>", data-file-path!="<?php echo $HDsrc;?>", data-file-replaced='false', data-index!="<?php echo d('index',$slide);?>")
 	- if((d('flex-caption',$slide)!=='') || $admin):////si c'est pas vide
 	- if($admin):
 	.flex-caption.editable(data-ph!="<?php echo d('caption',$dico);?>")

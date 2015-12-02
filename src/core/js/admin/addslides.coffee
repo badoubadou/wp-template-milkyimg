@@ -1,7 +1,9 @@
 class addslides
-	constructor: (@$container) ->
+	constructor: (@$container, @insertWithSrc) ->
 		@getContext()
-		@bindEvents()
+		console.log @insertWithSrc+'  @insertWithSrc'
+		if !@insertWithSrc
+			@bindEvents()
 
 	getContext: (@$el)->
 		@$btn = @$container.find '.addslide'
@@ -14,15 +16,15 @@ class addslides
 		return @$id
 
 	addslide: ->
-		# $('#main').sortable 'destroy'
+		console.log('addslide = @imgsrc : ' + @insertWithSrc)
 		@$newslide = $('#samples #slide').clone()
+		if @insertWithSrc
+			@$newslide.find('img').attr('src',@insertWithSrc)
 		@$id = 'slide'+@returnid()
 		@$newslide.attr('id',@$id)
 		@$slides.append(@$newslide)
 		txt = new module.txteditor('#'+@$id+' .flex-caption')
 		showserver = new module.showcloud($('#'+@$id+' img'))
-		console.log @$slides.html()
-		# $('#main').sortable handle: '.handle'
 		$('body').addClass 'savable'
 
 	bindEvents: ->

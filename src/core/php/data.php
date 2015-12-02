@@ -33,8 +33,8 @@ $speciallayout = ($pageurl === '') ? getfirst('speciallayout',$navjson) : getmei
 
 $pagetoload = strlen($title) ? $linkjson : '404';
 
-$speciallayout = ($pageurl === 'serveur') ? 'managefile' : $speciallayout;
-$pagetoload = ($pageurl === 'serveur') ? '' : $pagetoload;
+$speciallayout = (($pageurl === 'serveur') && $admin) ? 'managefile' : $speciallayout;
+$pagetoload = (($pageurl === 'serveur') && $admin) ? '' : $pagetoload;
 
 
 $serveur = $local ? '.beton:8888/' : '.beton.ink/';

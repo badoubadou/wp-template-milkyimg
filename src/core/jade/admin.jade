@@ -15,7 +15,12 @@ block listimgserver
 		.warp
 			a.accessserver.icon-folder-upload(href!='/serveur')
 				| acces au seveur
-			- ListFolder(str_lreplace('/','',$pathimgfolder))
+			.previewfile
+			.scrolllistimg
+				- ListFolder(str_lreplace('/','',$pathcloud))
+			a#insertimg(href!='#')
+				| inserer
+
 
 block btnadmintop
 	include ./includes/admin/addblocksbtn.jade
@@ -29,6 +34,14 @@ block samples
 		- $data['sample'] = true;
 		- $data['type'] = 'txt';
 		- $data['blockclass'] = 'txt';
+		include ../../module/blocks/index.php.jade
+		- $data['sample'] = true;
+		- $data['type'] = 'music';
+		- $data['blockclass'] = 'music';
+		include ../../module/blocks/index.php.jade
+		- $data['sample'] = true;
+		- $data['type'] = 'video';
+		- $data['blockclass'] = 'video';
 		include ../../module/blocks/index.php.jade
 		- $data['img'] = 'http://placehold.it/350x150'
 		- $data['type'] = 'img';

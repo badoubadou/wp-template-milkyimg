@@ -9,7 +9,11 @@ removefile = (function() {
   }
 
   removefile.prototype.sendpath = function() {
-    var name, path, type;
+    var impossible, name, path, type;
+    impossible = $('.selected_folder').data('deleatimpossible');
+    if (impossible) {
+      return false;
+    }
     type = $('.selected_folder').hasClass('folder') ? 'folder' : 'file';
     name = $('.selected_folder').data('name');
     path = $('.selected_folder').data('path') + name;

@@ -37,7 +37,6 @@ class savepage
 
 		return $tab
 
-
 	croalContent: ($container, $level) ->
 		$tab = {}
 		# $te = @$txtedit
@@ -53,6 +52,7 @@ class savepage
 			$el_id = $(element).attr 'id'
 			$empty = false
 			$intro = ''
+			$sourcemedia = ''
 			console.log '$el_class : '+$el_class+ '//// '+$(element).attr('data-more-class')
 
 			if($el_type=='txt')
@@ -63,9 +63,12 @@ class savepage
 				$content_to_save = @getContentlist($el_content, ['flex-caption'], 'http://placehold.it/350x150')
 				$intro = $te.getCont($el_content.find('.intro').attr('id'))
 
+			if($el_type=='music')
+				$content_to_save = $te.getCont($el_content.find('.intro').attr('id'))
+				$sourcemedia = $el_content.find('.audioplayer').attr('src')
+
 			if($el_type=='perso')
 				$content_to_save = @getContentlist($el_content, ['name', 'infos'], 'http://placehold.it/150x150')
-
 
 			if($el_type=='repeater')
 				$content_to_save = @croalContent($el_content,($level+1))
@@ -79,10 +82,10 @@ class savepage
 					'level': $level,
 					'column': $el_col,
 					'intro': $intro,
-					'content': $content_to_save
+					'content': $content_to_save,
+					'sourcemedia' : $sourcemedia
 				}
 			console.log $content_to_save+'  content_to_save '
-
 		return $tab
 
 	makeJson: ->

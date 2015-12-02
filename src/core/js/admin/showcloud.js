@@ -2,8 +2,9 @@
 var showcloud;
 
 showcloud = (function() {
-  function showcloud($btn) {
+  function showcloud($btn, othertarget) {
     this.$btn = $btn;
+    this.othertarget = othertarget;
     this.setOptions();
     this.bindEvents();
   }
@@ -15,10 +16,14 @@ showcloud = (function() {
   showcloud.prototype.bindEvents = function() {
     return this.$btn.on('click', function(event) {
       console.log('click showcloud');
-      $(event.currentTarget).addClass('target');
+      if ($(this).is('img')) {
+        $(this).addClass('target');
+      } else {
+        console.log($(this).parent().html() + 'music');
+        $(this).parent().find('.audioplayer').addClass('target');
+      }
       $('.server').removeClass('hidden');
       $('body').addClass('popin');
-      console.log('yodfsdfsdf ');
       return $('.server img').each(function() {
         return $(this).attr('src', $(this).data('src'));
       });

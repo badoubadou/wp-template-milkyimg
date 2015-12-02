@@ -118,7 +118,6 @@ class Image {
         if($this->type=='gif') imagegif($new_image, $name);
 
         imagedestroy($image);
-        echo 'done'.$new_image;
         imagedestroy($new_image);
     }
 
