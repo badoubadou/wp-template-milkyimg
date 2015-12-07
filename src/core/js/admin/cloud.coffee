@@ -1,6 +1,5 @@
 class cloud
 	constructor: (@$cloud) ->
-		console.log 'clouad '+ @$cloud.html()
 		@setOptions()
 		if(@$cloud)
 			@bindEvents()

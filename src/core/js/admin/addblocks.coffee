@@ -4,7 +4,14 @@ class addblocks
 		@bindEvents()
 
 	setOptions: ->
+		console.log  @$container.html()
 		@$btn = @$container.find '.btnadd'
+		@$radiobtn = @$container.find 'input:radio'
+		parentdiv = @$radiobtn.parent()
+		colorfirst = parentdiv.find('input:checked').parent().find('label').css('background')
+		console.log 'background : ??? '+colorfirst
+		@$btn.css('background', colorfirst)
+
 
 	returnid: ->
 		d = new Date
@@ -92,15 +99,22 @@ class addblocks
 		if(@$type=='img')
 			addslide = new module.addslides($('#'+@$id))
 			txt = new module.txteditor('#'+@$id+' .flex-caption')
+			txtintro = new module.txteditor('#'+@$id+' .intro')
 			showserver = new module.showcloud($('#'+@$id+' img'))
 
-		addblocks = new module.addblocks(@$cloned.find('.addblocks'), $('#samples'))
+		addnewblocks = new module.addblocks($('#'+@$id))
 		removeblocks = new module.removeblocks(@$cloned.find('.bin'))
 
 		$('#main').sortable handle: '.handle'
 		$('body').addClass 'savable'
 
 	bindEvents: ->
+		@$radiobtn.change ->
+			color = $(this).parent().find('label').css('background')
+			plusbtn = $(this).parent().parent().find('button.btnadd')
+			plusbtn.css('background', color)
+			console.log color
+
 		@$btn.on 'click', (event) =>
 			@getContext($(event.currentTarget))
 			@insertBlock()

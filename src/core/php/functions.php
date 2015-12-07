@@ -150,6 +150,12 @@ function str_lreplace($search, $replace, $subject)
     return $subject;
 }
 
+function isLandsape($file)
+{
+  list($width, $height) = getimagesize($file);
+  return $width > $height;
+}
+
 function parser($tab, $admin, $dico){
     foreach($tab as $index => $module) {
         $data = $module;
@@ -184,3 +190,5 @@ function parser($tab, $admin, $dico){
         include 'module/blocks/index.php.php';
     }
 }
+
+

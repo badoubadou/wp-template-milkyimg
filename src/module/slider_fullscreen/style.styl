@@ -4,9 +4,19 @@ body:not(.admin)
 			padding:0
 		.warper
 			width:100%
-		// &:not(.fullscreen)
-		// 	.flexslider
-		// 		height: 50vh
+
+		.portrait,
+		.landsape
+			width: auto
+			max-height:70vh
+			margin: auto
+
+		.flexslider
+			background: transparent
+
+		.slides li
+			overflow: hidden
+
 
 	.blocks.img.fullscreen
 		margin-top: 0
@@ -58,3 +68,12 @@ body:not(.admin)
 					background:#000
 					color: #fff
 					padding: 3px 6px
+
+body.admin
+	.blocks.img
+		// .slides li
+		// 	height:430px
+
+		.contimg
+			max-height:330px
+			overflow: hidden

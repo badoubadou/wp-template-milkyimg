@@ -1,7 +1,17 @@
 extends layout
 block stylesheet
 	link(rel='stylesheet', href!='css/style.css?<?php echo time(); ?>')
-//- block backgroundimage
-//- 	div.fullbg(style='background-image: url(/images/cover-emty.jpg)')
+
 block pagescript
 	script(src!='js/base.js?<?php echo time(); ?>')
+
+//- block facebookshare
+//- 	#fb-root
+//- 	script.
+//- 		(function(d, s, id) {
+//- 		var js, fjs = d.getElementsByTagName(s)[0];
+//- 		if (d.getElementById(id)) return;
+//- 		js = d.createElement(s); js.id = id;
+//- 		js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5&appId=345384958825236";
+//- 		fjs.parentNode.insertBefore(js, fjs);
+//- 		}(document, 'script', 'facebook-jssdk'));

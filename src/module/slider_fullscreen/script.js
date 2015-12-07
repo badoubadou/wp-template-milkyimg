@@ -27,6 +27,7 @@ sliderfullscreen = (function() {
     this.init = bind(this.init, this);
     this.setOptions();
     this.bindEvents();
+    this.insertspan();
   }
 
   sliderfullscreen.prototype.init = function() {
@@ -71,9 +72,6 @@ sliderfullscreen = (function() {
 
   sliderfullscreen.prototype.insertspan = function() {
     this.$caption = this.$flexslider.find('.flex-caption');
-    this.$caption.find('h3').each(function() {
-      $(this).html('<span>' + $(this).html() + '</span>');
-    });
     return this.$caption.find('p').each(function() {
       $(this).html('<span>' + $(this).html() + '</span>');
     });

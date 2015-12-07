@@ -3,11 +3,12 @@
 		.warper
 			input(type='hidden', id='totalbites', value='0')
 			input(type='hidden', id='uploadedbites', value='0')
-			form.icon-upload#upload_form(enctype='multipart/form-data', method='post')
-				//- input#filesToUpload(name='filesToUpload[]', type='file', multiple='', onchange='makeFileList();')
-				input#filesToUpload(name='filesToUpload[]', type='file', multiple='' accept='')
+			form#upload_form(enctype='multipart/form-data', method='post')
+				.contuploadbtn.icon-upload
+					input#filesToUpload(name='filesToUpload[]', type='file', multiple='' accept='')
+				button.blue.btnaddfolder.icon-folder-plus
+					| ajouter un dossier
 				input#newfoldername(type='text', name='newfoldername', placeholder='Nom de votre nouveau dossier')
-				button.blue.btnaddfolder.icon-folder-plus.round
 				button.red.btndelatefolder
 					| supprimer du serveur
 		//- input#renameinput(type='text', name='renameinput')

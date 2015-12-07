@@ -18,7 +18,7 @@ class sliderfullscreen
   constructor: (@$container) ->
     @setOptions()
     @bindEvents()
-    # @insertspan()
+    @insertspan()
 
   init: =>
     @resizeWindow()
@@ -54,9 +54,9 @@ class sliderfullscreen
 
   insertspan: ->
     @$caption = @$flexslider.find '.flex-caption'
-    @$caption.find('h3').each ->
-      $(this).html('<span>'+$(this).html()+'</span>')
-      return
+    # @$caption.find('h3').each ->
+    #   $(this).html('<span>'+$(this).html()+'</span>')
+    #   return
     @$caption.find('p').each ->
       $(this).html('<span>'+$(this).html()+'</span>')
       return

@@ -4,7 +4,6 @@ var cloud;
 cloud = (function() {
   function cloud($cloud) {
     this.$cloud = $cloud;
-    console.log('clouad ' + this.$cloud.html());
     this.setOptions();
     if (this.$cloud) {
       this.bindEvents();

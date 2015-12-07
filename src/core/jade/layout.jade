@@ -3,6 +3,7 @@ html.no-js
 	include ./includes/head.jade
 	block additionalscript
 	body(data-pagejson!="<?php echo $pagetoload.$lang; ?>" class!="<?php echo $pageurl.' '; if($admin){echo 'admin';};  if($speciallayout){echo ' '.$speciallayout;};?>")
+		block facebookshare
 		block backgroundimage
 		block loginbar
 		include ../../module/navigation/index.php.jade

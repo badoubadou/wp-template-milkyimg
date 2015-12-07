@@ -28,6 +28,56 @@
 		display: block
 
 
+.contuploadbtn
+	background: $dark-grey
+	padding-left: 15px
+	color: $light-grey
+	display: inline-block
+	width: auto
+	border-radius: 5px
+	margin-right: 10px
+	height:32px
+	&:before
+		padding-right:10px
+		display: inline-block
+		margin-top:7px
+
+
+
+#upload_form
+	input,
+	button
+		vertical-align: top
+
+	input
+		height:20px
+	button
+		height:32px
+
+	#filesToUpload
+		width:auto
+		padding: 4px
+		height: auto
+		color: $light-grey
+		vertical-align: top
+
+
+
+#newfoldername
+	margin: 0
+	padding: 2px
+	width: 224px
+	border:#0758be solid 4px
+	border-top-right-radius:5px
+	border-bottom-right-radius:5px
+
+button.btnaddfolder
+	border-top-right-radius:0px
+	border-bottom-right-radius:0px
+	&:before
+		padding-right:10px
+
+
 #fileList
 	list-style: none
 	padding: 0

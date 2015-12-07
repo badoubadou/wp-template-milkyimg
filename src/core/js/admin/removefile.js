@@ -9,18 +9,25 @@ removefile = (function() {
   }
 
   removefile.prototype.sendpath = function() {
-    var impossible, name, path, type;
+    var impossible, name, path, type, warning;
     impossible = $('.selected_folder').data('deleatimpossible');
     if (impossible) {
       return false;
     }
     type = $('.selected_folder').hasClass('folder') ? 'folder' : 'file';
     name = $('.selected_folder').data('name');
-    path = $('.selected_folder').data('path') + name;
+    path = $('.selected_folder').data('path');
+    warning = type === 'folder' ? 'Voulez-vous supprimer le dossier ' + name : 'Voulez-vous supprimer ' + name;
+    if (type === 'file') {
+      path += name;
+    } else {
+      warning += ', et tout ce qu\'il contient ';
+    }
+    warning += ' ?';
     console.log('path ' + path);
     console.log(' sendpath ' + type);
-    if (confirm('Voulez-vous supprimer ' + name + ' ?')) {
-      return $.ajax({
+    if (confirm(warning)) {
+      $.ajax({
         type: 'POST',
         url: 'php/remove.php',
         data: {
@@ -32,6 +39,7 @@ removefile = (function() {
         return $('.selected_folder').remove();
       });
     }
+    return false;
   };
 
   removefile.prototype.bindEvents = function() {

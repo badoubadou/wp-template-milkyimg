@@ -9,7 +9,14 @@ addblocks = (function() {
   }
 
   addblocks.prototype.setOptions = function() {
-    return this.$btn = this.$container.find('.btnadd');
+    var colorfirst, parentdiv;
+    console.log(this.$container.html());
+    this.$btn = this.$container.find('.btnadd');
+    this.$radiobtn = this.$container.find('input:radio');
+    parentdiv = this.$radiobtn.parent();
+    colorfirst = parentdiv.find('input:checked').parent().find('label').css('background');
+    console.log('background : ??? ' + colorfirst);
+    return this.$btn.css('background', colorfirst);
   };
 
   addblocks.prototype.returnid = function() {
@@ -79,7 +86,7 @@ addblocks = (function() {
   };
 
   addblocks.prototype.insertBlock = function() {
-    var addslide, info, intromusic, name, removeblocks, showserver, titremusic, txt, txtedit;
+    var addnewblocks, addslide, info, intromusic, name, removeblocks, showserver, titremusic, txt, txtedit, txtintro;
     $('#main').sortable('destroy');
     this.$cloned = this.creatBlock();
     this.$cloned.insertAfter('#' + this.$blockid);
@@ -103,9 +110,10 @@ addblocks = (function() {
     if (this.$type === 'img') {
       addslide = new module.addslides($('#' + this.$id));
       txt = new module.txteditor('#' + this.$id + ' .flex-caption');
+      txtintro = new module.txteditor('#' + this.$id + ' .intro');
       showserver = new module.showcloud($('#' + this.$id + ' img'));
     }
-    addblocks = new module.addblocks(this.$cloned.find('.addblocks'), $('#samples'));
+    addnewblocks = new module.addblocks($('#' + this.$id));
     removeblocks = new module.removeblocks(this.$cloned.find('.bin'));
     $('#main').sortable({
       handle: '.handle'
@@ -114,6 +122,13 @@ addblocks = (function() {
   };
 
   addblocks.prototype.bindEvents = function() {
+    this.$radiobtn.change(function() {
+      var color, plusbtn;
+      color = $(this).parent().find('label').css('background');
+      plusbtn = $(this).parent().parent().find('button.btnadd');
+      plusbtn.css('background', color);
+      return console.log(color);
+    });
     return this.$btn.on('click', (function(_this) {
       return function(event) {
         _this.getContext($(event.currentTarget));
