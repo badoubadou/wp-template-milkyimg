@@ -19,10 +19,11 @@ class savepage
 		$te = @$txtedit
 		$container.find('li').each (index, slide) ->
 			$imgslide = $(slide).find 'img'
-			$imgsrc = ($imgslide.attr('src')!=$defaultpics) ? false : $imgslide.attr('src')
+			$hdsrc = $imgslide.attr('src').replace('low-res-','')
+			$imgsrc = ($hdsrc!=$defaultpics) ? false : $hdsrc
 			if($imgsrc)
 				$tab[index] = {}
-				$tab[index]['img'] = $imgslide.attr('src')
+				$tab[index]['img'] = $hdsrc
 				tot = $txt.length
 				i = 0
 				while i < tot

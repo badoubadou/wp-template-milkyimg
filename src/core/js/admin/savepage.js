@@ -28,14 +28,15 @@ savepage = (function() {
     $tab = {};
     $te = this.$txtedit;
     $container.find('li').each(function(index, slide) {
-      var $imgslide, $imgsrc, classname, i, newtxt, ref, results, tot, txt_content, txtname;
+      var $hdsrc, $imgslide, $imgsrc, classname, i, newtxt, ref, results, tot, txt_content, txtname;
       $imgslide = $(slide).find('img');
-      $imgsrc = (ref = $imgslide.attr('src') !== $defaultpics) != null ? ref : {
-        "false": $imgslide.attr('src')
+      $hdsrc = $imgslide.attr('src').replace('low-res-', '');
+      $imgsrc = (ref = $hdsrc !== $defaultpics) != null ? ref : {
+        "false": $hdsrc
       };
       if ($imgsrc) {
         $tab[index] = {};
-        $tab[index]['img'] = $imgslide.attr('src');
+        $tab[index]['img'] = $hdsrc;
         tot = $txt.length;
         i = 0;
         results = [];
