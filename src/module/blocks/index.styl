@@ -38,10 +38,18 @@
 
 
 	&.fullscreen
+		&.white,
+		&.red,
+		&.black
+			.warper.level-0:not(.caption)
+				.grid
+					margin:0px !important
+
 		.warper.level-0:not(.caption)
 			max-width:none
 			.content
 				padding:0px
+
 			.col-12
 				.warper:not(.caption)
 					max-width:none
