@@ -13,12 +13,13 @@ $level_1 = ($sub[0]=='www') ? 2 : 1;
 
 $admin = ($sub[$level_0]=='admin') ? true : false;
 $levelsublang = $admin ? $level_1 : $level_0;
-$lang = (count($sub)>1) ? $sub[$levelsublang] : $defaultlang;
+
+$lang = ($sub[$levelsublang]=='de' || $sub[$levelsublang]=='fr') ? $sub[$levelsublang] : $defaultlang;
 $oppositelang =($lang=='fr') ? 'de' : 'fr';
 
 
 $navjson = json_decode(file_get_contents($pathdatafolder.'nav'.$lang.'.json'), true);
-// echo $sub[0];
+// echo $lang;
 
 
 // echo file_exists($pathdatafolder.'nav'.$lang.'.json').'   ???????? ';
