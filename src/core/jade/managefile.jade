@@ -1,6 +1,6 @@
 extends layout
 block stylesheet
-	link(rel='stylesheet', href!='css/admin.css?<?php echo time(); ?>')
+	link(rel='stylesheet', href!='/css/admin.css?<?php echo time(); ?>')
 block additionalscript
 	//- script(src='//tinymce.cachefly.net/4.2/tinymce.min.js')
 	//- link(rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css")
@@ -23,5 +23,5 @@ block btnadmintop
 	- endif;
 
 block pagescript
-	script(src='js/vendor/jquery.sortable.min.js')
-	script(src!='js/admin.js?<?php echo time(); ?>')
+	script(src='/js/vendor/jquery.sortable.min.js')
+	script(src!='/js/admin.js?<?php echo time(); ?>')

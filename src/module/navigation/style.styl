@@ -3,48 +3,23 @@
 // --------------------------//
 $pad = 20px
 .main-header
-  height: $navigation-height
+  height: auto
 
 .blocks.navigation
   background: $bg-color-tertiary
-  height: $navigation-height
-  position: fixed
+  height: auto
+  position: relative
   width: 100%
   z-index: 999
-
-  .avatar
-    border-radius:50%
-    position:absolute
-    display:block
-    z-index:1000
-    overflow:hidden
-    height:(($navigation-height*2) - $pad)
-    width:(($navigation-height*2) - $pad)
-    left:(($navigation-height*2) / 2 )
-    top:10px
-
-    @media $bs-screen-md-max
-      display : none
-
-    a.avatarlink
-      padding: 0
-
-      img
-        height:(($navigation-height*2) - $pad)
 
   .admin &
     top:$login-height
 
   .navigation-header
     background: $bg-color-tertiary
-    float: left
-    height: $navigation-height
     position: relative
     text-align: center
     z-index: 1
-
-  .nav-group-wrapper
-    float: left
 
   .nav-group
     min-height: $navigation-height
@@ -52,20 +27,16 @@ $pad = 20px
     padding:0
 
     > li
-      display: block
-      float: left
+      display: inline-block
       position: relative
-      border-right: 1px $grey dotted
       &:first-child
         margin-left:0
-        border-left: 1px $grey dotted
 
   a
     color: $ft-color-tertiary
     display: block
     font-family: hirlemann
     font-size:50px
-    line-height: $navigation-height
     padding: 0 15px
     text-decoration: none
     text-decoration: none
@@ -80,6 +51,11 @@ $pad = 20px
   li.active > a,
   li:hover > a
     // background-color: lighten($bg-color-secondary, 15%)
+
+  .contimg
+    overflow: hidden
+    width:200px
+    height:200px
 
   // --------------------------//
   // subnavigation
@@ -100,132 +76,3 @@ $pad = 20px
 
   .nav-group li:hover .nav-group
     display: block
-
-  // --------------------------//
-  // company logo
-  // --------------------------//
-
-  .brand
-    display: inline-block
-    float: left
-
-    img
-      height: $navigation-height
-      width: auto
-
-  // --------------------------//
-  // burger menu icon
-  // --------------------------//
-
-  .toggle-burger
-    background: transparent
-    border: 0
-    display: none
-    height: $burger-height
-    left: $burger-height
-    top: (($navigation-height - $burger-height) / 2)
-    overflow: hidden
-    position: absolute
-    width: $burger-width
-    font-size: 0
-
-    &:focus
-      outline: none
-
-    span
-      background: $ft-color-tertiary
-      height: 2px
-      left: 0
-      margin: auto
-      position: absolute
-      right: 0
-      top: 0
-      transform-origin: 5%
-      transition: all .2s
-      width: 100%
-
-    .center
-      bottom: 0
-      transform-origin: 50%
-
-    .bottom
-      bottom: 0
-      top: auto
-
-
-@media $bs-screen-xs-max
-  html.navigation-active
-    overflow: hidden
-
-  .blocks.navigation
-    .warper
-      float:left
-
-    .navigation-header
-      float: none
-
-    .toggle-burger
-      display: block
-
-    .brand
-      float: none
-
-    .container
-      padding: 0
-
-    .nav-group-wrapper
-      background: $bg-color-tertiary
-      bottom: 0
-      float: none
-      opacity: 0
-      overflow: hidden
-      position: fixed
-      transform: translateY(-100%)
-      top: $navigation-height
-      visibility: hidden
-      width: 100%
-
-    .nav-group
-      display: block
-      width: 100%
-
-      li
-        float: none
-        border: none
-        &:first-child
-          border:none
-
-
-      .nav-group
-        background: none
-        display: block
-        position: relative
-        width: 100%
-
-        a
-          padding: 0 30px
-
-    &.open
-      .nav-group-wrapper
-        opacity: 1
-        overflow: auto
-        transform: translateY(0%)
-        visibility: visible
-        -webkit-overflow-scrolling: touch
-
-      .toggle-burger
-        .top
-          transform: rotate(45deg)
-
-        .center
-          transform: scale(0)
-
-        .bottom
-          transform: rotate(-45deg)
-
-    &.animate .nav-group-wrapper
-      transition: transform .5s, opacity 0.3s
-
-  // prevent fallback for clients not support translate2d
-  .csstransforms .blocks.navigation .nav-group-wrapper
-    visibility: visible

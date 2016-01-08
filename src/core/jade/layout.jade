@@ -2,22 +2,26 @@ doctype html
 html.no-js
 	include ./includes/head.jade
 	block additionalscript
-	body(data-pagejson!="<?php echo $pagetoload.$lang; ?>" class!="<?php echo $pageurl.' '; if($admin){echo 'admin';};  if($speciallayout){echo ' '.$speciallayout;};?>")
+	body(
+	data-pagejson!="<?php echo $pagetoload.$lang; ?>"
+	data-lang!="<?php echo $lang; ?>"
+	data-navjson!="<?php echo $navname.$lang; ?>"
+	class!="<?php echo $pageurl.' '; if($admin){echo 'admin';};  if($speciallayout){echo ' '.$speciallayout;};?>"
+	)
 		block facebookshare
 		block backgroundimage
 		block loginbar
 		include ../../module/navigation/index.php.jade
 		section#main
-			- $data['level'] = '0'
-			- $data['key'] = 'firstline'
-			- $data['type'] = 'repeater'
-			div#firstline
-				block btnadmintop
-			- $data = $pagejson
-			- parser($data, $admin, $dico)// dans php/function.php
+			include ../../module/breadcrumb/index.php.jade
+			block btnadmintop
+			block edit_img_titre
+			- parser($data, $admin, $dico, $modulaire)// dans php/function.php /// comme on passe par la moulinette et que j'ai pas de var global, on doit les passer dedans (admin, dico et modulaire)/// un peu chiant
+			block newpage
 		block contactform
 		block managefile
 		block samples
 		include ../../module/navigation_footer/index.php.jade
 		include ./includes/footer.jade
 		block listimgserver
+		block popinaddpage

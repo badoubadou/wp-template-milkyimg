@@ -5,7 +5,7 @@
 	data-more-class!="<?php echo d('moreclass',$data); ?>",
 	data-type-module!="<?php echo d('type',$data); ?>",
 	)
-	-if($admin):
+	-if($admin && $modulaire):
 	.handlesort.handleblock.icon-moveit
 	-if(d('type',$data)==='img'):
 	include ../../core/jade/includes/admin/addslidebtn.jade
@@ -22,7 +22,7 @@
 		)
 			include ../block_content/index.php.jade
 
-	-if($admin):
+	-if($admin && $modulaire):
 	include ../../core/jade/includes/admin/listbtnright.jade
 	-if(d('level',$data)==='0' || d('type',$data)==='repeater'):
 	include ../../core/jade/includes/admin/addblocksbtn.jade

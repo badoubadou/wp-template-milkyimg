@@ -12,6 +12,7 @@ class closecloud
 			console.log 'click'
 			@$cloudfinder.addClass 'hidden'
 			$('body').removeClass 'popin'
+			$('.server').removeClass 'addpageform'
 			$('.target').removeClass 'target'
 
 module.closecloud = closecloud

@@ -16,7 +16,14 @@ savepage = (function() {
     this.$pagejson = {};
     this.$blocks = this.$container.find('.blocks');
     this.$fileurl = $('body').data('pagejson');
-    return console.log(this.$fileurl);
+    this.$navurl = $('body').data('navjson');
+    this.$nav = $('.blocks.navigation .nav-group');
+    this.$isnewpage = $('body').hasClass('newpage');
+    this.$newurl = 'newpage';
+    this.$newtitle = 'newpage';
+    this.$nbfilechanged = 0;
+    this.$nbFileToChange = 2;
+    return console.log('@$nbFileToChange = ' + this.$nbFileToChange);
   };
 
   savepage.prototype.updatelist = function() {
@@ -42,9 +49,7 @@ savepage = (function() {
         results = [];
         while (i < tot) {
           txtname = $txt[i];
-          console.log(' $txt[i] : ' + $txt[i]);
           classname = '.' + txtname;
-          console.log('classname : ' + classname);
           newtxt = $(slide).find(classname);
           txt_content = $te.getCont(newtxt.attr('id'));
           $tab[index][txtname] = txt_content;
@@ -59,10 +64,9 @@ savepage = (function() {
   savepage.prototype.croalContent = function($container, $level) {
     var $tab;
     $tab = {};
-    console.log('$txtedit  lenght' + $container.find('.level-' + $level).length);
     $container.find('.blocks.level-' + $level).each((function(_this) {
       return function(index, element) {
-        var $content_to_save, $el_class, $el_col, $el_content, $el_id, $el_level, $el_type, $empty, $intro, $sourcemedia, $te, ref;
+        var $content_to_save, $el_class, $el_col, $el_content, $el_id, $el_level, $el_type, $empty, $intro, $sourcemedia, $te, ref, ref1;
         $te = _this.$txtedit;
         $el_content = $(element).find('.content:first-child');
         $el_class = $(element).attr('data-more-class').split(' ');
@@ -73,7 +77,6 @@ savepage = (function() {
         $empty = false;
         $intro = '';
         $sourcemedia = '';
-        console.log('$el_class : ' + $el_class + '//// ' + $(element).attr('data-more-class'));
         if ($el_type === 'txt') {
           $content_to_save = $te.getCont($el_content.find('.editable').attr('id'));
           $empty = (ref = $el_content.find('.editable').text() === '') != null ? ref : {
@@ -83,6 +86,9 @@ savepage = (function() {
         if ($el_type === 'img') {
           $content_to_save = _this.getContentlist($el_content, ['flex-caption'], 'http://placehold.it/350x150');
           $intro = $te.getCont($el_content.find('.intro').attr('id'));
+          $empty = (ref1 = $el_content.find('li').length) != null ? ref1 : {
+            "true": false
+          };
         }
         if ($el_type === 'music') {
           $content_to_save = $te.getCont($el_content.find('.intro').attr('id'));
@@ -93,10 +99,9 @@ savepage = (function() {
         }
         if ($el_type === 'repeater') {
           $content_to_save = _this.croalContent($el_content, $level + 1);
-          console.log(JSON.stringify($content_to_save));
         }
         if (!$empty) {
-          $tab[$el_id] = {
+          return $tab[$el_id] = {
             'type': $el_type,
             'classes': $el_class,
             'level': $level,
@@ -106,36 +111,133 @@ savepage = (function() {
             'sourcemedia': $sourcemedia
           };
         }
-        return console.log($content_to_save + '  content_to_save ');
       };
     })(this));
     return $tab;
   };
 
+  savepage.prototype.getinfofromnewtitle = function() {
+    var $makecleanurl, $tab;
+    this.$newtitle = $('#newpagename').val();
+    $makecleanurl = new module.cleanurl(this.$newtitle);
+    this.$newurl = $makecleanurl.cleanstring(this.$newtitle);
+    $tab = {
+      "position": "header",
+      "link": this.$newurl,
+      "title": this.$newtitle,
+      "datajson": this.$newurl,
+      "linkopposite": this.$newurl
+    };
+    return $tab;
+  };
+
+  savepage.prototype.croalnav = function($container) {
+    var $idtab, $tab;
+    $tab = {};
+    $idtab = 0;
+    $container.find('li').each((function(_this) {
+      return function(index, element) {
+        var $el_datajson, $el_img, $el_link, $el_link_el, $el_title, $tabnew;
+        if ($(element).hasClass('selected')) {
+          $tabnew = _this.getinfofromnewtitle();
+          $el_link = $tabnew['link'];
+          $el_title = $tabnew['title'];
+          $el_datajson = $(element).find('a').data('datajson');
+          $el_img = $('.newpageimage').attr('src');
+        } else {
+          $el_link_el = $(element).find('a');
+          $el_link = $el_link_el.data('link');
+          $el_title = $el_link_el.text();
+          $el_img = $(element).find('img').attr('src');
+          $el_datajson = $el_link_el.data('datajson');
+        }
+        $idtab = index;
+        return $tab[$idtab] = {
+          "position": "header",
+          "link": $el_link,
+          "title": $el_title,
+          "datajson": $el_datajson,
+          "img": $el_img,
+          "linkopposite": $el_link
+        };
+      };
+    })(this));
+    if (this.$isnewpage) {
+      $idtab += 1;
+      $tab[$idtab] = {
+        "position": "header",
+        "link": this.$newurl,
+        "title": this.$newtitle,
+        "datajson": this.$newurl,
+        "linkopposite": this.$newurl
+      };
+    }
+    console.log($tab);
+    return $tab;
+  };
+
   savepage.prototype.makeJson = function() {
+    var $makecleanurl;
+    if (this.$isnewpage) {
+      this.$newtitle = $('#newpagename').val();
+      if (!this.$newtitle) {
+        return false;
+      }
+      $makecleanurl = new module.cleanurl(this.$newtitle);
+      this.$newurl = $makecleanurl.cleanstring(this.$newtitle);
+      this.$fileurl = this.$newurl + $('body').data('lang');
+      $('body').data('pagejson', this.$newurl);
+    }
     this.$pagejson = this.croalContent(this.$container, 0);
-    console.log(JSON.stringify(this.$pagejson));
-    return this.sendJson();
+    this.$navjson = this.croalnav(this.$nav, 0);
+    this.sendJson();
+    return this.sendJsonNav();
+  };
+
+  savepage.prototype.JsonChanged = function() {
+    this.$nbfilechanged += 1;
+    console.log(this.$nbFileToChange + '@$$nbfilechanged ' + this.$nbfilechanged);
+    if (this.$nbFileToChange === this.$nbfilechanged) {
+      return location.reload(true);
+    }
   };
 
   savepage.prototype.sendJson = function() {
-    console.log('sendJson');
+    var _that;
     $('body').removeClass('savable');
+    _that = this;
     return $.ajax({
       type: 'POST',
-      url: 'php/changedata.php',
+      url: '/php/changedata.php',
       data: {
         'fileurl': this.$fileurl,
         'content': JSON.stringify(this.$pagejson)
       }
     }).done(function() {
-      return location.reload(true);
+      return _that.JsonChanged();
+    });
+  };
+
+  savepage.prototype.sendJsonNav = function() {
+    var _that;
+    _that = this;
+    $('body').removeClass('savable');
+    return $.ajax({
+      type: 'POST',
+      url: '/php/changedata.php',
+      data: {
+        'fileurl': this.$navurl,
+        'content': JSON.stringify(this.$navjson)
+      }
+    }).done(function() {
+      return _that.JsonChanged();
     });
   };
 
   savepage.prototype.bindEvents = function() {
     return this.$btn.on('click', (function(_this) {
       return function(e) {
+        console.log('click');
         return _this.makeJson();
       };
     })(this));

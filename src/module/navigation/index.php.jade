@@ -1,29 +1,24 @@
 nav.blocks.navigation
   .warper
-    .navigation-header
-      button.toggle-burger
-        span.sr-only Toggle navigation
-        span.top
-        span.center
-        span.bottom
-      //- a.brand(href=d('home_url'))
-      //-   img(src=d('brand_logo'), alt=d('site_title'))
-    .avatar
-      a.avatarlink(href="/" target="_self" tabindex!="<?php echo $admin ? '-1' : '';?>")
-        img(src='images/avatar_b86e06539868_128.png')
     .nav-group-wrapper
       ul.nav-group
-        - foreach ($navjson as $key => $val):
+        - foreach ($navdata as $key => $val):
           -if(d('position',$val)==='header'):
-          li(class!="<?php echo (d('link',$val) === $selectedpageurl) ? 'selected' : ''; ?>")
+          li(class!="<?php echo (d('link',$val) === $selectedlink) ? 'selected' : ''; ?>")
             a(
-              href!="<?php echo d('link',$val); ?>"
+              href!="<?php echo $breadcrumblink.d('link',$val); ?>"
               target!="<?php echo (strpos(d('link',$val),'http') !== false) ? '_blank' : '_self';?>"
               tabindex!="<?php echo $admin ? '-1' : '';?>"
+              data-linkopposite!="<?php echo d('linkopposite',$val);?>"
+              data-link!="<?php echo d('link',$val);?>"
+              data-datajson!="<?php echo d('datajson',$val);?>"
+              data-speciallayout!="<?php echo d('speciallayout',$val);?>"
               )
-              !=d('title',$val)
+              .contimg
+                img(src!="<?php echo d('img',$val);?>")
+              span
+                !=d('title',$val)
           -endif;
         - endforeach
-
-  a.changlang(href!="<?php echo $linklangoposit;?>")
-    !=$oppositelang
+  //- a.changlang(href!="<?php echo $linklangoposit;?>")
+  //-   !=$oppositelang

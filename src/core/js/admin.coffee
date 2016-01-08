@@ -4,13 +4,15 @@ init = ->
 	removeblocks = new module.removeblocks($('.bin'))
 	deleatperso = new module.removeperso($('.deleatperso'))
 	deleatslide = new module.removeperso($('.deleatslide'))
-	showcloud = new module.showcloud($('#main .img .flexslider .slides img, #main .perso img, #main .music .showcloud'))
+	showcloud = new module.showcloud($('#main .img .flexslider .slides img, #main .perso img, #main .music .showcloud, .newpageimage'))
 	closecloud = new module.closecloud($('.shield'))
 	replaceimg = new module.replacefile($('.replaceimg'))
 	replacemusic = new module.replacefile($('.replacemusic'))
 
 	cloud = new module.cloud($('#cloud'))
 	cloudimages = new module.cloud($('#cloudimage'))
+
+	showaddpage = new module.showaddpage($('.btnshowaddpage'))
 
 	addfolder = new module.addfolder($('.btnaddfolder'))
 	removefile = new module.removefile($('.btndelatefolder'))
@@ -19,11 +21,14 @@ init = ->
 	txtedit = new module.txteditor('#main .editable')
 	savepage = new module.savepage($('#main'), $('#savepage'), txtedit)
 
+	savenav = new module.savenav($('#creatpage'), txtedit)
+
+
 	$('#main .blocks .listbtnright').each ->
 		updateclassoption = new module.updateclassoption($(this))
 		return
 
-	$('input[type=checkbox]').change ->
+	$('input[type=checkbox]:not(.dontshowsave)').change ->
 		$('body').addClass 'savable'
 		return
 

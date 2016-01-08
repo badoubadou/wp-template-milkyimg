@@ -21,12 +21,10 @@ if(isset($_SESSION['cf_returndata'])){
     $sr = true;
 }
 
-
 if($speciallayout){
-	// if (!(($speciallayout == 'contact') && $admin)){
-		include($speciallayout.'.php');
-	// }
+	include($speciallayout.'.php');
 }else{
 	$admin ? include('admin.php') : include('page.php');
 }
+
 ob_end_flush();

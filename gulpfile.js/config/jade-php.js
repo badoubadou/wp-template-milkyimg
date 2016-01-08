@@ -3,7 +3,8 @@ var config = require('./');
 module.exports = {
   watch: [
   config.sourceDirectory + '/core/jade/**/*.jade',
-  config.sourceDirectory + '/module/**/*.jade'
+  config.sourceDirectory + '/module/**/*.jade',
+  config.sourceDirectory + '/page/**/*.jade'
   ],
   src: [
   config.sourceDirectory + '/core/jade/**/*.jade',

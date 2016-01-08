@@ -23,6 +23,25 @@ lineheight = 20px
 .server
 	font-size:0.9em
 
+
+	.newpagename,
+	#creatpage
+		display:none
+	&.addpageform
+		[data-name="mp3"]
+			display:none
+		[data-name="pdf"]
+			display:none
+		.newpagename
+			display:block
+			padding:5px
+			width:100%
+		#creatpage
+			display:block
+			text-align:center
+		#insertimg
+			display:none
+
 	.withpreview
 		width: calc(100% - 320px)
 		border-right: $light-grey solid 1px
@@ -170,7 +189,8 @@ lineheight = 20px
 			z-index:1
 
 .accessserver,
-#insertimg
+#insertimg,
+#creatpage
 	width:100%
 	text-align: center
 	text-decoration: none
@@ -178,7 +198,8 @@ lineheight = 20px
 	display: block
 	line-height: 30px
 	color:#fff
-	&#insertimg
+	&#insertimg,
+	&#creatpage
 		background:$blue
 		position: absolute
 		bottom: 0

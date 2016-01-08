@@ -63,7 +63,7 @@ class txteditor
       paste_remove_styles_if_webkit: true
       paste_strip_class_attributes: "all"
       plugins: ["link", "paste"]
-      content_css : "css/style.css"
+      content_css : "/css/style.css"
       toolbar: "undo redo | styleselect | bold italic | link"
       style_formats: [
         {

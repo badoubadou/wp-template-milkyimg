@@ -1,0 +1,9 @@
+.editpage
+	.warper
+		input#newpagename(
+		type='text',
+		name='newpagename',
+		placeholder='Nom de votre nouvelle page'
+		value!="<?php echo ($is_a_new_page) ? '' : getmein($nav_data,'title',$selectedlink, 'link'); ?>"
+		)
+		img(src!="<?php echo ($is_a_new_page) ? 'http://placehold.it/150x150' : getmein($nav_data,'img',$selectedlink, 'link'); ?>", class!="newpageimage")

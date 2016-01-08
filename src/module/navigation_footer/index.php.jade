@@ -11,7 +11,7 @@ footer.footer
         //-   img(src=d('brand_logo'), alt=d('site_title'))
       .nav-group-wrapper
         ul.nav-group
-          - foreach ($navjson as $key => $val):
+          - foreach ($navdata as $key => $val):
             -if(d('position',$val)==='footer'):
             li(class!="<?php echo (d('link',$val) === $selectedpageurl) ? 'selected' : ''; ?>")
               a(

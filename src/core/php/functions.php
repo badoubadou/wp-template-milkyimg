@@ -55,7 +55,7 @@ function ListFolder($path, $sub, $level)
     //using the opendir function
     $dir_handle = @opendir($path) or die("Unable to open $path");
 
-    $pathtoimg .= $path.'/';
+    $pathtoimg .= '/'.$path.'/';
 
     $racine = (!$sub) ? str_lreplace('/','',$path) : ($sub.'/');
     //Leave only the lastest folder name
@@ -97,7 +97,7 @@ function ListFolder($path, $sub, $level)
     //display the target folder.
     if($sub){
         echo trim( "<div data-deleatimpossible='$deleatimpossible' data-type='$type' class=\"notsortable folder\" data-path=\"$pathtoimg\"  data-name=\"$dirname\"  data-list=\"sub_".$lev."\" data-check=\"$dirname$lev\" >");
-        echo trim( "<input data-type='$type' type=\"checkbox\" id=\"$dirname$lev\" class=\"notsortable folder_".$lev."  folder-trigger\" />");
+        echo trim( "<input data-type='$type' type=\"checkbox\" id=\"$dirname$lev\" class=\"dontshowsave notsortable folder_".$lev."  folder-trigger\" />");
         echo trim( "<label data-type='$type' for=\"$dirname$lev\" class='icon-folder notsortable'>$dirname</label>");
         echo trim("<ul data-type='$type' class=\"listimg sub_".$lev."\"  id='$idlist' data-path=\"$pathtoimg\">");
     }
@@ -156,7 +156,7 @@ function isLandsape($file)
   return $width > $height;
 }
 
-function parser($tab, $admin, $dico){
+function parser($tab, $admin, $dico, $modulaire){
     foreach($tab as $index => $module) {
         $data = $module;
         $data['key'] = $index;
@@ -167,6 +167,7 @@ function parser($tab, $admin, $dico){
         $data['blockclass'] = 'level-'.d('level',$data).' '.d('type',$data).' '.$class.' ';
         $data['isfullscreen'] = in_array('fullscreen', d('classes',$data));
         $data['color'] = '';
+
         if(in_array('white', d('classes',$data))){
             $data['color'] = 'white';
         }
