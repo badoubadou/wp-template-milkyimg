@@ -9,12 +9,6 @@ gulp.task('misc', function () {
 	.pipe(gulp.dest(config.dest));
 	gulp.src(config.srcvendor)
 	.pipe(gulp.dest(config.destvendor));
-	gulp.src(config.srcdata)
-	.pipe(gulp.dest(config.destdata));
 	gulp.src(config.srcphp)
 	.pipe(gulp.dest(config.destphp));
-	gulp.src(config.srcdico)
-	.pipe(gulp.dest(config.destdico));
-	gulp.src(config.srccloud)
-	.pipe(gulp.dest(config.destcloud));
 });

@@ -1,0 +1,15 @@
+block template
+	- /* Template Name: articles */
+extends layout-archive
+
+block navigation
+	include ../../module/navigation/with_categories.php.jade
+
+block query
+	- $type = 'post';
+	- $args=array('post_type' => $type, 'post_status' => 'publish','posts_per_page' => -1,'caller_get_posts'=> 1);
+	- $this_extra_class = 'small_size_preview gridstill';
+	- $md_larg = 4;
+
+block blockinclude
+	include ../../module/block_preview_article/alt.php.jade

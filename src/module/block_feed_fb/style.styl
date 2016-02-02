@@ -1,0 +1,29 @@
+.blocks.feedfb
+	padding-bottom: $space-1
+	h3.facebookfeed
+		text-transform:uppercase
+		text-align:center
+		width:100%
+		background:$primary-color
+		margin: 0
+		padding: 0
+		span
+			&:before,
+			&:after
+				content:' - '
+
+	a:hover
+		color:#000
+
+	.cff-wrapper
+		padding-top: $space-1
+
+	.cff-item
+		display:none
+
+		.cff-shared-link,
+		.cff-post-desc
+			display:none
+
+		&:nth-child(-n+3)
+			display: block

@@ -1,19 +1,23 @@
 // Background Colors
-$bg-color-primary = #fff
-$bg-color-secondary = #3054a2
+$bg-color-primary = #000
+$bg-color-secondary = #fff
 $bg-color-secondary-dark = #0e36ac
-$bg-color-tertiary = #202020
+$bg-color-tertiary = #f6d83e//// jaune
 
 $bg-admin-color-primary = #999999
 
+$primary-color = #f6d83e
+//// jaune
+
 // Font Colors
-$ft-color-primary = $bg-color-tertiary
+$ft-color-primary = $bg-color-primary
 $ft-color-secondary = $bg-color-secondary
 $ft-color-tertiary = $bg-color-primary
 
 // Font Families
-$ft-family-primary = "Helvetica Neue", Helvetica, Arial, sans-serif;
-$ft-family-secondary = Georgia, Times, serif;
+$ft-family-primary = "franklin-gothic-urw", Helvetica, Arial, sans-serif;
+$ft-family-primary-cond = "franklin-gothic-urw-cond", Helvetica, Arial, sans-serif;
+$ft-family-secondary = "open-sans",sans-serif;
 
 // Link Colors
 $lk-color-primary = $ft-color-tertiary
@@ -21,9 +25,10 @@ $lk-color-primary = $ft-color-tertiary
 // Border Colors
 $br-color-primary = $bg-color-tertiary
 
-$light-grey = #E6E6E6
-$grey = #555555
-$dark-grey = #111111
+$light-grey = #e8e8e8
+$grey = #d0d0d0
+$dark-grey = #888888
+$very-dark-grey = #282828
 
 $blue = #296ddb
 $light-blue = #95c0d8
@@ -38,22 +43,42 @@ $tn-primary = all .3s ease
 
 $bs-bp-sm-max = 991px
 
-$navigation-height = 50px
-$login-height = 60px
+$login-height-sd = 46px
+$login-height = 32px
 // Bootstrap Breakpoints
-$bs-screen-xs-max = unquote('screen and (max-width: 767px)')
-$bs-screen-sm-max = unquote('screen and (max-width: 991px)')
-$bs-screen-md-max = unquote('screen and (max-width: 1199px)')
 
-$bs-screen-xs-min = unquote('screen and (min-width: 767px)')
-$bs-screen-sm-min = unquote('screen and (min-width: 991px)')
-$bs-screen-md-min = unquote('screen and (min-width: 1199px)')
+$break-min = 34em
+$break-med = 48em
+$break-larg = 62em
+$break-xlarg = 75em
+
+// Small devices (landscape phones, 34em and up)
+$bs-screen-sd-min = unquote('screen and (min-width: '+$break-min+')')
+// Medium devices (tablets, 48em and up)
+$bs-screen-md-min = unquote('screen and (min-width: '+$break-med+')')
+// Large devices (desktops, 62em and up)
+$bs-screen-ld-min = unquote('screen and (min-width: '+$break-larg+')')
+// Extra large devices (large desktops, 75em and up)
+$bs-screen-xld-min = unquote('screen and (min-width: '+$break-xlarg+')')
+
+// Extra small devices (portrait phones, less than 34em)
+$bs-screen-xsd-max = unquote('screen and (max-width: '+($break-min - 0.1em)+')')
+// Small devices (landscape phones, less than 48em)
+$bs-screen-sd-max = unquote('screen and (max-width: '+($break-med - 0.1em)+')')
+// Medium devices (tablets, less than 62em)
+$bs-screen-md-max = unquote('screen and (max-width: '+($break-larg - 0.1em)+')')
+// Large devices (desktops, less than 75em)
+$bs-screen-ld-max = unquote('screen and (max-width: '+($break-xlarg - 0.1em)+')')
+// Extra large devices (large desktops)
+// No media query since the extra-large breakpoint has no upper bound on its width
+
+$space-1 = 30px
 
 
 $navigation-height = 50px
 $navigation-footer-height = 50px
-$burger-height = 16px
-$burger-width = 21px
+$burger-height = 46px
+$burger-width = 48px
 
 .darkgreybg
 	background:$dark-grey

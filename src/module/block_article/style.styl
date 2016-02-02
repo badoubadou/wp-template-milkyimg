@@ -1,0 +1,46 @@
+.blocks.article
+	time.date
+		font-size:12px
+
+	&.normalarticle
+		.title
+			font-size:62px
+			line-height: 48px
+			padding: ($space-1/2) 0
+
+		.author
+			font-weight:700
+
+
+	&.photoreportages
+		.author
+			span
+				&:before,
+				&:after
+					content:' - '
+					font-weight:700
+
+
+.recentpost
+	text-transform:uppercase
+	font-weight:700
+	position: relative
+	text-align: center
+	margin-top:0
+	&:after
+		position: absolute
+		left:0
+		content:' '
+		display: inline-block
+		width:100%
+		height:50%
+		top:25%
+		background: #000000
+		background: linear-gradient(top, #000000 0%, #000000 25%, #ffffff 25%, #ffffff 85%, #ffffff 85%, #000000 85%)
+
+	span
+		position:relative
+		z-index:1
+		display: inline-block
+		background:$bg-color-secondary
+		padding: 0 ($space-1/2)

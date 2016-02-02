@@ -1,0 +1,13 @@
+.blocks.search
+	input#showsearch(type='checkbox', name='showsearch')
+
+	.cont_search
+		form#searchform.searchform(role='search', method='get', action='http://wordpress-biere:8888/')
+			input#s(type='text', value='',placeholder!="<?php echo ((ICL_LANGUAGE_CODE == 'nl') ? 'Zoeken' : 'Rechercher');?>", name='s')
+			input(type='hidden', name='lang', value!='<?php echo ICL_LANGUAGE_CODE;?>')
+			button.icon-search#searchsubmit(
+			type='submit',
+			value!="<?php echo ((ICL_LANGUAGE_CODE == 'nl') ? 'Zoeken' : 'Rechercher');?>",
+			name='search')
+
+	label#labelshow.icon-search(for='showsearch')

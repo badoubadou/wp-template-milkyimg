@@ -1,0 +1,18 @@
+<?php
+$number_recents_posts = 5;
+$c = 0;
+$recent_posts = wp_get_recent_posts(); // grabs 10 recent posts
+if(count($recent_posts) > 0 ) echo '<ul>';
+foreach($recent_posts as $recent_post) {
+	if($recent_post['post_status'] == 'publish') {
+		$c++;
+		if( $c <= $number_recents_posts ) {
+			echo '<li><a href="' . get_permalink($recent_post['ID']) . '" title="Read ' .$recent_post['post_title'] . '" >' .  $recent_post['post_title'] . '</a><br />';
+			$post_author = get_userdata($recent_post['post_author']);
+			echo $post_author->display_name .'</li>';
+		}
+		else break;
+	}
+}
+if(count($recent_posts) >0 ) echo '</ul>';
+?>

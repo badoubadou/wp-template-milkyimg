@@ -1,0 +1,33 @@
+- /* Template Name: magasine */
+
+- $type = array( 'magazines' );
+
+- $args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' => 4,'caller_get_posts'=> 1);
+- $my_query = null;
+- $my_query = new WP_Query($args);
+
+- get_header();
+include ../../module/navigation/index.php.jade
+main#main.site-main(role='main')
+	- $nbpost = $my_query->found_posts
+	- $width = round(12 / $nbpost)
+	- $classli = 'col-xs-12 col-md-'.$width
+	- if( $my_query->have_posts() ) :
+		section.blocks.magazines
+			ul.couverture.grid.container-fluid
+				.row
+					- while ($my_query->have_posts()) : $my_query->the_post();
+						- $data = prepare_post();
+							li(
+							class!="<?php echo $classli;?>"
+							)
+								!=d('post_thumbnail', $data )
+					- endwhile;
+	- endif;
+	- wp_reset_query();  // Restore global post data stomped by the_post().
+	section
+		.blocks.contact-form
+			#contact-form.clearfix
+				- the_content();//// facebook feed
+
+- get_footer();

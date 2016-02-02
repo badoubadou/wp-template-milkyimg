@@ -1,0 +1,39 @@
+.blocks.event
+	padding-bottom: $space-1
+	text-align: center
+	a
+		text-decoration: none
+		color:$ft-color-primary
+		display: inline-block
+		width:100%
+
+		&:hover
+			color:$ft-color-primary
+
+	ul
+		margin:0
+		padding:0
+
+		li
+			background: $grey
+			padding: ($space-1/2) $space-1
+
+		li:nth-child(even)
+			background: $light-grey
+
+
+		li:nth-child(-n+4)
+			display: block
+
+	.title
+		font-family: $ft-family-primary-cond
+		font-size:2em
+		text-transform: uppercase
+		font-weight: 700
+
+	.date
+		font-size: 1.5em
+
+	.place,
+	.link
+		font-size: 1em

@@ -1,0 +1,37 @@
+- get_header()
+
+- global $wp_query
+- $total_results = $wp_query->found_posts
+
+main#main.site-main(role='main')
+
+	- if ( have_posts() ) :
+		header
+			h1
+				- printf( __( 'Search Results for: %s', 'blankslate' ), get_search_query() );
+	section
+		- while ( have_posts() ) : the_post();
+			- $data = prepare_post();
+
+			- if($total_results == 1):
+				- $data['extra_class'] .= ' full_size_preview';
+				include ../../module/block_preview_article/index.php.jade
+			- else:
+				- $data['extra_class'] .= ' small_size_preview';
+				include ../../module/block_preview_article/alt.php.jade
+			- endif;
+
+		- endwhile;
+
+	- else:
+	article(id="post-0", class="post no-results not-found")
+		header
+			h2
+				- _e( 'Nothing Found', 'blankslate' );
+		section.entry.content
+			p
+				- _e( 'Sorry, nothing matched your search. Please try again.', 'blankslate' );
+			- get_search_form();
+	- endif;
+- get_sidebar();
+- get_footer();

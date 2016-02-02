@@ -1,0 +1,18 @@
+- if ( ! empty( $terms ) && ! is_wp_error( $terms ) ):
+	.contselect.icon-arrowdown
+		label(
+		for!='<?php echo $labelslug;?>'
+		)
+			//- != $label
+			select(
+				id!='<?php echo $labelslug;?>'
+				)
+				option(value='label')
+					!= $label
+				option(disabled)
+					| ─────
+				- foreach ( $terms as $term ):
+				option(value!='<?php echo $term->slug;?>')
+					!= $term->name
+				- endforeach;
+- endif;

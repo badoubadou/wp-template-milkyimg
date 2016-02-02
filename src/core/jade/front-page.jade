@@ -1,0 +1,61 @@
+- /* Template Name: home */
+- $type = array( 'post', 'photos-reportages');
+
+- get_header();
+
+- $args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' => -1,'caller_get_posts'=> 1);
+- $my_query = null;
+- $my_query = new WP_Query($args);
+
+- $args_event=array('post_type' => 'evenements','post_status' => 'publish','posts_per_page' => -1 );
+
+include ../../module/navigation/index.php.jade
+
+main#main.site-main.frontpage(role='main')
+	section.full
+		- $my_query->the_post();
+		- $data = prepare_post();
+		- $data['extra_class'] .= ' full_size_preview';
+		include ../../module/block_preview_article/index.php.jade
+	.two_col
+		section.two_third
+			.content
+				- if( $my_query->have_posts() ) :
+					- while ($my_query->have_posts()) : $my_query->the_post();
+						- $data = prepare_post();
+						- $data['extra_class'] .= ' small_size_preview';
+						include ../../module/block_preview_article/alt.php.jade
+					- endwhile;
+				- endif;
+				- wp_reset_query();  // Restore global post data stomped by the_post().
+
+		aside.one_third
+			.content
+				.blocks.event
+					h3.title_event_and_fb
+						span
+							- echo  get_field('event_title')
+
+					- $my_query = null;
+					- $my_query = new WP_Query($args_event);
+					- if( $my_query->have_posts() ) :
+						ul
+							- while ($my_query->have_posts()) : $my_query->the_post();
+								li
+									- $data = prepare_post();
+									include ../../module/block_event/index.php.jade
+							- endwhile;
+					- endif;
+					- wp_reset_query();  // Restore global post data stomped by the_post().
+
+				.blocks.feedfb
+					h3.title_event_and_fb
+						span
+							- echo  get_field('facebook_feed_title')
+					- the_content();//// facebook feed
+				- $recent_posts = wp_get_recent_posts( array('post_type'=>'publicités'));
+				- $data = prepare_post_preview($recent_posts[0]);
+				include ../../module/block_ad/index.php.jade
+
+- get_sidebar();
+- get_footer();

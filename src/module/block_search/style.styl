@@ -1,0 +1,67 @@
+.blocks.search
+	height:$navigation-height
+	.cont_search
+		overflow: hidden
+		display: inline-block
+		position: relative
+		height:30px
+		top:5px
+
+	input
+		width: 0px
+		display: none
+		transition: width 1s
+		display:inline-block
+
+	#showsearch
+		display:inline-block
+
+		&:checked,
+		.openedsearch &
+			display:none
+			~ #labelshow
+				display:none
+			~ .cont_search
+				input
+					width: 130px
+					display: inline-block
+				#searchsubmit
+					display:inline-block
+
+
+		.openedsearch &
+			~ .cont_search
+				#searchsubmit
+					color:$grey
+
+
+	label
+		cursor:pointer
+		position:relative
+		display: inline-block
+		top:5px
+
+
+	button[type=submit]
+		background:transparent
+		border:0 none
+		cursor:pointer
+		padding: 0 ($space-1/2)
+
+	#s
+		border:0 none
+		border-bottom:1px solid $grey
+		vertical-align:top
+		font-size:18px
+		font-family: $ft-family-secondary
+		font-style:italic
+		background: transparent
+		top: -3px
+		position: relative
+
+	#searchsubmit
+		display:none
+
+	input[type=checkbox]
+		opacity: 0
+

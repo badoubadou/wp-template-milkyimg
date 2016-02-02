@@ -1,0 +1,19 @@
+.blocks.filter
+	.my_container
+		.my_tab
+			- $terms = get_terms( 'bieres_pays' );
+			- $labelslug = 'bieres_pays';
+			- $label = 'Pays';
+			include select.php.jade
+			- $terms = get_terms( 'bieres_type' );
+			- $labelslug = 'bieres_type';
+			- $label = 'Type';
+			include select.php.jade
+			- $terms = get_terms( 'bieres_couleur' );
+			- $labelslug = 'bieres_couleur';
+			- $label = 'Couleur';
+			include select.php.jade
+			- $terms = get_terms( 'alcohol' );
+			- $labelslug = 'alcohol';
+			- $label = 'Alcohol';
+			include select.php.jade

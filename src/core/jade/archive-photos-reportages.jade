@@ -1,0 +1,15 @@
+- /* Template Name: Photo-reportages */
+extends layout-archive
+
+block navigation
+	include ../../module/navigation/index.php.jade
+
+block query
+	- $type = 'photos-reportages';
+	- $args=array('post_type' => $type, 'post_status' => 'publish','posts_per_page' => -1,'caller_get_posts'=> 1);
+	- $this_extra_class = ' photo_preview';
+	- $md_larg = 12;
+
+
+block blockinclude
+	include ../../module/block_preview_article/alt_photo.php.jade

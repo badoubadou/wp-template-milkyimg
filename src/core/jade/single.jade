@@ -1,0 +1,41 @@
+- $type = array('post');
+
+- get_header();
+
+- $args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' => -1);
+- $my_query = null;
+- $my_query = new WP_Query($args);
+
+
+include ../../module/navigation/index.php.jade
+
+main#main.site-main(role='main')
+
+	.two_col
+		section.two_third
+			- $data = prepare_post();
+			- $data['extra_class'] .= ' fullarticle normalarticle';
+			- $thisid = $post->ID;
+
+			include ../../module/block_article/alt.php.jade
+
+		aside.one_third
+			h3.recentpost
+				span
+					|Articles recents
+			- $my_query->the_post();
+			- if( $my_query->have_posts() ) :
+				- while ($my_query->have_posts()) : $my_query->the_post();
+					- $data = prepare_post();
+					- $data['extra_class'] .= ' small_size_preview full';
+					- if($thisid !== $post->ID):
+						include ../../module/block_preview_article/alt.php.jade
+					- endif;
+				- endwhile;
+			- endif;
+			- wp_reset_query();  // Restore global post data stomped by the_post().
+
+
+
+- get_sidebar();
+- get_footer();

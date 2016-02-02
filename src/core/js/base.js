@@ -2,19 +2,10 @@
 var init, navigation;
 
 init = function() {
-  console.log('doc ready' + $('.blocks.img:not(.fullscreen)').length);
-  $('.blocks.img:not(.fullscreen)').each(function() {
-    var slidernormal;
-    console.log('call slider screen');
-    slidernormal = new module.slidernormal($(this));
-    console.log(slidernormal);
-  });
-  return $('.blocks.img.fullscreen').each(function() {
-    var sliderfullscreen;
-    console.log('call slider full screen');
-    sliderfullscreen = new module.sliderfullscreen($(this));
-    console.log(sliderfullscreen);
-  });
+  var bierfilter, popinnewsletter;
+  console.log('doc ready');
+  bierfilter = new module.filter($('.blocks.filter'));
+  return popinnewsletter = new module.popin($('.top_menu li:last-child a'));
 };
 
 $(window).load(init);

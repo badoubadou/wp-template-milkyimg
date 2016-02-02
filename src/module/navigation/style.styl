@@ -1,78 +1,130 @@
-// --------------------------//
-// blocks/navigation
-// --------------------------//
-$pad = 20px
-.main-header
-  height: auto
+.admin-bar .mainheader
+	top:$login-height-sd
+	@media $bs-screen-md-min // Medium devices (tablets, 48em and up)
+		top:$login-height
+	@media $bs-screen-ld-min // Large devices (desktops, 62em and up)
+		top :0
 
-.blocks.navigation
-  background: $bg-color-tertiary
-  height: auto
-  position: relative
-  width: 100%
-  z-index: 999
 
-  .admin &
-    top:$login-height
 
-  .navigation-header
-    background: $bg-color-tertiary
-    position: relative
-    text-align: center
-    z-index: 1
+.mainheader
+	position:fixed
+	top:0
+	width:100%
+	background:$bg-color-secondary
+	z-index:999
 
-  .nav-group
-    min-height: $navigation-height
-    margin:0
-    padding:0
+	ul
+		padding: 0
+		margin: 0
+		list-style-type:none
+		height: 100%
+		li a
+			text-transform: uppercase
+			font-weight: 700
 
-    > li
-      display: inline-block
-      position: relative
-      &:first-child
-        margin-left:0
+	.nav-group-wrapper
+		overflow:hidden
+		height:0
 
-  a
-    color: $ft-color-tertiary
-    display: block
-    font-family: hirlemann
-    font-size:50px
-    padding: 0 15px
-    text-decoration: none
-    text-decoration: none
-    text-transform: uppercase
-    white-space: nowrap
+		.navigation-active &
+			height: auto
 
-  .changlang
-    float:right
-    z-index:100
-    position:relative
+	.navigation
+		display: inline-block
+		margin-left: -30px
+		padding-left: 30px
 
-  li.active > a,
-  li:hover > a
-    // background-color: lighten($bg-color-secondary, 15%)
+		.navigation-active &
+			background:$bg-color-primary
 
-  .contimg
-    overflow: hidden
-    width:200px
-    height:200px
+		li
+			@media $bs-screen-ld-max
+				padding: ($space-1/6) ($space-1/3) ($space-1/6) ($space-1/(3/2))
+			&.current-menu-item,
+			&:hover
+				background:$primary-color
+				a
+					color: $ft-color-primary
 
-  // --------------------------//
-  // subnavigation
-  // --------------------------//
+			a
+				color: $ft-color-secondary
 
-  .nav-group .nav-group
-    background: $bg-color-tertiary
-    display: none
-    min-width: 150px
-    position: absolute
-    top: 100%
+	///////////// A DROITE
+	.right_nav
+		float:right
+		height:$navigation-height
+		top:$space-1
+		position: relative
 
-    li
-      float: none
+		li
+			display: inline-block
+			padding: ($space-1/6) ($space-1/3)
+			@media $bs-screen-ld-max
+				padding: 0 ($space-1/3)
 
-    a
-      display: block
+			a:before
+				vertical-align: middle
 
-  .nav-group li:hover .nav-group
-    display: block
+			&:last-child
+				background: $bg-color-primary
+				a
+					color: $ft-color-secondary
+
+		.top_menu,
+		.search-expand-inner
+			display:none
+
+@media $bs-screen-ld-min // Large devices (desktops, 62em and up)
+	.mainheader
+		position:relative
+		margin: $space-1 auto
+
+		ul li
+			display: inline-block
+			padding: ($space-1/3) ($space-1/1.5)
+			a
+				color: $ft-color-primary
+
+		.openedsearch
+			display:none
+
+		.navigation
+			position: absolute
+			bottom: 0
+			right: 0
+			background: transparent
+
+		.nav-group-wrapper
+			height:auto
+
+			.top_menu
+				display: none
+
+		.right_nav
+			top: 0
+			ul,
+			.search-expand-inner,
+			.top_menu,
+			li
+				display:inline-block
+				vertical-align: top
+
+			.lisearch
+				padding: 0
+
+			.top_menu
+				margin-right: ($space-1/2)
+
+		.blocks.navigation .main_menu li
+			background:$grey
+			margin-right: $space-1
+			&:last-child
+				margin-right:0
+
+			&.current-menu-item,
+			&:hover
+				background:$primary-color
+
+			a
+				color: $ft-color-primary

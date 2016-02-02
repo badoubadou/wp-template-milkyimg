@@ -1,25 +1,16 @@
-extends layout
-block stylesheet
-	link(rel='stylesheet', href!='/css/style.css?<?php echo time(); ?>')
+- get_header();
+	#primary.content-area
+		main#main.site-main(role='main')
+			- echo 'promotions_codes';
+			- if (get_field('promotions_codes' )):
+				.btn-group
+				- while(has_sub_field('promotions_codes' )):
+					- $field = get_field_object('promotions_codes');
+					- $subField = $field['sub_fields']['field_1'];
+					- $value = get_sub_field('select_promotion');
+					- $label = $subField['choices'][ $value ];
+					- echo $value;
+					- endwhile;
+			- endif;
 
-block pagescript
-	script(src!='/js/base.js?<?php echo time(); ?>')
-	script.
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-		ga('create', 'UA-71418237-1', 'auto');
-		ga('send', 'pageview');
-
-
-//- block facebookshare
-//- 	#fb-root
-//- 	script.
-//- 		(function(d, s, id) {
-//- 		var js, fjs = d.getElementsByTagName(s)[0];
-//- 		if (d.getElementById(id)) return;
-//- 		js = d.createElement(s); js.id = id;
-//- 		js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.5&appId=345384958825236";
-//- 		fjs.parentNode.insertBefore(js, fjs);
-//- 		}(document, 'script', 'facebook-jssdk'));
+- get_footer();

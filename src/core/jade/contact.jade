@@ -1,9 +1,12 @@
-extends layout
-block stylesheet
-	link(rel='stylesheet', href='/css/style.css')
-block pagescript
-	script(src='/js/base.js')
+- /* Template Name: contact */
+- get_header();
 
+include ../../module/navigation/index.php.jade
 
-block contactform
-	include ../../module/contact_form/index.php.jade
+main#main.site-main(role='main')
+	section
+		.blocks.contact-form
+			#contact-form.clearfix
+				- the_content();
+- get_sidebar();
+- get_footer();

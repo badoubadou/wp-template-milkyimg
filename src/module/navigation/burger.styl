@@ -1,0 +1,51 @@
+.navigation-header
+	.toggle-burger
+		background: transparent
+		border: 0
+		height: $burger-height
+		// left: $burger-height
+		overflow: hidden
+		width: $burger-width
+		font-size: 0
+		margin: 20px 20px 20px 0
+
+		&:focus
+			outline: none
+
+		span
+			background: $ft-color-primary
+			height: 5px
+			left: 0
+			margin: auto
+			position: absolute
+			right: 0
+			top: 0
+			transform-origin: 5%
+			transition: all .2s
+			width: 150%
+		    position: relative
+
+		.center
+			bottom: 0
+			transform-origin: 50%
+
+		.bottom
+			bottom: 0
+			top: auto
+
+		.navigation-active &
+			span
+				background: $ft-color-secondary
+			.sr-only
+				opacity:0
+			.top
+				transform: rotate(45deg)
+
+			.center
+				transform: scale(0)
+
+			.bottom
+				transform: rotate(-45deg)
+
+	@media $bs-screen-ld-min // Large devices (desktops, 62em and up)
+		display:none

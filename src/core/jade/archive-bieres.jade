@@ -1,0 +1,56 @@
+- /* Template Name: bieres */
+- get_header();
+
+include ../../module/navigation/index.php.jade
+include ../../module/block_filter/index.php.jade
+
+- $type = array( 'post')
+- $args=array('post_type' => 'bieres','post_status' => 'publish')
+- $array_get = $_GET;
+
+- if($_GET):
+	- $array_general_tax_query = array();
+	- foreach($array_get as $key => $value):
+		- $array_tax_query = array('taxonomy' => $key, 'field' => 'slug', 'terms' => $value);
+		- array_push( $array_general_tax_query , $array_tax_query );
+	- endforeach;
+	- $fake = array( array( 'taxonomy' => 'bieres_pays', 'field' => 'slug', 'terms' => 'allemagne',),);
+	- $args = array('post_type' => 'bieres','tax_query' => $array_general_tax_query ,);
+- endif;
+
+- $my_query = null
+- $my_query = new WP_Query($args)
+- $nbpost = $my_query->found_posts
+
+- if( $my_query->have_posts() ) :
+	main#main.site-main(role='main')
+		section
+			section.blocks
+				ul.grid.container-fluid
+					//- echo '<div class="row">'
+					- $currentwidth = 0;
+					- while ($my_query->have_posts()) : $my_query->the_post();
+						- $data = prepare_post()
+						- $classli = 'col-xs-12 col-md-'.$data['width'];
+						- $classli .= ' '.get_all_tax_name();
+						- $currentwidth += $data['width'];
+						- $new_row = true;
+						//- if($currentwidth>12):
+						//- 	- $currentwidth = 0;
+						//- - else:
+						//- 	- $new_row = false;
+						//- - endif;
+						//- - if($new_row==true):
+						//- 	- echo '</div><div class="row">'
+						//- - endif;
+						li(
+						class!="<?php echo $classli;?>"
+						)
+							include ../../module/block_biere/index.php.jade
+					- endwhile;
+					//- echo '</div>'
+- endif;
+		- wp_reset_query();  // Restore global post data stomped by the_post().
+
+- get_sidebar();
+- get_footer();

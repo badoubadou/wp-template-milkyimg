@@ -18,6 +18,9 @@ module.exports = {
 	config.sourceDirectory + '/core/css/vendor/flexislider.css'
 	// '!' + config.sourceDirectory + '/core/css/vendor/flexislider.css'
 	],
-	dest: config.publicDirectory + '/css',
+	srcfont: [
+	config.sourceDirectory + '/core/css/generated/_icons.styl',
+	],
+	dest: config.publicDirectory + '/',
 	destpage: config.publicDirectory + '/css/page'
 };

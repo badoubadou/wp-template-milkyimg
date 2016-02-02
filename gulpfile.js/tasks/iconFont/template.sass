@@ -34,5 +34,8 @@ $icon-{{icon.name}}: "\{{icon.code}}"
 // Expose as class
 .icon.-{{icon.name}}:before
   content: $icon-{{icon.name}}
+// Expose as class
+.iconafter.-{{icon.name}}:after
+  content: $icon-{{icon.name}}
 
 {% endfor %}

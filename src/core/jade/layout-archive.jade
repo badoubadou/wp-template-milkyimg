@@ -1,0 +1,36 @@
+block template
+- get_header();
+
+block query
+
+block navigation
+
+//- $args=array('post_type' => $type, 'post_status' => 'publish','posts_per_page' => -1,'caller_get_posts'=> 1);
+
+- $my_query = null;
+- $my_query = new WP_Query($args);
+
+//- block cat
+
+main#main.site-main(role='main')
+	section
+		//- $nbpost = $my_query->found_posts
+		//- $width = round(12 / $nbpost)
+		- $classli = 'col-xs-12 col-md-'.$md_larg;
+		- if( $my_query->have_posts() ) :
+			section.blocks
+				ul.grid.container-fluid
+					.row
+						- while ($my_query->have_posts()) : $my_query->the_post();
+							- $data = prepare_post();
+							- $data['extra_class'] .= $this_extra_class;
+								li(
+								class!="<?php echo $classli;?>"
+								)
+									block blockinclude
+						- endwhile;
+		- endif;
+		- wp_reset_query();  // Restore global post data stomped by the_post().
+
+- get_sidebar();
+- get_footer();

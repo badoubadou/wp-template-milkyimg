@@ -1,81 +1,103 @@
-$pad = 20px
+// $pad = 20px
 
-.grid
-	margin: 0
-	box-sizing: border-box
-	display: flex
-	flex-wrap: wrap
-	padding:0
+// .grid
+// 	margin: 0
+// 	box-sizing: border-box
+// 	display: flex
+// 	flex-wrap: wrap
+// 	padding:0
 
-	&.content
-		padding:10px 0
+// 	&.content
+// 		padding:10px 0
 
-	&:after
-		/* Or @extend clearfix */
-		content: ""
-		display: table
-		clear: both
+// 	&:after
+// 		/* Or @extend clearfix */
+// 		content: ""
+// 		display: table
+// 		clear: both
 
-	[class*='col-']
-		box-sizing: border-box
-		float: left
-		display: flex
-		padding-right: $pad
-		&:last-child
-			 padding-right: 0
-		.content
-			// padding:0
+// 	[class*='col-']
+// 		box-sizing: border-box
+// 		float: left
+// 		// display: flex
+// 		padding-right: $pad
+// 		&:last-child
+// 			 padding-right: 0
+// 		.content
+// 			// padding:0
 
-		.grid &:last-of-type
-			padding-right: 0
-	.col-12
-		width: 100%
+// 		.grid &:last-of-type
+// 			padding-right: 0
 
-	.col-10
-		width: 83.4%
+// 	.col-xs-12
+// 		width: 100%
 
-	.col-8
-		width: 66.66%
+// 	.col-xs-10
+// 		width: 83.4%
 
-	.col-4
-		width: 33.33%
+// 	.col-xs-8
+// 		width: 66.66%
 
-	.col-6
-		width: 50%
+// 	.col-xs-4
+// 		width: 33.33%
 
-	.col-3
-		width: 25%
+// 	.col-xs-6
+// 		width: 50%
 
-	.col-2-4
-		width: 20%
+// 	.col-xs-3
+// 		width: 25%
 
-	.col-2
-		width: 16.6%
+// 	.col-xs-2-4
+// 		width: 20%
 
-	.col-1-7
-		width: 14%
+// 	.col-xs-2
+// 		width: 16.6%
 
-	.col-1-5
-		width: 8%
+// 	.col-xs-1-7
+// 		width: 14%
 
-	@media $bs-screen-xs-max
-		.col-10,
-		.col-8,
-		.col-4,
-		.col-6,
-		.col-3,
-		.col-2-4,
-		.col-2,
-		.col-1-7,
-		.col-1-5
-			width: 100%
-			padding-right: 0
-			padding-bottom: $pad
+// 	.col-xs-1-5
+// 		width: 8%
+
+// 	@media $bs-screen-md-min
+// 		.col-md-12
+// 			width: 100%
+// 			padding-right:0
+
+// 		.col-md-10
+// 			width: 83.4%
+
+// 		.col-md-8
+// 			width: 66.66%
+
+// 		.col-md-4
+// 			width: 33.33%
+
+// 		.col-md-6
+// 			width: 50%
+
+// 		.col-md-3
+// 			width: 25%
+
+// 		.col-md-2-4
+// 			width: 20%
+
+// 		.col-md-2
+// 			width: 16.6%
+
+// 		.col-md-1-7
+// 			width: 14%
+
+// 		.col-md-1-5
+// 			width: 8%
+
+// 			// padding-right: 0
+// 			// padding-bottom: $pad
 
 
-/* Opt-in outside padding */
-.grid-pad
-	padding: $pad 0 $pad $pad
-	[class*='col-']:last-of-type
-		padding-right: $pad
+// /* Opt-in outside padding */
+// .grid-pad
+// 	padding: $pad 0 $pad $pad
+// 	[class*='col-']:last-of-type
+// 		padding-right: $pad
 

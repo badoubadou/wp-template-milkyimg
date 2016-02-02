@@ -1,0 +1,22 @@
+article(
+	class!="<?php echo d('extra_class',$data);?>"
+)
+	-if (get_field('extra_info')):
+		section.extra
+			.titre_descriptif
+				- echo  get_field('titre_descriptif')
+			.texte_descriptif
+				- echo  get_field('texte_descriptif')
+	- endif;
+	header
+		.title
+			!=d('post_title',$data)
+		.brasserie
+			- echo get_field('brasserie')
+
+	main
+		.packshot
+			- $image = get_field('packshot')
+			img(src!="<?php echo $image[url]; ?>" alt!="<?php echo $image[alt]; ?>" )
+			- echo get_field('test')
+

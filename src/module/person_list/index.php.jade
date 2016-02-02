@@ -1,9 +1,0 @@
-.personlist
-	ul.persons.list
-		- if(d('sample',$data)):
-			include person.jade
-		- endif;
-		- foreach ($dataperson as $keyperson => $slide):
-			- $slide['itsadmin'] = $admin
-			include person.jade
-		- endforeach

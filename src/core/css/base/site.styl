@@ -1,11 +1,24 @@
-#main
-	padding-top:$navigation-height
+html
+	font-size: 100%
+
+body
+	color: $ft-color-primary
+	font-family: $ft-family-primary
+	font-size: 16px
+
+	@media $bs-screen-xsd-max
+		font-size:12px
+
+	a
+		color:$ft-color-primary
+		text-decoration:none
+
+		&:hover
+			color: $ft-color-secondary
 
 .blocks
 	h2
-		font-size:80px
-		line-height: 70px
-		font-family : hirlemann
+		font-size:5.000em
 		text-transform:uppercase
 		margin: 1%
 		color:#fff
@@ -13,52 +26,104 @@
 		margin:0
 		display: inline-block
 		padding: 0 10px
-		line-height: 73px
+		// line-height: 4.563em
 
 	h3
-		font-size:40px
-		font-family: maloz
+		font-size:2.500em
 		text-transform:uppercase
 		margin: 1%
-		line-height: 43px
+		// line-height: 2.688em
 
 	h4
-		font-size:30px
-		font-family: hirlemann
+		font-size:1.875em
 		text-transform:uppercase
 		margin: 1%
-		line-height: 33px
+		// line-height: 2.063em
 
-.romhand
-	font-family maloz
-	font-size:220%
-	text-transform:uppercase
-	line-height: 0.9
+#main,
+.mainheader,
+.categories
+	max-width:67em
+	margin: auto
+	padding-left:$space-1
+	padding-right:$space-1
 
-.stephhand
-	font-family hirlemann
-	font-size:220%
-	text-transform:uppercase
-	line-height: 0.9
+.my_container
+	max-width:67em
+	margin: auto
 
-body
-	background-image:url('../images/handmadepaper.png')
-	color: $ft-color-primary
-	font-family: $ft-family-primary
+#main
+	padding-top:92px
 
-	a
-		color:$ft-color-primary
-		&:hover
-			color: $ft-color-secondary
+&.full,
+&.one_third,
+&.two_third
+	padding-bottom: $space-1
+
+article
+	img
+		width:100%
+		height:auto
+
+	ul
+		list-style-type: none
+		padding: 0
+
+		li
+			padding-bottom: $space-1
+
+	&.fullarticle
+		text-align: center
+
+	.title
+		text-transform: uppercase
+		font-family: $ft-family-primary-cond
+		font-size:2.875em
+
+	.author
+		font-size:0.750em
+
+.icon-search
+	display:inline-block
+	position: relative
+	height:$space-1
+	width:$space-1
+	&:before
+		top:4px
+		left:0
+		position:absolute
+
+footer
+	width:100%
+	background:$light-grey
+	clear: both
+	padding:$space-1
+	text-align:center
+
+@media $bs-screen-ld-min
+	#main,
+	.mainheader,
+	.categories
+		padding-left:0
+		padding-right:0
 
 	#main
-		a:not(.flex-prev):not(.flex-next)
-			color:$ft-color-primary
-			background:$dark-grey
-			color:$light-grey
-			padding:3px
-			text-decoration: none
-			&:hover
-				text-decoration: underline
-				color: #fff
+		padding-top:0
+
+	.two_third
+		width:66.6%
+
+		.fullarticle
+			padding-right:$space-1
+			text-align:left
+
+	.one_third
+		width:33.3%
+
+	.two_col
+		> :first-child
+			float: left
+		> :last-child
+			float: right
+
 

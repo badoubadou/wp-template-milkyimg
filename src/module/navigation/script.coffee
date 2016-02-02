@@ -23,6 +23,7 @@ class navigation
     # toggle mobile nav
     @$mobileToggler.on 'click', (e) =>
       $target = $(e.target)
+      console.log 'click'
       @$root.toggleClass 'navigation-active'
       @$container.toggleClass 'open'
 

@@ -1,0 +1,20 @@
+footer(role="contentinfo")
+	.container
+		credit
+			|&copy;
+			strong
+				|Becomev SPRL
+		p
+			| Les textes signés n’engagent que leur(s) auteur(s). La reproduction des articles et extraits doit recevoir l’accord préalable de la direction et de la rédaction.
+
+script(src='https://use.typekit.net/cqc3int.js')
+script.
+	try{Typekit.load({ async: true });}catch(e){}
+
+script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js')
+script(src!='<?php echo get_stylesheet_directory_uri(); ?>/js/base.js')
+//-script(src!="<?php echo get_stylesheet_directory_uri(); ?>/bower_components/jquery/dist/jquery.min.js")
+//-script(src!="<?php echo get_stylesheet_directory_uri(); ?>/js/bootstrap.js")
+- wp_footer();
+//- | </body>
+//- | </html>

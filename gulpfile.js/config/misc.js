@@ -4,32 +4,24 @@ module.exports = {
   // watch: [config.sourceDirectory + '/php/*',config.sourceDirectory + '/data/*',config.sourceDirectory + '/*',config.sourceDirectory + '/.*'],
   watch: [
     config.sourceDirectory + '/core/php/*',
-    '!' + config.sourceDirectory + '/data/*',
     config.sourceDirectory + '/*',
-    config.sourceDirectory + '/.*',
-    config.sourceDirectory + '/core/dico/*'
+    config.sourceDirectory + '/.*'
   ],
   src: [
   config.sourceDirectory + '/*',
   config.sourceDirectory + '/.*',
+  '!' + config.sourceDirectory + '/core',
+  '!' + config.sourceDirectory + '/page',
   '!' + config.sourceDirectory + '/core/jade',
   '!' + config.sourceDirectory + '/assets',
   '!' + config.sourceDirectory + '/sprites',
-  '!' + config.sourceDirectory + '/icons',
-  '!' + config.sourceDirectory + '/data',
-  config.sourceDirectory + '/core/dico/*'
+  '!' + config.sourceDirectory + '/icons'
   ],
   dest: config.publicDirectory ,
   srcvendor: [config.sourceDirectory + '/core/js/vendor/*'],
   destvendor: config.publicDirectory + '/js/vendor/',
-  srcdico: [config.sourceDirectory + '/core/dico/*'],
-  destdico: config.publicDirectory + '/dico/',
-  srcdata: [config.sourceDirectory + '/data/*'],
-  destdata: config.publicDirectory + '/data/',
   srcphp: [config.sourceDirectory + '/core/php/*'],
-  destphp: config.publicDirectory + '/php/',
-  srccloud: [config.sourceDirectory + '/cloud/**/*'],
-  destcloud: config.publicDirectory + '/cloud/',
+  destphp: config.publicDirectory + '/'
 };
 
 

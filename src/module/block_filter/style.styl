@@ -1,0 +1,41 @@
+.blocks.filter
+	background $primary-color
+
+	.my_container
+		display table
+		width 100%
+		border-spacing $space-1 ($space-1/3)
+
+	.my_tab
+		margin-left - ($space-1*2)
+		margin-right - ($space-1*2)
+
+	.contselect
+		border-radius 3.2em
+		display table-cell
+		width 25%
+		border-radius 3.2em
+		border 1px solid #fff
+		position relative
+		&:before
+			position absolute
+			right ($space-1/2)
+			top 50%
+			margin-top -10px
+			color #fff
+
+	select
+		height 3.2em
+		border none
+		vertical-align middle
+		appearance none
+		font-size 1.1em
+		cursor pointer
+		background transparent
+		color #fff
+		text-transform : uppercase
+		padding 0.2em 3.2em 0.2em 3.2em
+
+	select
+		&::-ms-expand
+			display none

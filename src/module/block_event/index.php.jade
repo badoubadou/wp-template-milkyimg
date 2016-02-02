@@ -1,0 +1,43 @@
+- $place = get_field('lieu')
+- $address = $place['address']
+
+- $startDate = get_field('date_de_debut')
+- $endDate = get_field('date_de_fin')
+- $start = explode('.', $startDate)
+- $end = explode('.', $endDate)
+- if($start[2]==$end[2]):
+	- array_splice($start, 2)
+- endif;
+- if($start[1]==$end[1]):
+	- array_splice($start, 1)
+- endif;
+- $startDate = implode('.', $start)
+- $date = $startDate.' > '.$endDate
+
+
+- $input = get_field('lien');
+- $input = trim($input, '/');
+- if (!preg_match('#^http(s)?://#', $input)):
+	- $input = 'http://' . $input
+- endif;
+- $urlParts = parse_url($input);
+- $domain = preg_replace('/^www\./', '', $urlParts['host']);
+
+section
+	header
+		time(pubdate='pubdate').date
+			!= $date
+
+		.title
+			!=d('post_title',$data)
+
+	main
+		a.place(
+		href!="<?php echo 'http://maps.google.com/?q='.$address;?>"
+		)
+			!= $address
+
+		a.link(
+		href!="<?php echo $input;?>"
+		)
+			!= $domain

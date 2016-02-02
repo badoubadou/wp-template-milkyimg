@@ -1,0 +1,33 @@
+article.blocks.article(
+	class!="<?php echo d('extra_class',$data);?>"
+	)
+	header
+		.meta
+			time(pubdate='pubdate').date
+				!=d('post_date',$data)
+			.author
+				!=d('post_author',$data)
+			.title
+				!=d('post_title',$data)
+
+	include ../../module/block_social/index.php.jade
+
+	- if( have_rows('reportage') ):
+		//- loop through the rows of data
+		- while ( have_rows('reportage') ) : the_row();
+			- if( get_row_layout() == 'texte' ):
+				- the_sub_field('texte');
+			- elseif( get_row_layout() == 'photos' ):
+				-if( have_rows('images') ):
+					ul
+						- while ( have_rows('images') ) : the_row();
+							- $image = get_sub_field('image');
+							li
+								img(src!="<?php echo $image[url]; ?>" alt!="<?php echo $image[alt]; ?>" )
+						- endwhile;
+				- endif;
+			- endif;
+		- endwhile;
+		- else:
+		//- no layouts found
+	- endif;

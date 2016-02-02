@@ -1,17 +1,7 @@
 init = ->
-	console.log 'doc ready'+$('.blocks.img:not(.fullscreen)').length
-
-	$('.blocks.img:not(.fullscreen)').each ->
-		console.log 'call slider screen'
-		slidernormal = new module.slidernormal($(this))
-		console.log slidernormal
-		return
-	# $('.blocks.img:not(.fullscreen) .flexslider').flexslider({smoothHeight:true,animation: 'slide'})
-	$('.blocks.img.fullscreen').each ->
-		console.log 'call slider full screen'
-		sliderfullscreen = new module.sliderfullscreen($(this))
-		console.log sliderfullscreen
-		return
+	console.log 'doc ready'
+	bierfilter = new module.filter($('.blocks.filter'))
+	popinnewsletter = new module.popin($('.top_menu li:last-child a'))
 
 
 $(window).load( init )

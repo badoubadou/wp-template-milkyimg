@@ -1,17 +1,16 @@
 .blocks.contact-form
-	.warper
-		#contact-form.clearfix
-			h3
-				!= d('getintouch', $dico)
+	#contact-form.clearfix
+		h3
+			!= d('getintouch', $dico)
 
-			ul#errors(class!="<?php echo ($sr && !$cf['form_ok']) ? 'visible' : ''; ?>")
-				li#info
-				!= d('errorcontact', $dico)
-			p#success(class!="<?php echo ($sr && $cf['form_ok']) ? 'visible' : ''; ?>")
-				!= d('thankscontact', $dico)
-			form(method='post', action='php/sendmail.php')
-				input#name(type='text', name='name', value='', placeholder!='<?php echo d(\'name\', $dico);?>', required='required', autofocus='autofocus')
-				input#email(type='email', name='email', value='', placeholder!='<?php echo d(\'email\', $dico);?>', required='required')
-				textarea#message(name='message', placeholder!='<?php echo d(\'lessthan20\', $dico);?>', required='required', data-minlength='20')
-				span#loading
-				input#submit-button(type='submit', value!='<?php echo d(\'send\', $dico);?>')
+		ul#errors(class!="<?php echo ($sr && !$cf['form_ok']) ? 'visible' : ''; ?>")
+			li#info
+			!= d('errorcontact', $dico)
+		p#success(class!="<?php echo ($sr && $cf['form_ok']) ? 'visible' : ''; ?>")
+			!= d('thankscontact', $dico)
+		form(method='post', action='php/sendmail.php')
+			input#name(type='text', name='name', value='', placeholder!='<?php echo d(\'name\', $dico);?>', required='required', autofocus='autofocus')
+			input#email(type='email', name='email', value='', placeholder!='<?php echo d(\'email\', $dico);?>', required='required')
+			textarea#message(name='message', placeholder!='<?php echo d(\'lessthan20\', $dico);?>', required='required', data-minlength='20')
+			span#loading
+			input#submit-button(type='submit', value!='<?php echo d(\'send\', $dico);?>')
