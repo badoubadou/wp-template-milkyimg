@@ -1,34 +1,39 @@
 - $type = array('photos-reportages');
 
-- get_header();
+//- - get_header();
+doctype html
+html(<?php language_attributes(); ?>)
+	include header.jade
+	body(
+	class!="<?php echo $stringclass;?>"
+	)
 
-- $args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' => -1,'caller_get_posts'=> 1);
-- $my_query = null;
-- $my_query = new WP_Query($args);
+		- $args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' => -1,'caller_get_posts'=> 1);
+		- $my_query = null;
+		- $my_query = new WP_Query($args);
 
 
-
-main#main.site-main(role='main')
-	section.full
-		- $data = prepare_post();
-		- $data['extra_class'] .= ' fullarticle photoreportages';
-		- $thisid = $post->ID;
-		include ../../module/block_article/index.php.jade
-
-	section.full
-		- $my_query->the_post();
-		- if( $my_query->have_posts() ) :
-			- while ($my_query->have_posts()) : $my_query->the_post();
+		include ../../module/navigation/index.php.jade
+		hr.largedevice
+		main#main.site-main
+			hr.smalldevice
+			section.full
 				- $data = prepare_post();
-				- $data['extra_class'] .= ' photo_preview';
-				- if($thisid !== $post->ID):
-					include ../../module/block_preview_article/alt_photo.php.jade
+				- $data['extra_class'] .= ' fullarticle photoreportages';
+				- $thisid = $post->ID;
+				include ../../module/block_article/index.php.jade
+
+			section.full
+				- $my_query->the_post();
+				- if( $my_query->have_posts() ) :
+					- while ($my_query->have_posts()) : $my_query->the_post();
+						- $data = prepare_post();
+						- $data['extra_class'] .= ' photo_preview';
+						- if($thisid !== $post->ID):
+							include ../../module/block_preview_article/alt_photo.php.jade
+						- endif;
+					- endwhile;
 				- endif;
-			- endwhile;
-		- endif;
-		- wp_reset_query();  // Restore global post data stomped by the_post().
+				- wp_reset_query();  // Restore global post data stomped by the_post().
 
-
-
-- get_sidebar();
-- get_footer();
+		- get_footer();

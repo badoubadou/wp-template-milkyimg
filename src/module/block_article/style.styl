@@ -1,46 +1,54 @@
 .blocks.article
 	time.date
-		font-size:12px
+		font-size 0.875em
+		font-weight 700
+		color $dark-grey
+
+	.subtitle
+		font-size 1.625em
+		font-weight 700
 
 	&.normalarticle
+		text-align left
 		.title
-			font-size:62px
-			line-height: 48px
-			padding: ($space-1/2) 0
+			font-size 3.875em
+			line-height 1em
 
 		.author
-			font-weight:700
-
+			font-weight 700
+			font-size 0.875em
 
 	&.photoreportages
+		text-align center
 		.author
 			span
 				&:before,
 				&:after
-					content:' - '
-					font-weight:700
-
+					content ' - '
+					font-weight 700
 
 .recentpost
-	text-transform:uppercase
-	font-weight:700
-	position: relative
-	text-align: center
-	margin-top:0
-	&:after
-		position: absolute
-		left:0
-		content:' '
-		display: inline-block
-		width:100%
-		height:50%
-		top:25%
-		background: #000000
-		background: linear-gradient(top, #000000 0%, #000000 25%, #ffffff 25%, #ffffff 85%, #ffffff 85%, #000000 85%)
+	text-transform uppercase
+	font-weight 700
+	position relative
+	text-align center
+	margin-top 0
+	.single-bieres &
+		margin-bottom 0
+
+	&:before
+		content ' '
+		display inline-block
+		width 100%
+		height 13px
+		top 0
+		background #000000
+		background linear-gradient(to top, #000000 0%, #000000 15%, #ffffff 15%, #ffffff 80%, #ffffff 80%, #000000 80%)
 
 	span
-		position:relative
-		z-index:1
-		display: inline-block
-		background:$bg-color-secondary
-		padding: 0 ($space-1/2)
+		position relative
+		z-index 1
+		display inline-block
+		background $bg-color-secondary
+		padding 0 ($space-1/2)
+		top 50%

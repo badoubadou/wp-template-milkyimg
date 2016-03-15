@@ -616,10 +616,15 @@ make-xs-column(columns, gutter=grid-gutter-width)
   padding-left (gutter / 2)
   padding-right (gutter / 2)
 
-make-xs-column-offset(columns)
+make-xs-column-onset(columns)
   var041faaaf99ce36b1e170f0ca = "(min-width: " + screen-xs-min + ")"
   @media var041faaaf99ce36b1e170f0ca
     margin-left lesscss-percentage((columns / grid-columns))
+
+make-xs-column-offset(columns)
+  var041faaaf99ce36b1e170f0ca = "(min-width: " + screen-xs-min + ")"
+  @media var041faaaf99ce36b1e170f0ca
+    margin-right lesscss-percentage((columns / grid-columns))
 
 make-xs-column-push(columns)
   var10a6243d649042a24d832a1d = "(min-width: " + screen-xs-min + ")"
@@ -645,6 +650,11 @@ make-sm-column(columns, gutter=grid-gutter-width)
 make-sm-column-offset(columns)
   vara974d4dbc7d975341ff3e5bc = "(min-width: " + screen-sm-min + ")"
   @media vara974d4dbc7d975341ff3e5bc
+    margin-right lesscss-percentage((columns / grid-columns))
+
+make-sm-column-onset(columns)
+  vara974d4dbc7d975341ff3e5bc = "(min-width: " + screen-sm-min + ")"
+  @media vara974d4dbc7d975341ff3e5bc
     margin-left lesscss-percentage((columns / grid-columns))
 
 make-sm-column-push(columns)
@@ -668,10 +678,15 @@ make-md-column(columns, gutter=grid-gutter-width)
     float left
     width lesscss-percentage((columns / grid-columns))
 
-make-md-column-offset(columns)
+make-md-column-onset(columns)
   var993c4e8266d8aecb6ae11a12 = "(min-width: " + screen-md-min + ")"
   @media var993c4e8266d8aecb6ae11a12
     margin-left lesscss-percentage((columns / grid-columns))
+
+make-md-column-offset(columns)
+  var993c4e8266d8aecb6ae11a12 = "(min-width: " + screen-md-min + ")"
+  @media var993c4e8266d8aecb6ae11a12
+    margin-right lesscss-percentage((columns / grid-columns))
 
 make-md-column-push(columns)
   var4521f8c7a38d4430c379028f = "(min-width: " + screen-md-min + ")"
@@ -694,10 +709,15 @@ make-lg-column(columns, gutter=grid-gutter-width)
     float left
     width lesscss-percentage((columns / grid-columns))
 
-make-lg-column-offset(columns)
+make-lg-column-onset(columns)
   var68f131df75f73525d4ed5186 = "(min-width: " + screen-lg-min + ")"
   @media var68f131df75f73525d4ed5186
     margin-left lesscss-percentage((columns / grid-columns))
+
+make-lg-column-offset(columns)
+  var68f131df75f73525d4ed5186 = "(min-width: " + screen-lg-min + ")"
+  @media var68f131df75f73525d4ed5186
+    margin-right lesscss-percentage((columns / grid-columns))
 
 make-lg-column-push(columns)
   varb0e366253850b66e568ca4e4 = "(min-width: " + screen-lg-min + ")"
@@ -772,6 +792,10 @@ calc-grid-column(index, class, type)
   else if type == offset
     item = unquote(".col-" + class + "-offset-" + index + "")
     {item}
+      margin-right lesscss-percentage((index / grid-columns))
+  else if type == onset
+    item = unquote(".col-" + class + "-onset-" + index + "")
+    {item}
       margin-left lesscss-percentage((index / grid-columns))
 
 // Looping
@@ -788,6 +812,7 @@ make-grid(class)
   loop-grid-columns(grid-columns, class, pull)
   loop-grid-columns(grid-columns, class, push)
   loop-grid-columns(grid-columns, class, offset)
+  loop-grid-columns(grid-columns, class, onset)
 
 //// MANUALLY MODIFIED CODE ENDS ////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////

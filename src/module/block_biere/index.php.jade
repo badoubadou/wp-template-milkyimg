@@ -1,22 +1,63 @@
-article(
+article.blocks.bieres(
 	class!="<?php echo d('extra_class',$data);?>"
 )
-	-if (get_field('extra_info')):
+	-if (get_field('extra_info') && !$data['is-search']):
 		section.extra
 			.titre_descriptif
 				- echo  get_field('titre_descriptif')
 			.texte_descriptif
 				- echo  get_field('texte_descriptif')
 	- endif;
-	header
-		.title
-			!=d('post_title',$data)
-		.brasserie
-			- echo get_field('brasserie')
 
-	main
+	main.main
 		.packshot
-			- $image = get_field('packshot')
-			img(src!="<?php echo $image[url]; ?>" alt!="<?php echo $image[alt]; ?>" )
-			- echo get_field('test')
+			include ../block_preview_article/perfect_image.php.jade
+
+		.info
+			.title
+				!=d('post_title',$data)
+			.brasserie
+				- if(get_field('site_de_la_brasserie')):
+					a(
+					href!="<?php echo get_field('site_de_la_brasserie');?>",
+					target='_blank'
+					)
+						!= get_field('brasserie')
+				- else:
+					!= get_field('brasserie')
+				- endif;
+
+			.taxonomies
+				- $arraytax = explode(' ', get_all_tax_name())
+				.style.left
+					.topelement
+						!= $arraytax[1]
+					.bottom
+						!= $arraytax[2]
+				.right
+					.pays.topelement.centeredtxt
+						!= $arraytax[0]
+					.bottom
+						.degres.left.centeredtxt
+							!= get_field('degres').'%'
+						.size.right.centeredtxt
+							!= get_field('taille').'cl'
+
+				//- foreach ($arraytax as $key => $value):
+					.taxonomie
+						!= $value
+				//- endforeach
+			.description
+				p
+					span
+						!= (ICL_LANGUAGE_CODE == 'nl') ? 'Neus : ' : 'Nez : '
+					!= get_field('arome')
+				p
+					span
+						!= (ICL_LANGUAGE_CODE == 'nl') ? 'Smaak : ' : 'Goût : '
+					!= get_field('gout_de_la_biere')
+				p
+					span
+						!= (ICL_LANGUAGE_CODE == 'nl') ? 'Foodpairing : ' : 'Accords : '
+					!= get_field('accord')
 

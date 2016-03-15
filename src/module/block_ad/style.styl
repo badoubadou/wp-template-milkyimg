@@ -1,4 +1,39 @@
-.blocks.ad
-	img
-		width:100%
-		height:auto
+.adds
+	display none
+	@media $bs-screen-xld-min
+		display block
+
+.blocks.add
+	a
+		display block
+	&.small_add
+		margin-bottom $space-1
+	&.large_add
+		margin-bottom $space-1
+		border-bottom 1px solid $grey
+		img
+			padding-bottom $space-1
+	&.small_add,
+	&.small_add img
+		height 200px
+
+	&.medium_add
+		overflow hidden
+	&.medium_add,
+	&.medium_add img
+		height 350px
+		background-image url('images/trame-bg-pub-big.jpg')
+		background-size 5px
+		margin auto
+		display none
+		@media $bs-screen-md-min
+			display block
+		@media $bs-screen-ld-max
+			width auto
+			object-fit initial
+
+	&.large_add,
+	&.large_add img
+		height height_block
+
+

@@ -2,41 +2,66 @@
 	top:$login-height-sd
 	@media $bs-screen-md-min // Medium devices (tablets, 48em and up)
 		top:$login-height
-	@media $bs-screen-ld-min // Large devices (desktops, 62em and up)
+	@media $bs-screen-xld-min // Large devices (desktops, 62em and up)
 		top :0
-
-
 
 .mainheader
 	position:fixed
 	top:0
 	width:100%
-	background:$bg-color-secondary
 	z-index:999
+	font-family $ft-family-secondary
+
+	&:before
+		background:$bg-color-secondary
+		position absolute
+		top 0
+		left 0
+		width 100%
+		height 84px
+		content ''
+		z-index -1
 
 	ul
 		padding: 0
 		margin: 0
 		list-style-type:none
 		height: 100%
-		li a
-			text-transform: uppercase
-			font-weight: 700
+		li
+			transition background
+			transition-duration 0.4s
+			a
+				transition color
+				transition-duration 0.4s
+				text-transform uppercase
+				font-weight 700
+				visibility hidden
+				.wf-active &
+					visibility visible
 
 	.nav-group-wrapper
 		overflow:hidden
 		height:0
+		margin-left - ($space-1/2)
 
 		.navigation-active &
 			height: auto
 
 	.navigation
 		display: inline-block
-		margin-left: -30px
-		padding-left: 30px
+		margin-left: - $space-1
+		padding-left: $space-1
+		width 75px
+		position absolute
+		transition background
+		transition-duration 0.4s
+
 
 		.navigation-active &
 			background:$bg-color-primary
+			width auto
+			@media $bs-screen-xld-min
+				background transparent
 
 		li
 			@media $bs-screen-ld-max
@@ -53,36 +78,62 @@
 	///////////// A DROITE
 	.right_nav
 		float:right
-		height:$navigation-height
-		top:$space-1
+		top:($space-1*(5/6))
 		position: relative
+		.top_menu li a
+			font-weight normal
+		.top_menu li:first-child
+			display:none
 
 		li
-			display: inline-block
-			padding: ($space-1/6) ($space-1/3)
-			@media $bs-screen-ld-max
-				padding: 0 ($space-1/3)
+			display inline-block
+			padding ($space-1/6) ($space-1/3)
+			vertical-align middle
+
+			&.lisearch
+				display:none
+
+			&:not(.lisearch)
+				&:hover
+					background: $bg-color-primary
+					a
+						color: $ft-color-secondary
+
+			&.social
+				padding: 0 ($space-1/6)
+				@media $bs-screen-xld-min
+					padding: 0 ($space-1/3)
+
 
 			a:before
 				vertical-align: middle
 
-			&:last-child
+
+			&.lang
 				background: $bg-color-primary
 				a
 					color: $ft-color-secondary
 
-		.top_menu,
-		.search-expand-inner
-			display:none
+	[class^="icon-"], [class*=" icon-"]
+		&:before
+			font-size 2.15em
+			@media $bs-screen-md-min
+				font-size 2em
+			@media $bs-screen-xld-min
+				font-size 35px
 
-@media $bs-screen-ld-min // Large devices (desktops, 62em and up)
+	#searchsubmit:before
+			font-size 30px
+
+@media $bs-screen-xld-min // Large devices (desktops, 62em and up)
 	.mainheader
 		position:relative
 		margin: $space-1 auto
+		left auto
 
 		ul li
 			display: inline-block
-			padding: ($space-1/3) ($space-1/1.5)
+			padding: 0 ($space-1/2)
 			a
 				color: $ft-color-primary
 
@@ -94,6 +145,7 @@
 			bottom: 0
 			right: 0
 			background: transparent
+			width auto
 
 		.nav-group-wrapper
 			height:auto
@@ -103,6 +155,7 @@
 
 		.right_nav
 			top: 0
+			font-size 1.125em
 			ul,
 			.search-expand-inner,
 			.top_menu,
@@ -110,15 +163,21 @@
 				display:inline-block
 				vertical-align: top
 
-			.lisearch
-				padding: 0
+				&.lisearch
+					padding: 2px ($space-1/3) 0 0
+					display inline-block
 
 			.top_menu
 				margin-right: ($space-1/2)
+				li:first-child
+					display inline-block
+
 
 		.blocks.navigation .main_menu li
 			background:$grey
 			margin-right: $space-1
+			font-size 1.375em
+
 			&:last-child
 				margin-right:0
 

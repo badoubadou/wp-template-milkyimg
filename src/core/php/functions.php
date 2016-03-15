@@ -66,9 +66,8 @@ function custom_post_type() {
         'labels'              => $labels,
         // Features this CPT supports in Post Editor
         // 'supports'            => array( 'title', 'editor', 'excerpt', 'author', 'thumbnail', 'comments', 'revisions', 'custom-fields', ),
-        'supports'            => array( 'title', 'excerpt', 'author', 'thumbnail', ),
+        'supports'            => array( 'title', 'thumbnail', ),
         // You can associate this CPT with a taxonomy or custom taxonomy.
-        'taxonomies'          => array( 'genres', 'category' ),
         /* A hierarchical CPT is like Pages and can have
         * Parent and child items. A non-hierarchical CPT
         * is like Posts.
@@ -415,12 +414,26 @@ function prepare_post_preview($post){
 
 $currentwidth = 0;
 function prepare_post(){
+    preg_match('/MSIE (.*?);/', $_SERVER['HTTP_USER_AGENT'], $matches);
+    $data['isIE'] = (count($matches)>1) ? ' isie ' : ' isnotie ';
+
 
     $data['post_title'] = get_the_title();
-    $data['post_author'] = get_the_author();
+    // $data['post_author'] = get_the_author();
+    $data['post_author'] = get_field('auteur');
     $data['post_thumbnail'] = get_the_post_thumbnail();
-    $data['post_excerpt'] = get_the_excerpt();
+    $post_thumbnail_id = get_post_thumbnail_id($post->ID);
+    $data['post_thumbnail_src'] = wp_get_attachment_url($post_thumbnail_id);
+    $data['post_thumbnail_src_small'] = wp_get_attachment_image_src($post_thumbnail_id, 'small');
+    ///should add custom size for thumbnail
+    // $data['post_thumbnail_src_med'] = wp_get_attachment_url($post_thumbnail_id);
+    // $data['post_thumbnail_src_larg'] = wp_get_attachment_url($post_thumbnail_id);
+    $data['thumb_as_bg'] = (count($matches)>1) ? 'background-image: url('.$data['post_thumbnail_src'].')' : '';
+
+    $data['post_excerpt'] = get_field('chapeau');
+    $data['post_excerpt_short'] = get_the_popular_excerpt(get_field('chapeau'));
     $data['post_date'] = get_the_date("d.m.Y");
+    $data['post_date_time'] = get_the_date("Y-m-d");
 
     $data['content'] = get_the_content();
     $data['post_permalink'] = get_permalink($post->ID);
@@ -505,23 +518,16 @@ function my_mce_buttons_2( $buttons ) {
 add_filter('mce_buttons_2', 'my_mce_buttons_2');
 
 // Callback function to filter the MCE settings
+// Callback function to filter the MCE settings
 function my_mce_before_init_insert_formats( $init_array ) {
     // Define the style_formats array
     $style_formats = array(
         // Each array child is a format with it's own settings
         array(
-            'title' => 'Titre',
-            'block' => 'h3',
-            'classes' => 'titre',
-            'wrapper' => true,
-        ),
-        // Each array child is a format with it's own settings
-        array(
-            'title' => 'Chapeau',
-            'block' => 'p',
-            'classes' => 'chapeau',
-            'wrapper' => true,
-        ),
+            'title' => 'Intertitre',
+            'block' => 'h4',
+            'classes' => 'intertitre'
+        )
     );
     // Insert the array, JSON ENCODED, into 'style_formats'
     $init_array['style_formats'] = json_encode( $style_formats );
@@ -531,6 +537,11 @@ function my_mce_before_init_insert_formats( $init_array ) {
 }
 // Attach callback to 'tiny_mce_before_init'
 add_filter( 'tiny_mce_before_init', 'my_mce_before_init_insert_formats' );
+
+function my_theme_add_editor_styles() {
+    add_editor_style( 'custom-editor-style.css' );
+}
+add_action( 'admin_init', 'my_theme_add_editor_styles' );
 
 
 function custum_get_tax($tax_name){
@@ -555,3 +566,41 @@ function get_all_tax_name(){
     $ret .= custum_get_tax('alcohol').' ';
     return $ret;
 }
+
+
+function get_the_popular_excerpt($excerpt){
+    //$excerpt = get_the_excerpt();
+    if(!strlen($excerpt)){
+        return false;
+    }
+    $excerpt = preg_replace(" (\[.*?\])",'',$excerpt);
+    $excerpt = strip_shortcodes($excerpt);
+    $excerpt = strip_tags($excerpt);
+    $excerpt = substr($excerpt, 0, 220);
+    $excerpt = substr($excerpt, 0, strripos($excerpt, " "));
+    $excerpt = trim(preg_replace( '/\s+/', ' ', $excerpt));
+    $excerpt = $excerpt.'...';
+    return $excerpt;
+}
+
+function moveElement(&$array, $a, $b) {
+    $out = array_splice($array, $a, 1);
+    array_splice($array, $b, 0, $out);
+}
+
+function getdescription($my_query){
+    $ret = is_front_page() ? get_the_popular_excerpt(get_field('chapeau')) : '';
+    // switch (get_page_template_slug()) {
+    //     case 'archive-articles.php':
+    //         # code...
+    //         break;
+
+    //     default:
+    //         # code...
+    //         break;
+    // }
+    $my_query->the_post();
+    return 'yo'.get_the_popular_excerpt(get_field('chapeau'));
+}
+
+

@@ -12,12 +12,10 @@ module.exports = {
   '!' + config.sourceDirectory + '/core/js/admin/*.coffee',
   '!' + config.sourceDirectory + '/core/js/admin.coffee'
   ],
-  srcadmin: [
-  config.sourceDirectory + '/core/js/module.coffee',
-  config.sourceDirectory + '/module/**/*.coffee',
-  config.sourceDirectory + '/core/js/admin/*.coffee',
-  config.sourceDirectory + '/core/js/**/admin.coffee'
+  vendor: [
+  config.sourceDirectory + '/core/js/vendor/**/*',
+  '!' + config.sourceDirectory + '/core/js/vendor/modernizr-2.8.3.min.js',
+  config.publicDirectory + '/js/base.js'//// c'est le js généré après le coffee (c'est degeu comme methode)
   ],
-  destadmin: config.publicDirectory + '/js/',
   dest: config.publicDirectory + '/js/'
 };

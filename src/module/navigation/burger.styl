@@ -3,27 +3,26 @@
 		background: transparent
 		border: 0
 		height: $burger-height
-		// left: $burger-height
 		overflow: hidden
 		width: $burger-width
 		font-size: 0
-		margin: 20px 20px 20px 0
+		margin: 26px 20px 20px 0
+		position relative
 
 		&:focus
 			outline: none
 
 		span
-			background: $ft-color-primary
-			height: 5px
-			left: 0
-			margin: auto
-			position: absolute
-			right: 0
-			top: 0
-			transform-origin: 5%
-			transition: all .2s
-			width: 150%
-		    position: relative
+			transition all
+			transition-duration 0.4s
+			background $ft-color-primary
+			height 5px
+			left 0
+			margin auto
+			position absolute
+			right 0
+			top 0
+			width 45px
 
 		.center
 			bottom: 0
@@ -39,13 +38,19 @@
 			.sr-only
 				opacity:0
 			.top
-				transform: rotate(45deg)
+				transform rotate(45deg)
+				top 15px
 
 			.center
 				transform: scale(0)
 
 			.bottom
 				transform: rotate(-45deg)
+				bottom 15px
 
-	@media $bs-screen-ld-min // Large devices (desktops, 62em and up)
+	@media $bs-screen-xsd-max // Large devices (desktops, 62em and up)
+		.toggle-burger
+			width 40px
+
+	@media $bs-screen-xld-min // Large devices (desktops, 62em and up)
 		display:none

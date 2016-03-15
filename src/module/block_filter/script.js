@@ -2,13 +2,33 @@
 var filter;
 
 filter = (function() {
-  function filter($container) {
+  function filter($container, $debounce) {
     this.$container = $container;
+    this.$debounce = $debounce;
     this.select = this.$container.find('select');
+    this.window = $(window);
+    this.height = this.$container.offset().top;
+    this.checkbox = this.$container.find('#showfilterlabel');
+    this.toogleFixedClass();
     this.bindEvents();
   }
 
+  filter.prototype.toogleFixedClass = function() {
+    if ((this.window.scrollTop() >= this.height) && (!this.checkbox.is(':visible'))) {
+      this.$container.addClass('fixed-filter');
+      return $('#main').css('padding-top', this.$container.outerHeight());
+    } else {
+      this.$container.removeClass('fixed-filter');
+      return $('#main').css('padding-top', '');
+    }
+  };
+
   filter.prototype.bindEvents = function() {
+    this.window.scroll((function(_this) {
+      return function(w) {
+        return _this.$debounce(_this.toogleFixedClass());
+      };
+    })(this));
     return this.select.change((function(_this) {
       return function(e) {
         var $string;
@@ -19,9 +39,14 @@ filter = (function() {
             $string += $(this).attr('id');
             $string += '=' + $(this).find('option:selected').val();
             $string += '&';
-            console.log(index + ': ' + $(this).find('option:selected').text());
+            console.log(index);
+            console.log($string);
           }
         });
+        if ($('body').hasClass('lang-nl')) {
+          $string += 'lang=nl';
+        }
+        console.log('oy' + $string);
         return $('#main').load($string + ' #main');
       };
     })(this));

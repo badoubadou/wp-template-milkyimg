@@ -1,25 +1,30 @@
 .mainheader
 	h1
-		position: absolute
-		width:200px
-		left: 90px
-		margin: 0
-		padding:14px 10px 10px 10px
-		background:#FFFFFF
+		position absolute
+		width 200px
+		left 80px
+		margin 0
+		padding 14px 10px 10px 10px
+		background #FFFFFF
+		background $bg-color-secondary
+		z-index 1
 
 		img
-			width:100%
-			height:auto
+			width 100%
+			height auto
 
 	@media $bs-screen-xsd-max
 		h1
-			width:160px
-			padding:20px 10px 10px 10px
+			width 120px
+			padding 10px 40px 8px 10px
+			left 63px
 
-	@media $bs-screen-ld-min // Large devices (desktops, 62em and up)
+
+	@media $bs-screen-xld-min // Large devices (desktops, 62em and up)
 		h1
-			left:0
-			width:auto
-			position: relative
-			display: inline-block
-			padding:0
+			left 0
+			width 370px
+			height 123px
+			position relative
+			display inline-block
+			padding 0

@@ -14,9 +14,12 @@ gulp.task('coffee', function() {
 		.pipe(concat('base.js'))
 		.on('error', handleErrors)
 		.pipe(gulp.dest(config.dest));
-	gulp.src(config.srcadmin)
-		.pipe(coffee())
-		.pipe(concat('admin.js'))
+});
+
+gulp.task('concatjs', function() {
+	gutil.log('concatjs : '+config.vendor);
+	gulp.src(config.vendor)
+		.pipe(concat('everything.js'))
 		.on('error', handleErrors)
 		.pipe(gulp.dest(config.dest));
 });

@@ -1,29 +1,33 @@
 article.blocks.preview_article(
 	class!="<?php echo d('extra_class',$data);?>"
 	)
-	a(href!="<?php echo d('post_permalink',$data);?>")
+	a(
+	href!="<?php echo d('post_permalink',$data);?>",
+	title!="<?php echo (ICL_LANGUAGE_CODE == 'nl') ? 'Lees meer over '.d('post_title',$data) : 'Lire plus sur '.d('post_title',$data);?>"
+	)
 		header
 			.meta
 				.contmeta
-					time(pubdate='pubdate').date
+					time(datetime!="<?php echo d('post_date_time',$data);?>").date
 						!=d('post_date',$data)
 
 					.catergory
 						!=d('category',$data)
 		.main
-			.thumbnail
-				!=d('post_thumbnail',$data)
+			include perfect_image.php.jade
+			//- .thumbnail
+			//- 	!=d('post_thumbnail',$data)
 			.txt
 				.author
 					span
 						!=d('post_author',$data)
 
-				.title
+				h6.title
 					span
 						!=d('post_title',$data)
 
 				blockquote(cite!="<?php echo d('post_permalink',$data);?>").excerpt
 					span.highlight
-						!=d('post_excerpt',$data)
+						!=d('post_excerpt_short',$data)
 
 	//- print_r($data);

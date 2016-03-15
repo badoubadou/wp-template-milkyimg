@@ -1,20 +1,30 @@
 html
-	font-size: 100%
+	font-size 100%
+	position relative
+	min-height 100%
 
 body
-	color: $ft-color-primary
-	font-family: $ft-family-primary
-	font-size: 16px
+	color $ft-color-primary
+	font-family $ft-family-primary
+	font-size 16px
+	margin 0 0 150px
 
-	@media $bs-screen-xsd-max
-		font-size:12px
+	&.admin-bar
+		padding-top 32px
+
+	@media $bs-screen-sd-max
+		&.admin-bar
+			padding-top 46px
 
 	a
 		color:$ft-color-primary
 		text-decoration:none
+		transition color
+		transition-duration 0.4s
 
 		&:hover
 			color: $ft-color-secondary
+
 
 .blocks
 	h2
@@ -40,20 +50,35 @@ body
 		margin: 1%
 		// line-height: 2.063em
 
+	h6
+		font-weight normal
+		padding 0
+		margin 0
+
 #main,
+.mainheader
+	// max-width:67em
+	// margin: auto
+	padding-left:($space-1/2)
+	padding-right:($space-1/2)
+
 .mainheader,
 .categories
-	max-width:67em
-	margin: auto
-	padding-left:$space-1
-	padding-right:$space-1
+	a:hover
+		text-decoration none
 
 .my_container
 	max-width:67em
 	margin: auto
 
-#main
+#main,
+.blocks.filter
 	padding-top:92px
+
+#main
+	position relative
+	.post-type-archive-bieres &
+		padding-top (92px * 2)
 
 &.full,
 &.one_third,
@@ -65,7 +90,7 @@ article
 		width:100%
 		height:auto
 
-	ul
+	ul.listimg
 		list-style-type: none
 		padding: 0
 
@@ -79,51 +104,133 @@ article
 		text-transform: uppercase
 		font-family: $ft-family-primary-cond
 		font-size:2.875em
+		line-height 1
 
-	.author
-		font-size:0.750em
-
-.icon-search
-	display:inline-block
-	position: relative
-	height:$space-1
-	width:$space-1
-	&:before
-		top:4px
-		left:0
-		position:absolute
+	// .author
+	// 	font-size:0.750em
 
 footer
-	width:100%
-	background:$light-grey
-	clear: both
-	padding:$space-1
-	text-align:center
+	width 100%
+	background $light-grey
+	clear both
+	padding $space-1
+	text-align center
+	height 150px
+	position absolute
+	bottom 0
+
+// .two_third li
+// 	list-style: none
+
+.container-fluid
+	margin-top:0
+	margin-right:$space-1
+
+.contbtn
+	text-align center
+	padding ($space-1 * 2)
+
+.btn
+	background $primary-color
+	padding ($space-1 / 2)
+	color #000
+	margin-right ($space-1 / 2)
+	margin-bottom ($space-1 / 2)
+	transition background
+	transition-duration 0.4s
+	text-transform uppercase
+	width 100%
+	max-width 300px
+	display inline-block
+	&:after
+		vertical-align middle
+		padding-left ($space-1 / 2)
+	&:hover
+		color $ft-color-secondary
+		text-decoration none
+		background #000
+		color $ft-color-secondary
+	&.more
+		margin 0
+		max-width none
+		text-align center
+		margin-bottom $space-1
+
+.search_result
+	padding-bottom ($space-1 * 2)
+
+.centeredtxt
+	text-align center
+
+hr.largedevice
+	display none
+hr.smalldevice
+	margin-top 0
 
 @media $bs-screen-ld-min
+	.post-type-archive-bieres #main
+		padding-top 0
+
+@media $bs-screen-xld-min
+	hr.largedevice
+		display block
+	hr.smalldevice
+		display none
+
+	.demi_marg_top
+		margin-top ($space-1 / 2)
+	#main,
+	.mainheader
+		max-width:67em
+		margin: auto
+
 	#main,
 	.mainheader,
 	.categories
 		padding-left:0
 		padding-right:0
 
-	#main
+	#main,
+	.blocks.filter
 		padding-top:0
-
-	.two_third
-		width:66.6%
-
-		.fullarticle
-			padding-right:$space-1
-			text-align:left
-
-	.one_third
-		width:33.3%
+		.post-type-archive-bieres &
+			padding-top 0
 
 	.two_col
-		> :first-child
-			float: left
-		> :last-child
-			float: right
+		position relative
+
+	.too_top_right
+		position absolute
+		top 0
+		right 0
+		width 33.33%
+		padding-left ($space-1 / 2)
+
+	.too_top_left
+		position absolute
+		top 0
+		left 0
+		width 33.33%
+
+		&.fullwidth
+			width 100%
+
+
+	.two_third,
+	.one_third,
+	.three_third
+		display inline-block
+		vertical-align top
+
+	.one_third
+		width 30%
+		&.too_top_right
+			width 33.33%
+	.two_third
+		width 70%
+		padding-right $space-1
+	.three_third
+		width 100%
+
 
 

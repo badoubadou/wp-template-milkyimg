@@ -1,12 +1,21 @@
 nav.blocks.categories
-	ul
-		- $categories = get_categories()
-		- foreach ( (array) $categories as $keycat => $categorie ):
-			- $title = $categorie->name;
-			- $curentid = $categorie->term_id
-			- $url = get_category_link( $curentid  );
-			- $selected = ($category_id === $curentid);
-			li(class!="<?php echo ($selected) ? 'current-menu-item' : ''; ?>")
-				a(href!="<?php  echo $url ?>")
-					- echo $title;
-		- endforeach;
+	.my_container
+		ul
+			- $categories = get_categories()
+			- foreach ( (array) $categories as $keycat => $categorie ):
+				- $title = $categorie->name;
+				- $curentid = $categorie->term_id;
+				- $url = get_category_link( $curentid  );
+				- $currentpostcat = get_the_category()[0]->name;
+				- $current_cat = get_query_var('category_name');
+				- $post_match = ($currentpostcat === $title);
+				//- var_dump(get_the_category());
+				//-!= $currentpostcat;
+				- $cat_match = ($current_cat === strtolower($title));
+
+				- $selected = ( $cat_match ||  $post_match);
+
+				li(class!="<?php echo ($selected) ? 'current-menu-item' : ''; ?>")
+					a(href!="<?php  echo $url ?>")
+						- echo $title;
+			- endforeach;

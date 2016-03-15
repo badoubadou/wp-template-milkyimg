@@ -1,3 +1,10 @@
-.blocks.ad
-	a(href!="<?php echo d('post_title',$data)?>;")
-		!=d('post_thumbnail',$data)
+.blocks.add(
+	class!="<?php echo d('extra_class',$data);?>"
+	)
+	a(
+	href!="<?php echo get_field('url');?>",
+	title!="<?php echo d('post_title',$data);?>",
+	target="_blank"
+	)
+		include ../block_preview_article/perfect_image.php.jade
+		//-!=d('post_thumbnail',$data)

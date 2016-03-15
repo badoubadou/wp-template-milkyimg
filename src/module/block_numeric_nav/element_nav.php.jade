@@ -1,0 +1,16 @@
+- $classli = '';
+- $selected = false;
+- if(($part+1) == $index ):
+	- $selected = true;
+	- $classli = 'selected';
+- endif;
+
+li(class!='<?php echo $classli;?>')
+	- if($selected):
+		!= $index;
+	- else:
+		a(
+		href!='?part=<?php echo $index.$var_filter;?>'
+		)
+			!= $index;
+	- endif;

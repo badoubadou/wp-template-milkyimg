@@ -1,0 +1,14 @@
+.perfect_image
+	img
+		display  block
+		width  100%
+		height  385px
+		object-fit  cover
+
+		@media $bs-screen-ld-min
+			height 225px
+
+	&.maxheight_500
+		img
+			height auto
+			max-height 500px

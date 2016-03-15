@@ -1,226 +1,243 @@
 .blocks.preview_article
-	position: relative
-	blockquote
-		margin: 0
+	position  relative
+	width 100%
 
-	img
-		width:100%
-		height:auto
+	.title,
+	.meta,
+	.catergory,
+	.author,
+	blockquote
+		visibility hidden
+		.wf-active &
+			visibility visible
+
+
+	blockquote
+		margin  0
 
 	a
-		display: block
-		text-decoration: none
-		color: $ft-color-primary
+		display  block
+		text-decoration  none
+		color  $ft-color-primary
 		&:hover
-			color: $ft-color-primary
+			color  $ft-color-primary
 
 	.title
-		font-size:1.875em
-		// line-height:1.500em
+		font-size 1.875em
 
 	.meta
-		font-size:0.750em
+		font-size 0.750em
 
 	&.full_size_preview
-		header
-			position: absolute
-			bottom : 0
-			padding:$space-1
+		.perfect_image img
+			max-height 260px
 
 		.meta
-			display: block
+			display block
 			.contmeta
-				background: $primary-color
-				padding: ($space-1 / 4) ($space-1 / 2)
-				text-transform: uppercase
-				display: inline-block
+				background  $primary-color
+				padding  ($space-1 / 4) ($space-1 / 2)
+				text-transform  uppercase
+				display  inline-block
+				width 100%
 
 				*
-					display: inline-block
+					display  inline-block
 					&:after
-						content:' - '
+						content '-'
+						padding 0 5px
 					&:last-child:after
-						content:''
+						content ''
 
 				.catergory
-					font-weight: bold
+					font-weight bold
 
 		.title
-			display: inline-block
-			color: $ft-color-secondary
-			background: $very-dark-grey
-			padding: ($space-1 / 2)
-			font-size:2.875em
-			// line-height:2.250em
+			display  inline-block
+			color  $ft-color-secondary
+			background  $very-dark-grey
+			padding  ($space-1 / 4) ($space-1 / 2)
+			font-size 2.875em
+			width 100%
 
 		.excerpt
 			@extends .excerpt_highlight
 
 	&.photo_preview
-		position: relative
-		margin-bottom: $space-1
+		position  relative
+		margin-bottom  $space-1
 		header
-			position: absolute
-			bottom : 0
-			padding: 0 0 ($space-1/2) 0
-			width: 100%
-			text-align: center
+			position  absolute
+			bottom   0
+			padding  0 0 ($space-1/2) 0
+			width  100%
+			text-align  center
 			&:before
-				position: absolute
-				content: ''
-				display: block
-				width: 100%
-				height:100%
-				top :0
-				left:0
-				background:#000
-				opacity: 0.5
-				z-index:0
+				position  absolute
+				content  ''
+				display  block
+				width  100%
+				height 100%
+				top  0
+				left 0
+				background #000
+				opacity  0.5
+				z-index 0
 
 			.title,
 			.author
-				color: $ft-color-secondary
-				z-index:1
-				position: relative
+				color  $ft-color-secondary
+				z-index 1
+				position  relative
 
 			.title
-				font-size:2.875em
-				// line-height:1
-				padding: ($space-1/2) 0
-			.author
-				font-size:0.750em
-
+				font-size 2.875em
+				padding  ($space-1/2) 0
 
 		blockquote
-			display: none
+			display  none
 
-	&.small_size_preview,
-	&.extra_small_size_preview
+	&.small_size_preview
+		padding-bottom $space-1
+		margin-bottom $space-1
+		&:not(.photos-reportages):not(.no-border)
+			border-bottom 1px $grey solid
+
 		.meta
-			font-weight:700
+			font-weight 700
+			padding-bottom 2px
 			.contmeta
-				position: relative
+				position  relative
 				*
-					display: inline-block
-					text-transform: uppercase
+					display  inline-block
+					text-transform  uppercase
 					&:first-child
-						left:0
+						left 0
 					&:last-child
-						position: absolute
-						right:0
+						position  absolute
+						right 0
 					&.date
-						color: $dark-grey
+						color  $dark-grey
 
 		.author
-			color: $dark-grey
+			color  $dark-grey
+			font-size 0.750em
+			font-weight 700
+
+		figure
+			padding-bottom ($space-1 / 2)
+
+			&.perfect_image img
+				max-height 260px
+
+		&.photos-reportages figure
+			padding-bottom 0
 
 		.title
-			padding: ($space-1/4) 0
+			padding  ($space-1 / 10) 0 ($space-1 / 5)
 
-		img
-			padding: ($space-1/3) 0 ($space-1/2.5) 0
+	&.photos-reportages .perfect_image img
+		height 340px
+
+
+.frontpage
+	.small_size_preview.photos-reportages
+		position relative
+
+		header
+			display none
+
+		.main,
+		a
+			position  relative
+			height 100%
+			overflow hidden
+
+		.perfect_image
+			height 100%
+			img
+				height 100%
+
+		.excerpt
+			display  none
+
+		.author
+			color $ft-color-secondary
+
+		.txt
+			position  absolute
+			bottom  0
+			margin  0
+			color #fff
+			text-align  center
+			padding ($space-1 / 2) ($space-1 * 2) ($space-1 / 2) ($space-1 / 2)
+			width 100%
+			&:after
+				content  "\EA1D"
+				-moz-osx-font-smoothing  grayscale
+				-webkit-font-smoothing  antialiased
+				font-family  'icons'
+				font-style  normal
+				font-size  50px
+				font-variant  normal
+				font-weight  normal
+				line-height  1
+				speak  none
+				text-transform  none
+				z-index 2
+				position absolute
+				right ($space-1 / 2)
+				top 0
+
+			&:before
+				position absolute
+				top 0
+				left 0
+				width 100%
+				height 100%
+				content ''
+				background #000
+				opacity 0.5
+
+			.author,
+			.title
+				text-align  left
+				padding 0
+				margin-bottom  0
+				z-index 2
+				position relative
 
 @media $bs-screen-ld-min
 	.blocks.preview_article
 		&.full_size_preview
-			.thumbnail
-				position:relative
-				padding-bottom:40%
-				overflow: hidden
-				img
-					position:absolute
-					top:-50%
-					bottom:-50%
-					margin:auto
-					width: 100%
-					height: auto
+			.perfect_image img
+				height 460px
+				max-height none
 
-		&.small_size_preview,
-		&.extra_small_size_preview
-			padding-bottom:$space-1
-			float: left
-			&:not(.full):not(.gridstill)
-				width:50%
-				a
-					padding-right: $space-1
+			header
+				position  absolute
+				bottom 0
+				padding $space-1
+
+			.meta .contmeta,
+			.title
+				width auto
+
+
+		&.small_size_preview
+			padding-bottom 0
+			float  left
+			height height_block
 
 			&.gridstill
-				width:100%
-			// &.gridstill:nth-child(odd)
-			// 	a
-			// 		padding-right: $space-1
+				width 100%
 
-		&.extra_small_size_preview
-			width:33.3%
+			figure.perfect_image img
+				max-height none
 
-		&.small_size_preview,
-		&.extra_small_size_preview
-			min-height:400px
+		&.photos-reportages .perfect_image img
+			height 460px
 
-			.excerpt
-				span
-					@extend .block-with-text
 
-	.frontpage
-		.photos-reportages
-			position:relative
-			.main,
-			a
-				position: relative
-				height:100%
-				overflow:hidden
-
-			.txt
-				position: absolute
-				bottom: 0
-				margin: ($space-1/2)
-				color:#fff
-				text-align: center
-
-				.author,
-				.title
-					text-align: left
-					padding:0 ($space-1 / 2)
-					margin-bottom: 0
-					padding-left: $padding_highlight
-					max-width: 70%
-					span
-						display: inline
-						background: $very-dark-grey
-						color: white
-						padding: 3px
-						line-height:1.4
-						padding-left: 0
-						padding-right: 0
-						box-decoration-break: clone
-						box-shadow: $padding_highlight 0 0 $very-dark-grey, - $padding_highlight 0 0 $very-dark-grey
-
-				&:after
-					content: "\EA1D"
-					-moz-osx-font-smoothing: grayscale
-					-webkit-font-smoothing: antialiased
-					content: $content
-					font-family: 'icons'
-					font-style: normal
-					font-size: 50px
-					font-variant: normal
-					font-weight: normal
-					line-height: 1.5
-					speak: none
-					text-transform: none
-
-			.excerpt
-				display: none
-
-			.thumbnail
-				height:100%
-				width:100%
-				img
-					position: absolute
-					left: -50%
-					right: -50%
-					margin: auto
-					height: 100%
-					width: auto
 
 

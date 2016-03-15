@@ -1,37 +1,75 @@
-- get_header()
 
 - global $wp_query
 - $total_results = $wp_query->found_posts
 
-main#main.site-main(role='main')
+//- - $opensearch = !have_posts();
+- $opensearch = true;
 
-	- if ( have_posts() ) :
-		header
-			h1
-				- printf( __( 'Search Results for: %s', 'blankslate' ), get_search_query() );
-	section
-		- while ( have_posts() ) : the_post();
-			- $data = prepare_post();
+//- - get_header()
+doctype html
+html(<?php language_attributes(); ?>)
+	include header.jade
+	body(
+	class!="<?php echo $stringclass;?>"
+	)
+	include ../../module/navigation/index.php.jade
 
-			- if($total_results == 1):
-				- $data['extra_class'] .= ' full_size_preview';
-				include ../../module/block_preview_article/index.php.jade
-			- else:
-				- $data['extra_class'] .= ' small_size_preview';
-				include ../../module/block_preview_article/alt.php.jade
-			- endif;
+	- switch ($total_results):
+		- case ($total_results == 2):
+			- $cli = 'col-xs-12 col-sm-6 col-lg-6';
+			- $extraclass = 'small_size_preview';
+			- break;
+		- case ($total_results > 2):
+			- $cli = 'col-xs-12 col-sm-6 col-lg-4';
+			- $extraclass = 'small_size_preview';
+			- break;
+		- default:
+			- $cli = 'col-xs-12 col-sm-12 col-lg-12';
+			- $extraclass = 'full_size_preview';
+	- endswitch;
 
-		- endwhile;
+	main#main.site-main
+		- if ( have_posts() ) :
+			header
+				h1
+					- printf( __( 'Search Results for: %s', 'blankslate' ), get_search_query() );
+			section.search_result
+				section.blocks
+						ul.grid.container-fluid
+							.row
+								- while ( have_posts() ) : the_post();
+									- $data = prepare_post();
+									li(
+										class!="<?php echo $cli;?>"
+										)
+										- $data['extra_class'] .= $extraclass
+										- switch (get_post_type()):
+											- case ('bieres'):
+												- $data['is-search'] = ($total_results > 1 ) ? true : false
+												- $data['extra_class'] = ($total_results > 1 ) ? '' : $data['extra_class']
+												a(href!="<?php echo d('post_permalink',$data);?>")
+													include ../../module/block_biere/index.php.jade
+												- break;
+											- case ('photos-reportages'):
+												- $data['extra_class'] .= ' photos-reportages'
+												include ../../module/block_preview_article/alt_photo.php.jade
+												- break;
+											- case ('post'):
+												- $data['extra_class'] .= ' photos-reportages'
+												include ../../module/block_preview_article/alt_photo.php.jade
+												- break;
+											- default:
+												include ../../module/block_preview_article/alt.php.jade
+										- endswitch;
+								- endwhile;
 
-	- else:
-	article(id="post-0", class="post no-results not-found")
-		header
-			h2
-				- _e( 'Nothing Found', 'blankslate' );
-		section.entry.content
-			p
-				- _e( 'Sorry, nothing matched your search. Please try again.', 'blankslate' );
-			- get_search_form();
-	- endif;
-- get_sidebar();
-- get_footer();
+		- else:
+		article(id="post-0", class="post no-results not-found")
+			header
+				h2
+					- _e( 'Nothing Found', 'blankslate' );
+			section.entry.content
+				p
+					- _e( 'Sorry, nothing matched your search. Please try again.', 'blankslate' );
+		- endif;
+	- get_footer();

@@ -1,4 +1,13 @@
 .blocks.filter
+	label(
+	for='showfilter'
+	id='showfilterlabel'
+	)
+		| trier et filtrer
+	input(
+	type='checkbox'
+	id='showfilter'
+	)
 	.my_container
 		.my_tab
 			- $terms = get_terms( 'bieres_pays' );

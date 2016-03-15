@@ -1,12 +1,17 @@
 - /* Template Name: contact */
-- get_header();
+//- - get_header();
+doctype html
+html(<?php language_attributes(); ?>)
+	include header.jade
+	body(
+	class!="<?php echo $stringclass;?>"
+	)
 
-include ../../module/navigation/index.php.jade
+	include ../../module/navigation/index.php.jade
 
-main#main.site-main(role='main')
-	section
-		.blocks.contact-form
-			#contact-form.clearfix
-				- the_content();
-- get_sidebar();
-- get_footer();
+	main#main.site-main
+		section
+			.blocks.contact-form
+				#contact-form.clearfix
+					- the_content();
+	- get_footer();

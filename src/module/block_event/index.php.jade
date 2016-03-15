@@ -3,8 +3,10 @@
 
 - $startDate = get_field('date_de_debut')
 - $endDate = get_field('date_de_fin')
+- $datetime = date("Y-m-d", strtotime($startDate))
 - $start = explode('.', $startDate)
 - $end = explode('.', $endDate)
+
 - if($start[2]==$end[2]):
 	- array_splice($start, 2)
 - endif;
@@ -14,6 +16,10 @@
 - $startDate = implode('.', $start)
 - $date = $startDate.' > '.$endDate
 
+//- $month_num = array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12")
+//- $month_string = array("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "décembre")
+
+//- $end[1] = str_replace($month_num, $month_string, $end[1])
 
 - $input = get_field('lien');
 - $input = trim($input, '/');
@@ -23,21 +29,25 @@
 - $urlParts = parse_url($input);
 - $domain = preg_replace('/^www\./', '', $urlParts['host']);
 
+
 section
 	header
-		time(pubdate='pubdate').date
+		time(datetime!="<?php echo $datetime;?>").date
 			!= $date
 
+	.main
 		.title
-			!=d('post_title',$data)
+			a.link(
+			href!="<?php echo $input;?>",
+			title!="<?php echo $domain;?>",
+			target="_blank"
+			)
+				!=d('post_title',$data)
 
-	main
 		a.place(
-		href!="<?php echo 'http://maps.google.com/?q='.$address;?>"
+		href!="<?php echo 'http://maps.google.com/?q='.urlencode($address);?>",
+		title!="<?php echo $address;?>",
+		target="_blank"
 		)
-			!= $address
+			!= ((ICL_LANGUAGE_CODE == 'nl') ? 'Kaart tonen' : 'Voir la carte')
 
-		a.link(
-		href!="<?php echo $input;?>"
-		)
-			!= $domain

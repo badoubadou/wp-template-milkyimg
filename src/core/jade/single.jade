@@ -1,41 +1,85 @@
 - $type = array('post');
 
-- get_header();
+//- - get_header();
+- $currentpostcat = get_the_category()[0]->slug;
+- $args_same_cat =array('post_type' => $type,'post_status' => 'publish','posts_per_page' => 3,  'category_name' => $currentpostcat);
+- $my_query_same_cat = null;
+- $my_query_same_cat = new WP_Query($args_same_cat);
 
-- $args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' => -1);
+
+- $args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' => 3,  'category_name' => - $currentpostcat);
 - $my_query = null;
 - $my_query = new WP_Query($args);
 
+doctype html
+html(<?php language_attributes(); ?>)
+	include header.jade
+	body(
+	class!="<?php echo $stringclass;?>"
+	)
 
-include ../../module/navigation/index.php.jade
-
-main#main.site-main(role='main')
-
-	.two_col
-		section.two_third
-			- $data = prepare_post();
-			- $data['extra_class'] .= ' fullarticle normalarticle';
-			- $thisid = $post->ID;
-
-			include ../../module/block_article/alt.php.jade
-
-		aside.one_third
-			h3.recentpost
-				span
-					|Articles recents
-			- $my_query->the_post();
-			- if( $my_query->have_posts() ) :
-				- while ($my_query->have_posts()) : $my_query->the_post();
+		include ../../module/navigation/with_categories.php.jade
+		main#main.site-main
+			hr.smalldevice
+			.two_col
+				section.two_third
 					- $data = prepare_post();
-					- $data['extra_class'] .= ' small_size_preview full';
-					- if($thisid !== $post->ID):
-						include ../../module/block_preview_article/alt.php.jade
-					- endif;
-				- endwhile;
-			- endif;
-			- wp_reset_query();  // Restore global post data stomped by the_post().
+					- $data['extra_class'] .= ' fullarticle normalarticle';
+					- $thisid = $post->ID;
+
+					include ../../module/block_article/alt.php.jade
+
+					.next_prev_nav
+						- if((ICL_LANGUAGE_CODE == 'nl')):
+						-previous_post_link('%link', '< article précedent');
+						-next_post_link('%link', 'article suivant >');
+						- else:
+						-previous_post_link('%link', '< article précedent');
+						-next_post_link('%link', 'article suivant >');
+						- endif;
 
 
+				aside.one_third
+					h3.recentpost
+						span
+							!= (ICL_LANGUAGE_CODE == 'nl') ? 'Dans la même catégorie' : 'Dans la même catégorie'
 
-- get_sidebar();
-- get_footer();
+					.content
+						.grid.container-fluid
+							.row
+								- while ($my_query_same_cat->have_posts()) : $my_query_same_cat->the_post();
+									- if($thisid != $post->ID):
+										- $data = prepare_post();
+										- $data['extra_class'] .= $this_extra_class;
+										- $data['extra_class'] .= ' small_size_preview';
+										- $classli = 'col-xs-12 col-sm-6 col-lg-12';
+										div(
+											class!='<?php echo $classli;?>'
+											)
+												include ../../module/block_preview_article/alt.php.jade
+									- endif;
+								- endwhile;
+					- wp_reset_query();  // Restore global post data stomped by the_post().
+
+					h3.recentpost
+						span
+							!= (ICL_LANGUAGE_CODE == 'nl') ? 'Les plus récents' : 'Les plus récents'
+
+					.content
+						.grid.container-fluid
+							.row
+								- while ($my_query->have_posts()) : $my_query->the_post();
+									- if($thisid != $post->ID):
+										- $data = prepare_post();
+										- $data['extra_class'] .= $this_extra_class;
+										- $data['extra_class'] .= ' small_size_preview';
+										- $classli = 'col-xs-12 col-sm-6 col-lg-12';
+										div(
+											class!='<?php echo $classli;?>'
+											)
+												include ../../module/block_preview_article/alt.php.jade
+									- endif;
+								- endwhile;
+					- wp_reset_query();  // Restore global post data stomped by the_post().
+
+		- get_footer();

@@ -1,0 +1,86 @@
+.blocks.bieres
+	border 1px solid $grey
+	// background $secondary-color
+
+	.title
+		color $primary-color
+		font-weight 700
+		font-size 1.5em
+
+	.brasserie
+		font-weight 700
+		font-family $ft-family-primary-cond
+		font-size 0.875em
+		padding-bottom ($space-1 / 10)
+
+		a:hover
+			color $primary-color
+
+	.taxonomies
+		border-top 1px solid $grey
+		border-bottom 1px solid $grey
+
+		.topelement
+			border-bottom 1px solid $grey
+
+		.style,
+		.pays
+			text-transform uppercase
+
+		.left,
+		.right
+			width 50%
+			display inline-block
+			&.left
+				border-right 1px solid $grey
+
+	.description
+		margin-top ($space-1 / 2)
+		p
+			margin 5px 0
+			word-wrap break-word
+		span
+			font-weight 700
+
+
+	.packshot
+		width 110px
+		.perfect_image img
+			height 348px
+
+	.main
+		width 100%
+		position relative
+
+	.info
+		position absolute
+		top 0
+		right 0
+		width calc( 100% - 110px - 2px)
+
+	.extra
+	.info
+		padding ($space-1/2)
+
+
+	.titre_descriptif
+		font-family $ft-family-primary-cond
+		font-size 2.5em
+		text-transform uppercase
+		line-height 1
+
+	@media $bs-screen-ld-min
+		height 350px
+		.main
+			width 100%
+
+		&.extra_info
+			.main,
+			.extra
+				display inline-block
+				vertical-align top
+
+			.main
+				width 60%
+			.extra
+				width 40%

@@ -8,10 +8,14 @@ module.exports = {
 	],
 	src: [
 	config.sourceDirectory + '/core/css/**/style.styl',
+	'!' + config.sourceDirectory + '/core/css/custom_editor_style/*.styl',
 	config.sourceDirectory + '/core/css/vendor/*.css'
 	],
 	srcpage: [
 	config.sourceDirectory + '/page/**/*.styl'
+	],
+	src_custom_editor: [
+	config.sourceDirectory + '/core/css/custom_editor_style/editor_style.styl'
 	],
 	srcadmin: [
 	config.sourceDirectory + '/core/css/**/admin.styl',

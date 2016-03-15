@@ -2,10 +2,11 @@ article.blocks.preview_article(
 	class!="<?php echo d('extra_class',$data);?>"
 	)
 	a(href!="<?php echo d('post_permalink',$data);?>")
-		figure.thumbnail
-			!=d('post_thumbnail',$data)
+		include perfect_image.php.jade
+		//- figure.thumbnail
+		//- 	!=d('post_thumbnail',$data)
 		header
-			.title
+			h6.title
 				!=d('post_title',$data)
 
 			.meta

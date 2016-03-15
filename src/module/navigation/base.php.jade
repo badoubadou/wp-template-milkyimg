@@ -1,0 +1,40 @@
+h1
+	a(href='/')
+		picture
+			source(
+				media='(min-width: 33.9em)',
+				srcset!="<?php echo get_stylesheet_directory_uri().'/images/logo-fr.svg' ;?>",
+			)
+			img(
+				src!="<?php echo get_stylesheet_directory_uri().'/images/logo-simple.svg' ;?>",
+				alt!="<?php echo (ICL_LANGUAGE_CODE == 'fr') ? 'Bière grand cru' : 'Bier grand cru';?>"
+			)
+
+.right_nav
+	- wp_nav_menu(  array( 'container'=> false, 'menu' => 'top_menu', 'menu_class' => 'top_menu') );
+	ul
+		li.lisearch
+			.search-expand-inner
+				- $topsearch = true
+				include ../../module/block_search/index.php.jade
+		li.social
+			a.icon-twitter(href="http://twitter.com",target="_blank")
+		li.social
+			a.icon-facebook(href="http://facebook.com",target="_blank")
+		li.lang
+			a(href!="<?php echo icl_get_languages()[((ICL_LANGUAGE_CODE == 'fr') ? 'nl' : 'fr')]['url'];?>")
+				!=icl_get_languages()[((ICL_LANGUAGE_CODE == 'fr') ? 'nl' : 'fr')]['code']
+
+nav.blocks.navigation
+	.navigation-header
+		button.toggle-burger
+			span.sr-only Toggle navigation
+			span.top
+			span.center
+			span.bottom
+	.nav-group-wrapper
+		.search-expand-inner.openedsearch
+			- $topsearch = false
+			include ../../module/block_search/index.php.jade
+		- wp_nav_menu(  array( 'container'=> false, 'menu' => 'main_menu', 'menu_class' => 'main_menu') );
+		- wp_nav_menu(  array( 'container'=> false, 'menu' => 'top_menu', 'menu_class' => 'top_menu') );

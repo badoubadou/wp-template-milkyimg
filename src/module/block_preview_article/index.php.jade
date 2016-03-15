@@ -2,8 +2,9 @@ article.blocks.preview_article(
 	class!="<?php echo d('extra_class',$data);?>"
 	)
 	a(href!="<?php echo d('post_permalink',$data);?>")
-		figure.thumbnail
-			!=d('post_thumbnail',$data)
+		include perfect_image.php.jade
+		//- figure.thumbnail
+		//- 	!=d('post_thumbnail',$data)
 		header
 			.meta
 				.contmeta
@@ -13,10 +14,10 @@ article.blocks.preview_article(
 					.author
 						!=d('post_author',$data)
 
-					time(pubdate='pubdate').date
+					time(datetime!="<?php echo d('post_date_time',$data);?>").date
 						!=d('post_date',$data)
 
-			.title
+			h6.title
 				!=d('post_title',$data)
 
 			blockquote(cite!="<?php echo d('post_permalink',$data);?>").excerpt
