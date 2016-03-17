@@ -5,6 +5,10 @@
 //- - $opensearch = !have_posts();
 - $opensearch = true;
 
+- $searchfor = (ICL_LANGUAGE_CODE == 'nl') ? 'Resultaten voor : %s' : 'Résultat(s) trouvé(s) pour : %s';
+- $nothing = (ICL_LANGUAGE_CODE == 'nl') ? 'Helaas, wij hebben niet gevonden wat u zocht' : 'Désolé, nous n’avons pas de contenu correspondant à votre recherche ';
+- $nothingtitle = (ICL_LANGUAGE_CODE == 'nl') ? 'Geen resultaten' : 'Aucun résulat';
+
 //- - get_header()
 doctype html
 html(<?php language_attributes(); ?>)
@@ -32,44 +36,47 @@ html(<?php language_attributes(); ?>)
 		- if ( have_posts() ) :
 			header
 				h1
-					- printf( __( 'Search Results for: %s', 'blankslate' ), get_search_query() );
+					- printf( __( $searchfor, 'blankslate' ), get_search_query() );
 			section.search_result
 				section.blocks
-						ul.grid.container-fluid
-							.row
-								- while ( have_posts() ) : the_post();
-									- $data = prepare_post();
-									li(
-										class!="<?php echo $cli;?>"
-										)
-										- $data['extra_class'] .= $extraclass
-										- switch (get_post_type()):
-											- case ('bieres'):
-												- $data['is-search'] = ($total_results > 1 ) ? true : false
-												- $data['extra_class'] = ($total_results > 1 ) ? '' : $data['extra_class']
-												a(href!="<?php echo d('post_permalink',$data);?>")
-													include ../../module/block_biere/index.php.jade
-												- break;
-											- case ('photos-reportages'):
-												- $data['extra_class'] .= ' photos-reportages'
-												include ../../module/block_preview_article/alt_photo.php.jade
-												- break;
-											- case ('post'):
-												- $data['extra_class'] .= ' photos-reportages'
-												include ../../module/block_preview_article/alt_photo.php.jade
-												- break;
-											- default:
-												include ../../module/block_preview_article/alt.php.jade
-										- endswitch;
-								- endwhile;
+					.grid.container-fluid
+						.row
+							- while ( have_posts() ) : the_post();
+								- $data = prepare_post();
+								div(
+									class!="<?php echo $cli;?>"
+									)
+									- $data['extra_class'] .= $extraclass
+									- switch (get_post_type()):
+										- case ('bieres'):
+											- $data['is-search'] = ($total_results > 1 ) ? true : false
+											- $data['extra_class'] = ($total_results > 1 ) ? '' : $data['extra_class']
+											//- a(href!="<?php echo d('post_permalink',$data);?>")
+											include ../../module/block_biere/index.php.jade
+											- break;
+										- case ('photos-reportages'):
+											- $data['extra_class'] .= ' photos-reportages'
+											include ../../module/block_preview_article/alt_photo.php.jade
+											- break;
+										- case ('post'):
+											- $data['extra_class'] .= ' photos-reportages'
+											include ../../module/block_preview_article/alt_photo.php.jade
+											- break;
+										- default:
+											include ../../module/block_preview_article/alt.php.jade
+									- endswitch;
+							- endwhile;
+
+				include ../../module/block_social/index.php.jade
+
 
 		- else:
 		article(id="post-0", class="post no-results not-found")
 			header
 				h2
-					- _e( 'Nothing Found', 'blankslate' );
+					- _e( $nothingtitle, 'blankslate' );
 			section.entry.content
 				p
-					- _e( 'Sorry, nothing matched your search. Please try again.', 'blankslate' );
+					- _e( $nothing, 'blankslate' );
 		- endif;
 	- get_footer();

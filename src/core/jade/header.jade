@@ -1,15 +1,26 @@
 - preg_match('/MSIE (.*?);/', $_SERVER['HTTP_USER_AGENT'], $matches);
 - $bodyclass = implode(' ', get_body_class());
+- global $isIE;
+- global $isIEbool;
 - $isIE = (count($matches)>1) ? ' isie ' : ' isnotie ';
+- $isIEbool = (count($matches)>1) ? true : false;
+
 - $langclass = 'lang-'.ICL_LANGUAGE_CODE;
 - $stringclass = $bodyclass.$isIE.$langclass;
 
-- $descrition = is_single() ? get_the_popular_excerpt(get_field('chapeau')) : get_bloginfo();
+- $descrition = is_single() ? get_the_popular_excerpt(get_field('chapeau')) : get_bloginfo('description');
 - $img = is_single() ? wp_get_attachment_url(get_post_thumbnail_id($post->ID)) : get_stylesheet_directory_uri().'/images/logo-'.ICL_LANGUAGE_CODE.'.svg';
 - $meta_author = is_single() ? get_field('auteur') : get_bloginfo();
 
+- $titlepage = get_bloginfo('name');
+- $titlepage .= ' | ';
+- $titlepage .=( is_front_page() ? get_bloginfo('description') : get_the_title());
+//-.(is_front_page() ? bloginfo('description') : wp_title());
 
 head
+	-if($isIEbool):
+		meta(http-equiv="X-UA-Compatible" content="IE=10")
+	-endif;
 	meta(charset!="<?php bloginfo('charset'); ?>")
 	meta(name="viewport" content="width=device-width")
 	meta(name="description" content!="<?php echo $descrition; ?>")
@@ -22,7 +33,7 @@ head
 	meta(property="og:image" content!="<?php echo $img; ?>")
 
 	title
-		!= bloginfo('name').' | '.(is_front_page() ? bloginfo('description') : wp_title(''));
+		!= $titlepage
 
 	link(rel="shortcut icon" href!="<?php echo get_stylesheet_directory_uri().'/favicon.ico' ;?>" type="image/x-icon" )
 	link(rel="apple-touch-icon-precomposed" sizes="152x152" href!="<?php echo get_stylesheet_directory_uri().'/images/favico/favicon-152.png' ;?>")

@@ -8,7 +8,8 @@
 	.author,
 	blockquote
 		visibility hidden
-		.wf-active &
+		.wf-active &,
+		.wf-inactive &
 			visibility visible
 
 
@@ -130,8 +131,15 @@
 			&.perfect_image img
 				max-height 260px
 
-		&.photos-reportages figure
-			padding-bottom 0
+		&.photos-reportages
+			figure
+				padding-bottom 0
+
+			.perfect_image img
+				max-height none
+				height 340px
+				@media $bs-screen-md-min
+					height 100%
 
 		.title
 			padding  ($space-1 / 10) 0 ($space-1 / 5)
@@ -207,12 +215,22 @@
 				z-index 2
 				position relative
 
+@media $bs-screen-md-min
+	.blocks.preview_article
+		&.small_size_preview
+			padding-bottom 0
+			float  left
+			height height_block
+
+
 @media $bs-screen-ld-min
 	.blocks.preview_article
 		&.full_size_preview
-			.perfect_image img
+			.perfect_image
 				height 460px
-				max-height none
+				img
+					height 460px
+					max-height none
 
 			header
 				position  absolute
@@ -222,18 +240,6 @@
 			.meta .contmeta,
 			.title
 				width auto
-
-
-		&.small_size_preview
-			padding-bottom 0
-			float  left
-			height height_block
-
-			&.gridstill
-				width 100%
-
-			figure.perfect_image img
-				max-height none
 
 		&.photos-reportages .perfect_image img
 			height 460px

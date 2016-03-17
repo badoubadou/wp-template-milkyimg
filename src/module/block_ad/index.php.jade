@@ -4,7 +4,8 @@
 	a(
 	href!="<?php echo get_field('url');?>",
 	title!="<?php echo d('post_title',$data);?>",
-	target="_blank"
+	target="_blank",
+	rel="nofollow"
 	)
 		include ../block_preview_article/perfect_image.php.jade
 		//-!=d('post_thumbnail',$data)

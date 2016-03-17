@@ -1,10 +1,15 @@
 article.blocks.bieres(
 	class!="<?php echo d('extra_class',$data);?>"
 )
-	-if (get_field('extra_info') && !$data['is-search']):
+	-if ($data['extra_info']):
 		section.extra
-			.titre_descriptif
+			- if($data['single-bieres']):
+			h2.titre_descriptif
 				- echo  get_field('titre_descriptif')
+			- else:
+			a(href!="<?php echo d('post_permalink',$data);?>", rel="canonical").titre_descriptif
+				- echo  get_field('titre_descriptif')
+			- endif;
 			.texte_descriptif
 				- echo  get_field('texte_descriptif')
 	- endif;
@@ -14,8 +19,13 @@ article.blocks.bieres(
 			include ../block_preview_article/perfect_image.php.jade
 
 		.info
-			.title
+			- if($data['single-bieres']):
+			h1.title
 				!=d('post_title',$data)
+			- else:
+			a(href!="<?php echo d('post_permalink',$data);?>", rel="canonical").title
+				!=d('post_title',$data)
+			- endif;
 			.brasserie
 				- if(get_field('site_de_la_brasserie')):
 					a(
@@ -47,17 +57,17 @@ article.blocks.bieres(
 					.taxonomie
 						!= $value
 				//- endforeach
-			.description
-				p
-					span
-						!= (ICL_LANGUAGE_CODE == 'nl') ? 'Neus : ' : 'Nez : '
-					!= get_field('arome')
-				p
-					span
-						!= (ICL_LANGUAGE_CODE == 'nl') ? 'Smaak : ' : 'Goût : '
-					!= get_field('gout_de_la_biere')
-				p
-					span
-						!= (ICL_LANGUAGE_CODE == 'nl') ? 'Foodpairing : ' : 'Accords : '
-					!= get_field('accord')
+		.description
+			p
+				span
+					!= (ICL_LANGUAGE_CODE == 'nl') ? 'Neus : ' : 'Nez : '
+				!= get_field('arome')
+			p
+				span
+					!= (ICL_LANGUAGE_CODE == 'nl') ? 'Smaak : ' : 'Goût : '
+				!= get_field('gout_de_la_biere')
+			p
+				span
+					!= (ICL_LANGUAGE_CODE == 'nl') ? 'Foodpairing : ' : 'Accords : '
+				!= get_field('accord')
 

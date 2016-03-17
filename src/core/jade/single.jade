@@ -31,18 +31,18 @@ html(<?php language_attributes(); ?>)
 
 					.next_prev_nav
 						- if((ICL_LANGUAGE_CODE == 'nl')):
-						-previous_post_link('%link', '< article précedent');
-						-next_post_link('%link', 'article suivant >');
+						-previous_post_link('%link', '< vorig<span class="onlylarge">&nbsp;artikel</span>');
+						-next_post_link('%link', 'volgend<span class="onlylarge">&nbsp;artikel</span>>');
 						- else:
-						-previous_post_link('%link', '< article précedent');
-						-next_post_link('%link', 'article suivant >');
+						-previous_post_link('%link', '< <span class="onlylarge">article&nbsp;</span>précedent');
+						-next_post_link('%link', '<span class="onlylarge">article&nbsp;</span>suivant >');
 						- endif;
 
 
 				aside.one_third
 					h3.recentpost
 						span
-							!= (ICL_LANGUAGE_CODE == 'nl') ? 'Dans la même catégorie' : 'Dans la même catégorie'
+							!= (ICL_LANGUAGE_CODE == 'nl') ? 'Zelfde categorie' : 'Dans la même catégorie'
 
 					.content
 						.grid.container-fluid
@@ -63,7 +63,7 @@ html(<?php language_attributes(); ?>)
 
 					h3.recentpost
 						span
-							!= (ICL_LANGUAGE_CODE == 'nl') ? 'Les plus récents' : 'Les plus récents'
+							!= (ICL_LANGUAGE_CODE == 'nl') ? 'Recente artikels' : 'Les plus récents'
 
 					.content
 						.grid.container-fluid

@@ -4,16 +4,11 @@ var popin;
 popin = (function() {
   function popin($btn) {
     this.$btn = $btn;
+    this.checkbox = $('#showfilterlabel');
     this.bindEvents();
   }
 
-  popin.prototype.bindform = function() {
-    return console.log('bind form');
-  };
-
   popin.prototype.bindEvents = function() {
-    var _bindform;
-    _bindform = this.bindform;
     $('.mypopin .shield').on('click', (function(_this) {
       return function(e) {
         return $('body').removeClass('popin_opended');
@@ -22,17 +17,20 @@ popin = (function() {
     return this.$btn.on('click', (function(_this) {
       return function(e) {
         var $url;
-        $url = $(e.target).attr('href');
-        $('.mypopin .content').load($url + ' #main', function(response, status, xhr) {
-          if (status === 'error') {
-            console.log('Sorry but there was an error: ');
-          } else if (status === 'success') {
-            $('body').addClass('popin_opended');
-            _bindform();
-          }
-        });
-        console.log('click : ' + $url);
-        return false;
+        console.log(_this.checkbox.is(':visible'));
+        if (_this.checkbox.is(':visible')) {
+          $url = $(e.target).attr('href');
+          $('.mypopin .content').load($url + ' #main', function(response, status, xhr) {
+            if (status === 'error') {
+              console.log('Sorry but there was an error: ');
+            } else if (status === 'success') {
+              $('body').addClass('popin_opended');
+              _bindform();
+            }
+          });
+          console.log('click : ' + $url);
+          return false;
+        }
       };
     })(this));
   };

@@ -14,7 +14,9 @@ filter = (function() {
   }
 
   filter.prototype.toogleFixedClass = function() {
-    if ((this.window.scrollTop() >= this.height) && (!this.checkbox.is(':visible'))) {
+    console.log('toogleFixedClass : ' + (this.window.scrollTop() >= this.height));
+    console.log(' ==== @window.scrollTop(' + this.window.scrollTop() + ')  >= ' + this.height + ' @height');
+    if (this.window.scrollTop() >= this.height) {
       this.$container.addClass('fixed-filter');
       return $('#main').css('padding-top', this.$container.outerHeight());
     } else {
@@ -46,7 +48,6 @@ filter = (function() {
         if ($('body').hasClass('lang-nl')) {
           $string += 'lang=nl';
         }
-        console.log('oy' + $string);
         return $('#main').load($string + ' #main');
       };
     })(this));

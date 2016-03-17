@@ -1,0 +1,27 @@
+- if ($my_query_same->have_posts() ):
+	h3.recentpost
+		span
+			!= $title_same
+
+	.content
+		.grid.container-fluid
+			.row
+				- while ($my_query_same->have_posts()) : $my_query_same->the_post();
+					- $data = prepare_post();
+					- $data['extra_class'] = ' small_size_preview';
+					- $data['extra_info'] = false;
+					- $data['single-bieres'] = true;
+					- $classli = 'col-xs-12 col-sm-6 col-lg-12';
+					.elementgrid(
+						class!='<?php echo $classli;?>'
+						)
+							include ../../module/block_biere/index.php.jade
+				- endwhile;
+				- wp_reset_query();  // Restore global post data stomped by the_post().
+
+	- $linkcolor = '../?'.$type_string.'='.$same;
+	- $linkcolor .= (ICL_LANGUAGE_CODE == 'nl') ? '&lang=nl' : '';
+	a.btn.iconafter-arrowright.more(href!="<?php echo $linkcolor;?>")
+		!= (ICL_LANGUAGE_CODE == 'nl') ? 'Ontdekken meer' : 'En découvrir plus'
+
+- endif;

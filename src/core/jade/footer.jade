@@ -4,6 +4,13 @@ footer
 			|&copy;
 			strong
 				|Becomev SPRL
+
+		address
+			p
+				!= (ICL_LANGUAGE_CODE == 'nl') ? 'Merodestraat 60 - Brussel' : '60 Rue de Mérode - 1060 Bruxelles'
+				//- br
+				//- != (ICL_LANGUAGE_CODE == 'nl') ? '' : ''
+
 		p
 			| Les textes signés n’engagent que leur(s) auteur(s). La reproduction des articles et extraits doit recevoir l’accord préalable de la direction et de la rédaction.
 .blocks.mypopin

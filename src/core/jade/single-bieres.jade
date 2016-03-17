@@ -7,6 +7,8 @@ html(<?php language_attributes(); ?>)
 	body(
 	class!="<?php echo $stringclass;?>"
 	)
+		- $thisid = $post->ID;
+
 		- $currentpostcat = get_the_category()[0]->slug;
 
 		- $arraytax = explode(' ', get_all_tax_name());
@@ -15,8 +17,8 @@ html(<?php language_attributes(); ?>)
 		- $array_general_tax_color = array('taxonomy' => 'bieres_couleur', 'field' => 'slug', 'terms' => $samecolor);
 		- $array_general_tax_type = array('taxonomy' => 'bieres_type', 'field' => 'slug', 'terms' => $sametype);
 
-		- $args_same_color = array('post_type' => 'bieres','post_status' => 'publish','posts_per_page' => 1, 'tax_query' => array( $array_general_tax_color ));
-		- $args_same_type = array('post_type' => 'bieres','post_status' => 'publish','posts_per_page' => 1, 'tax_query' => array( $array_general_tax_type ));
+		- $args_same_color = array('post_type' => 'bieres','post_status' => 'publish','posts_per_page' => 2, 'post__not_in' => array($thisid), 'tax_query' => array( $array_general_tax_color ));
+		- $args_same_type = array('post_type' => 'bieres','post_status' => 'publish','posts_per_page' => 2, 'post__not_in' => array($thisid), 'tax_query' => array( $array_general_tax_type ));
 
 		- $my_query_same_color = null;
 		- $my_query_same_color = new WP_Query($args_same_color);
@@ -31,71 +33,25 @@ html(<?php language_attributes(); ?>)
 			.two_col
 				section.two_third
 					- $data = prepare_post();
-					- $thisid = $post->ID;
-
+					- $data['single-bieres'] = true;
 					include ../../module/block_biere/index.php.jade
 
-					//- .next_prev_nav
-					//- 	- if((ICL_LANGUAGE_CODE == 'nl')):
-					//- 	-previous_post_link('%link', '< bieres précedent');
-					//- 	-next_post_link('%link', 'bieres suivant >');
-					//- 	- else:
-					//- 	-previous_post_link('%link', '< bieres précedent');
-					//- 	-next_post_link('%link', 'bieres suivant >');
-					//- 	- endif;
+					include ../../module/block_social/index.php.jade
 
 
 				aside.one_third
-					h3.recentpost
-						span
-							!= (ICL_LANGUAGE_CODE == 'nl') ? 'Dans la même couleur' : 'Dans la même couleur'
+						- $my_query_same = $my_query_same_color;
+						- $title_same = (ICL_LANGUAGE_CODE == 'nl') ? 'Zelfde kleur' : 'Dans la même couleur';
+						- $type_string = 'bieres_couleur';
+						- $same = $samecolor;
+						include same.jade
 
-					.content
-						.grid.container-fluid
-							.row
-								- while ($my_query_same_color->have_posts()) : $my_query_same_color->the_post();
-									- if($thisid != $post->ID):
-										- $data = prepare_post();
-										- $data['extra_class'] .= $this_extra_class;
-										- $data['extra_class'] .= ' small_size_preview';
-										- $classli = 'col-xs-12 col-sm-6 col-lg-12';
-										.elementgrid(
-											class!='<?php echo $classli;?>'
-											)
-												include ../../module/block_biere/index.php.jade
-									- endif;
-								- endwhile;
-					- wp_reset_query();  // Restore global post data stomped by the_post().
+						- $my_query_same = $my_query_same_color;
+						- $title_same = (ICL_LANGUAGE_CODE == 'nl') ? 'Zelfde stijl' : 'Du même style';
+						- $type_string = 'bieres_type';
+						- $same = $sametype;
+						include same.jade
 
-					- $linkcolor = '../?bieres_couleur='.$samecolor;
-					- $linkcolor .= (ICL_LANGUAGE_CODE == 'nl') ? '&lang=nl' : '';
-					a.btn.iconafter-arrowright.more(href!="<?php echo $linkcolor;?>")
-						!= (ICL_LANGUAGE_CODE == 'nl') ? 'En découvrir plus' : 'En découvrir plus'
 
-					h3.recentpost
-						span
-							!= (ICL_LANGUAGE_CODE == 'nl') ? 'Du même type' : 'Du même type'
-
-					.content
-						.grid.container-fluid
-							.row
-								- while ($my_query_same_type->have_posts()) : $my_query_same_type->the_post();
-									- if($thisid != $post->ID):
-										- $data = prepare_post();
-										- $data['extra_class'] .= $this_extra_class;
-										- $data['extra_class'] .= ' small_size_preview';
-										- $classli = 'col-xs-12 col-sm-6 col-lg-12';
-										.elementgrid(
-											class!='<?php echo $classli;?>'
-											)
-												include ../../module/block_biere/index.php.jade
-									- endif;
-								- endwhile;
-					- wp_reset_query();  // Restore global post data stomped by the_post().
-
-					- $linktype = '../?bieres_type='.$sametype;
-					- $linktype .= (ICL_LANGUAGE_CODE == 'nl') ? '&lang=nl' : '';
-					a.btn.iconafter-arrowright.more(href!="<?php echo $linkcolor;?>")
-						!= (ICL_LANGUAGE_CODE == 'nl') ? 'En découvrir plus' : 'En découvrir plus'
 
 		- get_footer();

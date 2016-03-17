@@ -1,0 +1,12 @@
+doctype html
+html(<?php language_attributes(); ?>)
+	include header.jade
+	body(
+	class!="<?php echo $stringclass;?>"
+	)
+		include ../../module/navigation/index.php.jade
+
+		main#main.site-main.frontpage
+			| 404
+
+		- get_footer();

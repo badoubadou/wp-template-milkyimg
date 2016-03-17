@@ -31,16 +31,22 @@
 		font-size 1.1em
 		cursor pointer
 		background transparent
-		color #fff
 		text-transform uppercase
-		padding 0.2em 3.2em 0.2em 3.2em
+		padding 0.2em 1.4em
 		width 100%
+		color #fff
 		&:focus
 			outline 0
+
+		option
+			color #000
+			&:checked
+				color $dark-grey
 
 	label
 		position relative
 		z-index 1
+		color #fff
 
 
 	select
@@ -64,7 +70,7 @@
 	.my_tab
 		padding 0 ($space-1/2)
 
-	@media $bs-screen-ld-min // Large devices (desktops, 62em and up)
+	@media $bs-screen-md-min
 		position relative
 		label#showfilterlabel,
 		input[type=checkbox]
@@ -83,14 +89,16 @@
 			position fixed
 			top 0
 		    width 100%
-
-		&.fixed-filter
 			box-shadow 0px 5px 5px rgba($dark-grey, 0.5)
 
 		.my_tab
 			padding 0
 
-	@media $bs-screen-xld-min // Large devices (desktops, 62em and up)
+	@media $bs-screen-xld-min
 		.my_tab
 			margin-left - ($space-1)
 			margin-right - ($space-1)
+
+		// &.fixed-filter
+		// 	position relative
+		// 	box-shadow none

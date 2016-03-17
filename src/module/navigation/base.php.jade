@@ -1,12 +1,20 @@
+- include 'Mobile_Detect.php';
+- global $detect;
+-$detect = new Mobile_Detect();
+-$defaultimg = ($detect->isMobile() && !$detect->isTablet()) ? 'simple' : 'fr';
+-$defaultimg = (!$detect->isMobile() && !$detect->isTablet()) ? 'simple' : $defaultimg;
+- if($isIEbool):
+	-$defaultimg = 'fr';
+- endif;
 h1
 	a(href='/')
 		picture
 			source(
-				media='(min-width: 33.9em)',
+				media='(min-width: 34em)',
 				srcset!="<?php echo get_stylesheet_directory_uri().'/images/logo-fr.svg' ;?>",
 			)
 			img(
-				src!="<?php echo get_stylesheet_directory_uri().'/images/logo-simple.svg' ;?>",
+				src!="<?php echo get_stylesheet_directory_uri().'/images/logo-'.$defaultimg.'.svg' ;?>",
 				alt!="<?php echo (ICL_LANGUAGE_CODE == 'fr') ? 'Bière grand cru' : 'Bier grand cru';?>"
 			)
 
@@ -18,12 +26,20 @@ h1
 				- $topsearch = true
 				include ../../module/block_search/index.php.jade
 		li.social
-			a.icon-twitter(href="http://twitter.com",target="_blank")
+			a.icon-twitter(href="https://twitter.com/biergrandcru",target="_blank")
 		li.social
-			a.icon-facebook(href="http://facebook.com",target="_blank")
+			a.icon-facebook(href="https://www.facebook.com/beergrandcru/",target="_blank")
 		li.lang
-			a(href!="<?php echo icl_get_languages()[((ICL_LANGUAGE_CODE == 'fr') ? 'nl' : 'fr')]['url'];?>")
-				!=icl_get_languages()[((ICL_LANGUAGE_CODE == 'fr') ? 'nl' : 'fr')]['code']
+			- if(icl_get_languages()[((ICL_LANGUAGE_CODE === 'fr') ? 'nl' : 'fr')]['url'] != ''):
+				- $linkop = icl_get_languages()[((ICL_LANGUAGE_CODE === 'fr') ? 'nl' : 'fr')]['url']
+			-else:
+				- global $sitepress
+				- $linkop = $sitepress->convert_url( site_url(), 'nl' )
+			-endif;
+			a(href!="<?php echo $linkop ;?>")
+				!=(ICL_LANGUAGE_CODE === 'fr') ? 'nl' : 'fr'
+
+
 
 nav.blocks.navigation
 	.navigation-header

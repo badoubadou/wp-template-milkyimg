@@ -7,7 +7,7 @@ body
 	color $ft-color-primary
 	font-family $ft-family-primary
 	font-size 16px
-	margin 0 0 150px
+	margin 0 0 height_footer
 
 	&.admin-bar
 		padding-top 32px
@@ -25,6 +25,10 @@ body
 		&:hover
 			color: $ft-color-secondary
 
+p
+	word-wrap break-word
+	&:empty
+		display none
 
 .blocks
 	h2
@@ -78,7 +82,7 @@ body
 #main
 	position relative
 	.post-type-archive-bieres &
-		padding-top (92px * 2)
+		padding-top 158px
 
 &.full,
 &.one_third,
@@ -115,9 +119,16 @@ footer
 	clear both
 	padding $space-1
 	text-align center
-	height 150px
+	height height_footer
 	position absolute
 	bottom 0
+	color $dark-grey
+	font-size 0.8em
+	line-height 0.95
+	.container
+		padding-left 0
+		padding-right 0
+
 
 // .two_third li
 // 	list-style: none
@@ -167,7 +178,7 @@ hr.largedevice
 hr.smalldevice
 	margin-top 0
 
-@media $bs-screen-ld-min
+@media $bs-screen-md-min
 	.post-type-archive-bieres #main
 		padding-top 0
 
@@ -231,6 +242,10 @@ hr.smalldevice
 		padding-right $space-1
 	.three_third
 		width 100%
+
+	footer
+		padding $space-1
+
 
 
 

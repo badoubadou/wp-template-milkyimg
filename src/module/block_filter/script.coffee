@@ -8,7 +8,10 @@ class filter
 		@bindEvents()
 
 	toogleFixedClass: ->
-		if(( @window.scrollTop() >= @height) && (!@checkbox.is ':visible'))
+		console.log 'toogleFixedClass : '+(( @window.scrollTop() >= @height))
+		console.log ' ==== @window.scrollTop('+@window.scrollTop()+')  >= '+@height+' @height'
+
+		if(( @window.scrollTop() >= @height))
 			@$container.addClass 'fixed-filter'
 			$('#main').css('padding-top',  @$container.outerHeight() )
 		else
@@ -33,7 +36,6 @@ class filter
 
 			if $('body').hasClass 'lang-nl'
 				$string += 'lang=nl'
-			console.log 'oy'+$string
 			$('#main').load $string + ' #main'
 
 module.filter = filter

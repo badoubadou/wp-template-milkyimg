@@ -7,6 +7,11 @@
 	padding-bottom ($space-1 * 2)
 	position relative
 
+	.onlylarge
+		display none
+		@media $bs-screen-xld-min // Large devices (desktops, 62em and up)
+			display inline-block
+
 	.dots
 		color $dark-grey
 

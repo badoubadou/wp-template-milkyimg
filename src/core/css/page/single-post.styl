@@ -1,6 +1,14 @@
+@media $bs-screen-md-min
+	.single-post .one_third
+		[class*='col-'] article.small_size_preview:not(.photos-reportages),
+		[class*='col-'] article.small_size_preview
+			border-bottom none
+
 @media $bs-screen-xld-min
 	.single-post .one_third
+		[class*='col-'] article.small_size_preview:not(.photos-reportages),
+		[class*='col-'] article.small_size_preview
+			border-bottom 1px $light-grey solid
 		[class*='col-']:last-child article.small_size_preview
 			border-bottom 0
 			margin bottom 0
-
