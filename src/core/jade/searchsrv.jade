@@ -1,0 +1,65 @@
+
+- global $wp_query
+- $total_results = $wp_query->found_posts
+
+//- - $opensearch = !have_posts();
+- $opensearch = true;
+
+- $searchfor = (ICL_LANGUAGE_CODE == 'nl') ? 'Resultaten voor : %s' : 'Résultat(s) trouvé(s) pour : %s';
+- $nothing = (ICL_LANGUAGE_CODE == 'nl') ? 'Helaas, wij hebben niet gevonden wat u zocht' : 'Désolé, nous n’avons pas de contenu correspondant à votre recherche ';
+- $nothingtitle = (ICL_LANGUAGE_CODE == 'nl') ? 'Geen resultaten' : 'Aucun résulat';
+
+//- - get_header()
+doctype html
+html(<?php language_attributes(); ?>)
+	include header.jade
+	body(
+	class!="<?php echo $stringclass;?>"
+	)
+	include ../../module/navigation/index.php.jade
+
+	- switch ($total_results):
+		- case ($total_results == 2):
+			- $cli = 'col-xs-12 col-sm-6 col-lg-6';
+			- $extraclass = 'small_size_preview';
+			- break;
+		- case ($total_results > 2):
+			- $cli = 'col-xs-12 col-sm-6 col-lg-4';
+			- $extraclass = 'small_size_preview';
+			- break;
+		- default:
+			- $cli = 'col-xs-12 col-sm-12 col-lg-12';
+			- $extraclass = 'full_size_preview';
+	- endswitch;
+
+	main#main.site-main
+		- if ( have_posts() ) :
+			header
+				h1
+					- printf( __( $searchfor, 'blankslate' ), get_search_query() );
+			section.search_result
+				section.blocks
+					.grid.container-fluid
+						.row
+							- while ( have_posts() ) : the_post();
+								- $data = prepare_post();
+								div(
+									class!="<?php echo $cli;?>"
+									)
+									- $data['extra_class'] .= $extraclass
+									include ../../module/block_preview_article/index.php.jade
+							- endwhile;
+
+				include ../../module/block_social/index.php.jade
+
+
+		- else:
+		article(id="post-0", class="post no-results not-found")
+			header
+				h2
+					- _e( $nothingtitle, 'blankslate' );
+			section.entry.content
+				p
+					- _e( $nothing, 'blankslate' );
+		- endif;
+	- get_footer();

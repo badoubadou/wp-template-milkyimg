@@ -1,0 +1,41 @@
+article.blocks.article(
+	class!="<?php echo d('extra_class',$data);?>"
+	)
+
+	- if( have_rows('article') ):
+		//- loop through the rows of data
+		- while ( have_rows('article') ) : the_row();
+			- if( get_row_layout() == 'texte' ):
+				- the_sub_field('texte');
+			- elseif( get_row_layout() == 'galerie' ):
+				-if( have_rows('images') ):
+				.grid.container-fluid
+					.row
+						- while ( have_rows('images') ) : the_row();
+							- $images = get_sub_field('image');
+							- $video = get_sub_field('video');
+							- $full_width = get_sub_field('full_width');
+							- $classli = $full_width ? 'col-xs-12' : 'col-xs-12 col-sm-6';
+							- if($images) :
+								- foreach($images as $key => $image):
+									div(
+									class!='<?php echo $classli;?>'
+									)
+										img(src!="<?php echo $image[url]; ?>" alt!="<?php echo $image[alt]; ?>" )
+								- endforeach;
+							- else :
+								div(
+									class!='<?php echo $classli;?>'
+									)
+										.videoWrapper
+											!= $video;
+							- endif;
+						- endwhile;
+				- endif;
+			- endif;
+		- endwhile;
+		- else:
+		//- no layouts found
+	- endif;
+
+	//- include ../../module/block_social/index.php.jade

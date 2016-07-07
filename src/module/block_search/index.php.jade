@@ -9,11 +9,10 @@
 
 	.cont_search
 		form.searchform(role='search', method='get', action!="<?php echo 'http://'.$_SERVER['HTTP_HOST'];?>")
-			input(id!="<?php echo ($topsearch) ? 's' : 'mobilesearch';?>", type='text', value='',placeholder!="<?php echo ((ICL_LANGUAGE_CODE == 'nl') ? ' Zoeken' : ' Rechercher');?>", name='s')
-			input(type='hidden', name='lang', value!='<?php echo ICL_LANGUAGE_CODE;?>')
+			input(id="s", type='text', value='', placeholder="search", name='s')
 			button.icon-search(
 			type='submit',
-			value!="<?php echo ((ICL_LANGUAGE_CODE == 'nl') ? 'Zoeken' : 'Rechercher');?>",
+			value="search",
 			name='search')
 
 	- if($topsearch):

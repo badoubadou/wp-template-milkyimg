@@ -1,40 +1,5 @@
-article.blocks.article(
-	class!="<?php echo d('extra_class',$data);?>"
-	)
-	header
-		.meta
-			time(datetime!="<?php echo d('post_date_time',$data);?>").date
-				!=d('post_date',$data)
-			.title
-				!=d('post_title',$data)
-			.author
-				span
-					!=d('post_author',$data)
+header.one_third
+	include header.php.jade
 
-	include ../block_social/index.php.jade
-
-	- $data['post_thumbnail'] = get_the_post_thumbnail();
-	- $data['extraclass_perfect_img'] = 'maxheight_500'
-	include ../block_preview_article/perfect_image.php.jade
-
-	- if( have_rows('reportage') ):
-		//- loop through the rows of data
-		- while ( have_rows('reportage') ) : the_row();
-			- if( get_row_layout() == 'texte' ):
-				- the_sub_field('texte');
-			- elseif( get_row_layout() == 'photos' ):
-				-if( have_rows('images') ):
-					ul.listimg
-						- while ( have_rows('images') ) : the_row();
-							- $image = get_sub_field('image');
-							li
-								img(src!="<?php echo $image[url]; ?>" alt!="<?php echo $image[alt]; ?>" )
-						- endwhile;
-				- endif;
-			- endif;
-		- endwhile;
-		- else:
-		//- no layouts found
-	- endif;
-
-	include ../../module/block_social/index.php.jade
+section.two_third
+	include content.php.jade

@@ -1,31 +1,20 @@
+
 footer
-	.container
-		.credit
-			|&copy;
-			strong
-				|Becomev SPRL
+	.my_container
+		- $pageinfo = get_page_by_title( 'info' );
+		- $pageinfoid = $pageinfo->ID;
 
-		address
-			p
-				!= (ICL_LANGUAGE_CODE == 'nl') ? 'Merodestraat 60 - Brussel' : '60 Rue de Mérode - 1060 Bruxelles'
-				//- br
-				//- != (ICL_LANGUAGE_CODE == 'nl') ? '' : ''
+		.mention
+			| Copyright © 2016 - Shut Studio - All rights reserved - &nbsp;
+			- $linkmailto = 'mailto:';
+			- $linkmailto .= get_field('mail', $pageinfoid);
 
-		p
-			| Les textes signés n’engagent que leur(s) auteur(s). La reproduction des articles et extraits doit recevoir l’accord préalable de la direction et de la rédaction.
-.blocks.mypopin
-	.shield
-	.content
-script(src='https://use.typekit.net/cqc3int.js')
-script.
-	(function(d) { var tkTimeout=3000;
-		if(window.sessionStorage){if(sessionStorage.getItem('useTypekit')==='false'){tkTimeout=0;}}
-		var config = {
-		kitId: 'cqc3int',
-		scriptTimeout: tkTimeout
-		},
-		h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+"wf-inactive";if(window.sessionStorage){sessionStorage.setItem("useTypekit","false")}},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+="wf-loading";tk.src='//use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
-		})(document);
+			a(href!="<?php echo $linkmailto;?>")
+				!= the_field('mail', $pageinfoid)
+			|&nbsp;-&nbsp;
+			!= the_field('telephone', $pageinfoid)
+		.tags
+			!= get_the_tag_list('<div class="Related tags"><h4>Related tags</h4><ul><li>','</li><li>','</li></ul></div>')
 
 script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js')
 script(src!='<?php echo get_stylesheet_directory_uri(); ?>/js/base.js?<?php echo time(); ?>')

@@ -1,53 +1,25 @@
-background-linear-gradient(startPoint, startColor, startInterval, endColor, endInterval, deprecatedWebkitStartPoint = false, deprecatedWebkitEndPoint = false)
-	background-color startColor
-	if deprecatedWebkitStartPoint && deprecatedWebkitEndPoint
-		background-image -webkit-gradient(linear, deprecatedWebkitStartPoint, deprecatedWebkitEndPoint, color-stop(startInterval, startColor), color-stop(endInterval, endColor))
-	background-image -webkit-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
-	background-image -moz-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
-	background-image -ms-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
-	background-image -o-linear-gradient(startPoint, startColor startInterval, endColor endInterval)
-	background-image linear-gradient(startPoint, startColor startInterval, endColor endInterval)
+vert_align_middle()
+	position absolute
+	top 50%
+	transform translateY(-50%)
 
+even-blocks(max)
+	for i in 1
+		.line:nth-child(1):nth-last-child({i})
+			height (100% / (i - 1))
+			@media $bs-screen-xld-min
+				height auto
 
+	for i in (1..2)
+		.line:nth-child(1):nth-last-child({i})
+		.line:nth-child({li}):nth-last-child(1)
+			height (100% / (i - 1))
+			@media $bs-screen-xld-min
+				height auto
 
-/* styles for '...' */
-$line-height = 1.2em
-.block-with-text
-	display block
-	/* hide text if it more than N lines  */
-	overflow hidden
-	/* for set '...' in absolute position */
-	position relative
-	/* use this value to count block height */
-	line-height $line-height
-	/* max-height = line-height (1.2) * lines max number (3) */
-	max-height  $line-height * 6
-	/* fix problem when last visible word doesn't adjoin right side  */
-	// text-align justify
-	text-align left
-
-	/* */
-	margin-right -1em
-	padding-right 1em
-
-	&:before
-		/* points in the end */
-		content '...'
-		/* absolute position */
-		position absolute
-		/* set position to right bottom corner of block */
-		right 0
-		bottom 0
-
-	&:after
-		/* points in the end */
-		content ''
-		/* absolute position */
-		position absolute
-		/* set position to right bottom corner of text */
-		right 0
-		width 1em
-		/* set width and height */
-		height 1em
-		margin-top 0.2em
-		background white
+	for i in (1..max)
+		.line:nth-child(1):nth-last-child({i})
+		.line:nth-child(1):nth-last-child({i}) ~ .line
+			height (100% / (i - 1))
+			@media $bs-screen-xld-min
+				height auto

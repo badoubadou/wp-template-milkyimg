@@ -1,30 +1,24 @@
-.mainheader
+.header
 	h1
-		position absolute
-		width 200px
-		left 80px
+		width widthlogo
+		height 60px
+		left ($space-1 / 2)
 		margin 0
-		padding 14px 10px 10px 10px
-		background #FFFFFF
-		background $bg-color-secondary
 		z-index 1
+		vert_align_middle()
 
-		img
-			width 100%
-			height auto
+		a,
+		svg
+			height 60px
+			display block
 
-	@media $bs-screen-xsd-max
-		h1
-			width 120px
-			padding 10px 40px 8px 10px
-			left 63px
-
+		.elementlogo
+			fill $color-graphic-design
+			.category-drawing &,
+			.category-video &,
+			.category-graphic-design &
+				fill #000
 
 	@media $bs-screen-xld-min // Large devices (desktops, 62em and up)
 		h1
 			left 0
-			width 370px
-			height 123px
-			position relative
-			display inline-block
-			padding 0

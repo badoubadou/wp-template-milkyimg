@@ -1,3 +1,5 @@
+block query
+
 doctype html
 html
 	include header.jade
@@ -7,9 +9,5 @@ html
 		include ../../module/navigation/index.php.jade
 
 		main#main.site-main.frontpage.my_container
-			header
-				h1
-					!= 'Search for : '.get_search_query()
-
-			include ../../module/grid/search.php.jade
+			include ../../module/grid/index.php.jade
 		- get_footer();

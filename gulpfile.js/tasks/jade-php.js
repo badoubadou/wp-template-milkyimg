@@ -6,6 +6,7 @@ var gulpif       = require('gulp-if');
 var handleErrors = require('../lib/handleErrors');
 var jadephp = require('gulp-jade-php');
 var gutil = require('gulp-util');
+var livereload = require('gulp-livereload');
 
 gulp.task('jade-php', function() {
 	gutil.log('jade-php : '+config.src);
@@ -20,6 +21,7 @@ gulp.task('jade-php', function() {
 			pretty: false
 		}))
 		.on('error', handleErrors)
-		.pipe(gulp.dest(config.destmodule));
+		.pipe(gulp.dest(config.destmodule))
+		.pipe(livereload());
 });
 

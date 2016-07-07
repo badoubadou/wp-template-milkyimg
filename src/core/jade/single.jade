@@ -1,85 +1,33 @@
-- $type = array('post');
-
-//- - get_header();
-- $currentpostcat = get_the_category()[0]->slug;
-- $args_same_cat =array('post_type' => $type,'post_status' => 'publish','posts_per_page' => 3,  'category_name' => $currentpostcat);
-- $my_query_same_cat = null;
-- $my_query_same_cat = new WP_Query($args_same_cat);
-
-
-- $args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' => 3,  'category_name' => - $currentpostcat);
-- $my_query = null;
-- $my_query = new WP_Query($args);
-
 doctype html
 html(<?php language_attributes(); ?>)
 	include header.jade
 	body(
 	class!="<?php echo $stringclass;?>"
 	)
+		include ../../module/navigation/index.php.jade
 
-		include ../../module/navigation/with_categories.php.jade
 		main#main.site-main
-			hr.smalldevice
-			.two_col
-				section.two_third
+			.my_container
+				article.two_col
 					- $data = prepare_post();
 					- $data['extra_class'] .= ' fullarticle normalarticle';
 					- $thisid = $post->ID;
 
-					include ../../module/block_article/alt.php.jade
+					include ../../module/block_article/index.php.jade
 
-					.next_prev_nav
-						- if((ICL_LANGUAGE_CODE == 'nl')):
-						-previous_post_link('%link', '< vorig<span class="onlylarge">&nbsp;artikel</span>');
-						-next_post_link('%link', 'volgend<span class="onlylarge">&nbsp;artikel</span>>');
-						- else:
-						-previous_post_link('%link', '< <span class="onlylarge">article&nbsp;</span>précedent');
-						-next_post_link('%link', '<span class="onlylarge">article&nbsp;</span>suivant >');
-						- endif;
-
-
-				aside.one_third
-					h3.recentpost
-						span
-							!= (ICL_LANGUAGE_CODE == 'nl') ? 'Zelfde categorie' : 'Dans la même catégorie'
-
-					.content
-						.grid.container-fluid
-							.row
-								- while ($my_query_same_cat->have_posts()) : $my_query_same_cat->the_post();
-									- if($thisid != $post->ID):
-										- $data = prepare_post();
-										- $data['extra_class'] .= $this_extra_class;
-										- $data['extra_class'] .= ' small_size_preview';
-										- $classli = 'col-xs-12 col-sm-6 col-lg-12';
-										div(
-											class!='<?php echo $classli;?>'
-											)
-												include ../../module/block_preview_article/alt.php.jade
-									- endif;
-								- endwhile;
-					- wp_reset_query();  // Restore global post data stomped by the_post().
-
-					h3.recentpost
-						span
-							!= (ICL_LANGUAGE_CODE == 'nl') ? 'Recente artikels' : 'Les plus récents'
-
-					.content
-						.grid.container-fluid
-							.row
-								- while ($my_query->have_posts()) : $my_query->the_post();
-									- if($thisid != $post->ID):
-										- $data = prepare_post();
-										- $data['extra_class'] .= $this_extra_class;
-										- $data['extra_class'] .= ' small_size_preview';
-										- $classli = 'col-xs-12 col-sm-6 col-lg-12';
-										div(
-											class!='<?php echo $classli;?>'
-											)
-												include ../../module/block_preview_article/alt.php.jade
-									- endif;
-								- endwhile;
-					- wp_reset_query();  // Restore global post data stomped by the_post().
-
+				- $type = array( 'post');
+				- $cat = get_the_category();
+				- $cat = $cat[0];
+				- $catid = $cat->cat_ID;
+				- $args=array('cat' => $catid, 'post_type' => $type,'post_status' => 'publish', 'offset' => $offset);
+				- $my_query_grid = new WP_Query($args);
+				- $count_posts = $my_query_grid->found_posts;
+				- $lgcolsize = 3;
+				.two_col.ontopofgrid
+					.one_third
+						.youwilllike
+							|You will like...
+					.two_third.my_container
+						.articlebottomline
+				include ../../module/grid/index.php.jade
 		- get_footer();

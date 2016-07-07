@@ -1,5 +1,13 @@
 - preg_match('/MSIE (.*?);/', $_SERVER['HTTP_USER_AGENT'], $matches);
 - $bodyclass = implode(' ', get_body_class());
+
+- $cat = get_the_category();
+- $cat = $cat[0];
+- $catslug = $cat->slug;
+
+- $bodyclass .= ' category-'.$catslug.' ';
+
+
 - global $isIE;
 - global $isIEbool;
 - $isIE = (count($matches)>1) ? ' isie ' : ' isnotie ';
@@ -49,7 +57,5 @@ head
 	|<![endif]-->
 	script
 		| document.cookie='resolution='+Math.max(screen.width,screen.height)+("devicePixelRatio" in window ? ","+devicePixelRatio : ",1")+'; path=/';
-
-
 
 

@@ -1,0 +1,9 @@
+.border
+	.title
+		!=d('post_title',$data)
+	.subtitle
+		!=d('post_subtitle',$data)
+	.descrition
+		!=d('post_descrition',$data)
+
+	!= get_the_tag_list('<div class="tags"><h4>Tags</h4><div class="related_tags">',' / ','</div></div>')

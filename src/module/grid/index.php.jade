@@ -1,0 +1,15 @@
+section.full
+	.grid.container-fluid.no-gutter
+		.row
+			- $index = 0;
+			- while ($my_query_grid->have_posts()) : $my_query_grid->the_post();
+				- $data = prepare_post();
+				- $data['extra_class'] .= $this_extra_class;
+				- $classli = 'col-xs-6 col-lg-3';
+				//- - $classli = 'col-xs-6 col-lg-'.$lgcolsize;
+				- $index ++;
+				div(
+					class!='<?php echo $classli;?>'
+					)
+						include ../../module/block_preview_article/index.php.jade
+			- endwhile;

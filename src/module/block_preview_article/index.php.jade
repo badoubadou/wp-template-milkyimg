@@ -1,25 +1,31 @@
+- $currentpostslug = get_the_category()[0]->slug;
+
 article.blocks.preview_article(
 	class!="<?php echo d('extra_class',$data);?>"
 	)
-	a(href!="<?php echo d('post_permalink',$data);?>")
-		include perfect_image.php.jade
-		//- figure.thumbnail
-		//- 	!=d('post_thumbnail',$data)
+	a(
+	href!="<?php echo d('post_permalink',$data);?>",
+	class!="<?php echo $currentpostslug;?>"
+	style!="<?php echo 'background-image:url('.d('post_thumbnail_src',$data).')';?>"
+	)
+		//-include perfect_image.php.jade
 		header
-			.meta
-				.contmeta
-					.catergory
-						!=d('category',$data)
-
-					.author
-						!=d('post_author',$data)
-
-					time(datetime!="<?php echo d('post_date_time',$data);?>").date
-						!=d('post_date',$data)
-
 			h6.title
 				!=d('post_title',$data)
 
-			blockquote(cite!="<?php echo d('post_permalink',$data);?>").excerpt
-				span.highlight
-					!=d('post_excerpt',$data)
+		//- header
+		//- 	.meta
+		//- 		.contmeta
+		//- 			.catergory
+		//- 				!=d('category',$data)
+
+		//- 			.author
+		//- 				!=d('post_author',$data)
+
+		//- 			time(datetime!="<?php echo d('post_date_time',$data);?>").date
+		//- 				!=d('post_date',$data)
+
+
+		//- 	blockquote(cite!="<?php echo d('post_permalink',$data);?>").excerpt
+		//- 		span.highlight
+		//- 			!=d('post_excerpt',$data)

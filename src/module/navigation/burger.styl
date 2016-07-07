@@ -1,22 +1,23 @@
-.navigation-header
+.navigation
 	.toggle-burger
-		background: transparent
-		border: 0
-		height: $burger-height
-		overflow: hidden
-		width: $burger-width
-		font-size: 0
-		margin: 26px 20px 20px 0
-		position relative
+		background transparent
+		border 0
+		height burger-height
+		overflow hidden
+		width burger-width
+		font-size 0
+		margin 35px 10px
+		position absolute
+		left 170px
 
 		&:focus
-			outline: none
+			outline none
 
 		span
 			transition all
 			transition-duration 0.4s
-			background $ft-color-primary
-			height 5px
+			background $primary-color
+			height 3px
 			left 0
 			margin auto
 			position absolute
@@ -24,33 +25,32 @@
 			top 0
 			width 45px
 
+			.category-drawing &,
+			.category-video &,
+			.category-graphic-design &
+				background #000
+
 		.center
-			bottom: 0
-			transform-origin: 50%
+			bottom 0
+			transform-origin 50%
 
 		.bottom
-			bottom: 0
-			top: auto
+			bottom 0
+			top auto
 
 		.navigation-active &
-			span
-				background: $ft-color-secondary
 			.sr-only
-				opacity:0
+				opacity 0
 			.top
 				transform rotate(45deg)
 				top 15px
 
 			.center
-				transform: scale(0)
+				transform scale(0)
 
 			.bottom
-				transform: rotate(-45deg)
+				transform rotate(-45deg)
 				bottom 15px
 
-	@media $bs-screen-xsd-max // Large devices (desktops, 62em and up)
-		.toggle-burger
-			width 40px
-
-	@media $bs-screen-xld-min // Large devices (desktops, 62em and up)
-		display:none
+		@media $bs-screen-xld-min // Large devices (desktops, 62em and up)
+			display none

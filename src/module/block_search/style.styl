@@ -14,37 +14,68 @@
 
 .blocks.search
 	.cont_search
-		overflow: hidden
-		display: inline-block
-		position: relative
-		height:30px
+		overflow hidden
+		display inline-block
+		position relative
+		height 30px
+		width 100%
+		right auto
+		left 0
+		transition width 1s
+		overflow hidden
+		@media $bs-screen-xld-min
+			width 0
+			left auto
+			right 0
 
 	input
-		width: 0px
-		display: none
-		transition: width 1s
-		display:inline-block
-		.openedsearch &
-			width 130px
+		transition width 1s
+		display inline-block
+		width calc( 100% - 70px)
+		margin-left $space-1
+
+		@media $bs-screen-xld-min
+			width 0px
 
 	#showsearch
 		display:inline-block
 
-		&:checked,
-		.openedsearch &
-			~ #labelshow
-				display none
-			~ .cont_search
-				input
-					width 130px
-					display inline-block
-					opacity 1
-				button.icon-search
-					display inline-block
+		@media $bs-screen-xld-min
+			&:checked,
+			.openedsearch &
+				~ #labelshow
+					display none
+				~ .cont_search
+					width 170px
+					input
+						width 130px
+						margin-left 0
+						display inline-block
+						opacity 1
+					button.icon-search
+						display inline-block
 
 	button.icon-search:before,
 	#labelshow:before
 		font-size 30px
+		color #fff
+		.category-drawing &,
+		.category-video &,
+		.category-graphic-design &
+			color #000
+
+	button.icon-search,
+	#labelshow
+		position absolute
+		right 5px
+		top 0px
+		&#labelshow
+			display none
+		@media $bs-screen-xld-min
+			top auto
+			&#labelshow
+				display inline-block
+
 
 	label
 		cursor pointer
@@ -59,13 +90,14 @@
 		cursor:pointer
 		padding: 0 ($space-1/2)
 
-	#s
-		opacity 0
+	@media $bs-screen-xld-min
+		#s
+			opacity 0
 
 	#s,
 	#mobilesearch
 		border:0 none
-		border-bottom:1px solid $grey
+		border-bottom:1px solid #fff
 		vertical-align:top
 		font-size:18px
 		font-family: $ft-family-secondary
@@ -76,18 +108,26 @@
 		padding-bottom 2px
 		margin-right 5px
 
+		@media $bs-screen-xld-min
+			.category-drawing &,
+			.category-video &,
+			.category-graphic-design &
+				border-bottom:1px solid #000
+
 	#mobilesearch
 		color #fff
 
-	button.icon-search
-		display:none
-		.openedsearch &
-			display inline-block
-			color:$grey
-			&:before
-				top auto
-				bottom 2px
-				font-size 24px
+	@media $bs-screen-xld-min
+		button.icon-search
+			display:none
+
+			.openedsearch &
+				display inline-block
+				color $ft-color-secondary
+				&:before
+					top auto
+					bottom 2px
+					font-size 24px
 
 	input[type=checkbox]
 		opacity: 0

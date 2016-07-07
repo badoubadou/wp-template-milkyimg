@@ -6,51 +6,61 @@
 - if($isIEbool):
 	-$defaultimg = 'fr';
 - endif;
-h1
-	a(href='/')
-		picture
-			source(
-				media='(min-width: 34em)',
-				srcset!="<?php echo get_stylesheet_directory_uri().'/images/logo-fr.svg' ;?>",
-			)
-			img(
-				src!="<?php echo get_stylesheet_directory_uri().'/images/logo-'.$defaultimg.'.svg' ;?>",
-				alt!="<?php echo (ICL_LANGUAGE_CODE == 'fr') ? 'Bière grand cru' : 'Bier grand cru';?>"
-			)
-
-.right_nav
-	- wp_nav_menu(  array( 'container'=> false, 'menu' => 'top_menu', 'menu_class' => 'top_menu') );
-	ul
-		li.lisearch
-			.search-expand-inner
-				- $topsearch = true
-				include ../../module/block_search/index.php.jade
-		li.social
-			a.icon-twitter(href="https://twitter.com/biergrandcru",target="_blank")
-		li.social
-			a.icon-facebook(href="https://www.facebook.com/beergrandcru/",target="_blank")
-		li.lang
-			- if(icl_get_languages()[((ICL_LANGUAGE_CODE === 'fr') ? 'nl' : 'fr')]['url'] != ''):
-				- $linkop = icl_get_languages()[((ICL_LANGUAGE_CODE === 'fr') ? 'nl' : 'fr')]['url']
-			-else:
-				- global $sitepress
-				- $linkop = $sitepress->convert_url( site_url(), 'nl' )
-			-endif;
-			a(href!="<?php echo $linkop ;?>")
-				!=(ICL_LANGUAGE_CODE === 'fr') ? 'nl' : 'fr'
-
-
+- $pageinfo = get_page_by_title( 'info' );
+- $pageinfoid = $pageinfo->ID;
 
 nav.blocks.navigation
-	.navigation-header
+	.header
+		h1
+			a(href='/')
+				include ../../svg/logo_shut.svg
+
 		button.toggle-burger
 			span.sr-only Toggle navigation
 			span.top
 			span.center
 			span.bottom
+
 	.nav-group-wrapper
-		.search-expand-inner.openedsearch
-			- $topsearch = false
-			include ../../module/block_search/index.php.jade
-		- wp_nav_menu(  array( 'container'=> false, 'menu' => 'main_menu', 'menu_class' => 'main_menu') );
-		- wp_nav_menu(  array( 'container'=> false, 'menu' => 'top_menu', 'menu_class' => 'top_menu') );
+		ul
+			- $categories = get_categories()
+			- foreach ( (array) $categories as $keycat => $categorie ):
+				- $title = $categorie->name;
+				- $slug = $categorie->slug;
+				- $curentid = $categorie->term_id;
+				- $url = get_category_link( $curentid  );
+				- $currentpostcat = get_the_category()[0]->name;
+				- $current_cat = get_query_var('category_name');
+				- $post_match = ($currentpostcat === $title);
+				- $cat_match = ($current_cat === strtolower($title));
+
+				- $selected = ( $cat_match ||  $post_match);
+
+				li.line(class!="<?php echo (($selected) ? 'current-menu-item' : '').' '.$slug; ?>")
+					a(
+					href!="<?php  echo $url ?>",
+					class!="<?php echo $slug;?>"
+					)
+						- echo $title;
+			- endforeach;
+
+			//- .right_nav.nav.line
+			//- 	ul
+			li.contact.line
+				a(
+					href="/contact",
+					class="contact"
+					)
+						|contact
+			li.lisearch
+				.search-expand-inner
+					- $topsearch = true
+					include ../../module/block_search/index.php.jade
+			li.social.fb.line
+				a.icon-facebook2(href!="<?php echo the_field('facebook', $pageinfoid);?>",target="_blank")
+			li.social.twitter.line
+				a.icon-tumblr2(href!="<?php echo the_field('tumblr', $pageinfoid);?>",target="_blank")
+			li.social.vimeo.line
+				a.icon-vimeo2(href!="<?php echo the_field('vimeo', $pageinfoid);?>",target="_blank")
+
+

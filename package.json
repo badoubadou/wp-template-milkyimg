@@ -44,6 +44,7 @@
     "gulp-if": "~1.2.5",
     "gulp-imagemin": "^2.3.0",
     "gulp-jade-for-php": "^1.0.9",
+    "gulp-livereload": "^3.8.1",
     "gulp-minify-css": "^1.2.1",
     "gulp-notify": "^2.2.0",
     "gulp-nunjucks-render": "^0.2.1",

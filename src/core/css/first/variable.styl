@@ -1,24 +1,28 @@
 // Background Colors
-$bg-color-primary = #000
-$bg-color-secondary = #fff
+$bg-color-primary = #fff
+$bg-color-secondary = #000
 $bg-color-secondary-dark = #0e36ac
 $bg-color-tertiary = #f6d83e//// jaune
 
+$color-graphic-design = #00ff00
+$color-drawing = #ff00ff
+$color-video = #00ffff
+
 $bg-admin-color-primary = #999999
 
-$primary-color = #f6d83e
-$secondary-color = #f6f6f6
+$primary-color = $color-graphic-design
+$secondary-color = $color-drawing
 //// jaune
 
 // Font Colors
 $ft-color-primary = $bg-color-primary
 $ft-color-secondary = $bg-color-secondary
-$ft-color-tertiary = $bg-color-primary
+$ft-color-tertiary = #808080
 
 // Font Families
-$ft-family-primary = "franklin-gothic-urw", Helvetica, Arial, sans-serif;
-$ft-family-primary-cond = "franklin-gothic-urw-cond", Helvetica, Arial, sans-serif;
-$ft-family-secondary = "open-sans",sans-serif;
+$ft-family-primary = 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$ft-family-primary-cond = Helvetica, Arial, sans-serif;
+$ft-family-secondary = "Times New Roman", Times, serif;
 
 // Link Colors
 $lk-color-primary = $ft-color-tertiary
@@ -48,10 +52,10 @@ $login-height-sd = 46px
 $login-height = 32px
 // Bootstrap Breakpoints
 
-$break-min = 34em
-$break-med = 48em
-$break-larg = 62em
-$break-xlarg = 75em
+$break-min = 300px
+$break-med = 800px
+$break-larg = 900px
+$break-xlarg = 1200px
 
 // Small devices (landscape phones, 34em and up)
 $bs-screen-sd-min = unquote('screen and (min-width: '+$break-min+')')
@@ -74,16 +78,33 @@ $bs-screen-ld-max = unquote('screen and (max-width: '+($break-xlarg - 0.1em)+')'
 // No media query since the extra-large breakpoint has no upper bound on its width
 
 $space-1 = 30px
-$navigation-height = 50px
-$navigation-footer-height = 50px
-$burger-height = 35px
-$burger-width = 48px
+navigation-height = 100px
+navigation-footer-height = 50px
+burger-height = 25px
+burger-width = 30px
 
 height_block = 460px
 
 height_footer = 210px
 
+widthlogo = 137px
+
 .darkgreybg
 	background:$dark-grey
 	color:$light-grey
+
+// vert_align_middle()
+// 	position absolute
+// 	top 50%
+// 	transform translateY(-50%)
+
+// regular_height()
+// 	for i in (1..5)
+// 		if i < 2
+// 			ul li:first-child:nth-last-child({i})
+// 				height (100 / i) * 1%
+// 		else
+// 			ul li:first-child:nth-last-child({i})
+// 			ul li:first-child:nth-last-child({i}) ~ li
+// 				height (100 / i) * 1%
 

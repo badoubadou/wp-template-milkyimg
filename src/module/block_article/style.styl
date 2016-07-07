@@ -1,58 +1,62 @@
-.blocks.article
-	time.date
-		font-size 0.875em
+article.two_col
+	color $ft-color-secondary
+	text-align left
+
+	.videoWrapper
+		padding-bottom 56.25%
+		height 0
+		position relative
+		padding-top 25px
+
+		iframe
+			position absolute
+			top 0
+			left 0
+			width 100%
+			height 100%
+
+
+	.border
+		border-top 5px solid #000
+		border-bottom 5px solid #000
+		padding-top ($space-1 * 2/3)
+		padding-bottom ($space-1 * 2/3)
+
+
+	.title
+		text-transform uppercase
+		font-size 1.5em
 		font-weight 700
-		color $dark-grey
 
 	.subtitle
-		font-size 1.625em
-		font-weight 700
+		a
+			color $ft-color-secondary
+			text-decoration underline
+			&:hover
+				color $ft-color-tertiary
 
-	&.normalarticle
-		text-align left
-		.title
-			font-size 3.875em
-			line-height 1em
 
-		.author
+	.descrition
+		color $ft-color-tertiary
+		a
+			text-decoration underline
+			color $ft-color-tertiary
+			&:hover
+				color $ft-color-secondary
+
+
+	.grid [class*='col-']
+		padding-top ($space-1 / 2)
+		padding-bottom ($space-1 / 2)
+
+	.tags
+		border-top 1px $ft-color-tertiary solid
+		h4
+			text-transform uppercase
 			font-weight 700
-			font-size 0.875em
-
-	.chapeau
-		font-weight 700
-		padding-top $space-1 * 1.4
-
-	&.photoreportages
-		text-align center
-		.author
-			span
-				&:before,
-				&:after
-					content ' - '
-					font-weight 700
-
-.recentpost
-	text-transform uppercase
-	font-weight 700
-	position relative
-	text-align center
-	margin-top 0
-	.single-bieres &
-		margin-bottom 0
-
-	&:before
-		content ' '
-		display inline-block
-		width 100%
-		height 13px
-		top 0
-		background #000000
-		background linear-gradient(to top, #000000 0%, #000000 15%, #ffffff 15%, #ffffff 80%, #ffffff 80%, #000000 80%)
-
-	span
-		position relative
-		z-index 1
-		display inline-block
-		background $bg-color-secondary
-		padding 0 ($space-1/2)
-		top 50%
+			margin-top ($space-1 / 3)
+			margin-bottom ($space-1 / 3)
+		a
+			color $ft-color-secondary
+			&:hover
+				color $ft-color-tertiary

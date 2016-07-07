@@ -1,95 +1,11 @@
-- /* Template Name: home */
-- $type = array( 'post', 'photos-reportages');
+extends grid-layout
+block query
+	- /* Template Name: home */
+	- $type = array( 'post');
 
-- $postperpage = 11;
+	- $args=array('post_type' => $type,'post_status' => 'publish', 'offset' => $offset);
+	- $my_query_grid = null;
+	- $my_query_grid = new WP_Query($args);
+	- $count_posts = $my_query_grid->found_posts;
+	- $lgcolsize = ceil(12 / $count_posts);
 
-- $part = $_GET['part'] - 1;
-- $part = ($part<0) ? 0 : $part;
-- $offset = 0;
-- if($part>=1):
-	- $offset = $postperpage * $part;
-- endif;
-
-- $args=array('post_type' => $type,'post_status' => 'publish','posts_per_page' => $postperpage, 'offset' => $offset);
-- $my_query = null;
-- $my_query = new WP_Query($args);
-- $count_posts = $my_query->found_posts;
-- $nblinav = ceil($count_posts / $postperpage);
-
-- $args_event=array('posts_per_page' => 4, 'post_type' => 'evenements','post_status' => 'publish' );
-
-- $date = date('Ymd');
-- $args_event_pub = array('orderby' => 'rand', 'posts_per_page' => 2, 'post_type'=>'publicités', 'meta_key' => 'taille','meta_value' => 'petit', 'meta_query' => array('relation' => 'AND', array( 'key' => 'date_de_debut_de_campagne', 'compare'	=> '<=', 'value' => $date, ), array( 'key' => 'date_de_fin_de_campagne', 'compare'	=> '>=', 'value' => $date, )));
-
-//- get_header();
-doctype html
-html(<?php language_attributes(); ?>)
-	include header.jade
-	body(
-	class!="<?php echo $stringclass;?>"
-	)
-		include ../../module/navigation/index.php.jade
-
-		main#main.site-main.frontpage
-			- if(!$offset):
-				section.full
-					- $my_query->the_post();
-					- $data = prepare_post();
-					- $data['extra_class'] .= ' full_size_preview';
-					include ../../module/block_preview_article/index.php.jade
-			- endif;
-			.two_col
-				section.three_third
-					.content
-						.grid.container-fluid
-							.row
-								- $index = 0;
-								- while ($my_query->have_posts()) : $my_query->the_post();
-									- $data = prepare_post();
-									- $data['extra_class'] .= $this_extra_class;
-									- $data['extra_class'] .= ' small_size_preview';
-									- $classli = 'col-xs-12 col-sm-6 col-lg-4';
-									- if($index === 1 || $index === 3 ) :
-										- $classli .= ' col-lg-offset-4';
-									- endif;
-									- $index ++;
-									div(
-										class!='<?php echo $classli;?>'
-										)
-											include ../../module/block_preview_article/alt.php.jade
-								- endwhile;
-
-				aside.one_third.too_top_right
-					.content
-						.adds
-							- $my_query = null;
-							- $my_query = new WP_Query($args_event_pub)
-							- if( $my_query->have_posts() ) :
-								- while ($my_query->have_posts()) : $my_query->the_post()
-										- $data = prepare_post();
-										- $data['extra_class'] .= ' small_add';
-										include ../../module/block_ad/index.php.jade
-								- endwhile
-							- endif
-
-						.blocks.event
-							h3.title_event
-								|Beer Agenda
-
-							- $my_query = null;
-							- $my_query = new WP_Query($args_event)
-							- if( $my_query->have_posts() ) :
-								ul
-									- while ($my_query->have_posts()) : $my_query->the_post()
-										li
-											- $data = prepare_post();
-											include ../../module/block_event/index.php.jade
-									- endwhile
-							- endif
-							- wp_reset_query()  // Restore global post data stomped by the_post().
-
-
-			section
-				include ../../module/block_numeric_nav/index.php.jade
-
-		- get_footer();

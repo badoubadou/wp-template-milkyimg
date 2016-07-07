@@ -1,17 +1,17 @@
 - /* Template Name: contact */
-//- - get_header();
 doctype html
-html(<?php language_attributes(); ?>)
+html
 	include header.jade
 	body(
 	class!="<?php echo $stringclass;?>"
 	)
-
-	include ../../module/navigation/index.php.jade
-
-	main#main.site-main
-		section
-			.blocks.contact-form
+		include ../../module/navigation/index.php.jade
+		main#main.site-main
+			.blocks.contact-form.my_container
 				#contact-form.clearfix
-					- the_content();
-	- get_footer();
+					- if (have_posts()) :
+						- while (have_posts()) : the_post();
+							- the_content();
+						- endwhile;
+					- endif;
+		- get_footer();
