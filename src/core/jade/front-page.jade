@@ -3,7 +3,7 @@ block query
 	- /* Template Name: home */
 	- $type = array( 'post');
 
-	- $args=array('post_type' => $type,'post_status' => 'publish', 'offset' => $offset, 'posts_per_page' => -1);
+	- $args=array('post_type' => $type,'post_status' => 'publish', 'offset' => $offset, 'posts_per_page' => -1, 'orderby' => 'rand');
 	- $my_query_grid = null;
 	- $my_query_grid = new WP_Query($args);
 	- $count_posts = $my_query_grid->found_posts;

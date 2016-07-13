@@ -1,12 +1,12 @@
 .icon-search
-	display:inline-block
-	position: relative
-	height:$space-1
-	width:$space-1
+	display inline-block
+	position relative
+	height $space-1
+	width $space-1
 	&:before
-		top:0
-		left:0
-		position:absolute
+		top 0
+		left 0
+		position absolute
 
 .openedsearch
 	margin-left ($space-1/2)
@@ -24,7 +24,7 @@
 		transition width 1s
 		overflow hidden
 		@media $bs-screen-xld-min
-			width 0
+			width 40px
 			left auto
 			right 0
 
@@ -85,10 +85,10 @@
 
 
 	button[type=submit]
-		background:transparent
-		border:0 none
-		cursor:pointer
-		padding: 0 ($space-1/2)
+		background transparent
+		border 0 none
+		cursor pointer
+		padding 0 ($space-1/2)
 
 	@media $bs-screen-xld-min
 		#s
@@ -96,17 +96,18 @@
 
 	#s,
 	#mobilesearch
-		border:0 none
-		border-bottom:1px solid #fff
-		vertical-align:top
-		font-size:18px
-		font-family: $ft-family-secondary
-		font-style:italic
-		background: transparent
-		position: relative
+		border 0 none
+		border-bottom 1px solid #fff
+		vertical-align top
+		font-size 18px
+		// font-family $ft-family-secondary
+		// font-style:italic
+		background transparent
+		position relative
 		outline none
 		padding-bottom 2px
 		margin-right 5px
+		color $ft-color-primary
 
 		@media $bs-screen-xld-min
 			.category-drawing &,
@@ -119,7 +120,7 @@
 
 	@media $bs-screen-xld-min
 		button.icon-search
-			display:none
+			display none
 
 			.openedsearch &
 				display inline-block

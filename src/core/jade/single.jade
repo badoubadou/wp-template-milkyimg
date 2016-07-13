@@ -19,7 +19,7 @@ html(<?php language_attributes(); ?>)
 				- $cat = get_the_category();
 				- $cat = $cat[0];
 				- $catid = $cat->cat_ID;
-				- $args=array('cat' => $catid, 'post_type' => $type,'post_status' => 'publish', 'offset' => $offset);
+				- $args=array('cat' => $catid, 'post_type' => $type,'post_status' => 'publish', 'offset' => $offset, 'posts_per_page' => -1);
 				- $my_query_grid = new WP_Query($args);
 				- $count_posts = $my_query_grid->found_posts;
 				- $lgcolsize = 3;
