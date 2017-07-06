@@ -1,4 +1,4 @@
-Beton from : gulp-starter
+WP-template from : gulp-starter
 ============
 ## Features
 - Compile stylus
@@ -19,8 +19,7 @@ Beton from : gulp-starter
 - Local production sever for testing
 
 ## Live Demo
-http://greypants.github.io/gulp-starter/
-Result of running `gulp deploy`
+Result of running `gulp deploy`  (to do)
 
 ## Install dependencies
 ```
