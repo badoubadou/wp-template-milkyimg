@@ -65,7 +65,7 @@ function prepare_post(){
 
     $data['content'] = get_the_content();
     $data['post_permalink'] = get_permalink($post->ID);
-    $data['ID'] = $post->ID;
+    $data['ID'] = get_the_ID();
 
     $categories = get_the_category();
     $separatorclass = ' ';

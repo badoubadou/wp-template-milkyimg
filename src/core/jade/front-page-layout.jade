@@ -1,0 +1,13 @@
+block query
+
+doctype html
+html
+	include header.jade
+	body.slider-full-height(
+	class!="<?php echo get_query_var('pagename');?>"
+	)
+		include ../../module/navigation/index.php.jade
+
+		main#main.site-main.my_container
+			block sliderfront
+		- get_footer();

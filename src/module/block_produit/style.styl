@@ -1,0 +1,37 @@
+$pad = 5px
+$width-tri = 20px
+$height-tri = 20px + ($pad * 2)
+.blocks.produit
+	h3.title
+		font-size 2em
+		padding-left 0
+	figure
+		padding-bottom $pad
+
+	.cost
+		background #000
+		color #fff
+		font-weight 700
+		display inline-block
+		line-height $height-tri
+		position relative
+		padding 0 $pad
+		margin-bottom ($pad*2)
+		margin-left - $pad
+		&:after
+			content ''
+			position absolute
+			right - $width-tri
+			border-style solid
+			border-width ($height-tri/2) 0 ($height-tri/2) $width-tri
+			border-color transparent transparent transparent #000
+			top 0
+
+		&:before
+			content ''
+			position absolute
+			left 0
+			border-style solid
+			border-width 0 ($height-tri/4) ($height-tri/4) 0
+			border-color transparent #000 transparent transparent
+			bottom - ($height-tri/4)

@@ -1,0 +1,180 @@
+- /* Template Name: cart */
+- include('paypal_config.php');
+doctype html
+html(<?php language_attributes(); ?>)
+	include header.jade
+	body(
+	class!="<?php echo $stringclass;?>"
+	)
+		include ../../module/navigation/index.php.jade
+		- if(isset($_COOKIE['cart'])):
+			- $cart = stripslashes($_COOKIE['cart'])
+			- $cart = json_decode($cart, true)
+		- endif;
+		main#main.site-main.cartpage(
+		data-etape='etape1'
+		)
+			.my_container
+				.smaller
+					h3.titlesection.btnetape1
+						| Product Details
+					section.cartcontent.etape1
+						.content
+							- $total = 0;
+							- $higer_postal = 0;
+							- foreach($cart as $data):
+								- if($higer_postal< d('postal',$data)):
+									- $higer_postal = d('postal',$data)
+								-endif;
+								.grid.container-fluid.article
+									.row
+										.col-xs-12.col-sm-6.col-lg-4
+											- $data['post_thumbnail'] = get_the_post_thumbnail(d('id',$data))
+											include ../../module/block_preview_article/perfect_image.php.jade
+										.col-xs-12.col-sm-6.col-lg-4
+											h3.title
+												!=d('title',$data)
+											.descrition
+												!=d('descrition',$data)
+										.col-xs-12.col-sm-12.col-lg-4
+											.row
+												.col-xs-4
+													.label
+														|Prix
+													.cost
+														!=d('cost',$data).' €'
+												.col-xs-4
+													.label
+														|Quantité
+													input.quantity(
+													value!="<?php echo d('quantity',$data);?>",
+													type='number',
+													min='0'
+													)
+													input.id(
+													value!="<?php echo d('id',$data);?>",
+													type='hidden'
+													)
+													input.image(
+													value!="<?php echo d('image',$data);?>",
+													type='hidden'
+													)
+													input.descrition(
+													value!="<?php echo d('descrition',$data);?>",
+													type='hidden'
+													)
+												.col-xs-4
+													.label
+														|Total
+													.subtotal
+														- $sub_total = (d('quantity',$data) * d('cost',$data))
+														- $total = $total + intval($sub_total)
+														!=$sub_total.' €'
+							- endforeach;
+
+						.recap_cost
+							.total
+								span
+									|Sous total :
+								span.value
+									!=$total.' €'
+							.postal
+								span.txt
+									| Fraix postaux :
+								span.value
+									!=$higer_postal.' €'
+							.topay
+								span
+									|Total :
+								span.value
+									!= ($total + intval($higer_postal)).' €'
+
+
+						.btn.checkout.invert.btnetape2
+							| check Out
+
+					h3.titlesection.btnetape2
+						| Billing Adress
+					section.form.etape2
+						//- form#formexpresspaypal(
+						//- action!="<?php echo get_stylesheet_directory_uri().'/paypal_ec_redirect.php' ;?>",
+						//- method='post',
+						//- target='_blank'
+						//- )
+						//- 	div#paypalexpress
+
+						.content
+							.grid
+								.col-xs-12
+									form#formaddress
+
+										.row
+											.col-xs-12.col-lg-6
+												input(placeholder='First name', data-where='first_name' required class='required')
+											.col-xs-12.col-lg-6
+												input(placeholder='Last name', data-where='last_name' required class='required')
+
+										.row
+											.col-xs-12
+												input(placeholder='Address', data-where='address1' required class='required')
+										.row
+											.col-xs-12
+												input(placeholder='Address suite', data-where='address2')
+
+										.row
+											.col-xs-12.col-lg-4
+												input(placeholder='City', data-where='city' required class='required')
+											.col-xs-12.col-lg-4
+												input(placeholder='Zip code', data-where='zip' required  class='required')
+											.col-xs-12.col-lg-4
+												select(name='country' required  class='required')
+													option(value='Allemagne')
+														|Allemagne
+													option(value='France')
+														|France
+
+								.col-xs-12
+									form#formpaypal(
+									action='https://www.paypal.com/cgi-bin/webscr',
+									method='post',
+									target='_blank',
+									)
+										input(type='hidden', name='cmd', value='_cart')
+										input(type='hidden', name='upload', value='1')
+										input(type='hidden', name='notify_url', value!="<?php echo $_SERVER['SERVER_NAME'].'/confirm';?>")
+
+										input(type='hidden', name='business', value!='<?php echo($mail); ?>', class="business")
+
+										input(type='hidden', class='first_name', name='first_name', value='')
+										input(type='hidden', class='last_name', name='last_name', value='')
+										input(type='hidden', class='address1', name='address1', value='')
+										input(type='hidden', class='address2', name='address2', value='')
+										input(type='hidden', class='city', name='city', value='')
+										input(type='hidden', class='zip', name='zip', value='')
+										input(type='hidden', class='country', name='country', value='')
+
+										//- input(type='hidden', name='item_name', class='item' value='Item Name')
+										//- input(type='hidden', name='amount', class='amount' value='0')
+										//- input(type='hidden', name='quantity', class='quantity' value='0')
+
+										input(type='hidden', name='currency_code', value='EUR')
+										input(type='image', src='https://www.paypalobjects.com/webstatic/en_US/i/buttons/cc-badges-ppmcvdam.png', name='submit', alt="Make payments with PayPal - it's fast, free and secure!")
+										input(type='submit', name='submit', value='pay').btn.invert.pay
+
+
+
+
+
+
+		//- script.
+		//- 	window.paypalCheckoutReady = function () {
+		//- 		paypal.checkout.setup('<?php echo($merchantID); ?>', {
+		//- 			container: 'paypalexpress',
+		//- 			environment: '<?php echo($env); ?>'
+		//- 		});
+		//- 	};
+
+
+		//- script(async='', src='//www.paypalobjects.com/api/checkout.js')
+
+		- get_footer();

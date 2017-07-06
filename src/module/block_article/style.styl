@@ -17,8 +17,15 @@ article.two_col
 
 
 	.border
-		border-top 5px solid #000
-		border-bottom 5px solid #000
+		// border-top 5px solid #000
+		// border-bottom 5px solid #000
+		&:before,
+		&:after
+			content ''
+			height 5px
+			background #000
+			width 100%
+			display block
 		padding-top ($space-1 * 2/3)
 		padding-bottom ($space-1 * 2/3)
 
@@ -60,3 +67,19 @@ article.two_col
 			color $ft-color-secondary
 			&:hover
 				color $ft-color-tertiary
+
+
+	@media $bs-screen-xld-min // Large devices (desktops, 62em and up)
+		.pusher
+			height 280px
+		.stuck
+			position fixed
+			top 0
+			width 25%
+			padding-right $space-1 * 2
+
+			&.fixed-at-bottom
+				position absolute
+				top auto
+				bottom $space-1
+				padding-right 0

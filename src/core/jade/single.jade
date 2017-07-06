@@ -23,10 +23,10 @@ html(<?php language_attributes(); ?>)
 				- $my_query_grid = new WP_Query($args);
 				- $count_posts = $my_query_grid->found_posts;
 				- $lgcolsize = 3;
-				.two_col.ontopofgrid
+				.two_col.ontopofgrid#stop_stiky
 					.one_third
 						.youwilllike
-							|You will like...
+							|Related...
 					.two_third.my_container
 						.articlebottomline
 				include ../../module/grid/index.php.jade

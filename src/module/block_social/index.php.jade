@@ -1,22 +1,13 @@
-- $subject = (ICL_LANGUAGE_CODE === 'nl') ? 'Ik denk dat dit artikel kan u interesseren' : 'Je pense que cette article peut vous int&eacute;resser';
-- $mail_body = (ICL_LANGUAGE_CODE === 'nl') ? 'Check deze site : ' : 'Consultez cette article : ';
-- $mail_body .= get_permalink($post->ID);
-
 ul.social
-	li.mail
-		a.icon-envelop(
-		href!='mailto:?subject=<?php echo $subject;?>&amp;body=<?php echo $mail_body;?>'
-		)
-	li.fb
-		a.icon-facebook(
-		href!='http://www.facebook.com/sharer.php?u=<?php echo get_permalink($post->ID); ?>'
-		target="_blank"
-		)
-			| Share
-
-	li.twitter
-		a.icon-twitter(
-		href!="https://twitter.com/intent/tweet?text=<?php echo urlencode(get_the_title());  ?>&amp;url=<?php echo get_permalink($post->ID); ?>"
-		target="_blank"
-		)
-			| Twitter
+	- while ( have_rows('social_link', $pageinfoid) ) : the_row();
+		li
+			- $platform = get_sub_field('platform', $pageinfoid);
+			- $url = get_sub_field('url', $pageinfoid);
+			a(
+			href!="<?php  echo $url; ?>",
+			target='_blank',
+			class!="<?php  echo  'icon-'.$platform; ?>",
+			)
+				span
+					!= $platform;
+	- endwhile;

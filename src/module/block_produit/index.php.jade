@@ -1,0 +1,43 @@
+.blocks.produit(
+	class!="<?php echo d('extra_class',$data);?>"
+	)
+	.header
+		.meta
+			h3.title
+				!=d('post_title',$data)
+
+	.descrition
+		!=d('post_descrition',$data)
+
+	include ../block_preview_article/perfect_image.php.jade
+
+	.cost
+		!=d('post_cost',$data).' €'
+	//- .stock
+	//- 	!=d('post_stock',$data)
+	//- .postal
+	//- 	!=d('post_postal',$data)
+
+
+
+	//- - if( have_rows('images') ):
+	//- 	-// loop through the rows of data
+	//- 	ul.images
+	//- 	- while ( have_rows('images') ) : the_row();
+	//- 		-// display a sub field value
+	//- 		- $image = get_sub_field('image');
+	//- 			li
+	//- 				img(src!="<?php echo $image[url]; ?>" alt!="<?php echo $image[alt]; ?>" )
+	//- 	-endwhile;
+	//- - endif;
+
+	.btn.addtocart(
+		data-title!="<?php echo d('post_title',$data);?>",
+		data-cost!="<?php echo d('post_cost',$data);?>",
+		data-image!="<?php echo d('post_thumbnail_src',$data);?>",
+		data-id!="<?php echo d('ID',$data);?>",
+		data-descrition!="<?php echo d('post_descrition',$data);?>",
+		data-postal!="<?php echo d('post_postal',$data);?>"
+		)
+		| add to cart
+

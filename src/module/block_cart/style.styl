@@ -1,0 +1,66 @@
+.cartpage
+	padding-bottom $space-1
+	text-align right
+	.content
+		text-align center
+
+	#formpaypal
+		text-align right
+		opacity 0.5
+		&.readytopay
+			opacity 1
+
+	.pay
+		margin-left $space-1
+
+	#formaddress
+		.row
+			padding-bottom ($space-1/3)
+
+	input
+		width 100%
+
+		&[type='image']
+			width auto
+
+	.article
+		padding-top ($space-1/3)
+		padding-bottom ($space-1/3)
+		border-bottom $grey solid 1px
+
+	.checkout
+		margin $space-1 0
+
+	.btnetape1,
+	.btnetape2
+		cursor pointer
+
+	h3.titlesection
+		background #000
+		color $primary-color
+		padding  ($space-1/2)
+
+	.recap_cost
+		text-align right
+		.total,
+		.postal,
+		.topay
+			padding ($space-1/4)
+		.total
+			background $light-grey
+		.postal
+			background $grey
+		.topay
+			background $dark-grey
+
+	section
+		display none
+
+	&[data-etape='etape1']
+		section.etape1
+			display block
+
+	&[data-etape='etape2']
+		section.etape2
+			display block
+

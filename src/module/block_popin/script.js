@@ -17,20 +17,21 @@ popin = (function() {
     return this.$btn.on('click', (function(_this) {
       return function(e) {
         var $url;
-        console.log(_this.checkbox.is(':visible'));
-        if (_this.checkbox.is(':visible')) {
-          $url = $(e.target).attr('href');
-          $('.mypopin .content').load($url + ' #main', function(response, status, xhr) {
-            if (status === 'error') {
-              console.log('Sorry but there was an error: ');
-            } else if (status === 'success') {
-              $('body').addClass('popin_opended');
-              _bindform();
-            }
-          });
-          console.log('click : ' + $url);
-          return false;
-        }
+        $url = $(e.target).attr('href');
+        console.log($url);
+        $.ajax({
+          url: $url,
+          success: function(response) {
+            console.log('damened N?? = ' + $(response).html());
+            console.log($('#main', response).html());
+            console.log($(response).filter('#main').html());
+            $('body').addClass('popin_opended');
+            $('.mypopin .content').html($(response).filter('#main'));
+            $('.mypopin .content').append($(response).filter('script'));
+          }
+        });
+        console.log('click : ' + $url);
+        return false;
       };
     })(this));
   };

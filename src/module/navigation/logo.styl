@@ -1,15 +1,20 @@
 .header
 	h1
-		width widthlogo
-		height 60px
+		width 75px
+		height 75px
 		left ($space-1 / 2)
 		margin 0
 		z-index 1
-		vert_align_middle()
+		background #000
+		display none
+
+		// margin ($space-1 / 2)
+		// border-radius 0 0 50% 50%
 
 		a,
-		svg
-			height 60px
+		svg,
+		img
+			height 75px
 			display block
 
 		.elementlogo
@@ -22,3 +27,4 @@
 	@media $bs-screen-xld-min // Large devices (desktops, 62em and up)
 		h1
 			left 0
+			display inline-block

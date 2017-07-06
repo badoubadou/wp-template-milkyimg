@@ -12,8 +12,12 @@
 	z-index 999
 	background #000
 	transition height 1s ease-in
-	height navigation-height
+	height 0
 	margin-bottom $space-1
+	
+	.shop &
+		height navigation-height
+	
 
 	&:before
 		content ''
@@ -22,7 +26,7 @@
 		left 0
 		width 100%
 		height navigation-height
-		background #000
+		background $bg-color-secondary
 
 		.category-drawing &
 			background $color-drawing
@@ -45,15 +49,19 @@
 			height 100vh
 
 		.header
-			height navigation-height
+			// height navigation-height
 			position relative
+			// width 75px
+			background #000
+			// margin ($space-1 / 2)
 
 	.nav-group-wrapper
 		display none
 		position relative
+		text-align right
 
 		ul
-			even-blocks(12)
+			// even-blocks(3)
 			padding 0
 			margin 0
 			list-style-type none
@@ -78,7 +86,7 @@
 
 			a
 				text-transform uppercase
-				vert_align_middle()
+				// vert_align_middle()
 				margin 0 $space-1
 
 	.navigation-active &
@@ -87,23 +95,35 @@
 		.nav-group-wrapper
 			display block
 
-	.toggle-burger
-		float right
+	// .toggle-burger
+	// 	float right
 
 	@media $bs-screen-xld-min // Large devices (desktops, 62em and up)
 		position relative
+		width auto
+		margin-bottom 0
+
+		&:before
+			content none
+
 		.navigation
 			height auto
+			width auto
+
+			.header
+				height auto
+				text-align center
+				background #000
+
 		.navigation-active &
 			height navigation-height
 		.nav-group-wrapper
 			display block
 			right 0
-			width 75%
-			position absolute
-			top 70%
-			transform translateY(-70%)
-			// vert_align_middle()
+			width 100%
+			position relative
+			top 0
+			text-align left
 
 			ul
 				height auto
@@ -111,23 +131,26 @@
 				.admin-bar &
 					height auto
 			li
-				display inline-block
+				display block
 				height auto
-				padding 0 $space-1
-				&:first-child
-					padding-left 0
+				padding 0 ($space-1 / 2)
+				background #000
+				margin 5px 0
 
 				a
 					position relative
 					top auto
 					transform none
 					margin 0
+					color $bg-color-secondary-dark
 
-				&.current-menu-item
+					&:hover
+						color $ft-color-primary
+
+				&.current-menu-item,
+				&.current-cat
 					a
-						color $ft-color-secondary
-						&:hover
-							color $ft-color-primary
+						color $ft-color-primary
 
 				&.social,
 				&.lisearch

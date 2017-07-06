@@ -1,17 +1,14 @@
 - /* Template Name: newsletter */
-//- - get_header();
+
 doctype html
 html(<?php language_attributes(); ?>)
 	include header.jade
 	body(
 	class!="<?php echo $stringclass;?>"
 	)
-
 	include ../../module/navigation/index.php.jade
 
 	main#main.site-main
-		section.blocks.newsletter
-			- the_content();
-
-	//- get_sidebar();
+		.my_container
+			include ../../module/block_newsletter/index.php.jade
 	- get_footer();

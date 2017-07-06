@@ -1,0 +1,21 @@
+.clearfix#contact-form
+	form(
+		method="post"
+		action="/?na=s"
+		)
+		input(
+		type="hidden"
+		value="page"
+		name="nr"
+		)
+		input.newsletter-email#email(
+		type="email"
+		name="ne"
+		size="30"
+		placeholder="your email"
+		required
+		)
+		input.newsletter-submit(
+		type="submit"
+		value="Subscribe"
+		)

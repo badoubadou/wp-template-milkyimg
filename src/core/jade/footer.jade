@@ -5,19 +5,48 @@ footer
 		- $pageinfoid = $pageinfo->ID;
 
 		.mention
-			| Copyright © 2016 - Shut Studio - All rights reserved - &nbsp;
+			| Copyright ©
+			!=  date("Y")
+			&nbsp;|&nbsp;- Romain Malauzat - All rights reserved - &nbsp;
 			- $linkmailto = 'mailto:';
 			- $linkmailto .= get_field('mail', $pageinfoid);
 
 			a(href!="<?php echo $linkmailto;?>")
 				!= the_field('mail', $pageinfoid)
 			|&nbsp;-&nbsp;
-			!= the_field('telephone', $pageinfoid)
-		.tags
-			!= get_the_tag_list('<div class="Related tags"><h4>Related tags</h4><ul><li>','</li><li>','</li></ul></div>')
+			a(href!="tel:<?php echo the_field('telephone', $pageinfoid);?>")
+				!= the_field('telephone', $pageinfoid)
+
+			include ../../module/block_social/index.php.jade
+
+			a.btnpopin(href="/newsletter")
+				|newsletter
+
+		//- .tags
+		//- 	!= get_the_tag_list('<div class="Related tags"><h4>Related tags</h4><ul><li>','</li><li>','</li></ul></div>')
+.blocks.mypopin
+	.shield
+	.content
 
 script(src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js')
+script(src!='<?php echo get_stylesheet_directory_uri(); ?>/js/vendor/js.cookie.js')
+script(src!='<?php echo get_stylesheet_directory_uri(); ?>/js/vendor/jquery.mousewheel.min.js')
+script(src!='<?php echo get_stylesheet_directory_uri(); ?>/js/vendor/jquery.flexslider-min.js')
+script(src!='<?php echo get_stylesheet_directory_uri(); ?>/js/vendor/jquery.waypoints.min.js')
+script(src!='<?php echo get_stylesheet_directory_uri(); ?>/js/vendor/sticky.min.js')
+script(src!='<?php echo get_stylesheet_directory_uri(); ?>/js/vendor/inview.min.js')
 script(src!='<?php echo get_stylesheet_directory_uri(); ?>/js/base.js?<?php echo time(); ?>')
+
+//-script.
+	function codeAddress() {
+		chatteron.init({
+			chatterOnClientID: "e22824e4906fd8ef6dc27bc868bb7c0668396484e1093105",
+			themeColor       : "3295e6",
+			label            : "Chat here"
+		});
+	}
+//-script(src='https://chatteron.io/web-sdk/scripts/web-sdk.js', onload='codeAddress();')
+
 
 - wp_footer();
 //- | </body>

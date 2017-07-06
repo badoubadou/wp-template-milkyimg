@@ -1,0 +1,23 @@
+extends grid-layout
+block query
+	- /* Template Name: home */
+	- $sliderfrontpost=array('meta_query' => array(array('key' => 'on_front_page','value' => '1','compare' => '==')))
+	- $my_query_slider = null;
+	- $my_query_slider = new WP_Query($sliderfrontpost);
+	- $count_posts_slider = $my_query_slider->found_posts;
+
+
+	- $type = array( 'post');
+
+	- $args=array('post_type' => $type,'post_status' => 'publish', 'posts_per_page' => -1, 'orderby' => 'rand');
+	- $my_query_grid = null;
+	- $my_query_grid = new WP_Query($args);
+	- $count_posts = $my_query_grid->found_posts;
+	- $lgcolsize = ceil(12 / $count_posts);
+
+
+
+
+block sliderfront
+	include ../../module/block_slider/index.php.jade
+

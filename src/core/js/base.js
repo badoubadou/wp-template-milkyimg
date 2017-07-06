@@ -24,13 +24,48 @@ debounce = function(func, threshold, execAsap) {
 };
 
 init = function() {
-  var bierfilter, popinnewsletter, searchfocus;
+  var cart, inview, newsletter, popin, produit, sticky;
   console.log('doc ready');
-  if (($('.blocks.filter').length)) {
-    bierfilter = new module.filter($('.blocks.filter'), debounce);
+  $('body').addClass('doc-ready');
+  if (($('.addtocart').length)) {
+    produit = new module.produit($('.addtocart'));
   }
-  popinnewsletter = new module.popin($('.top_menu li:last-child a'));
-  return searchfocus = new module.searchfocus($('#showsearch'), $('#s'));
+  if (($('.flexslider').length)) {
+    $('.flexslider').flexslider({
+      animation: 'slide',
+      start: function(slider) {
+        $('body').addClass('slider-ready');
+      }
+    });
+  }
+  if (($('.cartpage').length)) {
+    cart = new module.cart($('.cartpage'));
+  }
+  if (($('.btnpopin').length)) {
+    console.log('ya popin');
+    popin = new module.popin($('.btnpopin'));
+  }
+  if (($('#contact-form').length)) {
+    newsletter = new module.newsletter($('#contact-form'));
+  }
+  if (($('.sticky').length)) {
+    sticky = new Waypoint.Sticky({
+      element: $('.sticky')[0]
+    });
+    return inview = new Waypoint.Inview({
+      element: $('#stop_stiky')[0],
+      enter: function(direction) {
+        $('.sticky').addClass('fixed-at-bottom');
+        console.log('Enter triggered with direction ' + direction);
+      },
+      exited: function(direction) {
+        if (direction === 'up') {
+          $('.sticky').removeClass('fixed-at-bottom');
+          console.log('remove : ' + direction);
+        }
+      }
+    });
+  }
 };
 
 $(window).load(init);

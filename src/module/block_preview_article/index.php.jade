@@ -12,6 +12,7 @@ article.blocks.preview_article(
 		header
 			h6.title
 				!=d('post_title',$data)
+				!=$currentpostid
 
 		//- header
 		//- 	.meta
@@ -29,3 +30,21 @@ article.blocks.preview_article(
 		//- 	blockquote(cite!="<?php echo d('post_permalink',$data);?>").excerpt
 		//- 		span.highlight
 		//- 			!=d('post_excerpt',$data)
+
+	- if(get_query_var('pagename')=='shop'):
+
+		- if(get_field('is_product')):
+			.footer
+				.price
+					!=get_field('price').' €'
+				.btn.invert.addtocart(
+					data-title!="<?php echo d('post_title',$data);?>",
+					data-cost!="<?php echo get_field('price');?>",
+					data-image!="<?php echo d('post_thumbnail_src',$data);?>",
+					data-id!="<?php echo d('ID',$data);?>",
+					data-descrition!="<?php echo d('post_descrition',$data);?>",
+					data-postal!="<?php echo d('post_postal',$data);?>"
+				)
+					| add to cart
+		-endif;
+	-endif;

@@ -1,0 +1,17 @@
+- if ($count_posts_slider):
+	.myslider.flexslider.slider-full-height
+		ul.slides
+			- while ($my_query_slider->have_posts()) : $my_query_slider->the_post();
+				- $data = prepare_post();
+				- $image = get_field( "image_front" );
+				li(
+				data-thumb!="<?php echo $image['sizes']['thumbnail']; ?>",
+				style!="background-image: url(<?php echo $image['url']; ?>);"
+				)
+					a.see_project.btn.invert.dark_bg(
+					href!="<?php echo d('post_permalink',$data);?>",
+					)
+						| See project
+						img(src!="<?php echo $image['sizes']['large']; ?>" alt!="<?php echo $image['alt']; ?>")
+			- endwhile;
+-endif;
