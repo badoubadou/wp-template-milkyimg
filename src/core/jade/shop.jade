@@ -8,25 +8,8 @@ block query
 	- $my_query_grid = new WP_Query($args);
 	- $count_posts = $my_query_grid->found_posts;
 
-
-
-	- /* Template Name: home */
 	- $sliderfrontpost=array('meta_query' => array( 'relation' => 'AND', array('key' => 'on_front_page','value' => '1','compare' => '=='),array('key' => 'is_product','value' => '1','compare' => '==')))
-	//- $sliderfrontpost = array(
-		'meta_query' => array(
-		    'relation' => 'AND',
-		    array(
-		        'key' => 'on_front_page',
-		        'value' => '1',
-		        'compare' => '=='
-		    ),
-		    array(
-		        'key' => 'is_product',
-		        'value' => '1',
-		        'compare' => '=='
-		    )
-		)
-	
+
 	- $my_query_slider = null;
 	- $my_query_slider = new WP_Query($sliderfrontpost);
 	- $count_posts_slider = $my_query_slider->found_posts;

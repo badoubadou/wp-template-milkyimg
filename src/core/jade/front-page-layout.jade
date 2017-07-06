@@ -4,7 +4,7 @@ doctype html
 html
 	include header.jade
 	body.slider-full-height(
-	class!="<?php echo get_query_var('pagename').' '.implode(' ', get_body_class());?>"
+	class!="<?php echo $bodyclass;?>"
 	)
 		include ../../module/navigation/index.php.jade
 

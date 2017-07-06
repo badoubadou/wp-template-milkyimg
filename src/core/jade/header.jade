@@ -5,8 +5,12 @@
 - $cat = $cat[0];
 - $catslug = $cat->slug;
 
-- $bodyclass .= ' category-'.$catslug.' ';
 
+- $bodyclass .= ' category-'.$catslug.' '.get_query_var('pagename').' ';
+
+-if(get_field('is_product') ):
+	- $bodyclass .= ' has-cart ';
+-endif;
 
 - global $isIE;
 - global $isIEbool;
