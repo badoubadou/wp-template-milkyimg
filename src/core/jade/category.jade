@@ -1,18 +1,10 @@
 extends grid-layout
 block query
 
-	- /* Template Name: home */
-
-
-
-	- $type = array( 'post');
-	- $cat = get_the_category();
-	- $cat = $cat[0];
-	- $catid = $cat->cat_ID;
+	- $title = single_cat_title('',false);
+	- $catid = get_cat_ID($title);
 	- $cat_name = get_cat_name($catid);
 
-
-	//-- $sliderfrontpost=array('cat' => $catid, 'meta_query' => array(array('key' => 'on_front_page','value' => '1','compare' => '==')))
 	- $sliderfrontpost=array('cat' => $catid, 'post_type' => $type,'post_status' => 'publish','meta_query' => array(array('key' => 'on_front_page','value' => '1','compare' => '==')));
 	- $my_query_slider = null;
 	- $my_query_slider = new WP_Query($sliderfrontpost);
