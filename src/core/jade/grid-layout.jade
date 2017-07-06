@@ -4,7 +4,7 @@ doctype html
 html
 	include header.jade
 	body(
-	class!="<?php echo get_query_var('pagename');?>"
+	class!="<?php echo get_query_var('pagename').' '.implode(' ', get_body_class());?>"
 	)
 		include ../../module/navigation/index.php.jade
 
